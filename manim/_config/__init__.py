@@ -19,6 +19,7 @@ __all__ = [
     "cli_ctx_settings",
 ]
 
+# 会从不同的文件中读取配置文件，然后将配置文件中的配置项解析到config对象中
 parser = make_config_parser()
 logger: logging.Logger
 

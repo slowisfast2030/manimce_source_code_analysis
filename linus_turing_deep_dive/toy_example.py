@@ -75,13 +75,23 @@ vscode肯定有一个地方可以配置。
 '''
 
 '''
-New bing: what is difference between CairoRenderer and OpenGLRenderer in manim? explain step by step and give example.
+New bing: what is difference between CairoRenderer and OpenGLRenderer in manim? 
+explain step by step and give example.
 
-CairoRenderer and OpenGLRenderer are two different renderers that Manim can use to create animations. They have different advantages and disadvantages, and some features are only available in one of them.
+CairoRenderer and OpenGLRenderer are two different renderers that Manim can use 
+to create animations. They have different advantages and disadvantages, and some 
+features are only available in one of them.
 
-CairoRenderer uses Cairo, a 2D graphics library, to draw the shapes and text on the screen. It runs purely on the CPU and produces high-quality vector graphics. However, it is slower than OpenGLRenderer and does not support interactive mode or 3D scenes.
+CairoRenderer uses Cairo, a 2D graphics library, to draw the shapes and text on 
+the screen. It runs purely on the CPU and produces high-quality vector graphics. 
+However, it is slower than OpenGLRenderer and does not support interactive mode or 3D scenes.
 
-OpenGLRenderer uses OpenGL, a cross-platform API for rendering 2D and 3D graphics. It runs on the GPU and uses shaders to create the effects. It is faster than CairoRenderer and supports interactive mode, 3D scenes, and projection shaders. However, it may have some glitches or artefacts, and some mobjects may appear pixelated.
+OpenGLRenderer uses OpenGL, a cross-platform API for rendering 2D and 3D graphics. 
+It runs on the GPU and uses shaders to create the effects. It is faster than CairoRenderer 
+and supports interactive mode, 3D scenes, and projection shaders. However, 
+it may have some glitches or artefacts, and some mobjects may appear pixelated.
 
-To use CairoRenderer, you don’t need to specify any flag when running manim. To use OpenGLRenderer, you need to pass --renderer=opengl flag and -p flag to activate the interactive window.
+To use CairoRenderer, you don’t need to specify any flag when running manim. 
+To use OpenGLRenderer, you need to pass --renderer=opengl flag and -p flag 
+to activate the interactive window.
 '''

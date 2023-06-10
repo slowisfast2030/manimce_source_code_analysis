@@ -24,3 +24,8 @@ python toy_example.py
 法二:
 manim toy_example.py ToyExample -pql
 '''
+
+'''
+在vscode中点击上述代码中的变量，并不会跳转到安装的库的源码，而是跳转到当前文件夹下载的源码。
+vscode肯定有一个地方可以配置。
+'''

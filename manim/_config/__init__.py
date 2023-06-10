@@ -36,6 +36,7 @@ logging.getLogger("PIL").setLevel(logging.INFO)
 logging.getLogger("matplotlib").setLevel(logging.INFO)
 
 config = ManimConfig().digest_parser(parser)
+# 这里的config对象至关重要，它是manim的核心配置对象，所有的配置都是从这里读取的
 frame = ManimFrame(config)
 
 

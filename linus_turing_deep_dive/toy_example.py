@@ -13,7 +13,8 @@ class ToyExample(Scene):
         self.wait()
         self.play(FadeOut(blue_circle, small_dot))
 
-with tempconfig({"quality": "medium_quality", "preview": True}):
+with tempconfig({"quality": "medium_quality", "preview": False}):
+    print("config of toy example:", config)
     scene = ToyExample()
     scene.render()
 

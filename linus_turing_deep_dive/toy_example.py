@@ -22,6 +22,13 @@ applies the changes to the key-value pairs in the passed dictionary,
 and upon leaving the context the original version of the configuration is restored. 
 TL;DR: it provides a fancy way of temporarily setting configuration options.
 '''
+
+'''
+Inside the context manager, two things happen: 
+an actual ToyExample-scene object is instantiated, and the render method is called. 
+Every way of using Manim ultimately does something along of these lines, 
+the library always instantiates the scene object and then calls its render method. 
+'''
 with tempconfig({"quality": "medium_quality", "preview": False}):
     '''
     from manim import *顺带导入了config对象

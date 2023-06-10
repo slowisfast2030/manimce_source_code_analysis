@@ -75,9 +75,11 @@ vscode肯定有一个地方可以配置。
 '''
 
 '''
-New bing: what is difference between CairoRenderer and OpenGLRenderer in manim? 
+New bing: 
+what is difference between CairoRenderer and OpenGLRenderer in manim? 
 explain step by step and give example.
 
+Answer:
 CairoRenderer and OpenGLRenderer are two different renderers that Manim can use 
 to create animations. They have different advantages and disadvantages, and some 
 features are only available in one of them.

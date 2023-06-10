@@ -13,6 +13,15 @@ class ToyExample(Scene):
         self.wait()
         self.play(FadeOut(blue_circle, small_dot))
 
+'''
+At this point, the interpreter is about to enter the tempconfig context manager. 
+Even if you have not seen Manim’s tempconfig before, 
+it’s name already suggests what it does: 
+it creates a copy of the current state of the configuration, 
+applies the changes to the key-value pairs in the passed dictionary, 
+and upon leaving the context the original version of the configuration is restored. 
+TL;DR: it provides a fancy way of temporarily setting configuration options.
+'''
 with tempconfig({"quality": "medium_quality", "preview": False}):
     '''
     from manim import *顺带导入了config对象

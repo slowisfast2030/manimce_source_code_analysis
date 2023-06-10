@@ -16,3 +16,9 @@ class ToyExample(Scene):
 with tempconfig({"quality": "medium_quality", "preview": True}):
     scene = ToyExample()
     scene.render()
+
+'''
+执行:
+python toy_example.py
+就可以正确渲染出视频
+'''

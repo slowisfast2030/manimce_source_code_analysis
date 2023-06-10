@@ -18,7 +18,9 @@ with tempconfig({"quality": "medium_quality", "preview": True}):
     scene.render()
 
 '''
-执行:
+法一:
 python toy_example.py
-就可以正确渲染出视频
+
+法二:
+manim toy_example.py ToyExample -pql
 '''

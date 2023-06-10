@@ -23,6 +23,12 @@ python toy_example.py
 
 法二:
 manim toy_example.py ToyExample -pql
+
+思考:
+1.严格来讲，法二的完整命令是
+python -m manim toy_example.py ToyExample -pql
+`toy_example.py ToyExample -pql`是manim的参数
+2.法二的本质就是法一。会对ToyExample类进行实例化，并调用render函数。
 '''
 
 '''

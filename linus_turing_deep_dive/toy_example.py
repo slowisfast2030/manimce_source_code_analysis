@@ -14,6 +14,10 @@ class ToyExample(Scene):
         self.play(FadeOut(blue_circle, small_dot))
 
 with tempconfig({"quality": "medium_quality", "preview": False}):
+    '''
+    from manim import *顺带导入了config对象
+    tempconfig上下文可以临时修改config对象的值
+    '''
     print("config of toy example:", config)
     scene = ToyExample()
     scene.render()

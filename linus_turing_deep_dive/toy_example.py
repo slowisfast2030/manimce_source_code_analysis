@@ -20,6 +20,13 @@ with tempconfig({"quality": "medium_quality", "preview": False}):
     '''
     print("config of toy example:", config)
     scene = ToyExample()
+    '''
+    跳转到render的源码，我们会发现：
+    scene.render()函数内部分为三步：
+    1.self.setup()
+    2.self.construct()
+    3.self.tear_down()
+    '''
     scene.render()
 
 '''

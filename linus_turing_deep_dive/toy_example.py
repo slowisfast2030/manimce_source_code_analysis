@@ -34,7 +34,18 @@ with tempconfig({"quality": "medium_quality", "preview": False}):
     tempconfig上下文可以临时修改config对象的值
     '''
     print("config of toy example:", config)
+
+    '''
+    the Scene.__init__ method is called, given that we did not implement our own 
+    initialization method. Inspecting the corresponding code (see here) reveals 
+    that Scene.__init__ first sets several attributes of the scene objects that 
+    do not depend on any configuration options set in config. 
+    Then the scene inspects the value of config.renderer, and based on its value, 
+    either instantiates a CairoRenderer or an OpenGLRenderer object and assigns 
+    it to its renderer attribute.
+    '''
     scene = ToyExample()
+    
     '''
     跳转到render的源码，我们会发现：
     scene.render()函数内部分为三步：

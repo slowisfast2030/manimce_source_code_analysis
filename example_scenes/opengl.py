@@ -16,7 +16,7 @@ renderer = opengl
 '''
 # 或者
 # manim -pql opengl.py --renderer opengl
-# manim -pql opengl.py SurfaceExample --format mp4 -o output.mp4
+# manim -pql opengl.py SurfaceExample --format mp4 -o SurfaceExample.mp4
 
 def get_plane_mesh(context):
     shader = Shader(context, name="vertex_colors")

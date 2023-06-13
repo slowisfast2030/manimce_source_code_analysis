@@ -4,6 +4,9 @@ class ToyExample(Scene):
     def construct(self):
         orange_square = Square(color=ORANGE, fill_opacity=0.5)
         blue_circle = Circle(color=BLUE, fill_opacity=0.5)
+        print("*"*30, orange_square.name)
+        print("*"*30, blue_circle.name)
+
         self.add(orange_square)
         self.play(ReplacementTransform(orange_square, blue_circle, run_time=3))
         small_dot = Dot()

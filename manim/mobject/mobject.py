@@ -128,6 +128,18 @@ class Mobject:
             scene = Test()
             scene.render()
     """
+    """linus
+    class CustomSquare(Square):
+        @override_animation(FadeIn)
+        def fade_in_override(self, **kwargs):
+            return Create(self, **kwargs)
+
+    class CustomScene(Scene):
+        def construct(self):
+            square = CustomSquare()
+            self.play(FadeIn(square))
+            self.wait()
+    """
 
     @classmethod
     def __init_subclass__(cls, **kwargs):

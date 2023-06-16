@@ -4,8 +4,8 @@ class ToyExample(Scene):
     def construct(self):
         orange_square = Square(color=ORANGE, fill_opacity=0.5)
         blue_circle = Circle(color=BLUE, fill_opacity=0.5)
-        print("*"*30, orange_square.name)
-        print("*"*30, blue_circle.name)
+        # print("*"*30, orange_square.name)
+        # print("*"*30, blue_circle.name)
 
         self.add(orange_square)
         self.play(ReplacementTransform(orange_square, blue_circle, run_time=3))
@@ -36,7 +36,7 @@ with tempconfig({"quality": "medium_quality", "preview": False}):
     from manim import *顺带导入了config对象
     tempconfig上下文可以临时修改config对象的值
     '''
-    print("config of toy example:", config)
+    #print("config of toy example:", config)
 
     '''
     the Scene.__init__ method is called, given that we did not implement our own 

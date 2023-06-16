@@ -546,6 +546,8 @@ class Rectangle(Polygon):
         **kwargs,
     ):
         super().__init__(UR, UL, DL, DR, color=color, **kwargs)
+        # 一旦执行上面这一行，就会生成一个矩形，但是这个矩形的四个顶点的坐标是UR, UL, DL, DR
+        # 然后执行下面这一行，就会把这个矩形的四个顶点的坐标进行修改，使得这个矩形的长宽符合要求
         self.stretch_to_fit_width(width)
         self.stretch_to_fit_height(height)
         v = self.get_vertices()

@@ -86,6 +86,7 @@ class CairoRenderer:
             {"h": str(self.animations_hashes[:5])},
         )
 
+        # 这里两个begin_animation有什么区别吗？
         self.file_writer.begin_animation(not self.skip_animations)
         scene.begin_animations()
 

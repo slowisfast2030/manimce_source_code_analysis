@@ -608,6 +608,26 @@ class Square(Rectangle):
         self.side_length = side_length
         super().__init__(height=side_length, width=side_length, **kwargs)
 
+"""
+class Rectangle:
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return 2 * self.length + 2 * self.width
+
+class Square(Rectangle):
+    def __init__(self, side):
+        super().__init__(side, side) # call the __init__ method of the superclass
+        self.side = side # assign the side attribute of the subclass
+
+    # you can use the inherited methods of the superclass
+    # or override them if you want to change their behavior
+"""
 
 class RoundedRectangle(Rectangle):
     """A rectangle with rounded corners.

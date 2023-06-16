@@ -71,11 +71,19 @@ class Polygram(VMobject, metaclass=ConvertToOpenGL):
         the constructor of Polygram also does something somewhat odd: 
         it sets the points (which, you might remember above, 
         should actually be set in a corresponding generate_points method of Polygram).
+        
+        In several instances, the implementation of mobjects does not really 
+        stick to all aspects of Manim’s interface. This is unfortunate, and 
+        increasing consistency is something that we actively work on. Help is welcome!
         """
         for vertices in vertex_groups:
             first_vertex, *vertices = vertices
             first_vertex = np.array(first_vertex)
-
+            """
+            Without going too much into detail, Polygram sets its points attribute 
+            via VMobject.start_new_path(), VMobject.add_points_as_corners(), which 
+            take care of setting the quadruples of anchors and handles appropriately.
+            """
             self.start_new_path(first_vertex)
             self.add_points_as_corners(
                 [*(np.array(vertex) for vertex in vertices), first_vertex],

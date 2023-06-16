@@ -66,7 +66,7 @@ class Polygram(VMobject, metaclass=ConvertToOpenGL):
 
     def __init__(self, *vertex_groups: Iterable[Sequence[float]], color=BLUE, **kwargs):
         super().__init__(color=color, **kwargs)
-        """
+        """linus
         After calling the initialization function of VMobject, 
         the constructor of Polygram also does something somewhat odd: 
         it sets the points (which, you might remember above, 

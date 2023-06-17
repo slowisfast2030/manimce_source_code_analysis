@@ -586,6 +586,7 @@ class SceneFileWriter:
             commands += ["-an"]
 
         commands += [str(output_file)]
+        print("\nffmpeg commands:", commands)
 
         combine_process = subprocess.Popen(commands)
         combine_process.wait()
@@ -596,6 +597,11 @@ class SceneFileWriter:
         video file for that Scene.
         """
         partial_movie_files = [el for el in self.partial_movie_files if el is not None]
+        
+        print('\ncombine_to_movie function:')
+        for file_path in partial_movie_files:
+            logger.info(file_path)
+
         # NOTE: Here we should do a check and raise an exception if partial
         # movie file is empty.  We can't, as a lot of stuff (in particular, in
         # tests) use scene initialization, and this error would be raised as

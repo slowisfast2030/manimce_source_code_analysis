@@ -101,20 +101,31 @@
 
 from manim import *
 
-class CircleAnimation(Scene):
+class MovingDots(Scene):
     def construct(self):
-        circle = Circle(radius=1, color=BLUE)
-        scale_factor = ValueTracker(1)
-        circle.add_updater(lambda c: c.scale(scale_factor.get_value()))        
+        plane = NumberPlane()
+        d1,d2=Dot(color=BLUE, radius=0.2),Dot(color=GREEN, radius=0.2)
+        dg=VGroup(d1,d2).arrange(RIGHT,buff=2)
+        print(d1.get_center(),d2.get_center())
 
-        self.add(circle)
+        l1=Line(d1.get_center(),d2.get_center()).set_color(RED)
+        
+
+        x=ValueTracker(0)
+        y=ValueTracker(0)
+        d1.add_updater(lambda z: z.set_x(x.get_value()))
+        d2.add_updater(lambda z: z.set_y(y.get_value()))
+        l1.add_updater(lambda z: z.become(Line(d1.get_center(),d2.get_center())))
+
+        d3=Dot(color=RED, radius=0.2)
+        d3.add_updater(lambda z: z.set_x(l1.get_center()[0]).set_y(l1.get_center()[1]))
+
+        self.add(plane, d1, d2, l1, d3)
+        self.play(x.animate.set_value(5))
+        self.play(y.animate.set_value(3))
         self.wait()
-        self.play(scale_factor.animate.set_value(1.05))
-        self.play(scale_factor.animate.set_value(0.9))
-        self.wait()
-    
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "medium_quality", "preview": True}):
-        scene = CircleAnimation()
+    with tempconfig({"quality": "high_quality", "preview": True}):
+        scene = MovingDots()
         scene.render()

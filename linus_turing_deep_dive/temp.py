@@ -108,12 +108,13 @@ class CircleAnimation(Scene):
         circle.add_updater(lambda c: c.scale(scale_factor.get_value()))        
 
         self.add(circle)
-
-        self.play(scale_factor.animate.set_value(1.1))
+        self.wait()
+        self.play(scale_factor.animate.set_value(1.05))
         self.play(scale_factor.animate.set_value(0.9))
+        self.wait()
     
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "low_quality", "preview": True}):
+    with tempconfig({"quality": "medium_quality", "preview": True}):
         scene = CircleAnimation()
         scene.render()

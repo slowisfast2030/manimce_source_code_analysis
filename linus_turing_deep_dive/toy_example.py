@@ -1,4 +1,4 @@
-from manim import *
+from manim import * # type: ignore
 
 class ToyExample(Scene):
     def construct(self):

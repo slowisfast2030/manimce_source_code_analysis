@@ -107,6 +107,7 @@ class CircleAnimation(Scene):
         self.add(circle)
 
         scale_factor = ValueTracker(1)
+        self.add(circle, scale_factor)
         print('scale_factor: ', scale_factor.get_value())
 
         circle.add_updater(lambda c: c.scale(scale_factor.get_value()))        

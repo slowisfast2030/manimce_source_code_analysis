@@ -502,6 +502,8 @@ class SceneFileWriter:
         else:
             command += ["-vcodec", "libx264", "-pix_fmt", "yuv420p"]
         command += [file_path]
+        # 这一行好像不会打印
+        logger.info(f"\nffmpeg file_path: {file_path}")
         self.writing_process = subprocess.Popen(command, stdin=subprocess.PIPE)
 
     def close_movie_pipe(self):

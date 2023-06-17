@@ -105,7 +105,8 @@ class MovingDots(Scene):
     def construct(self):
         plane = NumberPlane()
         d1,d2=Dot(color=BLUE, radius=0.2),Dot(color=GREEN, radius=0.2)
-        dg=VGroup(d1,d2).arrange(RIGHT,buff=2)
+        #dg=VGroup(d1,d2).arrange(RIGHT,buff=2)
+        d2.move_to(RIGHT*2)
         print(d1.get_center(),d2.get_center())
 
         l1=Line(d1.get_center(),d2.get_center()).set_color(RED)

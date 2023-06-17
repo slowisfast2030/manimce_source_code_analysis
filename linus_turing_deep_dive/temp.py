@@ -127,6 +127,6 @@ class MovingDots(Scene):
         self.wait()
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "high_quality", "preview": True}):
+    with tempconfig({"quality": "low_quality", "preview": True}):
         scene = MovingDots()
         scene.render()

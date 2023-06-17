@@ -88,6 +88,7 @@ class CairoRenderer:
 
         # 这里两个begin_animation有什么区别吗？
         # 可以打印日志看看
+        # 后面有对应的end_animation
         self.file_writer.begin_animation(not self.skip_animations)
         scene.begin_animations()
 

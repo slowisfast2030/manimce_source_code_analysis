@@ -109,8 +109,11 @@ class CircleAnimation(Scene):
 
         self.add(circle)
 
+        #self.play(scale_factor.animate.set_value(1.1), run_time=2)
+        #self.wait(3)
+
         self.play(scale_factor.animate.set_value(1.1), run_time=2)
-        self.play(scale_factor.animate.set_value(0.9), run_time=2)
+        #self.play(scale_factor.animate.set_value(1.1), run_time=2)
     
 
 if __name__ == "__main__":

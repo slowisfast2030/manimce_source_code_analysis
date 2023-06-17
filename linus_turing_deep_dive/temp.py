@@ -104,20 +104,13 @@ from manim import *
 class CircleAnimation(Scene):
     def construct(self):
         circle = Circle(radius=1, color=BLUE)
-        self.add(circle)
-
         scale_factor = ValueTracker(1)
-        self.add(circle, scale_factor)
-        print('scale_factor: ', scale_factor.get_value())
-
         circle.add_updater(lambda c: c.scale(scale_factor.get_value()))        
 
-        self.play(scale_factor.animate.set_value(1.1), run_time=2)
+        self.add(circle)
 
-        print('scale_factor: ', scale_factor.get_value())
-        
+        self.play(scale_factor.animate.set_value(1.1), run_time=2)
         self.play(scale_factor.animate.set_value(0.9), run_time=2)
-        print('scale_factor: ', scale_factor.get_value())
     
 
 if __name__ == "__main__":

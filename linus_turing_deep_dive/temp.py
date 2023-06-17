@@ -128,6 +128,6 @@ class CircleAnimation(Scene):
         self.wait(1)
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "high_quality", "preview": True}):
+    with tempconfig({"quality": "low_quality", "preview": True}):
         scene = CircleAnimation()
         scene.render()

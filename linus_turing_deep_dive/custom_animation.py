@@ -50,6 +50,7 @@ class CountingScene(Scene):
 if __name__ == "__main__":
     with tempconfig({"quality": "medium_quality", "preview": True, "disable_caching": False}):
         scene = CountingScene()
+        logger.info('all is well')
         scene.render()
 
 """

@@ -16,11 +16,13 @@ class Count(Animation):
     def begin(self) -> None:
         # Set value of DecimalNumber to start
         logger.info('custom_animation.py: Count.begin()')
+        # 此处执行self.interpolate(0)或者self.interpolate_mobject(0)都可以
         self.mobject.set_value(self.start)
     
     def finish(self) -> None:
         # Set value of DecimalNumber to end
         logger.info('custom_animation.py: Count.finish()')
+        # 此处执行self.interpolate(1)或者self.interpolate_mobject(1)都可以
         self.mobject.set_value(self.end)
 
 

@@ -1192,6 +1192,7 @@ class Scene:
             self.duration,
         )
         for t in self.time_progression:
+            # 下面这个函数调用了animation.interpolate(alpha)函数
             self.update_to_time(t)
             if not skip_rendering and not self.skip_animation_preview:
                 self.renderer.render(self, t, self.moving_mobjects)

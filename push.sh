@@ -2,3 +2,4 @@ git pull
 git add *
 git commit -m "slow is fast"
 git push
+rm ./linus_turing_deep_dive/media

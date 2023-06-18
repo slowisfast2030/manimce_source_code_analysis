@@ -31,6 +31,6 @@ class CountingScene(Scene):
         self.wait()
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "high_quality", "preview": False}):
+    with tempconfig({"quality": "high_quality", "preview": False, "disable_caching": True}):
         scene = CountingScene()
         scene.render()

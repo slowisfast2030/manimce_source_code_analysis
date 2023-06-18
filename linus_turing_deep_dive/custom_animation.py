@@ -40,12 +40,12 @@ class CountingScene(Scene):
         number.add_updater(lambda number: number.move_to(ORIGIN))
 
         self.add(number)
-        self.wait()
+        #self.wait()
 
         # Play the Count Animation to count from 0 to 100 in 4 seconds
         self.play(Count(number, 0, 100), run_time=4, rate_func=linear)
 
-        self.wait()
+        #self.wait()
 
 if __name__ == "__main__":
     with tempconfig({"quality": "medium_quality", "preview": True, "disable_caching": False}):

@@ -22,7 +22,6 @@ class CountingScene(Scene):
         number.add_updater(lambda number: number.move_to(ORIGIN))
 
         self.add(number)
-
         self.wait()
 
         # Play the Count Animation to count from 0 to 100 in 4 seconds

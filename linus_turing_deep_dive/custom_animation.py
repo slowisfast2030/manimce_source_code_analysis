@@ -8,8 +8,11 @@ class Count(Animation):
         self.start = start
         self.end = end
 
-    def interpolate_mobject(self, alpha: float) -> None:
+    # def interpolate_mobject(self, alpha: float) -> None:
+    # 如果查看animation源码，这里实现interpolate和interpolate_mobject都可以
+    def interpolate(self, alpha: float) -> None:
         # Set value of DecimalNumber according to alpha
+        logger.info('custom_animation.py: Count.interpolate()')
         value = self.start + (alpha * (self.end - self.start))
         self.mobject.set_value(value)
 
@@ -45,3 +48,17 @@ if __name__ == "__main__":
     with tempconfig({"quality": "high_quality", "preview": True, "disable_caching": False}):
         scene = CountingScene()
         scene.render()
+
+"""
+执行这份脚本，可以发现如下输出：
+INFO     custom_animation.py: Count.begin()
+INFO     custom_animation.py: Count.interpolate()
+INFO     custom_animation.py: Count.interpolate()
+INFO     custom_animation.py: Count.interpolate()
+INFO     custom_animation.py: Count.interpolate()
+INFO     custom_animation.py: Count.interpolate()
+...
+INFO     custom_animation.py: Count.finish()
+
+说明，所谓的动画效果，只不过是通过不断调用interpolate()函数来实现的。
+"""

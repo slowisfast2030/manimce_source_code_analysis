@@ -7,12 +7,15 @@ class Count(Animation):
         # Set start and end
         self.start = start
         self.end = end
+        self.count = 0
 
     # def interpolate_mobject(self, alpha: float) -> None:
     # 如果查看animation源码，这里实现interpolate和interpolate_mobject都可以
     def interpolate(self, alpha: float) -> None:
         # Set value of DecimalNumber according to alpha
-        logger.info('custom_animation.py: Count.interpolate()')
+        self.count += 1
+        logger.info(f'custom_animation.py: Count.interpolate() {self.count}')
+        #logger.info('custom_animation.py: Count.interpolate()')
         value = self.start + (alpha * (self.end - self.start))
         self.mobject.set_value(value)
 
@@ -45,7 +48,7 @@ class CountingScene(Scene):
         self.wait()
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "high_quality", "preview": True, "disable_caching": False}):
+    with tempconfig({"quality": "medium_quality", "preview": True, "disable_caching": False}):
         scene = CountingScene()
         scene.render()
 
@@ -61,4 +64,9 @@ INFO     custom_animation.py: Count.interpolate()
 INFO     custom_animation.py: Count.finish()
 
 说明，所谓的动画效果，只不过是通过不断调用interpolate()函数来实现的。
+
+引入了self.count变量，可以发现，interpolate()函数被调用的次数。
+high_quality    interpolate()函数被调用了240次
+medium_quality  interpolate()函数被调用了120次
+low_quality     interpolate()函数被调用了60次
 """

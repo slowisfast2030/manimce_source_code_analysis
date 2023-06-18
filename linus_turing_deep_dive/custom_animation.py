@@ -13,6 +13,16 @@ class Count(Animation):
         value = self.start + (alpha * (self.end - self.start))
         self.mobject.set_value(value)
 
+    def begin(self) -> None:
+        # Set value of DecimalNumber to start
+        logger.info('custom_animation.py: Count.begin()')
+        self.mobject.set_value(self.start)
+    
+    def finish(self) -> None:
+        # Set value of DecimalNumber to end
+        logger.info('custom_animation.py: Count.finish()')
+        self.mobject.set_value(self.end)
+
 
 class CountingScene(Scene):
     def construct(self):
@@ -30,6 +40,6 @@ class CountingScene(Scene):
         self.wait()
 
 if __name__ == "__main__":
-    with tempconfig({"quality": "high_quality", "preview": False, "disable_caching": False}):
+    with tempconfig({"quality": "high_quality", "preview": True, "disable_caching": False}):
         scene = CountingScene()
         scene.render()

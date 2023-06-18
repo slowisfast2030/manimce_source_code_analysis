@@ -503,7 +503,7 @@ class SceneFileWriter:
             command += ["-vcodec", "libx264", "-pix_fmt", "yuv420p"]
         command += [file_path]
         # 视频的生成需要调用ffmpeg命令
-        logger.info(f"\nexecute ffmpeg partial file_path: {file_path}")
+        logger.info(f"execute ffmpeg partial file_path: {file_path}")
         self.writing_process = subprocess.Popen(command, stdin=subprocess.PIPE)
 
     def close_movie_pipe(self):

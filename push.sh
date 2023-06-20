@@ -1,5 +1,4 @@
 git pull
 git add *
-git commit -m "slow is fast"
+git commit -m "做减法，极致的专注"
 git push
-# rm -rf ./linus_turing_deep_dive/media

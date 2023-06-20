@@ -55,7 +55,7 @@ class OpeningManim(Scene):
 
 if __name__ == "__main__":
     with tempconfig({"preview": True}):
-        print("config: ", config)
         scene = OpeningManim()
         logger.info('all is well')
         scene.render()
+        print("config: ", config)

@@ -25,9 +25,9 @@ class ApplyFuncExample(Scene):
             lambda p: [p[0]+2, p[1]+2, 0]
         )
         self.add(plane, circ)
-        self.play(animations, run_time=3)
+        self.play(animations, run_time=2)
 
-#ApplyFuncExample().render()
+# github colpilot真厉害！下面的代码可以自动生成。
 if __name__ == "__main__":
     with tempconfig({"preview": True}):
         scene = ApplyFuncExample()

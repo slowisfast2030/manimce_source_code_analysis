@@ -22,8 +22,13 @@ class ApplyFuncExample(Scene):
         #     lambda x: np.exp(x*1j)
         # )
         animations = circ.animate.apply_function(
-            lambda p: [p[0]+2, p[1]+2, 0]
-        )
+            lambda p: p + np.array(
+                    [
+                        np.sin(p[1]),
+                        np.sin(p[0]),
+                        0,
+                    ]
+        ))
         self.add(plane, circ)
         self.play(animations, run_time=2)
 
@@ -31,5 +36,5 @@ class ApplyFuncExample(Scene):
 if __name__ == "__main__":
     with tempconfig({"preview": True}):
         scene = ApplyFuncExample()
-        logger.info('all is well')
+        logger.info('rendering start...')
         scene.render()

@@ -58,4 +58,4 @@ if __name__ == "__main__":
         scene = OpeningManim()
         logger.info('all is well')
         scene.render()
-        print("config: ", config)
+        #print("config: ", config)

@@ -1195,6 +1195,9 @@ class Scene:
             # 下面这个函数调用了animation.interpolate(alpha)函数
             self.update_to_time(t)
             if not skip_rendering and not self.skip_animation_preview:
+                # self.renderer.render()函数的作用是:
+                # 1.渲染每一帧 update_frame()
+                # 2.写到标准输出 add_frame()
                 self.renderer.render(self, t, self.moving_mobjects)
             if self.stop_condition is not None and self.stop_condition():
                 self.time_progression.close()

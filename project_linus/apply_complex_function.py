@@ -27,4 +27,9 @@ class ApplyFuncExample(Scene):
         self.add(plane, circ)
         self.play(animations, run_time=3)
 
-ApplyFuncExample().render()
+#ApplyFuncExample().render()
+if __name__ == "__main__":
+    with tempconfig({"preview": True}):
+        scene = ApplyFuncExample()
+        logger.info('all is well')
+        scene.render()

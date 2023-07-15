@@ -31,3 +31,23 @@ class ExampleScene(Scene):
 
         # Wait for a moment
         self.wait()
+
+
+class MyScene(Scene):
+    def construct(self):
+        # Create a VMobject
+        my_vmobject = VMobject()
+
+        # Add points to the VMobject
+        my_vmobject.set_points_as_corners([ORIGIN, RIGHT, UP, LEFT-1, LEFT+DOWN+RIGHT])
+        self.add(my_vmobject)
+        self.wait(1)
+        print("*"*100)
+        print(my_vmobject.get_last_point())
+
+        # Add a line to the VMobject
+        my_vmobject.add_line_to(2*RIGHT)
+
+        # Display the VMobject on the screen
+        self.play(Create(my_vmobject))
+        self.wait()

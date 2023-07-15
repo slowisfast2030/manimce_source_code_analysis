@@ -1,5 +1,20 @@
 from manim import *
 
+class myScene(Scene):
+    def construct(self):
+        points = [ORIGIN, UP, RIGHT, LEFT]
+        dots = VMobject()
+        dots.set_points_smoothly(points)
+        self.add(dots)
+        self.play(Create(dots))
+        self.wait()
+
+        dots2 = VMobject()
+        dots2.set_points_as_corners(points)
+        self.add(dots2)
+        self.play(Create(dots2))
+        self.wait()
+
 class BecomeScene(Scene):
     def construct(self):
         circ = Circle(fill_color=RED, fill_opacity=0.8)

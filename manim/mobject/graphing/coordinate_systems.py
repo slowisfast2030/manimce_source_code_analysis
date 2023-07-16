@@ -865,7 +865,7 @@ class CoordinateSystem:
         function: Callable[[float], float],
         u_range: Sequence[float] | None = None,
         v_range: Sequence[float] | None = None,
-        colorscale: Sequence[[color], float] | None = None,
+        colorscale: Sequence[[color], float] | None = None, #type: ignore
         colorscale_axis: int = 2,
         **kwargs,
     ):

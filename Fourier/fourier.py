@@ -1,6 +1,7 @@
 from manim import *
 import itertools
 
+# manimce v0.17.3
 class FourierCirclesSceneWithCamera(ZoomedScene):
     def __init__(self, 
     n_vectors=10,

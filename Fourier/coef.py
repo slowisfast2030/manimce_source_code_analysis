@@ -47,3 +47,7 @@ def save_coef(coefs,fourier_coef,file_path):
         f.write("{} {}".format(coefs[i],fourier_coef[i]))
         if i<len(coefs)-1:
             f.write("\n")
+
+if __name__ == "__main__":
+    coefs,fourier_coef = svg_to_coef("music.svg")
+    save_coef(coefs,fourier_coef,"music.txt")

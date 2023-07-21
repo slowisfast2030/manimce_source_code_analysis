@@ -44,3 +44,4 @@ if __name__ == "__main__":
         scene = ApplyFuncExample()
         logger.info('rendering start...')
         scene.render()
+

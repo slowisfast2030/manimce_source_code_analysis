@@ -2,6 +2,9 @@ from manim import *
 
 class BasicUsage(Scene):
     def construct(self):
+        plane = NumberPlane()
+        self.add(plane)
+
         func = lambda pos: ((pos[0] * UR + pos[1] * LEFT) - pos) / 3
         self.add(ArrowVectorField(func))
 

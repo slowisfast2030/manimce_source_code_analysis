@@ -1,5 +1,6 @@
 from manim import *
 
+
 class BasicUsage(Scene):
     def construct(self):
         plane = NumberPlane()

@@ -314,7 +314,7 @@ class Mesh(Object3D):
         else:
             self.shader.context.disable(moderngl.DEPTH_TEST)
 
-        from moderngl.program_members.attribute import Attribute
+        from moderngl.program_members.attribute import Attribute # type: ignore
 
         shader_attributes = []
         for k, v in self.shader.shader_program._members.items():

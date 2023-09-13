@@ -63,6 +63,8 @@ from ..utils.deprecation import deprecated
 from ..utils.rate_functions import smooth, there_and_back, wiggle
 from ..utils.space_ops import normalize
 
+# linus
+from ..scene.scene import Scene
 
 class FocusOn(Transform):
     """Shrink a spotlight to a position.

@@ -34,6 +34,7 @@ class Coloring(Scene):
         )
         self.add(vf, min_radius, max_radius)
 
+
 class SpawningAndFlowingArea(Scene):
     def construct(self):
         func = lambda pos: np.sin(pos[0]) * UR + np.cos(pos[1]) * LEFT + pos / 5
@@ -48,6 +49,7 @@ class SpawningAndFlowingArea(Scene):
             lbl.add_background_rectangle(opacity=0.6, buff=0.05)
 
         self.add(stream_lines, spawning_area, flowing_area, *labels)
+
 
 class StreamLineCreation(Scene):
     def construct(self):

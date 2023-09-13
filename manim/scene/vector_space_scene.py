@@ -17,18 +17,21 @@ from manim.utils.config_ops import update_dict_recursively
 
 from .. import config
 from ..animation.animation import Animation
-from ..animation.creation import Create, Write
+from ..animation.creation import Create, Write, DrawBorderThenFill
 from ..animation.fading import FadeOut
 from ..animation.growing import GrowArrow
 from ..animation.transform import ApplyFunction, ApplyPointwiseFunction, Transform
 from ..constants import *
 from ..mobject.matrix import Matrix
-from ..mobject.mobject import Mobject
+from ..mobject.mobject import Mobject, Group
 from ..mobject.types.vectorized_mobject import VGroup, VMobject
 from ..scene.scene import Scene
-from ..utils.color import BLUE_D, GREEN_C, GREY, RED_C, WHITE, YELLOW
+from ..utils.color import BLUE_D, GREEN_C, GREY, RED_C, WHITE, YELLOW, BLACK
 from ..utils.rate_functions import rush_from, rush_into
 from ..utils.space_ops import angle_of_vector
+
+# linus
+from ..camera.camera import Camera
 
 X_COLOR = GREEN_C
 Y_COLOR = RED_C

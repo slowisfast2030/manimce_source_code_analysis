@@ -1,5 +1,6 @@
 from manim import *
 
+
 class TimeWidthValues(Scene):
     def construct(self):
         p = RegularPolygon(5, color=DARK_GRAY, stroke_width=6).scale(3)
@@ -13,6 +14,7 @@ class TimeWidthValues(Scene):
                 run_time=2,
                 time_width=time_width
             ))
+
 
 class ContinuousMotion(Scene):
     def construct(self):

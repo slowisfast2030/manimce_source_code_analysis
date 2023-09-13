@@ -25,6 +25,9 @@ from ..utils.color import BLACK
 from .mobject import Mobject, override_animate
 from .types.vectorized_mobject import VMobject
 
+# linus
+from ..scene.scene import Scene
+
 
 def _determine_graph_layout(
     nx_graph: nx.classes.graph.Graph,

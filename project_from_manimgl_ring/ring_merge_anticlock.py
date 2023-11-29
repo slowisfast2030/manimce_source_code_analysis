@@ -10,10 +10,16 @@ class test(Scene):
     def construct(self):
         plane = NumberPlane()
         self.add(plane)
-        # cairo
-        ring = Circle(radius = 2, num_components=9).center()
-        # opengl
-        ring = Circle(radius = 2, num_components=8).center()
+
+        #print(str(config["renderer"]))
+        #print(type(config["renderer"]))
+        if str(config.renderer) == "RendererType.CAIRO":
+            ring = Circle(radius = 2, num_components=9).center()
+            print("---run by cairo")
+        else:
+            ring = Circle(radius = 2, num_components=8).center()
+            print("---run by opengl")
+        
         ring.set_stroke(width = 0.5)
         ring.set_fill(RED,0.5)
 

@@ -6,8 +6,9 @@ from manim import *
 """
 class test(Scene):
     def construct(self):
-        #ring = Circle(radius = 2, n_components=4).center()
-        ring = Circle(radius = 2).center()
+        plane = NumberPlane()
+        self.add(plane)
+        ring = Circle(radius = 2, num_components=9).center()
         ring.set_stroke(width = 0.5)
         ring.set_fill(RED,0.5)
 

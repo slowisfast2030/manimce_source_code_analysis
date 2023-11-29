@@ -16,6 +16,9 @@ class test(Scene):
         vm.R = 3
         vm.dR = 1
         
+        """
+        分别取内外环的点集
+        """
         outer_circle = Circle(radius=3).rotate(PI/2).get_points()[:4]
         inner_circle = Circle(radius=2).rotate(PI/2).get_points()[:4][::-1]
 
@@ -32,8 +35,10 @@ class test(Scene):
                 interpolate(inner_circle[-1], outer_circle[0], 0.6),
                 outer_circle[0]]
         
+        # 两个圆的点集拼接起来
         points_to_add = list(outer_circle) + line1 + list(inner_circle) + line2
         vm.append_points(points_to_add)
+        
         vm.set_fill(GREEN, 1)
         vm.set_stroke(width=1)
         vm.move_to(ORIGIN)

@@ -38,7 +38,7 @@ class test(Scene):
         # 两个圆的点集拼接起来
         points_to_add = list(outer_circle) + line1 + list(inner_circle) + line2
         vm.append_points(points_to_add)
-        
+
         vm.set_fill(GREEN, 1)
         vm.set_stroke(width=1)
         vm.move_to(ORIGIN)

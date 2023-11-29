@@ -3,7 +3,9 @@ from manim import *
 """
 研究点集的对齐问题
 
-
+在manimgl中:
+如果内外环的半径相差很小, 会渲染错误
+        
 """
 class test(Scene):
     def construct(self):
@@ -13,6 +15,7 @@ class test(Scene):
         vm = VMobject()
         vm.R = 3
         vm.dR = 1
+        
         outer_circle = Circle(radius=3).rotate(PI/2).get_points()[:4]
         inner_circle = Circle(radius=2).rotate(PI/2).get_points()[:4][::-1]
 

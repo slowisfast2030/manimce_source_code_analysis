@@ -2,13 +2,18 @@ from manim import *
 
 """
 将circle的点集设置为顺时针
-会出现奇怪的渲染效果
+在manimgl环境下会出现奇怪的效果
+
+在manimce环境下, 效果正常
 """
 class test(Scene):
     def construct(self):
         plane = NumberPlane()
         self.add(plane)
+        # cairo
         ring = Circle(radius = 2, num_components=9).center()
+        # opengl
+        ring = Circle(radius = 2, num_components=8).center()
         ring.set_stroke(width = 0.5)
         ring.set_fill(RED,0.5)
 

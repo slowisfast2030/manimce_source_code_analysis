@@ -3,7 +3,8 @@ from manim import *
 """
 使用不同的后端渲染略微不一样
 
-
+manim test.py test -pql --renderer=opengl
+manim test.py test -pql --renderer=cairo
 """
 class test(Scene):
     def construct(self):

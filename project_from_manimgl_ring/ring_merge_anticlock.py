@@ -4,6 +4,8 @@ from manim import *
 在manimgl环境下会出现奇怪的效果
 
 在manimce环境下, 效果正常
+
+manim ring_merge_anticlock.py test -pql --renderer=cairo
 """
 class test(Scene):
     def construct(self):

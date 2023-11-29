@@ -5,7 +5,7 @@ import inspect
 from pathlib import Path
 from typing import Callable
 
-from _pytest.fixtures import FixtureRequest
+from _pytest.fixtures import FixtureRequest # type: ignore
 
 from manim import Scene
 from manim._config import tempconfig

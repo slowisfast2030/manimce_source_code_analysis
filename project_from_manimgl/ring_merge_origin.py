@@ -6,6 +6,11 @@ from manim import *
 但是动画效果不好
 需要研究下怎样对齐点集
 
+在manimce环境下:
+同上
+
+根源:
+还是点集没有对齐
 """
 class test(Scene):
     def construct(self):

@@ -5,7 +5,9 @@ from manim import *
 
 在manimgl中:
 如果内外环的半径相差很小, 会渲染错误
-        
+
+在manimce中:
+可以完美解决这个问题
 """
 class test(Scene):
     def construct(self):

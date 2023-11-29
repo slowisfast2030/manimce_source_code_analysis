@@ -8,10 +8,6 @@ class test_2(Scene):
         vm = VMobject()
         outer_circle = Circle(radius=2.1).rotate(PI/2).get_points()[:64]
         inner_circle = Circle(radius=2).rotate(PI/2).get_points()[:64][::-1]
-        # print(type(outer_circle))
-        # print(type(inner_circle))
-        # print(outer_circle)
-        # print(inner_circle)
 
         """
         在两段圆弧的端点处进行插值

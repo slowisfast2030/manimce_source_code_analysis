@@ -12,9 +12,9 @@ class test(Scene):
         """
         vm = VMobject()
         vm.R = 3
-        vm.dR = 0.1
+        vm.dR = 1
         outer_circle = Circle(radius=3).rotate(PI/2).get_points()[:4]
-        inner_circle = Circle(radius=2.9).rotate(PI/2).get_points()[:4][::-1]
+        inner_circle = Circle(radius=2).rotate(PI/2).get_points()[:4][::-1]
 
         """
         在两段圆弧的端点处进行插值

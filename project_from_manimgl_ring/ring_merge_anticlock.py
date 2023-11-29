@@ -1,5 +1,5 @@
 from manim import *
-
+#from constants import RendererType
 """
 将circle的点集设置为顺时针
 在manimgl环境下会出现奇怪的效果

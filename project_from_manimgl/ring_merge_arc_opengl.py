@@ -62,7 +62,7 @@ class test(Scene):
         line = [result.get_points()[-1], 
                 interpolate(result.points[-1], result.points[0], 0.3),
                 interpolate(result.points[-1], result.points[0], 0.6),
-                result.get_points()[0]] 
+                result.points[0]] 
         result.append_points(line)
 
         result.set_style(

@@ -8,6 +8,10 @@ from manim import *
 
 在manimce中:
 可以完美解决这个问题
+
+根源:
+manimgl的渲染后端: opengl
+manimce的渲染后端: cairo(如果选opengl, 代码都会报错)
 """
 class test(Scene):
     def construct(self):

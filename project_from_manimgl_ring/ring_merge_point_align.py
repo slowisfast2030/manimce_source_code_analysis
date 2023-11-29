@@ -12,6 +12,12 @@ from manim import *
 根源:
 manimgl的渲染后端: opengl
 manimce的渲染后端: cairo(如果选opengl, 代码都会报错)
+
+三角剖分:
+三角剖分对于正确的着色至关重要
+在manimgl中需要添加:  vm.get_triangulation()
+在manimce中不需要添加
+
 """
 class test(Scene):
     def construct(self):

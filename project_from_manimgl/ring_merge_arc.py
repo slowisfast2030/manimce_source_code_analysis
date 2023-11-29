@@ -1,12 +1,12 @@
 from manim import *
 
 """
-manim ring_merge_arc.py test_2 -pql --renderer=cairo
+manim ring_merge_arc.py test -pql --renderer=cairo
 
 在manimgl环境下一直困扰我的一个问题: 当内外环的半径很接近的时候，会渲染错误
 结果在以cairo为后端的manimce中, 这个问题得到完美解决
 """
-class test_2(Scene):
+class test(Scene):
     def construct(self):
         """
         直接用两个圆的点集来构造

@@ -5,6 +5,9 @@ from manim import *
 
 在manimce环境下(不论cairo还是opengl), 效果正常
 
+尽管manimgl和manimce都支持opengl
+但是渲染细节还是有不同
+
 manim ring_merge_anticlock.py test -pql --renderer=cairo
 """
 class test(Scene):

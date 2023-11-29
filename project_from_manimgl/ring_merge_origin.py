@@ -10,10 +10,8 @@ from manim import *
 class test(Scene):
     def construct(self):
         ring = self.get_ring(1, 0.18).rotate(PI/2).shift(UP).scale(2)
-        #self.play(FadeIn(ring))
-        self.add(ring)
-        #ring.needs_new_triangulation = True
-        #print(ring.get_triangulation())
+        self.play(FadeIn(ring))
+        #self.add(ring)
 
         unwrapped = self.get_unwrapped(ring).shift(DOWN*3) 
 

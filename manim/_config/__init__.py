@@ -19,7 +19,6 @@ __all__ = [
     "cli_ctx_settings",
 ]
 
-# 会从不同的文件中读取配置文件，然后将配置文件中的配置项解析到config对象中
 parser = make_config_parser()
 logger: logging.Logger
 
@@ -37,8 +36,6 @@ logging.getLogger("PIL").setLevel(logging.INFO)
 logging.getLogger("matplotlib").setLevel(logging.INFO)
 
 config = ManimConfig().digest_parser(parser)
-#logger.info(f"Config digest completed! {config}")
-# 这里的config对象至关重要，它是manim的核心配置对象，所有的配置都是从这里读取的
 frame = ManimFrame(config)
 
 
@@ -52,7 +49,7 @@ def tempconfig(temp: ManimConfig | dict) -> _GeneratorContextManager:
 
     Parameters
     ----------
-    temp : Union[:class:`ManimConfig`, :class:`dict`]
+    temp
         Object whose keys will be used to temporarily update the global
         ``config``.
 

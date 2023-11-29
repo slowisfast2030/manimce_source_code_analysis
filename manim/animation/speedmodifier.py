@@ -97,7 +97,6 @@ class ChangeSpeed(Animation):
         affects_speed_updaters: bool = True,
         **kwargs,
     ) -> None:
-
         if issubclass(type(anim), AnimationGroup):
             self.anim = type(anim)(
                 *map(self.setup, anim.animations),
@@ -230,7 +229,7 @@ class ChangeSpeed(Animation):
 
     @classmethod
     def add_updater(
-        self,
+        cls,
         mobject: Mobject,
         update_function: Updater,
         index: int | None = None,

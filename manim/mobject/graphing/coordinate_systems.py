@@ -364,52 +364,8 @@ class CoordinateSystem:
         label.shift_onto_screen(buff=MED_SMALL_BUFF)
         return label
 
-    def get_axis_labels(
-        self,
-        x_label: float | str | Mobject = "x",
-        y_label: float | str | Mobject = "y",
-    ) -> VGroup:
-        """Defines labels for the x_axis and y_axis of the graph.
-
-        For increased control over the position of the labels,
-        use :meth:`get_x_axis_label` and :meth:`get_y_axis_label`.
-
-        Parameters
-        ----------
-        x_label
-            The label for the x_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
-        y_label
-            The label for the y_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
-
-        Returns
-        -------
-        :class:`~.VGroup`
-            A :class:`~.Vgroup` of the labels for the x_axis and y_axis.
-
-
-        .. seealso::
-            :class:`get_x_axis_label`
-            :class:`get_y_axis_label`
-
-        Examples
-        --------
-        .. manim:: GetAxisLabelsExample
-            :save_last_frame:
-
-            class GetAxisLabelsExample(Scene):
-                def construct(self):
-                    ax = Axes()
-                    labels = ax.get_axis_labels(
-                        Tex("x-axis").scale(0.7), Text("y-axis").scale(0.45)
-                    )
-                    self.add(ax, labels)
-        """
-
-        self.axis_labels = VGroup(
-            self.get_x_axis_label(x_label),
-            self.get_y_axis_label(y_label),
-        )
-        return self.axis_labels
+    def get_axis_labels(self):
+        raise NotImplementedError()
 
     def add_coordinates(
         self,
@@ -759,8 +715,10 @@ class CoordinateSystem:
                     )
                     self.add(ax, a)
         """
+        x_scale = self.get_x_axis().scaling
+        y_scale = self.get_y_axis().scaling
         graph = ImplicitFunction(
-            func=func,
+            func=(lambda x, y: func(x_scale.function(x), y_scale.function(y))),
             x_range=self.x_range[:2],
             y_range=self.y_range[:2],
             min_depth=min_depth,
@@ -865,7 +823,7 @@ class CoordinateSystem:
         function: Callable[[float], float],
         u_range: Sequence[float] | None = None,
         v_range: Sequence[float] | None = None,
-        colorscale: Sequence[[color], float] | None = None, #type: ignore
+        colorscale: Sequence[[color], float] | None = None,
         colorscale_axis: int = 2,
         **kwargs,
     ):
@@ -918,7 +876,7 @@ class CoordinateSystem:
                         )
                     self.add(axes, trig_plane)
         """
-        if config.renderer != "opengl":
+        if config.renderer == RendererType.CAIRO:
             surface = Surface(
                 lambda u, v: self.c2p(u, v, function(u, v)),
                 u_range=u_range,
@@ -931,7 +889,7 @@ class CoordinateSystem:
                     colorscale=colorscale,
                     axis=colorscale_axis,
                 )
-        else:
+        elif config.renderer == RendererType.OPENGL:
             surface = OpenGLSurface(
                 lambda u, v: self.c2p(u, v, function(u, v)),
                 u_range=u_range,
@@ -1825,6 +1783,17 @@ class Axes(VGroup, CoordinateSystem, metaclass=ConvertToOpenGL):
                 # x_min must be > 0 because log is undefined at 0.
                 graph = ax.plot(lambda x: x ** 2, x_range=[0.001, 10], use_smoothing=False)
                 self.add(ax, graph)
+
+    Styling arguments can be passed to the underlying :class:`.NumberLine`
+    mobjects that represent the axes:
+
+    .. manim:: AxesWithDifferentTips
+        :save_last_frame:
+
+        class AxesWithDifferentTips(Scene):
+            def construct(self):
+                ax = Axes(axis_config={'tip_shape': StealthTip})
+                self.add(ax)
     """
 
     def __init__(
@@ -1966,7 +1935,7 @@ class Axes(VGroup, CoordinateSystem, metaclass=ConvertToOpenGL):
         return axis
 
     def coords_to_point(
-        self, *coords: Sequence[float] | Sequence[Sequence[float]] | np.ndarray
+        self, *coords: float | Sequence[float] | Sequence[Sequence[float]] | np.ndarray
     ) -> np.ndarray:
         """Accepts coordinates from the axes and returns a point with respect to the scene.
 
@@ -2123,6 +2092,54 @@ class Axes(VGroup, CoordinateSystem, metaclass=ConvertToOpenGL):
             A pair of axes.
         """
         return self.axes
+
+    def get_axis_labels(
+        self,
+        x_label: float | str | Mobject = "x",
+        y_label: float | str | Mobject = "y",
+    ) -> VGroup:
+        """Defines labels for the x-axis and y-axis of the graph.
+
+        For increased control over the position of the labels,
+        use :meth:`~.CoordinateSystem.get_x_axis_label` and
+        :meth:`~.CoordinateSystem.get_y_axis_label`.
+
+        Parameters
+        ----------
+        x_label
+            The label for the x_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+        y_label
+            The label for the y_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+
+        Returns
+        -------
+        :class:`~.VGroup`
+            A :class:`~.VGroup` of the labels for the x_axis and y_axis.
+
+
+        .. seealso::
+            :meth:`~.CoordinateSystem.get_x_axis_label`
+            :meth:`~.CoordinateSystem.get_y_axis_label`
+
+        Examples
+        --------
+        .. manim:: GetAxisLabelsExample
+            :save_last_frame:
+
+            class GetAxisLabelsExample(Scene):
+                def construct(self):
+                    ax = Axes()
+                    labels = ax.get_axis_labels(
+                        Tex("x-axis").scale(0.7), Text("y-axis").scale(0.45)
+                    )
+                    self.add(ax, labels)
+        """
+
+        self.axis_labels = VGroup(
+            self.get_x_axis_label(x_label),
+            self.get_y_axis_label(y_label),
+        )
+        return self.axis_labels
 
     def plot_line_graph(
         self,
@@ -2284,7 +2301,6 @@ class ThreeDAxes(Axes):
         gloss=0.5,
         **kwargs,
     ):
-
         super().__init__(
             x_range=x_range,
             x_length=x_length,
@@ -2336,7 +2352,7 @@ class ThreeDAxes(Axes):
         self.add(z_axis)
         self.z_axis = z_axis
 
-        if config.renderer != "opengl":
+        if config.renderer == RendererType.CAIRO:
             self._add_3d_pieces()
             self._set_axis_shading()
 
@@ -2361,6 +2377,57 @@ class ThreeDAxes(Axes):
                 submob.get_unit_normal = lambda a: np.ones(3)
                 submob.set_sheen(0.2)
 
+    def get_y_axis_label(
+        self,
+        label: float | str | Mobject,
+        edge: Sequence[float] = UR,
+        direction: Sequence[float] = UR,
+        buff: float = SMALL_BUFF,
+        rotation=PI / 2,
+        rotation_axis=OUT,
+        **kwargs,
+    ) -> Mobject:
+        """Generate a y-axis label.
+
+        Parameters
+        ----------
+        label
+            The label. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+        edge
+            The edge of the y-axis to which the label will be added, by default ``UR``.
+        direction
+            Allows for further positioning of the label from an edge, by default ``UR``.
+        buff
+            The distance of the label from the line, by default ``SMALL_BUFF``.
+        rotation
+            The angle at which to rotate the label, by default ``PI/2``.
+        rotation_axis
+            The axis about which to rotate the label, by default ``OUT``.
+
+        Returns
+        -------
+        :class:`~.Mobject`
+            The positioned label.
+
+        Examples
+        --------
+        .. manim:: GetYAxisLabelExample
+            :save_last_frame:
+
+            class GetYAxisLabelExample(ThreeDScene):
+                def construct(self):
+                    ax = ThreeDAxes()
+                    lab = ax.get_y_axis_label(Tex("$y$-label"))
+                    self.set_camera_orientation(phi=2*PI/5, theta=PI/5)
+                    self.add(ax, lab)
+        """
+
+        positioned_label = self._get_axis_label(
+            label, self.get_y_axis(), edge, direction, buff=buff, **kwargs
+        )
+        positioned_label.rotate(rotation, axis=rotation_axis)
+        return positioned_label
+
     def get_z_axis_label(
         self,
         label: float | str | Mobject,
@@ -2378,11 +2445,11 @@ class ThreeDAxes(Axes):
         label
             The label. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
         edge
-            The edge of the x-axis to which the label will be added, by default ``UR``.
+            The edge of the z-axis to which the label will be added, by default ``OUT``.
         direction
-            Allows for further positioning of the label from an edge, by default ``UR``.
+            Allows for further positioning of the label from an edge, by default ``RIGHT``.
         buff
-            The distance of the label from the line.
+            The distance of the label from the line, by default ``SMALL_BUFF``.
         rotation
             The angle at which to rotate the label, by default ``PI/2``.
         rotation_axis
@@ -2411,6 +2478,61 @@ class ThreeDAxes(Axes):
         )
         positioned_label.rotate(rotation, axis=rotation_axis)
         return positioned_label
+
+    def get_axis_labels(
+        self,
+        x_label: float | str | Mobject = "x",
+        y_label: float | str | Mobject = "y",
+        z_label: float | str | Mobject = "z",
+    ) -> VGroup:
+        """Defines labels for the x_axis and y_axis of the graph.
+
+        For increased control over the position of the labels,
+        use :meth:`~.CoordinateSystem.get_x_axis_label`,
+        :meth:`~.ThreeDAxes.get_y_axis_label`, and
+        :meth:`~.ThreeDAxes.get_z_axis_label`.
+
+        Parameters
+        ----------
+        x_label
+            The label for the x_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+        y_label
+            The label for the y_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+        z_label
+            The label for the z_axis. Defaults to :class:`~.MathTex` for ``str`` and ``float`` inputs.
+
+        Returns
+        -------
+        :class:`~.VGroup`
+            A :class:`~.VGroup` of the labels for the x_axis, y_axis, and z_axis.
+
+
+        .. seealso::
+            :meth:`~.CoordinateSystem.get_x_axis_label`
+            :meth:`~.ThreeDAxes.get_y_axis_label`
+            :meth:`~.ThreeDAxes.get_z_axis_label`
+
+        Examples
+        --------
+        .. manim:: GetAxisLabelsExample
+            :save_last_frame:
+
+            class GetAxisLabelsExample(ThreeDScene):
+                def construct(self):
+                    self.set_camera_orientation(phi=2*PI/5, theta=PI/5)
+                    axes = ThreeDAxes()
+                    labels = axes.get_axis_labels(
+                        Tex("x-axis").scale(0.7), Text("y-axis").scale(0.45), Text("z-axis").scale(0.45)
+                    )
+                    self.add(axes, labels)
+        """
+
+        self.axis_labels = VGroup(
+            self.get_x_axis_label(x_label),
+            self.get_y_axis_label(y_label),
+            self.get_z_axis_label(z_label),
+        )
+        return self.axis_labels
 
 
 class NumberPlane(Axes):
@@ -2502,7 +2624,6 @@ class NumberPlane(Axes):
         make_smooth_after_applying_functions: bool = True,
         **kwargs,
     ):
-
         # configs
         self.axis_config = {
             "stroke_width": 2,
@@ -2661,7 +2782,7 @@ class NumberPlane(Axes):
             for k, x in enumerate(inputs):
                 new_line = line.copy()
                 new_line.shift(unit_vector_axis_perp_to * x)
-                if k % ratio_faded_lines == 0:
+                if (k + 1) % ratio_faded_lines == 0:
                     lines1.add(new_line)
                 else:
                     lines2.add(new_line)

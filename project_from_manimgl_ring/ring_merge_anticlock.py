@@ -10,10 +10,7 @@ class test(Scene):
         plane = NumberPlane()
         self.add(plane)
 
-        #print(str(config["renderer"]))
-        #print(type(config["renderer"]))
-        if str(config.renderer) == "RendererType.CAIRO":
-        #if config.renderer == RendererType.CAIRO:
+        if config.renderer == RendererType.CAIRO:
             ring = Circle(radius = 2, num_components=9).center()
             print("---run by cairo")
         else:

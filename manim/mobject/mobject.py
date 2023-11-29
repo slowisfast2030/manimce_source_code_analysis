@@ -79,67 +79,6 @@ class Mobject:
     """
 
     animation_overrides = {}
-    """linus
-    from manim import *
-
-    def square_animation_override(square):
-        return GrowFromPoint(square, [-3, -2, 0])
-
-
-    class MyScene(Scene):
-        def construct(self):
-            square = Square()
-            rotate_anim = GrowFromCenter(square)
-            self.play(rotate_anim)
-            self.wait()
-
-            Square.animation_overrides[GrowFromCenter] = square_animation_override
-            
-            square = Square()
-            rotate_anim = GrowFromCenter(square)
-            self.play(rotate_anim)
-            self.wait()
-
-    if __name__ == "__main__":
-        with tempconfig({"quality": "low_quality", "preview": True}):
-            scene = MyScene()
-            scene.render()
-    """
-
-    """linus
-    from manim import *
-
-    class CustomMobject(Rectangle):
-        def __init__(self, **kwargs):
-            super().__init__(**kwargs)
-            
-            self.animation_overrides[FadeIn] = self._fade_in_override
-        
-        def _fade_in_override(self, mobject):
-            return GrowFromCenter(mobject)
-
-    class Test(Scene):
-        def construct(self):
-            custom_obj = CustomMobject()
-            self.play(FadeIn(custom_obj))
-
-    if __name__ == "__main__":
-        with tempconfig({"quality": "low_quality", "preview": True}):
-            scene = Test()
-            scene.render()
-    """
-    """linus
-    class CustomSquare(Square):
-        @override_animation(FadeIn)
-        def fade_in_override(self, **kwargs):
-            return Create(self, **kwargs)
-
-    class CustomScene(Scene):
-        def construct(self):
-            square = CustomSquare()
-            self.play(FadeIn(square))
-            self.wait()
-    """
 
     @classmethod
     def __init_subclass__(cls, **kwargs):
@@ -171,7 +110,7 @@ class Mobject:
     def animation_override_for(
         cls,
         animation_class: type[Animation],
-    ) -> Callable[[Mobject, ...], Animation] | None: # type: ignore
+    ) -> Callable[[Mobject, ...], Animation] | None:
         """Returns the function defining a specific animation override for this class.
 
         Parameters
@@ -209,7 +148,7 @@ class Mobject:
     def add_animation_override(
         cls,
         animation_class: type[Animation],
-        override_func: Callable[[Mobject, ...], Animation], # type: ignore
+        override_func: Callable[[Mobject, ...], Animation],
     ):
         """Add an animation override.
 
@@ -287,7 +226,7 @@ class Mobject:
             cls.__init__ = cls._original__init__
 
     @property
-    def animate(self):
+    def animate(self) -> _AnimationBuilder | T:
         """Used to animate the application of any method of :code:`self`.
 
         Any method called on :code:`animate` is converted to an animation of applying
@@ -394,10 +333,7 @@ class Mobject:
         return result
 
     def __repr__(self):
-        if config["renderer"] == "opengl":
-            return super().__repr__()
-        else:
-            return str(self.name)
+        return str(self.name)
 
     def reset_points(self):
         """Sets :attr:`points` to be an empty array."""
@@ -494,13 +430,15 @@ class Mobject:
                 raise TypeError("All submobjects must be of type Mobject")
             if m is self:
                 raise ValueError("Mobject cannot contain self")
-            if any(mobjects.count(elem) > 1 for elem in mobjects):
-                logger.warning(
-                    "Attempted adding some Mobject as a child more than once, "
-                    "this is not possible. Repetitions are ignored.",
-                )
-                mobjects = remove_list_redundancies(mobjects)
-        self.submobjects = list_update(self.submobjects, mobjects)
+
+        unique_mobjects = remove_list_redundancies(mobjects)
+        if len(mobjects) != len(unique_mobjects):
+            logger.warning(
+                "Attempted adding some Mobject as a child more than once, "
+                "this is not possible. Repetitions are ignored.",
+            )
+
+        self.submobjects = list_update(self.submobjects, unique_mobjects)
         return self
 
     def insert(self, index: int, mobject: Mobject):
@@ -1033,7 +971,11 @@ class Mobject:
         else:
             self.updaters.insert(index, update_function)
         if call_updater:
-            update_function(self, 0)
+            parameters = get_parameters(update_function)
+            if "dt" in parameters:
+                update_function(self, 0)
+            else:
+                update_function(self)
         return self
 
     def remove_updater(self, update_function: Updater):
@@ -1900,16 +1842,29 @@ class Mobject:
         self.become(self.saved_state)
         return self
 
-    ##
-
-    def reduce_across_dimension(self, points_func, reduce_func, dim):
-        points = self.get_all_points()
-        if points is None or len(points) == 0:
-            # Note, this default means things like empty VGroups
-            # will appear to have a center at [0, 0, 0]
+    def reduce_across_dimension(self, reduce_func, dim: int) -> float:
+        """Find the min or max value from a dimension across all points in this and submobjects."""
+        assert dim >= 0 and dim <= 2
+        if len(self.submobjects) == 0 and len(self.points) == 0:
+            # If we have no points and no submobjects, return 0 (e.g. center)
             return 0
-        values = points_func(points[:, dim])
-        return reduce_func(values)
+
+        # If we do not have points (but do have submobjects)
+        # use only the points from those.
+        if len(self.points) == 0:
+            rv = None
+        else:
+            # Otherwise, be sure to include our own points
+            rv = reduce_func(self.points[:, dim])
+        # Recursively ask submobjects (if any) for the biggest/
+        # smallest dimension they have and compare it to the return value.
+        for mobj in self.submobjects:
+            value = mobj.reduce_across_dimension(reduce_func, dim)
+            if rv is None:
+                rv = value
+            else:
+                rv = reduce_func([value, rv])
+        return rv
 
     def nonempty_submobjects(self):
         return [
@@ -1918,13 +1873,23 @@ class Mobject:
             if len(submob.submobjects) != 0 or len(submob.points) != 0
         ]
 
-    def get_merged_array(self, array_attr):
+    def get_merged_array(self, array_attr) -> np.ndarray:
+        """Return all of a given attribute from this mobject and all submobjects.
+
+        May contain duplicates; the order is in a depth-first (pre-order)
+        traversal of the submobjects.
+        """
         result = getattr(self, array_attr)
         for submob in self.submobjects:
             result = np.append(result, submob.get_merged_array(array_attr), axis=0)
         return result
 
-    def get_all_points(self):
+    def get_all_points(self) -> np.ndarray:
+        """Return all points from this mobject and all submobjects.
+
+        May contain duplicates; the order is in a depth-first (pre-order)
+        traversal of the submobjects.
+        """
         return self.get_merged_array("points")
 
     # Getters
@@ -2045,10 +2010,9 @@ class Mobject:
     def length_over_dim(self, dim):
         """Measure the length of an :class:`~.Mobject` in a certain direction."""
         return self.reduce_across_dimension(
-            np.max,
-            np.max,
+            max,
             dim,
-        ) - self.reduce_across_dimension(np.min, np.min, dim)
+        ) - self.reduce_across_dimension(min, dim)
 
     def get_coord(self, dim, direction=ORIGIN):
         """Meant to generalize ``get_x``, ``get_y`` and ``get_z``"""
@@ -2156,17 +2120,12 @@ class Mobject:
         self,
         mobject_or_point: Mobject | np.ndarray | list,
         direction=ORIGIN,
-        alignment_vect=UP,
     ):
         """Aligns mobject to another :class:`~.Mobject` in a certain direction.
 
         Examples:
         mob1.align_to(mob2, UP) moves mob1 vertically so that its
         top edge lines ups with mob2's top edge.
-
-        mob1.align_to(mob2, alignment_vect = RIGHT) moves mob1
-        horizontally so that it's center is directly above/below
-        the center of mob2
         """
         if isinstance(mobject_or_point, Mobject):
             point = mobject_or_point.get_critical_point(direction)
@@ -2195,6 +2154,11 @@ class Mobject:
 
     def get_group_class(self):
         return Group
+
+    @staticmethod
+    def get_mobject_type_class():
+        """Return the base class of this mobject type."""
+        return Mobject
 
     def split(self):
         result = [self] if len(self.points) > 0 else []
@@ -2796,7 +2760,7 @@ class Mobject:
         self,
         z_index_value: float,
         family: bool = True,
-    ) -> VMobject: # type: ignore
+    ) -> VMobject:
         """Sets the :class:`~.Mobject`'s :attr:`z_index` to the value specified in `z_index_value`.
 
         Parameters

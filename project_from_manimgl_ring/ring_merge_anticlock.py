@@ -7,6 +7,10 @@ from manim import *
 
 尽管manimgl和manimce都支持opengl
 但是渲染细节还是有不同
+----linus
+终于知道原因了
+在manimgl环境下, 需要添加一行: ring.get_triangulation() 
+就正常了
 
 manim ring_merge_anticlock.py test -pql --renderer=cairo
 """

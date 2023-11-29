@@ -23,7 +23,7 @@ class test(Scene):
         ring.set_fill(RED,0.5)
 
         # 将ring的点集变为顺时针
-        #ring.rotate(PI, RIGHT)
+        ring.rotate(PI, RIGHT)
 
         for index, point in enumerate(ring.points):
             dot = Dot(point)

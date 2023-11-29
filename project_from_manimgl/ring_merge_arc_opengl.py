@@ -3,8 +3,8 @@ from manim import *
 """
 manim ring_merge_arc_opengl.py test -pql --renderer=opengl
 
-在manimgl环境下一直困扰我的一个问题: 当内外环的半径很接近的时候，会渲染错误
-结果在以cairo为后端的manimce中, 这个问题得到完美解决
+opengl作为渲染后端, 报错
+社区版的opengl后端似乎有问题
 """
 class test(Scene):
     def construct(self):

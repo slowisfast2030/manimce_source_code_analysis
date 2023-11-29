@@ -40,7 +40,7 @@ class test(Scene):
         rec =  self.get_unwrapped(vm).scale(0.5).shift(DOWN*2.5)
         self.add(rec)
 
-        #self.play(Transform(vm, rec))
+        self.play(Transform(vm, rec))
         self.wait()
     
     def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):

@@ -3,7 +3,7 @@ from manim import *
 将circle的点集设置为顺时针
 在manimgl环境下会出现奇怪的效果
 
-在manimce环境下, 效果正常
+在manimce环境下(不论cairo还是opengl), 效果正常
 
 manim ring_merge_anticlock.py test -pql --renderer=cairo
 """

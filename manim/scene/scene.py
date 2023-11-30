@@ -20,7 +20,7 @@ import srt
 from manim.scene.section import DefaultSectionType
 
 try:
-    import dearpygui.dearpygui as dpg
+    import dearpygui.dearpygui as dpg # type: ignore
 
     dearpygui_imported = True
 except ImportError:

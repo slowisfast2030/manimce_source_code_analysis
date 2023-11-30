@@ -110,7 +110,7 @@ class Mobject:
     def animation_override_for(
         cls,
         animation_class: type[Animation],
-    ) -> Callable[[Mobject, ...], Animation] | None:
+    ) -> Callable[[Mobject, ...], Animation] | None: # type: ignore
         """Returns the function defining a specific animation override for this class.
 
         Parameters
@@ -148,7 +148,7 @@ class Mobject:
     def add_animation_override(
         cls,
         animation_class: type[Animation],
-        override_func: Callable[[Mobject, ...], Animation],
+        override_func: Callable[[Mobject, ...], Animation], # type: ignore
     ):
         """Add an animation override.
 
@@ -2760,7 +2760,7 @@ class Mobject:
         self,
         z_index_value: float,
         family: bool = True,
-    ) -> VMobject:
+    ) -> VMobject: # type: ignore
         """Sets the :class:`~.Mobject`'s :attr:`z_index` to the value specified in `z_index_value`.
 
         Parameters

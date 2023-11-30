@@ -14,8 +14,7 @@ class test(Scene):
             UP, 
             LEFT, 
             RIGHT
-        ).set_color(BLUE).set_fill(BLUE, 0.5).shift(DOWN)
-        #.rotate(PI, UP)
+        ).set_color(BLUE).set_fill(BLUE, 0.5).shift(DOWN).rotate(PI, UP)
 
         self.play(Create(triangle_cw))
         self.wait(1)

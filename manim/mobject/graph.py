@@ -646,7 +646,7 @@ class GenericGraph(VMobject, metaclass=ConvertToOpenGL):
 
         vertex_mobjects = self._create_vertices(*args, **kwargs)
 
-        def on_finish(scene: Scene):
+        def on_finish(scene: Scene): # type: ignore
             for v in vertex_mobjects:
                 scene.remove(v[-1])
                 self._add_created_vertex(*v)

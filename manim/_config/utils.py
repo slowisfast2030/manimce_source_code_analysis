@@ -425,7 +425,7 @@ class ManimConfig(MutableMapping):
         else:
             raise ValueError(f"attempted to set {key} to {val}; must be in {values}")
 
-    def _set_from_enum(self, key: str, enum_value: Any, enum_class: EnumMeta) -> None:
+    def _set_from_enum(self, key: str, enum_value: Any, enum_class: EnumMeta) -> None: # type: ignore
         """Set ``key`` to the enum object with value ``enum_value`` in the given
         ``enum_class``.
 

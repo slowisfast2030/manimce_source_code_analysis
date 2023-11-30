@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 try:
-    import dearpygui.dearpygui as dpg
+    import dearpygui.dearpygui as dpg # type: ignore
 
     dearpygui_imported = True
 except ImportError:

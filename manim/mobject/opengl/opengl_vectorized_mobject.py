@@ -606,7 +606,7 @@ class OpenGLVMobject(OpenGLMobject):
                 new_subpath = np.array(subpath)
                 if mode == "approx_smooth":
                     # TODO: get_smooth_quadratic_bezier_handle_points is not defined
-                    new_subpath[1::nppc] = get_smooth_quadratic_bezier_handle_points(
+                    new_subpath[1::nppc] = get_smooth_quadratic_bezier_handle_points( # type: ignore
                         anchors,
                     )
                 elif mode == "true_smooth":

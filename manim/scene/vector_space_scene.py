@@ -108,7 +108,7 @@ class VectorScene(Scene):
         self.add(axes)
 
         self.renderer.update_frame()
-        self.renderer.camera = Camera(self.renderer.get_frame())
+        self.renderer.camera = Camera(self.renderer.get_frame()) # type: ignore
         self.clear()
 
     def get_vector(self, numerical_vector: np.ndarray | list | tuple, **kwargs):
@@ -515,7 +515,7 @@ class VectorScene(Scene):
                 for y in range(-y_max, y_max)
             )
         )
-        dots.set_fill(BLACK, opacity=0)
+        dots.set_fill(BLACK, opacity=0) # type: ignore
         dots_halfway = dots.copy().shift(vector / 2).set_fill(WHITE, 1)
         dots_end = dots.copy().shift(vector)
 
@@ -786,8 +786,8 @@ class LinearTransformationScene(VectorScene):
         square = self.get_unit_square(**kwargs)
         if animate:
             self.play(
-                DrawBorderThenFill(square),
-                Animation(Group(*self.moving_vectors)),
+                DrawBorderThenFill(square), # type: ignore
+                Animation(Group(*self.moving_vectors)), # type: ignore
             )
         self.add_transformable_mobject(square)
         self.bring_to_front(*self.moving_vectors)

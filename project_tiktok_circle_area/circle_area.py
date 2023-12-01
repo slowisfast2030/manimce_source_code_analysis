@@ -93,6 +93,8 @@ class CircleArea(Scene):
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )
+        
+        self.wait()
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )

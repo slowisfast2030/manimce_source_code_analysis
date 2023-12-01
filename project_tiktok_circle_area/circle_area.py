@@ -1,5 +1,6 @@
 from manim import *
 
+# 一个很聪明的方案
 class ShowCreation(Create):
     pass
 

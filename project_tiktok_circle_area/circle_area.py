@@ -1,5 +1,8 @@
 from manim import *
 
+class ShowCreation(Create):
+    pass
+
 class CircleArea(Scene):
     def construct(self):
         radius = 1.5
@@ -30,4 +33,10 @@ class CircleArea(Scene):
             radius_line, radius_brace, radius_label
         )
 
-        self.add(circle, radius_group)
+        #self.add(circle, radius_group)
+
+        self.play(
+            ShowCreation(radius_line),
+            GrowFromCenter(radius_brace),
+            Write(radius_label),
+        )

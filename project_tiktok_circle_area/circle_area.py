@@ -15,6 +15,7 @@ class CircleArea(Scene):
         self.radial_line_color = MAROON_B
         self.dR = 0.1
         self.ring_colors = [BLUE, GREEN]
+        self.unwrapped_tip = ORIGIN
 
         self.circle = Circle(
             radius = self.radius,
@@ -39,6 +40,7 @@ class CircleArea(Scene):
         
     def construct(self):
         self.introduce_circle()
+        self.introduce_rings()
         
     def introduce_circle(self):
         self.remove(self.circle)
@@ -66,22 +68,75 @@ class CircleArea(Scene):
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity)
         )
 
+    def introduce_rings(self):
+        rings = VGroup(*reversed(self.get_rings()))
+        unwrapped_rings = VGroup(*[
+            self.get_unwrapped(ring, to_edge = None)
+            for ring in rings
+        ])
+        unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
+        unwrapped_rings.move_to(self.unwrapped_tip, UP)
+        ring_anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.5
+        }
+        self.add(rings)
+
+        self.play(
+            FadeIn(rings, **ring_anim_kwargs),
+        )
+        self.wait()
+
+        self.play(
+            #rings.animate.rotate(PI/2),
+            rings.animate.move_to(unwrapped_rings.get_top()),
+            path_arc = np.pi/2,
+            **ring_anim_kwargs
+        )
+        self.play(
+            Transform(rings, unwrapped_rings, **ring_anim_kwargs),
+        )
+        self.wait()
+
     def get_ring(self, radius, dR, color = GREEN):
-        ring = Circle(radius = radius + dR).center()
-        inner_ring = Circle(radius = radius)
-        inner_ring.rotate(np.pi, RIGHT)
-        ring.append_vectorized_mobject(inner_ring)
+        # ring = Circle(radius = radius + dR).center()
+        # inner_ring = Circle(radius = radius)
+        # inner_ring.rotate(np.pi, RIGHT)
+        # ring.append_vectorized_mobject(inner_ring)
+        # ring.set_stroke(width = 0)
+        # ring.set_fill(color, opacity = 1)
+        # ring.move_to(self.circle)
+        # ring.R = radius 
+        # ring.dR = dR
+        ring = VMobject()
+        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]
+        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:64][::-1]
+
+        line1 = [outer_circle[-1], 
+                 interpolate(outer_circle[-1], inner_circle[0], 0.3),
+                 interpolate(outer_circle[-1], inner_circle[0], 0.6),
+                 inner_circle[0]]
+        
+        line2 = [inner_circle[-1],
+                interpolate(inner_circle[-1], outer_circle[0], 0.3),
+                interpolate(inner_circle[-1], outer_circle[0], 0.6),
+                outer_circle[0]]
+        
+        points_to_add = list(outer_circle) + line1 + list(inner_circle) + line2
+        ring.append_points(points_to_add)
         ring.set_stroke(width = 0)
         ring.set_fill(color, opacity = 1)
         ring.move_to(self.circle)
         ring.R = radius 
         ring.dR = dR
+
         return ring
 
     def get_rings(self, **kwargs):
         dR = kwargs.get("dR", self.dR)
         colors = kwargs.get("colors", self.ring_colors)
         radii = np.arange(0, self.radius, dR)
+        print(radii)
         colors = color_gradient(colors, len(radii))
 
         rings = VGroup(*[
@@ -89,3 +144,33 @@ class CircleArea(Scene):
             for radius, color in zip(radii, colors)
         ])
         return rings
+
+    def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):
+        R = ring.R
+        R_plus_dr = ring.R + ring.dR
+        n_anchors = ring.get_num_curves()
+        
+        # 如果manim没有自己想要的形状，可以自己构造点集
+        result = VMobject()
+        result.set_points_as_corners([
+            interpolate(np.pi*R_plus_dr*LEFT,  np.pi*R_plus_dr*RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(np.pi*R*RIGHT+ring.dR*UP,  np.pi*R*LEFT+ring.dR*UP, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+
+        line = [result.get_points()[-1], 
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.3),
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.6),
+                result.get_points()[0]] 
+        result.append_points(line)
+
+        result.set_style(
+            stroke_color = ring.get_stroke_color(),
+            stroke_width = ring.get_stroke_width(),
+            fill_color = ring.get_fill_color(),
+            fill_opacity = ring.get_fill_opacity(),
+        )
+
+        return result

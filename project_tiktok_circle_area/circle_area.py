@@ -35,7 +35,6 @@ class CircleArea(Scene):
         )
         self.add(self.circle, *self.radius_group)
         
-
     def construct(self):
         self.introduce_circle()
         
@@ -57,6 +56,8 @@ class CircleArea(Scene):
             run_time = 2
         )
 
+        # 当circle执行了下面的动画后会覆盖掉radius_group
+        # 所以需要将radius_group放到circle的上面
         self.bring_to_front(self.radius_group)
 
         self.play(

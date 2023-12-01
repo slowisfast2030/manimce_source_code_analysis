@@ -78,7 +78,7 @@ class CircleArea(Scene):
         unwrapped_rings.move_to(self.unwrapped_tip, UP)
         ring_anim_kwargs = {
             "run_time" : 3,
-            "lag_ratio" : 0.5
+            "lag_ratio" : 0.1
         }
         self.add(rings)
 

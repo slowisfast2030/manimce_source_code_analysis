@@ -13,6 +13,8 @@ class CircleArea(Scene):
         self.fill_opacity = 0.75
         self.circle_corner = UP + LEFT
         self.radial_line_color = MAROON_B
+        self.dR = 0.1
+        self.ring_colors = [BLUE, GREEN]
 
         self.circle = Circle(
             radius = self.radius,
@@ -64,4 +66,26 @@ class CircleArea(Scene):
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity)
         )
 
-        
+    def get_ring(self, radius, dR, color = GREEN):
+        ring = Circle(radius = radius + dR).center()
+        inner_ring = Circle(radius = radius)
+        inner_ring.rotate(np.pi, RIGHT)
+        ring.append_vectorized_mobject(inner_ring)
+        ring.set_stroke(width = 0)
+        ring.set_fill(color, opacity = 1)
+        ring.move_to(self.circle)
+        ring.R = radius 
+        ring.dR = dR
+        return ring
+
+    def get_rings(self, **kwargs):
+        dR = kwargs.get("dR", self.dR)
+        colors = kwargs.get("colors", self.ring_colors)
+        radii = np.arange(0, self.radius, dR)
+        colors = color_gradient(colors, len(radii))
+
+        rings = VGroup(*[
+            self.get_ring(radius, dR = dR, color = color)
+            for radius, color in zip(radii, colors)
+        ])
+        return rings

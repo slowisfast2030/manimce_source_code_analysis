@@ -19,10 +19,13 @@ class RingSum(Scene):
         self.dR = 0.1
         self.ring_colors = [BLUE, GREEN]
         self.corner = 2*UP + 5*LEFT
+        self.num_rings_in_ring_sum_start = 3
 
     def construct(self):
         rings = self.get_rings()
         self.add(rings)
+        ring_sum, draw_ring_sum_anims = self.get_ring_sum(rings)
+        self.play(*draw_ring_sum_anims)
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
@@ -60,3 +63,53 @@ class RingSum(Scene):
             for radius, color in zip(radii, colors)
         ])
         return rings
+    
+    def get_ring_sum(self, rings):
+        arranged_group = VGroup()
+        tex_mobs = VGroup()
+        for ring in rings:
+            ring.generate_target()
+            ring.target.set_stroke(width = 0)
+
+        for ring in rings[:self.num_rings_in_ring_sum_start]:
+            plus = Tex("+")
+            arranged_group.add(ring.target)
+            arranged_group.add(plus)
+            tex_mobs.add(plus)
+        dots = Tex("\\vdots")
+        plus = Tex("+")
+        arranged_group.add(dots, plus)
+        tex_mobs.add(dots, plus)
+        last_ring = rings[-1]
+
+        arranged_group.add(last_ring.target)
+        arranged_group.arrange(DOWN, buff = SMALL_BUFF)
+        arranged_group.set_height(config.frame_height-1)
+        arranged_group.to_corner(DOWN+LEFT, buff = MED_SMALL_BUFF)
+        for mob in tex_mobs:
+            mob.scale(0.7)
+
+        middle_rings = rings[self.num_rings_in_ring_sum_start:-1]
+        alphas = np.linspace(0, 1, len(middle_rings))
+        for ring, alpha in zip(middle_rings, alphas):
+            ring.target.set_fill(opacity = 0)
+            ring.target.move_to(interpolate(
+                dots.get_left(), last_ring.target.get_center(), alpha
+            ))
+
+        draw_ring_sum_anims = [Write(tex_mobs)]
+        draw_ring_sum_anims += [
+            MoveToTarget(
+                ring,
+                run_time = 3,
+                path_arc = -np.pi/3,
+                rate_func = squish_rate_func(smooth, alpha, alpha+0.8)
+            )
+            for ring, alpha in zip(rings, np.linspace(0, 0.2, len(rings)))
+        ]
+        
+        ring_sum = VGroup(rings, tex_mobs)
+        ring_sum.rings = VGroup(*[r.target for r in rings])
+        ring_sum.tex_mobs = tex_mobs
+        
+        return ring_sum, draw_ring_sum_anims

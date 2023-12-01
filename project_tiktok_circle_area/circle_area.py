@@ -85,15 +85,15 @@ class CircleArea(Scene):
         self.play(
             FadeIn(rings, **ring_anim_kwargs),
         )
+        
         self.wait()
-
         self.play(
             #rings.animate.rotate(PI/2),
             rings.animate.move_to(unwrapped_rings.get_top()),
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )
-        
+
         self.wait()
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),

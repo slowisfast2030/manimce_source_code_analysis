@@ -41,3 +41,19 @@ class CircleArea(Scene):
             GrowFromCenter(radius_brace),
             Write(radius_label),
         )
+        circle.set_fill(opacity = 0)
+
+        self.play(
+            Rotate(
+                radius_line, 2*np.pi-0.001, 
+                about_point = circle.get_center(),
+            ),
+            ShowCreation(circle),
+            run_time = 2
+        )
+        self.play(
+            circle.animate.set_fill(fill_color, fill_opacity),
+            Animation(radius_line),
+            Animation(radius_brace),
+            Animation(radius_label),
+        )

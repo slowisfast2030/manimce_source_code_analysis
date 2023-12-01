@@ -145,7 +145,6 @@ class CircleArea(Scene):
         dR = kwargs.get("dR", self.dR)
         colors = kwargs.get("colors", self.ring_colors)
         radii = np.arange(0, self.radius, dR)
-        print(radii)
         colors = color_gradient(colors, len(radii))
 
         rings = VGroup(*[

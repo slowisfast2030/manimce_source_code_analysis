@@ -108,15 +108,6 @@ class CircleArea(Scene):
         self.wait()
 
     def get_ring(self, radius, dR, color = GREEN):
-        # ring = Circle(radius = radius + dR).center()
-        # inner_ring = Circle(radius = radius)
-        # inner_ring.rotate(np.pi, RIGHT)
-        # ring.append_vectorized_mobject(inner_ring)
-        # ring.set_stroke(width = 0)
-        # ring.set_fill(color, opacity = 1)
-        # ring.move_to(self.circle)
-        # ring.R = radius 
-        # ring.dR = dR
         ring = VMobject()
         outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]
         inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:64][::-1]

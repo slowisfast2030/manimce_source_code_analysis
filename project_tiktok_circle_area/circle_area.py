@@ -51,9 +51,11 @@ class CircleArea(Scene):
             ShowCreation(circle),
             run_time = 2
         )
+
+        self.bring_to_front(radius_group)
+
         self.play(
-            circle.animate.set_fill(fill_color, fill_opacity),
-            Animation(radius_line),
-            Animation(radius_brace),
-            Animation(radius_label),
+            circle.animate.set_fill(fill_color, fill_opacity)
         )
+
+        

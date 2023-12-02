@@ -7,6 +7,9 @@ Sector Sum:
 from manim import *
 import itertools as it
 
+class ShowCreation(Create):
+    pass
+
 class SectorSum(Scene):
     n_slices = 20
     sector_stroke_width = 1.0
@@ -92,6 +95,59 @@ class SectorSum(Scene):
             for group in [laid_sectors, sectors]
         ))
         self.wait()
+
+        """
+        我从未想过这个动画
+        将锯齿的边变为圆的半周长
+        """
+        ulp = lh[0].get_top()
+        width_line = Line(ulp, rh.get_corner(UR))
+        width_line.set_stroke(YELLOW, 3)
+        width_form = MathTex(r"\pi R")
+        width_form.next_to(width_line, UP)
+
+        semi_circ = Arc(angle=PI)
+        semi_circ.set_stroke(YELLOW, 3)
+        semi_circ.replace(sectors)
+        semi_circ.move_to(sectors, UP)
+
+        height_line = Line(lh.get_corner(DL), ulp)
+        height_line.set_stroke(PINK, 3)
+        height_form = MathTex("R")
+        height_form.next_to(height_line, LEFT)
+
+        radial_line = Line(sectors.get_center(), sectors.get_right())
+        radial_line.match_style(height_line)
+        pre_R_label = MathTex("R").next_to(radial_line, UP, SMALL_BUFF)
+
+        self.play(ShowCreation(width_line))
+        self.play(TransformFromCopy(width_line, semi_circ, path_arc=-PI / 2, run_time=2))
+        self.wait()
+        self.play(Write(width_form, stroke_color=WHITE))
+        self.wait()
+
+        self.play(ShowCreation(height_line))
+        self.play(TransformFromCopy(height_line, radial_line))
+        self.play(Write(pre_R_label))
+        self.play(ReplacementTransform(pre_R_label, height_form))
+        self.wait()
+
+        # Area
+        rhs = MathTex(r"=\pi R^2")
+        question.generate_target()
+        question.target.match_y(sectors).match_x(lh)
+        question.target[-1].scale(0, about_edge=LEFT)
+        rhs.next_to(question.target, RIGHT)
+
+        rect = SurroundingRectangle(VGroup(question.target, rhs))
+        rect.set_stroke(YELLOW, 2)
+
+        self.play(MoveToTarget(question))
+        self.play(
+            TransformMatchingShapes(VGroup(height_form, width_form).copy(), rhs)
+        )
+        self.wait()
+        self.play(ShowCreation(rect))
         
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):

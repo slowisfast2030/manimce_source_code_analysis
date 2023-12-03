@@ -1,34 +1,111 @@
 from manim import *
 
-"""
-圆环的竖直相加
-"""
 # 下面这几行设置竖屏
-# config.frame_width = 9
-# config.frame_height = 16
+config.frame_width = 9
+config.frame_height = 16
 
-# config.pixel_width = 1080
-# config.pixel_height = 1920
+config.pixel_width = 1080
+config.pixel_height = 1920
 
 # 一个很聪明的方案
 class ShowCreation(Create):
     pass
 
-class RingSum(Scene):
+class CircleArea(Scene):
+
     def setup(self):
         self.radius = 1.5
+        self.stroke_color = WHITE
+        self.fill_color = BLUE_E
         self.fill_opacity = 0.75
         self.circle_corner = UP + LEFT
+        self.radial_line_color = MAROON_B
         self.dR = 0.1
         self.ring_colors = [BLUE, GREEN]
-        self.corner = 2*UP + 5*LEFT
-        self.num_rings_in_ring_sum_start = 3
+        self.unwrapped_tip = ORIGIN
 
+        self.circle = Circle(
+            radius = self.radius,
+            stroke_color = self.stroke_color,
+            fill_color = self.fill_color,
+            fill_opacity = self.fill_opacity,
+        )
+        self.circle.to_corner(self.circle_corner, buff = MED_LARGE_BUFF)
+        
+        self.radius_line = Line(
+            self.circle.get_center(),
+            self.circle.get_right(),
+            color = self.radial_line_color
+        )
+        self.radius_brace = Brace(self.radius_line, buff = SMALL_BUFF)
+        self.radius_label = self.radius_brace.get_tex("R", buff = SMALL_BUFF)
+
+        self.radius_group = VGroup(
+            self.radius_line, self.radius_brace, self.radius_label
+        )
+        self.add(self.circle, *self.radius_group)
+        
     def construct(self):
-        rings = self.get_rings()
+        self.introduce_circle()
+        self.introduce_rings()
+        
+    def introduce_circle(self):
+        self.remove(self.circle)
+        self.play(
+            ShowCreation(self.radius_line),
+            GrowFromCenter(self.radius_brace),
+            Write(self.radius_label),
+        )
+        self.circle.set_fill(opacity = 0)
+
+        self.play(
+            Rotate(
+                self.radius_line, 2*PI-0.001, 
+                about_point = self.circle.get_center(),
+            ),
+            ShowCreation(self.circle),
+            run_time = 2
+        )
+
+        # 当circle执行了下面的动画后会覆盖掉radius_group
+        # 所以需要将radius_group放到circle的上面
+        self.bring_to_front(self.radius_group)
+
+        self.play(
+            self.circle.animate.set_fill(self.fill_color, self.fill_opacity)
+        )
+
+    def introduce_rings(self):
+        rings = VGroup(*reversed(self.get_rings()))
+        unwrapped_rings = VGroup(*[
+            self.get_unwrapped(ring, to_edge = None)
+            for ring in rings
+        ])
+        unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
+        unwrapped_rings.move_to(self.unwrapped_tip, UP)
+        ring_anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.1
+        }
         self.add(rings)
-        ring_sum, draw_ring_sum_anims = self.get_ring_sum(rings)
-        self.play(*draw_ring_sum_anims)
+
+        self.play(
+            FadeIn(rings, **ring_anim_kwargs),
+        )
+
+        self.wait()
+        self.play(
+            #rings.animate.rotate(PI/2),
+            rings.animate.move_to(unwrapped_rings.get_top()),
+            path_arc = np.pi/2,
+            **ring_anim_kwargs
+        )
+
+        self.wait()
+        self.play(
+            Transform(rings, unwrapped_rings, **ring_anim_kwargs),
+        )
+        self.wait()
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
@@ -49,7 +126,7 @@ class RingSum(Scene):
         ring.append_points(points_to_add)
         ring.set_stroke(width = 0)
         ring.set_fill(color, opacity = 1)
-        ring.move_to(self.corner)
+        ring.move_to(self.circle)
         ring.R = radius 
         ring.dR = dR
 
@@ -66,53 +143,33 @@ class RingSum(Scene):
             for radius, color in zip(radii, colors)
         ])
         return rings
-    
-    def get_ring_sum(self, rings):
-        arranged_group = VGroup()
-        tex_mobs = VGroup()
-        for ring in rings:
-            ring.generate_target()
-            ring.target.set_stroke(width = 0)
 
-        for ring in rings[:self.num_rings_in_ring_sum_start]:
-            plus = Tex("+")
-            arranged_group.add(ring.target)
-            arranged_group.add(plus)
-            tex_mobs.add(plus)
-        dots = Tex("\\vdots")
-        plus = Tex("+")
-        arranged_group.add(dots, plus)
-        tex_mobs.add(dots, plus)
-        last_ring = rings[-1]
-
-        arranged_group.add(last_ring.target)
-        arranged_group.arrange(DOWN, buff = SMALL_BUFF)
-        arranged_group.set_height(config.frame_height-1)
-        arranged_group.to_corner(DOWN+LEFT, buff = MED_SMALL_BUFF)
-        for mob in tex_mobs:
-            mob.scale(0.7)
-
-        middle_rings = rings[self.num_rings_in_ring_sum_start:-1]
-        alphas = np.linspace(0, 1, len(middle_rings))
-        for ring, alpha in zip(middle_rings, alphas):
-            ring.target.set_fill(opacity = 0)
-            ring.target.move_to(interpolate(
-                dots.get_left(), last_ring.target.get_center(), alpha
-            ))
-
-        draw_ring_sum_anims = [Write(tex_mobs)]
-        draw_ring_sum_anims += [
-            MoveToTarget(
-                ring,
-                run_time = 3,
-                path_arc = -np.pi/3,
-                rate_func = squish_rate_func(smooth, alpha, alpha+0.8)
-            )
-            for ring, alpha in zip(rings, np.linspace(0, 0.2, len(rings)))
-        ]
+    def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):
+        R = ring.R
+        R_plus_dr = ring.R + ring.dR
+        n_anchors = ring.get_num_curves()
         
-        ring_sum = VGroup(rings, tex_mobs)
-        ring_sum.rings = VGroup(*[r.target for r in rings])
-        ring_sum.tex_mobs = tex_mobs
-        
-        return ring_sum, draw_ring_sum_anims
+        # 如果manim没有自己想要的形状，可以自己构造点集
+        result = VMobject()
+        result.set_points_as_corners([
+            interpolate(np.pi*R_plus_dr*LEFT,  np.pi*R_plus_dr*RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(np.pi*R*RIGHT+ring.dR*UP,  np.pi*R*LEFT+ring.dR*UP, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+
+        line = [result.get_points()[-1], 
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.3),
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.6),
+                result.get_points()[0]] 
+        result.append_points(line)
+
+        result.set_style(
+            stroke_color = ring.get_stroke_color(),
+            stroke_width = ring.get_stroke_width(),
+            fill_color = ring.get_fill_color(),
+            fill_opacity = ring.get_fill_opacity(),
+        )
+
+        return result

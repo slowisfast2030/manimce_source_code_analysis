@@ -1,5 +1,8 @@
 from manim import *
 
+"""
+圆环的竖直相加
+"""
 # 下面这几行设置竖屏
 # config.frame_width = 9
 # config.frame_height = 16

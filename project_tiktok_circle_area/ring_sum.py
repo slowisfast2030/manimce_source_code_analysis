@@ -11,7 +11,7 @@ config.pixel_height = 1920
 class ShowCreation(Create):
     pass
 
-class CircleArea(Scene):
+class RingSum(Scene):
 
     def setup(self):
         self.radius = 1.5

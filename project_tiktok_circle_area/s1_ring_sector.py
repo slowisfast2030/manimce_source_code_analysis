@@ -31,6 +31,7 @@ class s1(Scene):
         self.circle_bottom_location = (config.frame_height/4 - 1)*DOWN
         self.n_slices = 20
         self.sector_stroke_width = 1.0
+        self.ring_stroke_width = 1.0
 
     def construct(self):
         self.introduce_circle()
@@ -85,7 +86,7 @@ class s1(Scene):
         
         points_to_add = list(outer_circle) + line1 + list(inner_circle) + line2
         ring.append_points(points_to_add)
-        ring.set_stroke(width = 1)
+        ring.set_stroke(width = self.ring_stroke_width)
         ring.set_fill(color, opacity = 1)
         ring.move_to(self.circle_top)
         ring.R = radius 

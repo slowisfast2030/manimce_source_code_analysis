@@ -19,7 +19,7 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 0.2/15
+        self.dR = 2/15
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75

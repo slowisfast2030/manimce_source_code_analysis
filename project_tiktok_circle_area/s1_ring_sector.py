@@ -33,6 +33,9 @@ class s1(Scene):
         self.sector_stroke_width = 1.0
 
     def construct(self):
+        self.introduce_circle()
+        
+    def introduce_circle(self):
         self.circle_top = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,

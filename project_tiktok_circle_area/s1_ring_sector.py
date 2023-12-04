@@ -19,7 +19,7 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 0.2
+        self.dR = 0.1
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
@@ -29,7 +29,7 @@ class s1(Scene):
         self.unwrapped_tip = ORIGIN
         self.circle_top_location = (config.frame_height/4 - 1)*UP
         self.circle_bottom_location = (config.frame_height/4 - 1)*DOWN
-        self.n_slices = 20
+        self.n_slices = 30
         self.sector_stroke_width = 1.0
         self.ring_stroke_width = 1.0
 

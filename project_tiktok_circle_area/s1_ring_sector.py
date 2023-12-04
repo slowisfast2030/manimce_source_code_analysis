@@ -36,8 +36,8 @@ class s1(Scene):
     def construct(self):
         self.introduce_circle()
         self.introduce_index_area()
-        #self.introduce_ring_sum() 
-        self.introduce_sector_sum()
+        self.introduce_ring_sum() 
+        #self.introduce_sector_sum()
         
     def introduce_circle(self):
         # 上圆和下圆

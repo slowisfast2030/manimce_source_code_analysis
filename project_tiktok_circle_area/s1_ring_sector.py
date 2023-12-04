@@ -80,7 +80,7 @@ class s1(Scene):
         vg.target.arrange(RIGHT, buff = LARGE_BUFF).scale(0.2)
         vg.target.to_corner(UR, buff = LARGE_BUFF*0.5).shift(DOWN)
 
-        area = Text("面积").match_height(vg.target).set_color_by_gradient(GREEN, BLUE)
+        area = Tex("Area").match_height(vg.target).set_color_by_gradient(GREEN, BLUE)
         area.to_corner(UL, buff = LARGE_BUFF*0.5).shift(DOWN)
         self.play(MoveToTarget(vg),
                   Write(area))

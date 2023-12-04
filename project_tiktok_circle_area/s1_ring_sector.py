@@ -113,6 +113,10 @@ class s1(Scene):
         )
 
         self.wait()
+        self.play(
+            Transform(rings_target, unwrapped_rings, **anim_kwargs),
+        )
+        self.wait()
 
 
 

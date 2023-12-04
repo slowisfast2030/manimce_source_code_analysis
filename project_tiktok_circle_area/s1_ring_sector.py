@@ -36,6 +36,7 @@ class s1(Scene):
     def construct(self):
         self.introduce_circle()
         self.introduce_index_area()
+        self.introduce_ring_sum() 
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -87,6 +88,32 @@ class s1(Scene):
         self.vg = vg
         self.area = area
 
+    def introduce_ring_sum(self):
+        rings = self.vg[0]
+
+        unwrapped_rings = VGroup(*[
+            self.get_unwrapped(ring, to_edge = None)
+            for ring in rings
+        ])
+        unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
+        unwrapped_rings.move_to(self.unwrapped_tip, UP)
+
+        anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.1
+        }
+        rings_target = rings.copy()
+        rings_target.move_to(unwrapped_rings.get_top())
+        rings_target.scale(4)         
+
+        self.play(
+            TransformFromCopy(rings, rings_target, **anim_kwargs),
+            path_arc = np.pi/2,
+            **anim_kwargs
+        )
+
+        self.wait()
+
 
 
     def get_ring(self, radius, dR, color = BLUE):
@@ -135,3 +162,33 @@ class s1(Scene):
         sectors.set_stroke(WHITE, self.sector_stroke_width)
         sectors.replace(circle, stretch=True)
         return sectors
+    
+    def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):
+        R = ring.R
+        R_plus_dr = ring.R + ring.dR
+        n_anchors = ring.get_num_curves()
+        
+        # 如果manim没有自己想要的形状，可以自己构造点集
+        result = VMobject()
+        result.set_points_as_corners([
+            interpolate(np.pi*R_plus_dr*LEFT,  np.pi*R_plus_dr*RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(np.pi*R*RIGHT+ring.dR*UP,  np.pi*R*LEFT+ring.dR*UP, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+
+        line = [result.get_points()[-1], 
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.3),
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.6),
+                result.get_points()[0]] 
+        result.append_points(line)
+
+        result.set_style(
+            stroke_color = ring.get_stroke_color(),
+            stroke_width = ring.get_stroke_width(),
+            fill_color = ring.get_fill_color(),
+            fill_opacity = ring.get_fill_opacity(),
+        )
+
+        return result

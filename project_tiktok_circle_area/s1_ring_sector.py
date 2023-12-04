@@ -35,6 +35,7 @@ class s1(Scene):
 
     def construct(self):
         self.introduce_circle()
+        self.introduce_index_area()
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -68,6 +69,25 @@ class s1(Scene):
             FadeIn(rings, **anim_kwargs),
             Write(sectors, **anim_kwargs),
         )
+
+        self.rings = rings
+        self.sectors = sectors
+
+    def introduce_index_area(self):
+        vg = VGroup(self.rings, self.sectors)
+        vg.generate_target()
+        vg.target.arrange(RIGHT, buff = LARGE_BUFF).scale(0.2)
+        vg.target.to_corner(UR, buff = LARGE_BUFF*0.5).shift(DOWN)
+
+        area = Text("面积").match_height(vg.target).set_color_by_gradient(GREEN, BLUE)
+        area.to_corner(UL, buff = LARGE_BUFF*0.5).shift(DOWN)
+        self.play(MoveToTarget(vg),
+                  Write(area))
+        
+        self.vg = vg
+        self.area = area
+
+
 
     def get_ring(self, radius, dR, color = BLUE):
         ring = VMobject()

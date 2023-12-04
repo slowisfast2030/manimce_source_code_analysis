@@ -167,7 +167,7 @@ class s1(Scene):
             Write(radical_line_brace_label),
             Write(semi_circ_label),
         )
-
+        self.wait(2)
 
 
 

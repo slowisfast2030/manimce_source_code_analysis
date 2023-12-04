@@ -27,7 +27,7 @@ class s1(Scene):
         self.ring_colors = [BLUE, GREEN]
         self.unwrapped_tip = ORIGIN
         self.circle_top_location = (config.frame_height/4 - 1)*UP
-        self.circle_bottom = (config.frame_height/4 - 1)*DOWN
+        self.circle_bottom_location = (config.frame_height/4 - 1)*DOWN
 
     def construct(self):
         self.circle_top = Circle(
@@ -36,7 +36,17 @@ class s1(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
+        self.circle_bottom = Circle(
+            radius = self.radius,
+            stroke_color = self.stroke_color,
+            fill_color = self.fill_color,
+            fill_opacity = self.fill_opacity,
+        )
+
+        # 分别移动到上下屏
         self.circle_top.move_to(self.circle_top_location)
+        self.circle_bottom.move_to(self.circle_bottom_location)
+
         self.play(
             self.circle_top.animate.set_fill(self.fill_color, self.fill_opacity),
             run_time=1

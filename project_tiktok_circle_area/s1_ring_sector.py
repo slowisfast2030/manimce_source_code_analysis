@@ -37,7 +37,7 @@ class s1(Scene):
         self.introduce_circle()
         self.introduce_index_area()
         self.introduce_ring_sum() 
-        #self.introduce_sector_sum()
+        self.introduce_sector_sum()
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -209,6 +209,7 @@ class s1(Scene):
             TransformFromCopy(bottom_line_brace_label, bottom),
             run_time = 2
         )
+        self.wait(2)
 
     def introduce_sector_sum(self):
         """
@@ -303,6 +304,46 @@ class s1(Scene):
             Write(height_line_brace_label),
             Write(radical_line_brace_label),
             Write(semi_circ_label),
+        )
+        self.wait(1)
+
+        circle_gr = VGroup(radial_line,
+                            radical_line_brace,
+                            radical_line_brace_label,
+                            semi_circ,
+                            semi_circ_label)
+        # 显示圆面积
+        area = MathTex(r"Area")
+        l_brace = MathTex(r"(")
+        r_brace = MathTex(r") = ")
+        height = MathTex(r"R")
+        mul = MathTex(r"\times")
+        bottom = MathTex(r"\pi R")
+        remains = MathTex(r"= \pi R^2")
+        #r_brace = MathTex(r")")
+        small_circle = sectors_copy.copy().match_height(l_brace)
+        area_gr = VGroup(area, 
+                         l_brace, 
+                         small_circle, 
+                         r_brace,
+                         height,
+                         mul,
+                         bottom,
+                         remains).arrange(RIGHT, buff = SMALL_BUFF)
+        area_gr.move_to(sectors_copy.get_center())
+        #self.add(area_gr)
+        self.wait(1)
+        self.play(
+            Write(area),
+            Write(l_brace),
+            Transform(sectors_copy, small_circle),
+            Write(r_brace),
+            Write(mul),
+            Write(remains),
+            FadeOut(circle_gr),
+            TransformFromCopy(height_line_brace_label, height),
+            TransformFromCopy(bottom_line_brace_label, bottom),
+            run_time = 2
         )
         self.wait(2)
 

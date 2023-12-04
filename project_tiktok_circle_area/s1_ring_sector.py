@@ -226,7 +226,14 @@ class s1(Scene):
     def recap(self):
         self.clear()
         self.wait(2)
-        self.play(ShowCreation(self.rings_group))
+        all_group = VGroup(
+            self.rings_group[-1],
+            self.rings_group[:-1],
+            self.sectors_group[-1],
+            self.sectors_group[:-1],
+        ).arrange(DOWN, buff = LARGE_BUFF)
+
+        self.play(ShowCreation(all_group))
         self.wait()
 
     def introduce_sector_sum(self):
@@ -364,6 +371,18 @@ class s1(Scene):
             run_time = 2
         )
         self.wait(2)
+
+        self.sectors_group = VGroup(
+            bottom_line_brace,
+            bottom_line_brace_label,
+            height_line_brace,
+            height_line_brace_label,
+            bottom_line,
+            height_line,
+            lh,
+            rh,
+            area_gr
+        )
 
     def get_ring(self, radius, dR, color = BLUE):
         ring = VMobject()

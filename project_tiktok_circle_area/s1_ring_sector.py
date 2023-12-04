@@ -19,7 +19,7 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 0.2
+        self.dR = 0.1
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
@@ -118,6 +118,17 @@ class s1(Scene):
             Transform(rings_target, unwrapped_rings, **anim_kwargs),
         )
         self.wait()
+
+        # 将长条缩小至屏幕可见的范围
+        rings_copy = rings.copy()
+        rings_copy.scale(3).next_to(rings_target, UP, buff = LARGE_BUFF)
+        self.play(rings_target.animate.scale(0.55),
+                  FadeIn(rings_copy)
+                )
+        
+        # 
+
+
 
     def introduce_sector_sum(self):
         """

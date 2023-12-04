@@ -37,7 +37,7 @@ class s1(Scene):
         self.introduce_circle()
         self.introduce_index_area()
         self.introduce_ring_sum() 
-        self.introduce_sector_sum()
+        #self.introduce_sector_sum()
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -169,6 +169,30 @@ class s1(Scene):
         )
         self.wait(2)
 
+        circle_gr = VGroup(radical_line_brace,
+                           radical_line_brace_label,
+                           semi_circ,
+                           semi_circ_label)
+
+        self.clear()
+        # 显示圆面积
+        area = MathTex(r"Area")
+        l_brace = MathTex(r"(")
+        r_brace = MathTex(r") = \frac{1}{2} \times R \times 2 \pi R = \pi R^2")
+        #r_brace = MathTex(r")")
+        small_circle = rings_copy.copy().match_height(l_brace)
+        area_gr = VGroup(area, l_brace, small_circle, r_brace).arrange(RIGHT, buff = SMALL_BUFF)
+        area_gr.move_to(rings_copy.get_center())
+        self.add(area_gr)
+        self.wait(1)
+        self.play(
+            Write(area),
+            Write(l_brace),
+            Transform(rings_copy, small_circle),
+            Write(r_brace),
+            FadeOut(circle_gr)
+        )
+
     def introduce_sector_sum(self):
         """
         清空屏幕, 仅保留屏幕上边
@@ -264,7 +288,7 @@ class s1(Scene):
             Write(semi_circ_label),
         )
         self.wait(2)
-        
+
     def get_ring(self, radius, dR, color = BLUE):
         ring = VMobject()
         outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]

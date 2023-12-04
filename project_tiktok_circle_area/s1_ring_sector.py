@@ -19,7 +19,7 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 0.2
+        self.dR = 0.2/15
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
@@ -149,6 +149,24 @@ class s1(Scene):
             TransformFromCopy(height_line, radial_line),
         )
 
+        # 显示括号和标签
+        bottom_line_brace = Brace(bottom_line, DOWN, buff = SMALL_BUFF)
+        bottom_line_brace_label = bottom_line_brace.get_tex("2 \pi R")
+        height_line_brace = Brace(height_line, LEFT, buff = SMALL_BUFF)
+        height_line_brace_label = height_line_brace.get_tex("R")
+        radical_line_brace = Brace(radial_line, UP, buff = SMALL_BUFF)
+        radical_line_brace_label = radical_line_brace.get_tex("R")
+        semi_circ_label = MathTex(r"2\pi R").next_to(semi_circ, UP, SMALL_BUFF)
+
+        self.play(
+            GrowFromCenter(bottom_line_brace),
+            GrowFromCenter(height_line_brace),
+            GrowFromCenter(radical_line_brace),
+            Write(bottom_line_brace_label),
+            Write(height_line_brace_label),
+            Write(radical_line_brace_label),
+            Write(semi_circ_label),
+        )
 
 
 

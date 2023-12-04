@@ -225,7 +225,7 @@ class s1(Scene):
 
     def recap(self):
         self.clear()
-        self.wait(2)
+        self.wait(1)
         all_group = VGroup(
             self.rings_group[-1],
             self.rings_group[:-1],

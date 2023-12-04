@@ -265,7 +265,6 @@ class s1(Scene):
         )
         self.wait(2)
         
-
     def get_ring(self, radius, dR, color = BLUE):
         ring = VMobject()
         outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]

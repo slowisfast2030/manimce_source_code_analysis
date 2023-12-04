@@ -109,6 +109,10 @@ class s1(Scene):
         rings_target.scale(4)         
 
         self.play(
+            self.vg[0].animate.set_opacity(1),
+            self.vg[1].animate.set_opacity(0)
+        )
+        self.play(
             TransformFromCopy(rings, rings_target, **anim_kwargs),
             path_arc = np.pi/2,
             **anim_kwargs
@@ -264,6 +268,10 @@ class s1(Scene):
         """
         深度思考
         """
+        self.play(
+            self.vg[0].animate.set_opacity(1),
+            self.vg[1].animate.set_opacity(0)
+        )
         self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
         self.wait()
 

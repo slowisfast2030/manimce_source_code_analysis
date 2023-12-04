@@ -129,19 +129,19 @@ class s1(Scene):
         # 获取展开的长条的底和高
         bottom_line = Line(rings_target.get_corner(DL), rings_target.get_corner(DR))
         height_line = Line(rings_target.get_corner(DL), rings_target.get_corner(UL))
-        bottom_line.set_stroke(PINK, 3)
-        height_line.set_stroke(PINK, 3)
+        bottom_line.set_stroke(PINK, 5)
+        height_line.set_stroke(PINK, 5)
         self.play(ShowCreation(bottom_line),
                   ShowCreation(height_line)
                 )
 
         # 获取圆的周长和半径
         semi_circ = Arc(angle=2*PI-0.01)
-        semi_circ.set_stroke(PINK, 3)
+        semi_circ.set_stroke(PINK, 5)
         semi_circ.replace(rings_copy)
         semi_circ.move_to(rings_copy, UP)
         radial_line = Line(rings_copy.get_center(), rings_copy.get_right())
-        radial_line.set_stroke(PINK, 3)
+        radial_line.set_stroke(PINK, 5)
 
         # 执行动画
         self.play(
@@ -225,19 +225,19 @@ class s1(Scene):
         # 获取锯齿的底和高
         bottom_line = Line(lh.get_corner(DL), lh[-1].get_corner(DR))
         height_line = Line(lh.get_corner(DL), lh[0].get_top())
-        bottom_line.set_stroke(PINK, 3)
-        height_line.set_stroke(PINK, 3)
+        bottom_line.set_stroke(PINK, 5)
+        height_line.set_stroke(PINK, 5)
         self.play(ShowCreation(bottom_line),
                   ShowCreation(height_line)
                 )
 
         # 获取圆的周长和半径
         semi_circ = Arc(angle=2*PI-0.01)
-        semi_circ.set_stroke(PINK, 3)
+        semi_circ.set_stroke(PINK, 5)
         semi_circ.replace(sectors_copy)
         semi_circ.move_to(sectors_copy, UP)
         radial_line = Line(sectors_copy.get_center(), sectors_copy.get_right())
-        radial_line.set_stroke(PINK, 3)
+        radial_line.set_stroke(PINK, 5)
 
         # 执行动画
         self.play(

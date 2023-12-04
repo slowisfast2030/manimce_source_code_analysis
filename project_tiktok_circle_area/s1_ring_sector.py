@@ -81,7 +81,7 @@ class s1(Scene):
         vg.target.arrange(RIGHT, buff = LARGE_BUFF).scale(0.2)
         vg.target.to_corner(UR, buff = LARGE_BUFF*0.5).shift(DOWN)
 
-        area = Tex("Area").match_height(vg.target).set_color_by_gradient(GREEN, BLUE)
+        area = Tex(r"Area").match_height(vg.target).set_color_by_gradient(GREEN, BLUE)
         area.to_corner(UL, buff = LARGE_BUFF*0.5).shift(DOWN)
         self.play(MoveToTarget(vg),
                   Write(area))
@@ -169,28 +169,45 @@ class s1(Scene):
         )
         self.wait(2)
 
-        circle_gr = VGroup(radical_line_brace,
+        circle_gr = VGroup(radial_line,
+                           radical_line_brace,
                            radical_line_brace_label,
                            semi_circ,
                            semi_circ_label)
 
-        self.clear()
+        #self.clear()
         # 显示圆面积
         area = MathTex(r"Area")
         l_brace = MathTex(r"(")
-        r_brace = MathTex(r") = \frac{1}{2} \times R \times 2 \pi R = \pi R^2")
+        r_brace = MathTex(r") = \frac{1}{2} \times")
+        height = MathTex(r"R")
+        mul = MathTex(r"\times")
+        bottom = MathTex(r"2 \pi R")
+        remains = MathTex(r"= \pi R^2")
         #r_brace = MathTex(r")")
         small_circle = rings_copy.copy().match_height(l_brace)
-        area_gr = VGroup(area, l_brace, small_circle, r_brace).arrange(RIGHT, buff = SMALL_BUFF)
+        area_gr = VGroup(area, 
+                         l_brace, 
+                         small_circle, 
+                         r_brace,
+                         height,
+                         mul,
+                         bottom,
+                         remains).arrange(RIGHT, buff = SMALL_BUFF)
         area_gr.move_to(rings_copy.get_center())
-        self.add(area_gr)
+        #self.add(area_gr)
         self.wait(1)
         self.play(
             Write(area),
             Write(l_brace),
             Transform(rings_copy, small_circle),
             Write(r_brace),
-            FadeOut(circle_gr)
+            Write(mul),
+            Write(remains),
+            FadeOut(circle_gr),
+            TransformFromCopy(height_line_brace_label, height),
+            TransformFromCopy(bottom_line_brace_label, bottom),
+            run_time = 2
         )
 
     def introduce_sector_sum(self):

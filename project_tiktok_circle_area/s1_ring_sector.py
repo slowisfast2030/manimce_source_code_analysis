@@ -169,8 +169,6 @@ class s1(Scene):
         )
         self.wait(2)
 
-
-
     def introduce_sector_sum(self):
         """
         清空屏幕, 仅保留屏幕上边
@@ -223,6 +221,30 @@ class s1(Scene):
             FadeIn(sectors_copy)
         )
         self.wait()
+
+        # 获取锯齿的底和高
+        bottom_line = Line(lh.get_corner(DL), lh[-1].get_corner(DR))
+        height_line = Line(lh.get_corner(DL), lh[0].get_top())
+        bottom_line.set_stroke(PINK, 3)
+        height_line.set_stroke(PINK, 3)
+        self.play(ShowCreation(bottom_line),
+                  ShowCreation(height_line)
+                )
+
+        # 获取圆的周长和半径
+        semi_circ = Arc(angle=2*PI-0.01)
+        semi_circ.set_stroke(PINK, 3)
+        semi_circ.replace(sectors_copy)
+        semi_circ.move_to(sectors_copy, UP)
+        radial_line = Line(sectors_copy.get_center(), sectors_copy.get_right())
+        radial_line.set_stroke(PINK, 3)
+
+        # 执行动画
+        self.play(
+            TransformFromCopy(bottom_line, semi_circ),
+            TransformFromCopy(height_line, radial_line),
+        )
+        
 
     def get_ring(self, radius, dR, color = BLUE):
         ring = VMobject()

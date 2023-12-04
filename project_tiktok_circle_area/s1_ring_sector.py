@@ -37,7 +37,7 @@ class s1(Scene):
         self.introduce_circle()
         self.introduce_index_area()
         self.introduce_ring_sum() 
-        #self.introduce_sector_sum()
+        self.introduce_sector_sum()
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -172,6 +172,11 @@ class s1(Scene):
 
 
     def introduce_sector_sum(self):
+        """
+        清空屏幕, 仅保留屏幕上边
+        """
+        self.clear()
+        self.add(self.area, self.vg)
         """
         将sectors展开
         """

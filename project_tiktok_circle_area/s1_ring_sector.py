@@ -19,7 +19,7 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 0.1
+        self.dR = 0.2
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
@@ -126,7 +126,30 @@ class s1(Scene):
                   FadeIn(rings_copy)
                 )
         
-        # 
+        # 获取展开的长条的底和高
+        bottom_line = Line(rings_target.get_corner(DL), rings_target.get_corner(DR))
+        height_line = Line(rings_target.get_corner(DL), rings_target.get_corner(UL))
+        bottom_line.set_stroke(PINK, 3)
+        height_line.set_stroke(PINK, 3)
+        self.play(ShowCreation(bottom_line),
+                  ShowCreation(height_line)
+                )
+
+        # 获取圆的周长和半径
+        semi_circ = Arc(angle=2*PI-0.01)
+        semi_circ.set_stroke(PINK, 3)
+        semi_circ.replace(rings_copy)
+        semi_circ.move_to(rings_copy, UP)
+        radial_line = Line(rings_copy.get_center(), rings_copy.get_right())
+        radial_line.set_stroke(PINK, 3)
+
+        # 执行动画
+        self.play(
+            TransformFromCopy(bottom_line, semi_circ),
+            TransformFromCopy(height_line, radial_line),
+        )
+
+
 
 
 

@@ -53,12 +53,12 @@ class s1(Scene):
         self.circle_top.move_to(self.circle_top_location)
         self.circle_bottom.move_to(self.circle_bottom_location)
 
-        rings = VGroup(*reversed(self.get_rings()))
         anim_kwargs = {
             "run_time" : 3,
             "lag_ratio" : 0.1
         }
 
+        rings = VGroup(*reversed(self.get_rings()))
         sectors = self.get_sectors(self.circle_bottom, n_slices=self.n_slices)
 
         self.play(

@@ -232,7 +232,7 @@ class s1(Scene):
                 )
 
         # 获取圆的周长和半径
-        semi_circ = Arc(angle=2*PI-0.01)
+        semi_circ = Arc(angle=PI-0.01)
         semi_circ.set_stroke(PINK, 5)
         semi_circ.replace(sectors_copy)
         semi_circ.move_to(sectors_copy, UP)
@@ -247,12 +247,12 @@ class s1(Scene):
 
         # 显示括号和标签
         bottom_line_brace = Brace(bottom_line, DOWN, buff = SMALL_BUFF)
-        bottom_line_brace_label = bottom_line_brace.get_tex("2 \pi R")
+        bottom_line_brace_label = bottom_line_brace.get_tex("\pi R")
         height_line_brace = Brace(height_line, LEFT, buff = SMALL_BUFF)
         height_line_brace_label = height_line_brace.get_tex("R")
         radical_line_brace = Brace(radial_line, UP, buff = SMALL_BUFF)
         radical_line_brace_label = radical_line_brace.get_tex("R")
-        semi_circ_label = MathTex(r"2\pi R").next_to(semi_circ, UP, SMALL_BUFF)
+        semi_circ_label = MathTex(r"\pi R").next_to(semi_circ, UP, SMALL_BUFF)
 
         self.play(
             GrowFromCenter(bottom_line_brace),

@@ -38,6 +38,7 @@ class s1(Scene):
         self.introduce_index_area()
         self.introduce_ring_sum() 
         self.introduce_sector_sum()
+        self.recap()
         
     def introduce_circle(self):
         # 上圆和下圆
@@ -210,6 +211,23 @@ class s1(Scene):
             run_time = 2
         )
         self.wait(2)
+
+        self.rings_group = VGroup(
+            bottom_line_brace,
+            bottom_line_brace_label,
+            height_line_brace,
+            height_line_brace_label,
+            bottom_line,
+            height_line,
+            rings_target,
+            area_gr
+        )
+
+    def recap(self):
+        self.clear()
+        self.wait(2)
+        self.play(ShowCreation(self.rings_group))
+        self.wait()
 
     def introduce_sector_sum(self):
         """

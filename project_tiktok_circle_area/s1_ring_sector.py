@@ -233,7 +233,12 @@ class s1(Scene):
             self.sectors_group[:-1],
         ).arrange(DOWN, buff = LARGE_BUFF)
 
-        self.play(ShowCreation(all_group))
+        self.play(FadeIn(all_group[1]),
+                  FadeIn(all_group[3]),
+                 )
+        self.play(Write(all_group[0]),
+                  Write(all_group[2]),
+                 )  
         self.wait()
 
     def introduce_sector_sum(self):

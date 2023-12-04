@@ -214,7 +214,7 @@ class s1(Scene):
             TransformFromCopy(bottom_line_brace_label, bottom),
             run_time = 2
         )
-        self.wait(2)
+        self.wait(1)
 
         self.rings_group = VGroup(
             bottom_line_brace,
@@ -234,13 +234,12 @@ class s1(Scene):
             self.vg[0].animate.set_opacity(1),
             self.vg[1].animate.set_opacity(1)
         )
-        self.wait(1)
         all_group = VGroup(
             self.rings_group[-1],
             self.rings_group[:-1],
             self.sectors_group[-1],
             self.sectors_group[:-1],
-        ).arrange(DOWN, buff = LARGE_BUFF)
+        ).arrange(DOWN, buff = LARGE_BUFF).shift(DOWN)
 
         self.play(FadeIn(all_group[1]),
                   FadeIn(all_group[3]),

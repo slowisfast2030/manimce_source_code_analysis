@@ -110,7 +110,7 @@ class s1(Scene):
 
         self.play(
             self.vg[0].animate.set_opacity(1),
-            self.vg[1].animate.set_opacity(0)
+            self.vg[1].animate.set_opacity(0.3)
         )
         self.play(
             TransformFromCopy(rings, rings_target, **anim_kwargs),
@@ -254,6 +254,10 @@ class s1(Scene):
         """
         将sectors展开
         """
+        self.play(
+            self.vg[0].animate.set_opacity(0.3),
+            self.vg[1].animate.set_opacity(1)
+        )
         sectors = self.vg[1]
         laid_sectors = sectors.copy().scale(4)
         N = len(sectors)
@@ -268,10 +272,6 @@ class s1(Scene):
         """
         深度思考
         """
-        self.play(
-            self.vg[0].animate.set_opacity(1),
-            self.vg[1].animate.set_opacity(0)
-        )
         self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
         self.wait()
 

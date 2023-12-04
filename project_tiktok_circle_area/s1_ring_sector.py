@@ -229,6 +229,11 @@ class s1(Scene):
 
     def recap(self):
         self.clear()
+        self.add(self.area, self.vg)
+        self.play(
+            self.vg[0].animate.set_opacity(1),
+            self.vg[1].animate.set_opacity(1)
+        )
         self.wait(1)
         all_group = VGroup(
             self.rings_group[-1],

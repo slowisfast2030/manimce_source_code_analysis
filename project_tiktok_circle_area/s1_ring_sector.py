@@ -36,6 +36,7 @@ class s1(Scene):
         self.introduce_circle()
         
     def introduce_circle(self):
+        # 上圆和下圆
         self.circle_top = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
@@ -58,6 +59,7 @@ class s1(Scene):
             "lag_ratio" : 0.1
         }
 
+        # 获取rings和sectors
         rings = VGroup(*reversed(self.get_rings()))
         sectors = self.get_sectors(self.circle_bottom, n_slices=self.n_slices)
 

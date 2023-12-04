@@ -5,27 +5,28 @@ import logging
 
 import numpy as np
 
-from manimlib.animation.animation import Animation
-from manimlib.animation.composition import AnimationGroup
-from manimlib.animation.fading import FadeTransform
-from manimlib.animation.transform import ReplacementTransform
-from manimlib.constants import *
-from manimlib.mobject.mobject import _AnimationBuilder
-from manimlib.mobject.mobject import Mobject
-from manimlib.mobject.geometry import Circle
-from manimlib.mobject.svg.drawings import ThoughtBubble
-from manimlib.mobject.svg.drawings import SpeechBubble
-from manimlib.mobject.svg.svg_mobject import SVGMobject
-from manimlib.mobject.svg.text_mobject import Text
-from manimlib.mobject.types.vectorized_mobject import VGroup
-from manimlib.mobject.types.vectorized_mobject import VMobject
-from manimlib.utils.directories import get_directories
-from manimlib.utils.space_ops import get_norm
-from manimlib.utils.space_ops import normalize
+# from manimlib.animation.animation import Animation
+# from manimlib.animation.composition import AnimationGroup
+# from manimlib.animation.fading import FadeTransform
+# from manimlib.animation.transform import ReplacementTransform
+# from manimlib.constants import *
+# from manimlib.mobject.mobject import _AnimationBuilder
+# from manimlib.mobject.mobject import Mobject
+# from manimlib.mobject.geometry import Circle
+# from manimlib.mobject.svg.drawings import ThoughtBubble
+# from manimlib.mobject.svg.drawings import SpeechBubble
+# from manimlib.mobject.svg.svg_mobject import SVGMobject
+# from manimlib.mobject.svg.text_mobject import Text
+# from manimlib.mobject.types.vectorized_mobject import VGroup
+# from manimlib.mobject.types.vectorized_mobject import VMobject
+# from manimlib.utils.directories import get_directories
+# from manimlib.utils.space_ops import get_norm
+# from manimlib.utils.space_ops import normalize
 
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from manimlib.typing import ManimColor, Vect3
+# from typing import TYPE_CHECKING
+# if TYPE_CHECKING:
+#     from manimlib.typing import ManimColor, Vect3
+from manim import *
 
 
 PI_CREATURE_SCALE_FACTOR: float = 0.5
@@ -37,6 +38,8 @@ RIGHT_PUPIL_INDEX: int = 3
 BODY_INDEX: int = 4
 MOUTH_INDEX: int = 5
 
+def get_norm(vect) -> float:
+    return sum((x**2 for x in vect))**0.5
 
 class PiCreature(SVGMobject):
     # Range of proportions along body where arms are
@@ -48,13 +51,13 @@ class PiCreature(SVGMobject):
     def __init__(
         self,
         mode: str = "plain",
-        color: ManimColor = BLUE_E,
+        color = BLUE_E,
         stroke_width: float = 0.0,
-        stroke_color: ManimColor = BLACK,
+        stroke_color = BLACK,
         fill_opacity: float = 1.0,
         height: float = 3,
         flip_at_start: bool = False,
-        start_corner: Vect3 | None = None,
+        start_corner = None,
         **kwargs
     ):
         self.mode = mode
@@ -83,8 +86,8 @@ class PiCreature(SVGMobject):
         """
         在配置文件中添加一行pi_creature_images
         """
-        folder = get_directories()["pi_creature_images"]
-        #path = os.path.join(folder, f"{mode}.svg")
+        #folder = get_directories()["pi_creature_images"]
+        folder = "/Users/linus/Desktop/less-is-more/manimce_source_code/manim-main/3b1b-pi"
         path = os.path.join(folder, "%s_%s.svg" % ("PiCreatures", mode))
         
         if os.path.exists(path):
@@ -94,7 +97,7 @@ class PiCreature(SVGMobject):
                 logging.WARNING,
                 f"No design with mode {mode}",
             )
-            folder = get_directories()["pi_creature_images"]
+            #folder = get_directories()["pi_creature_images"]
             return os.path.join(folder, "plain.svg")
 
     def init_structure(self):
@@ -335,7 +338,7 @@ class PiCreature(SVGMobject):
 
     # Animations
 
-    def change(self, new_mode, look_at=None) -> _AnimationBuilder:
+    def change(self, new_mode, look_at=None):
         """
         通过animate创建了动画
         """
@@ -364,7 +367,7 @@ class PiCreature(SVGMobject):
             **kwargs,
         )
 
-    def replace_bubble(self, content, mode="pondering", look_at=None, **kwargs) -> Animation | _AnimationBuilder:
+    def replace_bubble(self, content, mode="pondering", look_at=None, **kwargs):
         """
         用新的bubble替换旧的bubble
 
@@ -418,7 +421,7 @@ class Mortimer(PiCreature):
     def __init__(
         self,
         mode: str = "plain",
-        color: ManimColor=GREY_BROWN,
+        color = GREY_BROWN,
         flip_at_start: bool = True,
         **kwargs,
     ):
@@ -426,7 +429,7 @@ class Mortimer(PiCreature):
 
 
 class Mathematician(PiCreature):
-    def __init__(self, mode: str = "plain", color: ManimColor = GREY, **kwargs):
+    def __init__(self, mode: str = "plain", color = GREY, **kwargs):
         super().__init__(mode, color, **kwargs)
 
 
@@ -480,8 +483,8 @@ class Eyes(VGroup):
     def create_eyes(
         self,
         mode: str, height:
-        float, bottom: Vect3,
-        look_at: Vect3 | Mobject | None = None
+        float, bottom,
+        look_at = None
     ):
         self.mode = mode
         pi = PiCreature(mode=mode)

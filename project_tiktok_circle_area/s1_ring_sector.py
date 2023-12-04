@@ -51,17 +51,16 @@ class s1(Scene):
         self.circle_bottom.move_to(self.circle_bottom_location)
 
         rings = VGroup(*reversed(self.get_rings()))
-        ring_anim_kwargs = {
+        anim_kwargs = {
             "run_time" : 3,
             "lag_ratio" : 0.1
         }
-        self.add(rings)
 
         sectors = self.get_sectors(self.circle_bottom, n_slices=self.n_slices)
 
         self.play(
-            FadeIn(rings, **ring_anim_kwargs),
-            Write(sectors, **ring_anim_kwargs),
+            FadeIn(rings, **anim_kwargs),
+            Write(sectors, **anim_kwargs),
         )
 
     def get_ring(self, radius, dR, color = BLUE):

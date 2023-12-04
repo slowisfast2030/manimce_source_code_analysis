@@ -209,6 +209,10 @@ class s1(Scene):
         rh.target.shift(UP)
         lh.target.shift(DOWN)
 
+        # 将长条缩小至屏幕可见的范围
+        sectors_copy = self.vg[1].copy()
+        sectors_copy.scale(3).next_to(laid_sectors, UP, buff = LARGE_BUFF*2)
+
         self.play(
             MoveToTarget(lh, run_time=1.5),
             MoveToTarget(rh, run_time=1.5, path_arc=PI),
@@ -216,6 +220,7 @@ class s1(Scene):
         self.play(
             lh.animate.shift(UP),
             rh.animate.shift(DOWN),
+            FadeIn(sectors_copy)
         )
         self.wait()
 

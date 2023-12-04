@@ -1,4 +1,5 @@
 from manim import *
+import itertools as it
 
 """
 上下屏各出现一个圆
@@ -28,6 +29,8 @@ class s1(Scene):
         self.unwrapped_tip = ORIGIN
         self.circle_top_location = (config.frame_height/4 - 1)*UP
         self.circle_bottom_location = (config.frame_height/4 - 1)*DOWN
+        self.n_slices = 20
+        self.sector_stroke_width = 1.0
 
     def construct(self):
         self.circle_top = Circle(
@@ -47,11 +50,6 @@ class s1(Scene):
         self.circle_top.move_to(self.circle_top_location)
         self.circle_bottom.move_to(self.circle_bottom_location)
 
-        self.play(
-            self.circle_top.animate.set_fill(self.fill_color, self.fill_opacity),
-            run_time=1
-        )
-
         rings = VGroup(*reversed(self.get_rings()))
         ring_anim_kwargs = {
             "run_time" : 3,
@@ -59,8 +57,11 @@ class s1(Scene):
         }
         self.add(rings)
 
+        sectors = self.get_sectors(self.circle_bottom, n_slices=self.n_slices)
+
         self.play(
             FadeIn(rings, **ring_anim_kwargs),
+            Write(sectors, **ring_anim_kwargs),
         )
 
     def get_ring(self, radius, dR, color = BLUE):
@@ -99,3 +100,13 @@ class s1(Scene):
             for radius, color in zip(radii, colors)
         ])
         return rings
+    
+    def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
+        angle = TAU / n_slices
+        sectors = VGroup(*(
+            Sector(angle=angle, start_angle=i * angle, fill_color=color, fill_opacity=1)
+            for i, color in zip(range(n_slices), it.cycle(fill_colors))
+        ))
+        sectors.set_stroke(WHITE, self.sector_stroke_width)
+        sectors.replace(circle, stretch=True)
+        return sectors

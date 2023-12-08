@@ -24,6 +24,7 @@ class s2(Scene):
     def construct(self):
         self.diameter_angle()
         self.right_angle()
+        self.double_relation()
         pass
 
     # 直径所对的圆周角是直角
@@ -142,3 +143,10 @@ class s2(Scene):
         # 移除更新器
         move_lines.remove_updater(move_lines_updater)
         circle_point_lable.remove_updater(circle_point_lable_updater)
+
+
+    # 圆心角和圆周角之间的关系
+    def double_relation(self):
+        self.clear()
+        self.add(self.circle_gr)
+        self.wait()

@@ -23,6 +23,11 @@ class s3(Scene):
         pass
 
     def construct(self):
+        self.introduce_triangle()
+        pass
+        
+
+    def introduce_triangle(self):
         triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
         self.play(Write(triangle), run_time=2)
 

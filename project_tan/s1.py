@@ -75,7 +75,7 @@ class s1(Scene):
         flip_tri = Polygon(np.array(self.coord_c)+np.array([0.1, 0, 0]), self.coord_a, self.coord_d, color=self.flip_color)
         self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_about_point))
         
-        ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
+        ver_e = MathTex("E", color=self.flip_color).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
 
     # 角平分线4个model

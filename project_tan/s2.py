@@ -156,6 +156,9 @@ class s2(Scene):
         point_a = Dot(circle.point_at_angle(PI + PI/6), color=RED)
         point_b = Dot(circle.point_at_angle(PI + 5*PI/6), color=RED)
         point_c = Dot(circle.point_at_angle(PI/2), color=RED)
+        label_a = MathTex("A").next_to(point_a, LEFT)
+        label_b = MathTex("B").next_to(point_b, RIGHT)
+        label_c = MathTex("C").next_to(point_c, UP)
 
         line_ao = Line(point_a.get_center(),origin, color=self.radial_line_color)
         line_bo = Line(point_b.get_center(),origin, color=self.radial_line_color)
@@ -163,9 +166,12 @@ class s2(Scene):
         line_bc = Line(point_b.get_center(),point_c.get_center(), color=self.radial_line_color)
 
         self.play(ShowCreation(point_a),
-                    ShowCreation(point_b),
-                    ShowCreation(point_c),
-                    run_time=1)
+                  ShowCreation(point_b),
+                  ShowCreation(point_c),
+                  Write(label_a),
+                  Write(label_b),
+                  Write(label_c),
+                  run_time=1)
         self.wait()
 
         self.play(ShowCreation(line_ao),
@@ -173,4 +179,6 @@ class s2(Scene):
                     ShowCreation(line_ac),
                     ShowCreation(line_bc))
         self.wait()
+
+        
 

@@ -95,7 +95,6 @@ class s2(Scene):
         # 创建一个圆周上的点
         circle_point = Dot(point=circle.point_at_angle(PI/3), color=RED)
         circle_point_lable = MathTex("C").next_to(circle_point, UP)
-        #self.add(circle_point, circle_point_lable)
         self.play(ShowCreation(circle_point),
                   Write(circle_point_lable),
                   run_time=1)   
@@ -133,7 +132,7 @@ class s2(Scene):
         def circle_point_lable_updater(mob):
             circle_point_lable.next_to(circle_point, UP) 
 
-        # 添加更新器到move_lines
+        # 添加更新器
         move_lines.add_updater(move_lines_updater)
         circle_point_lable.add_updater(circle_point_lable_updater)
 

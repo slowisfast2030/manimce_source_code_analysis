@@ -75,21 +75,6 @@ class s1(Scene):
         为了显示这4个模型, 需要精确的点的控制
         所以, 借助上面的三角形, 来引入这4个模型
         """
-        model_1 = self.get_model_1()
-
-        
-        
-
-
-        pass
-
-    def get_model_1(self):
-        # model 1
-        # 直线cb的方程: y = 3/4*x + 3
-        # 在直线cb上取点(1, 3.75)
-        # 在直线ca上取点(2, 0)
-        # 直线cd的方程: y = 1/3*x + 4/3
-        # 在直线cd上取点(1.5, 11/6)
         line_om = Line(self.coord_c, [1, 3.75, 0], color=BLUE)
         line_on = Line(self.coord_c, [2, 0, 0], color=BLUE)
         line_op = Line(self.coord_c, [1.5, 11/6, 0], color=BLUE)
@@ -105,16 +90,55 @@ class s1(Scene):
                               dot_p,
                               label_o,
                               label_p)
-        self.play(Write(self.line_gr), run_time=1)
+        
 
+        #model_1 = self.get_model_1()
+        model_2 = self.get_model_2()
+
+        pass
+
+    def get_model_1(self):
+        # model 1
+        # 直线cb的方程: y = 3/4*x + 3
+        # 在直线cb上取点(1, 3.75)
+        # 在直线ca上取点(2, 0)
+        # 直线cd的方程: y = 1/3*x + 4/3
+        # 在直线cd上取点(1.5, 11/6)
+        
+        self.play(Write(self.line_gr), run_time=1)
         # m: self.coord_a
         # n: self.coord_e
-        line_pm = Line(self.coord_d, self.coord_a, color=RED)
-        line_pn = Line(self.coord_d, self.coord_e, color=RED)
-        label_a = MathTex("m", color=RED).next_to(self.coord_a, DOWN)
-        label_e = MathTex("n", color=RED).next_to(self.coord_e, LEFT)
+        coord_m = self.coord_a
+        coord_n = self.coord_e
+        
+
+
+        line_pm = Line(self.coord_d, coord_m, color=RED)
+        line_pn = Line(self.coord_d, coord_n, color=RED)
+        label_m = MathTex("m", color=RED).next_to(coord_m, DOWN)
+        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
         self.play(Write(line_pm), 
                   Write(line_pn), 
-                  Write(label_a), 
-                  Write(label_e), 
+                  Write(label_m), 
+                  Write(label_n), 
                   run_time=1)
+        
+    def get_model_2(self):
+        self.play(Write(self.line_gr), run_time=1)
+
+        # 通过计算可知
+        coord_m = [-1, 0, 0]
+        coord_n = [-8/5, 9/5, 0]
+        
+        line_pm = Line(self.coord_d, coord_m, color=RED)
+        line_pn = Line(self.coord_d, coord_n, color=RED)
+        label_m = MathTex("m", color=RED).next_to(coord_m, DOWN)
+        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+        self.play(Write(line_pm), 
+                  Write(line_pn), 
+                  Write(label_m), 
+                  Write(label_n), 
+                  run_time=1)
+
+        
+        pass

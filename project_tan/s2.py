@@ -27,6 +27,9 @@ class s2(Scene):
 
     # 直径所对的圆周角是直角
     def diameter_angle(self):
+        self.origin = Dot(ORIGIN)
+        self.origin_lable = MathTex("O").next_to(self.origin, UP)
+
         self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color
@@ -43,6 +46,8 @@ class s2(Scene):
             ShowCreation(self.radius_line),
             GrowFromCenter(self.radius_brace),
             Write(self.radius_label),
+            ShowCreation(self.origin),
+            Write(self.origin_lable),
         )
         #self.circle.set_fill(opacity = 0)
 
@@ -53,4 +58,21 @@ class s2(Scene):
             ),
             ShowCreation(self.circle),
             run_time = 2
+        )
+
+        self.wait(1)
+
+        # raidus_brace和radius_label的消失
+        # 半径变成直径
+        line_diameter = Line(
+            self.circle.get_left(),
+            self.circle.get_right(),
+            color = self.radial_line_color
+        )
+        self.play(
+            FadeOut(self.radius_brace),
+            FadeOut(self.radius_label),
+            GrowFromCenter(line_diameter),
+            self.origin_lable.animate.next_to(self.origin, DOWN),
+            run_time = 1
         )

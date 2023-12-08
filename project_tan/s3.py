@@ -81,6 +81,8 @@ class s3(Scene):
 
         # 在每条边上做等边三角形
         
+    def get_equilateral_triangle(self):
+        pass
 
 
 

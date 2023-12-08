@@ -26,10 +26,10 @@ class s1(Scene):
         self.label_color = WHITE
 
     def construct(self):
-        # self.introduce_triangle()
-        # self.introduce_half_angle()
-        # self.tri_flip()
-        # self.clear()
+        self.introduce_triangle()
+        self.introduce_half_angle()
+        self.tri_flip()
+        self.clear()
         self.introduce_four_half_angle_model()
         pass
 
@@ -145,7 +145,6 @@ class s1(Scene):
                   run_time=1)
         pass
 
-        
     def get_model_2(self):
         # 通过计算可知
         coord_m = [-1, 0, 0]

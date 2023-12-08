@@ -107,23 +107,24 @@ class s1(Scene):
                               label_o,
                               label_p)
         
-
-        model_1 = self.get_model_1()
-        model_2 = self.get_model_2()
-        model_3 = self.get_model_3()
-        model_4 = self.get_model_4()
-        model_12 = VGroup(model_1, model_2).arrange(RIGHT, buff=1)
-        model_34 = VGroup(model_3, model_4).arrange(RIGHT, buff=1)
+        self.model_1 = self.get_model_1()
+        self.model_2 = self.get_model_2()
+        self.model_3 = self.get_model_3()
+        self.model_4 = self.get_model_4()
+        model_12 = VGroup(self.model_1, self.model_2).arrange(RIGHT, buff=1)
+        model_34 = VGroup(self.model_3, self.model_4).arrange(RIGHT, buff=1)
         model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2).scale(0.6)
 
         self.remove(self.line_gr)
-        self.add(model_1234)
+        #self.add(model_1234)
+        self.play_model_1()
+        self.play_model_2()
+        self.play_model_3()
+        self.play_model_4()
         self.wait(1)
         pass
 
-    def get_model_1(self):            
-        self.play(Write(self.line_gr), run_time=1)
-    
+    def get_model_1(self):                
         coord_m = self.coord_a
         coord_n = self.coord_e
         
@@ -131,17 +132,21 @@ class s1(Scene):
         line_pn = Line(self.coord_d, coord_n, color=self.line_color)
         label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
         label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
+        
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+    
+    def play_model_1(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_1
+        self.play(Write(line_gr), run_time=1)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
                   Write(label_n), 
                   run_time=1)
-        
-        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+        pass
+
         
     def get_model_2(self):
-        self.play(Write(self.line_gr), run_time=1)
-
         # 通过计算可知
         coord_m = [-1, 0, 0]
         coord_n = [-8/5, 9/5, 0]
@@ -150,19 +155,22 @@ class s1(Scene):
         line_pn = Line(self.coord_d, coord_n, color=self.line_color)
         label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
         label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
+    
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+
+    def play_model_2(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_2
+        self.play(Write(line_gr), run_time=1)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
                   Write(label_n), 
                   run_time=1)
-    
-        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+        pass
 
     def get_model_3(self):
         # 直线cd: y = 1/3x + 4/3
         # 直线cb: y = 3/4x + 3
-        self.play(Write(self.line_gr), run_time=1)
-
         # 通过计算可知
         coord_m = [4/9, 0, 0]
         coord_n = [-4/9, 8/3, 0]
@@ -171,24 +179,32 @@ class s1(Scene):
         line_pn = Line(self.coord_d, coord_n, color=self.line_color)
         label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
         label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
+        
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+
+    def play_model_3(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_3
+        self.play(Write(line_gr), run_time=1)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
                   Write(label_n), 
                   run_time=1)
-        
-        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
-        
+        pass    
+    
     def get_model_4(self):
-        self.play(Write(self.line_gr), run_time=1)
-
         # 通过计算可知
         coord_n = (-20/9, 4/3, 0)
 
         line_pn = Line(self.coord_d, coord_n, color=self.line_color) 
         label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
-        self.play(Write(line_pn), 
-                  Write(label_n), 
-                  run_time=1) 
         
         return VGroup(self.line_gr.copy(), line_pn, label_n)
+    
+    def play_model_4(self):
+        line_gr, line_pn, label_n = self.model_4
+        self.play(Write(line_gr), run_time=1)
+        self.play(Write(line_pn), 
+                  Write(label_n), 
+                  run_time=1)
+        pass

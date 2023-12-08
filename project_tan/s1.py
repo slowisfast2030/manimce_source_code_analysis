@@ -1,5 +1,8 @@
 from manim import *
 
+"""
+角平分线
+"""
 # 下面这几行设置竖屏
 config.frame_width = 9
 config.frame_height = 16

@@ -84,8 +84,34 @@ class s1(Scene):
         line_om = Line(self.coord_c, [1, 3.75, 0], color=BLUE)
         line_on = Line(self.coord_c, [2, 0, 0], color=BLUE)
         line_op = Line(self.coord_c, [1.5, 11/6, 0], color=BLUE)
-        line_gr = VGroup(line_om, line_on, line_op)
-        self.play(Write(line_gr), run_time=1)
+        dot_o = Dot(self.coord_c, color=RED)
+        dot_p = Dot(self.coord_d, color=RED)
+        label_o = MathTex("o", color=RED).next_to(dot_o, DOWN)
+        label_p = MathTex("p", color=RED).next_to(dot_p, RIGHT)
+
+        self.line_gr = VGroup(line_om, 
+                              line_on, 
+                              line_op,
+                              dot_o,
+                              dot_p,
+                              label_o,
+                              label_p)
+        self.play(Write(self.line_gr), run_time=1)
+
+        # m: self.coord_a
+        # n: self.coord_e
+        line_pm = Line(self.coord_d, self.coord_a, color=RED)
+        line_pn = Line(self.coord_d, self.coord_e, color=RED)
+        label_a = MathTex("m", color=RED).next_to(self.coord_a, DOWN)
+        label_e = MathTex("n", color=RED).next_to(self.coord_e, LEFT)
+        self.play(Write(line_pm), 
+                  Write(line_pn), 
+                  Write(label_a), 
+                  Write(label_e), 
+                  run_time=1)
+
+        
+        
 
 
         pass

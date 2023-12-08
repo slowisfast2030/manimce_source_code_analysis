@@ -153,4 +153,24 @@ class s2(Scene):
         self.wait()
 
         # 显示圆周角和圆心角
-        
+        point_a = Dot(circle.point_at_angle(PI + PI/6), color=RED)
+        point_b = Dot(circle.point_at_angle(PI + 5*PI/6), color=RED)
+        point_c = Dot(circle.point_at_angle(PI/2), color=RED)
+
+        line_ao = Line(point_a.get_center(),origin, color=self.radial_line_color)
+        line_bo = Line(point_b.get_center(),origin, color=self.radial_line_color)
+        line_ac = Line(point_a.get_center(),point_c.get_center(), color=self.radial_line_color)
+        line_bc = Line(point_b.get_center(),point_c.get_center(), color=self.radial_line_color)
+
+        self.play(ShowCreation(point_a),
+                    ShowCreation(point_b),
+                    ShowCreation(point_c),
+                    run_time=1)
+        self.wait()
+
+        self.play(ShowCreation(line_ao),
+                    ShowCreation(line_bo),
+                    ShowCreation(line_ac),
+                    ShowCreation(line_bc))
+        self.wait()
+

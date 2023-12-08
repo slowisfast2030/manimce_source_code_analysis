@@ -27,7 +27,7 @@ class s1(Scene):
 
     def construct(self):
         self.introduce_triangle()
-        # self.introduce_half_angle()
+        self.introduce_half_angle()
         # self.tri_flip()
         # self.clear()
         # self.introduce_four_half_angle_model()
@@ -52,14 +52,14 @@ class s1(Scene):
     # 引入半角
     def introduce_half_angle(self):
         
-        half_line = Line(self.coord_c, self.coord_d, color=BLUE)
+        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
         self.play(Write(half_line), run_time=1)
 
-        ver_d = MathTex("D", color=BLUE).next_to(self.coord_d, RIGHT)
+        ver_d = MathTex("D", color=self.label_color).next_to(self.coord_d, RIGHT)
         self.play(FadeIn(ver_d), run_time=1)
 
-        line_ca = Line(self.coord_c, self.coord_a, color=RED)
-        line_cd = Line(self.coord_c, self.coord_d, color=BLUE)
+        line_ca = Line(self.coord_c, self.coord_a)
+        line_cd = Line(self.coord_c, self.coord_d)
         angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
         label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
 

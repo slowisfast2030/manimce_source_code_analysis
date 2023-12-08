@@ -99,9 +99,9 @@ class s3(Scene):
                     run_time=1)
         
         # 显示费马点
-        line_ae = Line(c_a, tri_bc[2].get_center(), color=GREEN_C)
-        line_bd = Line(c_b, tri_ca[2].get_center(), color=GREEN_C)
-        line_cf = Line(c_c, tri_ab[2].get_center(), color=GREEN_C)
+        line_ae = Line(c_a, tri_bc[2].get_center(), color=BLUE_C)
+        line_bd = Line(c_b, tri_ca[2].get_center(), color=BLUE_C)
+        line_cf = Line(c_c, tri_ab[2].get_center(), color=BLUE_C)
 
         self.play(ShowCreation(line_ae),
                     ShowCreation(line_bd),

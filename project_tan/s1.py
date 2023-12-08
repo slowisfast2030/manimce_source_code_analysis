@@ -108,8 +108,8 @@ class s1(Scene):
                               label_p)
         
 
-        model_1 = self.get_model_1()
-        #model_2 = self.get_model_2()
+        #model_1 = self.get_model_1()
+        model_2 = self.get_model_2()
         #model_3 = self.get_model_3()
         #model_4 = self.get_model_4()
 
@@ -138,10 +138,10 @@ class s1(Scene):
         coord_m = [-1, 0, 0]
         coord_n = [-8/5, 9/5, 0]
         
-        line_pm = Line(self.coord_d, coord_m, color=RED)
-        line_pn = Line(self.coord_d, coord_n, color=RED)
-        label_m = MathTex("m", color=RED).next_to(coord_m, DOWN)
-        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+        line_pm = Line(self.coord_d, coord_m, color=self.line_color)
+        line_pn = Line(self.coord_d, coord_n, color=self.line_color)
+        label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
+        label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 

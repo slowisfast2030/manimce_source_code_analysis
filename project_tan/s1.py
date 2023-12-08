@@ -3,6 +3,7 @@ from manim import *
 class s1(Scene):
     def construct(self):
         self.introduce_triangle()
+        self.introduce_half_angle()
         pass
 
     # 引入三角形
@@ -18,4 +19,18 @@ class s1(Scene):
         ver_b = Tex("B", color=RED).next_to(coord_b, RIGHT)
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
-        self.play(*ver_ani, run_time=2)
+        self.play(*ver_ani, run_time=1)
+
+        self.coord_c = coord_c
+        self.coord_a = coord_a
+        self.coord_b = coord_b
+    
+    def introduce_half_angle(self):
+        self.coord_d = [0, 4/3, 0]
+        line = Line(self.coord_c, self.coord_d, color=BLUE)
+        self.play(Write(line), run_time=1)
+
+        ver_d = Tex("D", color=BLUE).next_to(self.coord_d, RIGHT)
+        self.play(FadeIn(ver_d), run_time=1)
+
+        angle_acd = Angle(C, A, D, radius=0.2, other_angle=False)

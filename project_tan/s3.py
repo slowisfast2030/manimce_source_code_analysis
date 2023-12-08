@@ -98,8 +98,15 @@ class s3(Scene):
                     ShowCreation(tri_ab[1]),
                     run_time=1)
         
-        
-        
+        # 显示费马点
+        line_ae = Line(c_a, tri_bc[2].get_center(), color=RED_C)
+        line_bd = Line(c_b, tri_ca[2].get_center(), color=RED_C)
+        line_cf = Line(c_c, tri_ab[2].get_center(), color=RED_C)
+
+        self.play(ShowCreation(line_ae),
+                    ShowCreation(line_bd),
+                    ShowCreation(line_cf),
+                    run_time=1) 
         
     def get_equilateral_triangle(self, line):
         # 将line顺指针和逆时针各旋转一次
@@ -107,14 +114,14 @@ class s3(Scene):
         end = line.get_end() 
         
         # 以start为旋转中心，顺时针旋转PI/3
-        line1 = Line(start, end).copy()
+        line1 = Line(start, end).copy().set_color(GREEN)
         line1.rotate(-PI/3, about_point=start) 
         # 将end也顺时针旋转PI/3
         dot = Dot(end)
         dot.rotate(-PI/3, about_point=start)
 
         # 以end为旋转中心，逆时针旋转PI/3
-        line2 = Line(start, end).copy()
+        line2 = Line(start, end).copy().set_color(GREEN)
         line2.rotate(PI/3, about_point=end)
 
         return VGroup(line1, line2, dot)

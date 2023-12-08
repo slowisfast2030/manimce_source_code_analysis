@@ -13,6 +13,7 @@ class s1(Scene):
         self.introduce_half_angle()
         self.tri_flip()
         self.clear()
+        self.introduce_four_half_angle_model()
         pass
 
     # 引入三角形
@@ -63,4 +64,20 @@ class s1(Scene):
 
     # 角平分线4个model
     def introduce_four_half_angle_model(self):
+        """
+        为了显示这4个模型, 需要精确的点的控制
+        所以, 借助上面的三角形, 来引入这4个模型
+        """
+        # model 1
+        # 直线cb的方程: y = 3/4*x + 3
+        # 在直线cb上取点(1, 3.75)
+        # 在直线ca上取点(2, 0)
+        # 直线cd的方程: y = 1/3*x + 4/3
+        # 在直线cd上取点(1.5, 11/6)
+        line_om = Line(self.coord_c, [1, 3.75, 0], color=BLUE)
+        line_on = Line(self.coord_c, [2, 0, 0], color=BLUE)
+        line_op = Line(self.coord_c, [1.5, 11/6, 0], color=BLUE)
+        self.play(Write(line_om), Write(line_on), Write(line_op), run_time=1)
+
+
         pass

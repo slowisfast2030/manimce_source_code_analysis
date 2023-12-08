@@ -16,3 +16,6 @@ class s1(Scene):
 
     def construct(self):
         pass
+
+    # 直径所对的圆周角是直角
+    

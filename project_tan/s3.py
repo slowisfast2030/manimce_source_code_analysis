@@ -63,3 +63,8 @@ class s3(Scene):
         self.play(GrowFromPoint(line_ef, self.coord_d), run_time=1)
         self.play(Write(ver_e), Write(ver_f), run_time=1)
 
+    # 以费马点的例子介绍两种几何
+    def two_geometry(self):
+        self.clear()
+
+        

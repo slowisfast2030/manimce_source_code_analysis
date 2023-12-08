@@ -28,7 +28,7 @@ class s1(Scene):
     def construct(self):
         self.introduce_triangle()
         self.introduce_half_angle()
-        # self.tri_flip()
+        self.tri_flip()
         # self.clear()
         # self.introduce_four_half_angle_model()
         pass
@@ -68,10 +68,9 @@ class s1(Scene):
     # 翻转动画
     def tri_flip(self):
         flip_axis = np.array(self.coord_c) - np.array(self.coord_d)
-        flip_point = self.coord_c
-        flip_tri = Polygon(self.coord_c, self.coord_a, self.coord_d, color=GREEN)
-        self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_point))
-        
+        flip_about_point = self.coord_c
+        flip_tri = Polygon(np.array(self.coord_c)+np.array([0.1, 0, 0]), self.coord_a, self.coord_d, color=TEAL)
+        self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_about_point))
         
         ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)

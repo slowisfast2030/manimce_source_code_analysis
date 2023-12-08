@@ -25,6 +25,9 @@ class s1(Scene):
         self.line_color = MAROON_B
         self.label_color = WHITE
 
+        self.flip_color = BLUE
+        self.line_show_color = BLUE
+
     def construct(self):
         self.introduce_triangle()
         self.introduce_half_angle()
@@ -69,7 +72,7 @@ class s1(Scene):
     def tri_flip(self):
         flip_axis = np.array(self.coord_c) - np.array(self.coord_d)
         flip_about_point = self.coord_c
-        flip_tri = Polygon(np.array(self.coord_c)+np.array([0.1, 0, 0]), self.coord_a, self.coord_d, color=TEAL)
+        flip_tri = Polygon(np.array(self.coord_c)+np.array([0.1, 0, 0]), self.coord_a, self.coord_d, color=self.flip_color)
         self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_about_point))
         
         ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
@@ -191,12 +194,12 @@ class s1(Scene):
         line_gr_2, line_pm_2, line_pn_2, label_m_2, label_n_2 = self.model_2
         self.play(Write(line_gr_1), Write(line_gr_2), run_time=1)
 
-        self.play(ShowCreation(line_pm_1.set_color(TEAL)), 
-                  ShowCreation(line_pn_1.set_color(TEAL)), 
+        self.play(ShowCreation(line_pm_1.set_color(self.line_show_color)), 
+                  ShowCreation(line_pn_1.set_color(self.line_show_color)), 
                   Write(label_m_1), 
                   Write(label_n_1), 
-                  ShowCreation(line_pm_2.set_color(TEAL)),
-                  ShowCreation(line_pn_2.set_color(TEAL)),
+                  ShowCreation(line_pm_2.set_color(self.line_show_color)),
+                  ShowCreation(line_pn_2.set_color(self.line_show_color)),
                   Write(label_m_2),
                   Write(label_n_2),
                   run_time=1.5)
@@ -227,10 +230,10 @@ class s1(Scene):
         line_gr_4, line_pn_4, label_n_4 = self.model_4
         self.play(Write(line_gr_3), Write(line_gr_4), run_time=1)
 
-        self.play(ShowCreation(line_pm_3.set_color(TEAL)), 
-                  ShowCreation(line_pn_3.set_color(TEAL)), 
+        self.play(ShowCreation(line_pm_3.set_color(self.line_show_color)), 
+                  ShowCreation(line_pn_3.set_color(self.line_show_color)), 
                   Write(label_m_3), 
                   Write(label_n_3), 
-                  ShowCreation(line_pn_4.set_color(TEAL)),
+                  ShowCreation(line_pn_4.set_color(self.line_show_color)),
                   Write(label_n_4),
                   run_time=1.5)

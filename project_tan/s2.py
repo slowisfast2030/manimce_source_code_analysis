@@ -99,31 +99,37 @@ class s2(Scene):
         self.play(ShowCreation(circle_point),
                   Write(circle_point_lable),
                   run_time=1)   
-        self.wait()
 
         # 创建两条线段，从圆周上的点指向圆的直径的两端
         line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
         line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
         
         move_lines = VGroup(line_1, line_2)
-        self.play(ShowCreation(line_1),
-                  ShowCreation(line_2))
-        #self.play(ShowCreation(move_lines))
+        """
+        
+        """
+        # self.play(ShowCreation(line_1),
+        #           ShowCreation(line_2))
+        self.play(ShowCreation(move_lines))
         
 
-        # 定义一个更新器函数
-        def circle_gr_updater(mob):
+        # 更新器
+        def move_lines_updater(mob):
             new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
             new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
             line_1.become(new_line_1)
             line_2.become(new_line_2)
-            circle_point_lable.next_to(circle_point, UP)
+
+        def circle_point_lable_updater(mob):
+            circle_point_lable.next_to(circle_point, UP) 
 
         # 添加更新器到move_lines
-        move_lines.add_updater(circle_gr_updater)
+        move_lines.add_updater(move_lines_updater)
+        circle_point_lable.add_updater(circle_point_lable_updater)
 
         # 播放动画：点沿圆周运动
         self.play(Rotate(circle_point, PI, about_point=circle.get_center(), rate_func=linear), run_time=4)
 
         # 移除更新器
-        move_lines.remove_updater(circle_gr_updater)
+        move_lines.remove_updater(move_lines_updater)
+        circle_point_lable.remove_updater(circle_point_lable_updater)

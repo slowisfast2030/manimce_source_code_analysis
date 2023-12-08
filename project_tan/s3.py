@@ -20,6 +20,10 @@ class s3(Scene):
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
         self.line_color = MAROON_B
+
+        self.coord_d = [0, 4/3, 0]
+        self.coord_e = [-4/5, 12/5, 0]
+        self.coord_f = [1, 0, 0]
         pass
 
     def construct(self):
@@ -27,7 +31,6 @@ class s3(Scene):
         self.introduce_coordinate()
         pass
         
-
     def introduce_triangle(self):
         triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
         self.play(Write(triangle), run_time=2)

@@ -118,7 +118,7 @@ class s2(Scene):
             line_2.become(new_line_2)
             print("===")
             #circle_point_lable.next_to(circle_point, UP)
-
+        
         
         move_lines.add_updater(circle_gr_updater)
 

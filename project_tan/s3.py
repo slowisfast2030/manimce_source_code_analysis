@@ -81,7 +81,10 @@ class s3(Scene):
 
         # 在每条边上做等边三角形
         
-    def get_equilateral_triangle(self):
+    def get_equilateral_triangle(self, line):
+        # 将line顺指针和逆时针各旋转一次
+        
+
         pass
 
 

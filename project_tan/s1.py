@@ -36,6 +36,6 @@ class s1(Scene):
         line_ca = Line(self.coord_c, self.coord_a, color=RED)
         line_cd = Line(self.coord_c, self.coord_d, color=BLUE)
         angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
-        label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8)
+        label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
 
         self.play(Write(angle_half), Write(label_angle_half), run_time=1)

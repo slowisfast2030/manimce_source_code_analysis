@@ -79,6 +79,9 @@ class s3(Scene):
         ver_ani = list(map(FadeIn, [ver_a, ver_b, ver_c]))
         self.play(*ver_ani, run_time=1)
 
+        # 在每条边上做等边三角形
+        
+
 
 
 

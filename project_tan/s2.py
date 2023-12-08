@@ -88,6 +88,22 @@ class s2(Scene):
         self.clear()
         self.add(self.circle_gr)
 
+        # 获取重要元素
         circle, line_diameter, origin, origin_lable = self.circle_gr
         self.wait()
+
+        # 在圆周上任取一点
+        percent = 0.2
+        circle_point = Dot(circle.point_from_proportion(percent))
+        circle_point_lable = MathTex("A").next_to(circle_point, UP)
+        line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
+        line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
+        self.play(ShowCreation(circle_point),
+                  Write(circle_point_lable),
+                  run_time=1)   
+        self.wait()
+
+        self.play(ShowCreation(line_1),
+                  ShowCreation(line_2))
+        
 

@@ -96,8 +96,8 @@ class s2(Scene):
         angle = PI/3
         circle_point = Dot(circle.point_at_angle(angle))
         circle_point_lable = MathTex("C").next_to(circle_point, UP)
-        line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
-        line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
+        line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+        line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
 
         self.play(ShowCreation(circle_point),
                   Write(circle_point_lable),
@@ -112,8 +112,8 @@ class s2(Scene):
         # 为self.circle_gr添加updater
         def circle_gr_updater(move_lines):
             line_1, line_2, circle_point_lable = move_lines
-            new_line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
-            new_line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color) 
+            new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+            new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color) 
             line_1.become(new_line_1)
             line_2.become(new_line_2)
             circle_point_lable.next_to(circle_point, UP)

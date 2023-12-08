@@ -135,17 +135,6 @@ class s1(Scene):
         
         return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
     
-    def play_model_1(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_1
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
-                  run_time=1)
-        pass
-
     def get_model_2(self):
         # 通过计算可知
         coord_m = [-1, 0, 0]
@@ -157,17 +146,6 @@ class s1(Scene):
         label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
     
         return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
-
-    def play_model_2(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_2
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
-                  run_time=1)
-        pass
 
     def get_model_3(self):
         # 直线cd: y = 1/3x + 4/3
@@ -183,17 +161,6 @@ class s1(Scene):
         
         return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
 
-    def play_model_3(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_3
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
-                  run_time=1)
-        pass    
-    
     def get_model_4(self):
         # 通过计算可知
         coord_n = (-20/9, 4/3, 0)
@@ -203,6 +170,39 @@ class s1(Scene):
         
         return VGroup(self.line_gr.copy(), line_pn, label_n)
     
+    def play_model_1(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_1
+        self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
+        self.play(Write(line_pm), 
+                  Write(line_pn), 
+                  Write(label_m), 
+                  Write(label_n), 
+                  run_time=1)
+        pass
+
+    def play_model_2(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_2
+        self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
+        self.play(Write(line_pm), 
+                  Write(line_pn), 
+                  Write(label_m), 
+                  Write(label_n), 
+                  run_time=1)
+        pass
+
+    def play_model_3(self):
+        line_gr, line_pm, line_pn, label_m, label_n = self.model_3
+        self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
+        self.play(Write(line_pm), 
+                  Write(line_pn), 
+                  Write(label_m), 
+                  Write(label_n), 
+                  run_time=1)
+        pass 
+
     def play_model_4(self):
         line_gr, line_pn, label_n = self.model_4
         self.play(Write(line_gr), run_time=1)

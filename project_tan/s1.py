@@ -108,11 +108,18 @@ class s1(Scene):
                               label_p)
         
 
-        #model_1 = self.get_model_1()
-        #model_2 = self.get_model_2()
-        #model_3 = self.get_model_3()
+        model_1 = self.get_model_1()
+        model_2 = self.get_model_2()
+        model_3 = self.get_model_3()
         model_4 = self.get_model_4()
 
+        model_12 = VGroup(model_1, model_2).arrange(RIGHT, buff=1)
+        model_34 = VGroup(model_3, model_4).arrange(RIGHT, buff=1)
+        model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2)
+
+        self.remove(self.line_gr)
+        self.add(model_1234)
+        self.wait(1)
         pass
 
     def get_model_1(self):            
@@ -131,6 +138,8 @@ class s1(Scene):
                   Write(label_n), 
                   run_time=1)
         
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+        
     def get_model_2(self):
         self.play(Write(self.line_gr), run_time=1)
 
@@ -147,6 +156,8 @@ class s1(Scene):
                   Write(label_m), 
                   Write(label_n), 
                   run_time=1)
+    
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
 
     def get_model_3(self):
         # 直线cd: y = 1/3x + 4/3
@@ -167,6 +178,8 @@ class s1(Scene):
                   Write(label_n), 
                   run_time=1)
         
+        return VGroup(self.line_gr.copy(), line_pm, line_pn, label_m, label_n)
+        
     def get_model_4(self):
         self.play(Write(self.line_gr), run_time=1)
 
@@ -178,3 +191,5 @@ class s1(Scene):
         self.play(Write(line_pn), 
                   Write(label_n), 
                   run_time=1) 
+        
+        return VGroup(self.line_gr.copy(), line_pn, label_n)

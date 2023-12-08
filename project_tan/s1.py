@@ -116,11 +116,8 @@ class s1(Scene):
         model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2).scale(0.6)
 
         self.remove(self.line_gr)
-        #self.add(model_1234)
-        self.play_model_1()
-        self.play_model_2()
-        self.play_model_3()
-        self.play_model_4()
+        self.play_model_12()
+        self.play_model_34()
         self.wait(1)
         pass
 
@@ -170,44 +167,70 @@ class s1(Scene):
         
         return VGroup(self.line_gr.copy(), line_pn, label_n)
     
-    def play_model_1(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_1
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
-                  run_time=1)
-        pass
+    # def play_model_1(self):
+    #     line_gr, line_pm, line_pn, label_m, label_n = self.model_1
+    #     self.play(Write(line_gr), run_time=1)
+    #     self.play(Write(line_pm), 
+    #               Write(line_pn), 
+    #               Write(label_m), 
+    #               Write(label_n), 
+    #               run_time=1)
 
-    def play_model_2(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_2
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
-                  run_time=1)
-        pass
+    # def play_model_2(self):
+    #     line_gr, line_pm, line_pn, label_m, label_n = self.model_2
+    #     self.play(Write(line_gr), run_time=1)
+    #     self.play(Write(line_pm), 
+    #               Write(line_pn), 
+    #               Write(label_m), 
+    #               Write(label_n), 
+    #               run_time=1)
+    
+    # 合并model_1和model_2的play
+    def play_model_12(self):
+        line_gr_1, line_pm_1, line_pn_1, label_m_1, label_n_1 = self.model_1
+        line_gr_2, line_pm_2, line_pn_2, label_m_2, label_n_2 = self.model_2
+        self.play(Write(line_gr_1), Write(line_gr_2),run_time=1)
 
-    def play_model_3(self):
-        line_gr, line_pm, line_pn, label_m, label_n = self.model_3
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pm), 
-                  Write(line_pn), 
-                  Write(label_m), 
-                  Write(label_n), 
+        self.play(Write(line_pm_1), 
+                  Write(line_pn_1), 
+                  Write(label_m_1), 
+                  Write(label_n_1), 
+                  Write(line_pm_2),
+                  Write(line_pn_2),
+                  Write(label_m_2),
+                  Write(label_n_2),
                   run_time=1)
-        pass 
 
-    def play_model_4(self):
-        line_gr, line_pn, label_n = self.model_4
-        self.play(Write(line_gr), run_time=1)
-        #self.add(line_gr)
-        self.play(Write(line_pn), 
-                  Write(label_n), 
+    # def play_model_3(self):
+    #     line_gr, line_pm, line_pn, label_m, label_n = self.model_3
+    #     self.play(Write(line_gr), run_time=1)
+    #     #self.add(line_gr)
+    #     self.play(Write(line_pm), 
+    #               Write(line_pn), 
+    #               Write(label_m), 
+    #               Write(label_n), 
+    #               run_time=1)
+    #     pass 
+
+    # def play_model_4(self):
+    #     line_gr, line_pn, label_n = self.model_4
+    #     self.play(Write(line_gr), run_time=1)
+    #     #self.add(line_gr)
+    #     self.play(Write(line_pn), 
+    #               Write(label_n), 
+    #               run_time=1)
+    #     pass
+
+    # 合并model_3和model_4的play
+    def play_model_34(self):
+        line_gr_3, line_pm_3, line_pn_3, label_m_3, label_n_3 = self.model_3
+        line_gr_4, line_pn_4, label_n_4 = self.model_4
+        self.play(Write(line_gr_3), Write(line_gr_4),run_time=1)
+
+        self.play(Write(line_pm_3), 
+                  Write(line_pn_3), 
+                  Write(label_m_3), 
+                  Write(label_n_3), 
+                  Write(line_pn_4),
+                  Write(label_n_4),
                   run_time=1)
-        pass

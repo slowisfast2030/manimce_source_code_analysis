@@ -94,29 +94,34 @@ class s2(Scene):
 
         # 在圆周上任取一点
         angle = PI/3
-        gr1 = self.get_mov_point(angle)
-
-
-
-        self.play(ShowCreation(gr1[0]),
-                  Write(gr1[1]),
-                  run_time=1)   
-        self.wait()
-
-        self.play(ShowCreation(gr1[2]),
-                  ShowCreation(gr1[3]))
-        
-        # 移动C点
-        
-    
-
-    def get_mov_point(self, angle):
-        circle, line_diameter, origin, origin_lable = self.circle_gr
-
         circle_point = Dot(circle.point_at_angle(angle))
         circle_point_lable = MathTex("C").next_to(circle_point, UP)
         line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
         line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
 
-        gr = VGroup(circle_point, circle_point_lable, line_1, line_2)
-        return gr
+        self.play(ShowCreation(circle_point),
+                  Write(circle_point_lable),
+                  run_time=1)   
+        self.wait()
+
+        self.play(ShowCreation(line_1),
+                  ShowCreation(line_2))
+        
+        move_lines = VGroup(line_1, line_2, circle_point_lable)
+        
+        # 为self.circle_gr添加updater
+        def circle_gr_updater(move_lines):
+            line_1, line_2, circle_point_lable = move_lines
+            line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
+            line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color) 
+            circle_point_lable.next_to(circle_point, UP)
+        
+        move_lines.add_updater(circle_gr_updater)
+
+        # C点绕圆周运动
+        self.play(Rotate(circle_point, PI/2, about_point=ORIGIN),
+                  run_time=2)
+
+        # 移动C点
+        
+

@@ -93,37 +93,63 @@ class s2(Scene):
         self.wait()
 
         # 在圆周上任取一点
-        angle = PI/3
-        circle_point = Dot(circle.point_at_angle(angle))
+        # angle = PI/3
+        # circle_point = Dot(circle.point_at_angle(angle))
+        # circle_point_lable = MathTex("C").next_to(circle_point, UP)
+        # line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+        # line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
+
+        # self.play(ShowCreation(circle_point),
+        #           Write(circle_point_lable),
+        #           run_time=1)   
+        # self.wait()
+
+        # self.play(ShowCreation(line_1),
+        #           ShowCreation(line_2))
+        
+        # move_lines = VGroup(line_1, line_2)
+        
+        # # 为move_lines添加updater
+        # def circle_gr_updater(mob):
+        #     new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+        #     new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color) 
+        #     line_1.become(new_line_1)
+        #     line_2.become(new_line_2)
+        #     print("===")
+        
+        # move_lines.add_updater(circle_gr_updater)
+
+        # # C点绕圆周运动
+        # self.play(Rotate(circle_point, PI/2, about_point=circle.get_center()),
+        #           run_time=2) 
+
+        # # 移除更新器
+        # move_lines.remove_updater(circle_gr_updater)
+        
+
+        # 创建一个圆周上的点
+        circle_point = Dot(point=circle.point_at_angle(PI/3), color=RED)
         circle_point_lable = MathTex("C").next_to(circle_point, UP)
+        self.add(circle_point, circle_point_lable)
+        # 创建两条线段，从圆周上的点指向圆的直径的两端
         line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
         line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
+        move_lines = VGroup(line_1, line_2, circle_point_lable)
+        self.add(move_lines)
 
-        self.play(ShowCreation(circle_point),
-                  Write(circle_point_lable),
-                  run_time=1)   
-        self.wait()
-
-        self.play(ShowCreation(line_1),
-                  ShowCreation(line_2))
-        
-        move_lines = VGroup(line_1, line_2)
-        
-        # 为move_lines添加updater
+        # 定义一个更新器函数
         def circle_gr_updater(mob):
             new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
-            new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color) 
+            new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
             line_1.become(new_line_1)
             line_2.become(new_line_2)
-            print("===")
-        
+            circle_point_lable.next_to(circle_point, UP)
+
+        # 添加更新器到move_lines
         move_lines.add_updater(circle_gr_updater)
 
-        # C点绕圆周运动
-        self.play(Rotate(circle_point, PI/2, about_point=circle.get_center()),
-                  run_time=2) 
+        # 播放动画：点沿圆周运动
+        self.play(Rotate(circle_point, PI, about_point=circle.get_center(), rate_func=linear), run_time=4)
 
         # 移除更新器
         move_lines.remove_updater(circle_gr_updater)
-        
-

@@ -63,4 +63,4 @@ class s1(Scene):
 
     # 角平分线4个model
     def introduce_four_half_angle_model(self):
-        
+        pass

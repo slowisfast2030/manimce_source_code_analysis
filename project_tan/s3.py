@@ -67,11 +67,17 @@ class s3(Scene):
     # 以费马点的例子介绍两种几何
     def two_geometry(self):
         self.clear()
-        c_a = [-1.2, -0.8, 0]
-        c_b = [1, -1.2, 0]
+        c_a = [-1.4, -1, 0]
+        c_b = [1.1, -1.2, 0]
         c_c = [0, 1.2, 0]
         triangle = Polygon(c_a, c_b, c_c, color=self.line_color, stroke_width=3)
         self.play(Write(triangle), run_time=1)
+
+        ver_a = MathTex("A", color=WHITE).next_to(c_a, DOWN)
+        ver_b = MathTex("B", color=WHITE).next_to(c_b, DOWN)
+        ver_c = MathTex("C", color=WHITE).next_to(c_c, UP)
+        ver_ani = list(map(FadeIn, [ver_a, ver_b, ver_c]))
+        self.play(*ver_ani, run_time=1)
 
 
 

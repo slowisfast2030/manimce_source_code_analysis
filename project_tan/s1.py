@@ -86,13 +86,20 @@ class s1(Scene):
         # 在直线ca上取点(2, 0)
         # 直线cd的方程: y = 1/3*x + 4/3
         # 在直线cd上取点(1.5, 11/6)
-        line_om = Line(self.coord_c, [1, 3.75, 0], color=BLUE)
-        line_on = Line(self.coord_c, [2, 0, 0], color=BLUE)
-        line_op = Line(self.coord_c, [1.5, 11/6, 0], color=BLUE)
+
+        # o点就是c点, m点是a点, p点是d点, n点是e点
+        coord_o = self.coord_c
+        coord_m = self.coord_a
+        coord_p = self.coord_d
+        coord_n = self.coord_e
+
+        line_om = Line(coord_o, [1, 3.75, 0], color=self.line_color)
+        line_on = Line(coord_o, [2, 0, 0], color=self.line_color)
+        line_op = Line(coord_o, [1.5, 11/6, 0], color=self.line_color)
         dot_o = Dot(self.coord_c, color=RED)
         dot_p = Dot(self.coord_d, color=RED)
-        label_o = MathTex("o", color=RED).next_to(dot_o, DOWN)
-        label_p = MathTex("p", color=RED).next_to(dot_p, RIGHT)
+        label_o = MathTex("o", color=self.label_color).next_to(dot_o, DOWN)
+        label_p = MathTex("p", color=self.label_color).next_to(dot_p, RIGHT)
 
         self.line_gr = VGroup(line_om, 
                               line_on, 
@@ -116,10 +123,10 @@ class s1(Scene):
         coord_m = self.coord_a
         coord_n = self.coord_e
         
-        line_pm = Line(self.coord_d, coord_m, color=RED)
-        line_pn = Line(self.coord_d, coord_n, color=RED)
-        label_m = MathTex("m", color=RED).next_to(coord_m, DOWN)
-        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+        line_pm = Line(self.coord_d, coord_m, color=self.line_color)
+        line_pn = Line(self.coord_d, coord_n, color=self.line_color)
+        label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
+        label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 

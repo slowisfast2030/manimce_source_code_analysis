@@ -24,6 +24,7 @@ class s3(Scene):
 
     def construct(self):
         self.introduce_triangle()
+        self.introduce_coordinate()
         pass
         
 
@@ -37,3 +38,11 @@ class s3(Scene):
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
         self.play(*ver_ani, run_time=1)
+
+        self.triangle = triangle
+
+    # 添加坐标系
+    def introduce_coordinate(self):
+        plane = NumberPlane()
+        self.play(Write(plane), run_time=1)
+

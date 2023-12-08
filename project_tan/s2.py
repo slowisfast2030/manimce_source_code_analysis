@@ -112,9 +112,12 @@ class s2(Scene):
         # 为self.circle_gr添加updater
         def circle_gr_updater(move_lines):
             line_1, line_2, circle_point_lable = move_lines
-            line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
-            line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color) 
+            new_line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
+            new_line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color) 
+            line_1.become(new_line_1)
+            line_2.become(new_line_2)
             circle_point_lable.next_to(circle_point, UP)
+
         
         move_lines.add_updater(circle_gr_updater)
 
@@ -122,6 +125,5 @@ class s2(Scene):
         self.play(Rotate(circle_point, PI/2, about_point=ORIGIN),
                   run_time=2)
 
-        # 移动C点
         
 

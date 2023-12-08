@@ -68,7 +68,7 @@ class s3(Scene):
     def two_geometry(self):
         self.clear()
         c_a = [-1.4, -1, 0]
-        c_b = [1.1, -1.2, 0]
+        c_b = [1.1, -1.4, 0]
         c_c = [0, 1.2, 0]
         triangle = Polygon(c_a, c_b, c_c, color=self.line_color, stroke_width=3)
         self.play(Write(triangle), run_time=1)
@@ -88,10 +88,18 @@ class s3(Scene):
         tri_ab = self.get_equilateral_triangle(Line(c_a, c_b))
         dot_f_label = MathTex("F", color=WHITE).next_to(tri_ab[2], DOWN)
 
-        tri_ani = list(map(ShowCreation, [tri_bc, tri_ca, tri_ab]))
-        self.play(*tri_ani, run_time=1)
-        
         self.play(Write(dot_e_label), Write(dot_d_label), Write(dot_f_label), run_time=1)
+
+        self.play(ShowCreation(tri_bc[0].reverse_points()),
+                  ShowCreation(tri_bc[1]),
+                    ShowCreation(tri_ca[0].reverse_points()),
+                    ShowCreation(tri_ca[1]),
+                    ShowCreation(tri_ab[0].reverse_points()),
+                    ShowCreation(tri_ab[1]),
+                    run_time=1)
+        
+        
+        
         
     def get_equilateral_triangle(self, line):
         # 将line顺指针和逆时针各旋转一次

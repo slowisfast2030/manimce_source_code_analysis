@@ -8,11 +8,18 @@ config.pixel_width = 1080
 config.pixel_height = 1920
 
 class s1(Scene):
+    def setup(self):
+        self.coord_c = [-4,0,0]
+        self.coord_a = [0,0,0]
+        self.coord_b = [0,3,0]
+        self.coord_d = [0, 4/3, 0]
+        self.coord_e = [-4/5, 12/5, 0]
+
     def construct(self):
-        self.introduce_triangle()
-        self.introduce_half_angle()
-        self.tri_flip()
-        self.clear()
+        # self.introduce_triangle()
+        # self.introduce_half_angle()
+        # self.tri_flip()
+        # self.clear()
         self.introduce_four_half_angle_model()
         pass
 
@@ -37,7 +44,7 @@ class s1(Scene):
     
     # 引入半角
     def introduce_half_angle(self):
-        self.coord_d = [0, 4/3, 0]
+        
         half_line = Line(self.coord_c, self.coord_d, color=BLUE)
         self.play(Write(half_line), run_time=1)
 
@@ -58,7 +65,7 @@ class s1(Scene):
         flip_tri = Polygon(self.coord_c, self.coord_a, self.coord_d, color=GREEN)
         self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_point))
         
-        self.coord_e = [-4/5, 12/5, 0]
+        
         ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
 

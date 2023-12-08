@@ -79,13 +79,38 @@ class s3(Scene):
         ver_ani = list(map(FadeIn, [ver_a, ver_b, ver_c]))
         self.play(*ver_ani, run_time=1)
 
-        # 在每条边上做等边三角形
+        tri_bc = self.get_equilateral_triangle(Line(c_b, c_c))
+        dot_e_label = MathTex("E", color=WHITE).next_to(tri_bc[2], RIGHT)
+
+        tri_ca = self.get_equilateral_triangle(Line(c_c, c_a))
+        dot_d_label = MathTex("D", color=WHITE).next_to(tri_ca[2], LEFT)
+
+        tri_ab = self.get_equilateral_triangle(Line(c_a, c_b))
+        dot_f_label = MathTex("F", color=WHITE).next_to(tri_ab[2], DOWN)
+
+        tri_ani = list(map(ShowCreation, [tri_bc, tri_ca, tri_ab]))
+        self.play(*tri_ani, run_time=1)
+        
+        self.play(Write(dot_e_label), Write(dot_d_label), Write(dot_f_label), run_time=1)
         
     def get_equilateral_triangle(self, line):
         # 将line顺指针和逆时针各旋转一次
+        start = line.get_start()
+        end = line.get_end() 
         
+        # 以start为旋转中心，顺时针旋转PI/3
+        line1 = Line(start, end).copy()
+        line1.rotate(-PI/3, about_point=start) 
+        # 将end也顺时针旋转PI/3
+        dot = Dot(end)
+        dot.rotate(-PI/3, about_point=start)
 
-        pass
+        # 以end为旋转中心，逆时针旋转PI/3
+        line2 = Line(start, end).copy()
+        line2.rotate(PI/3, about_point=end)
+
+        return VGroup(line1, line2, dot)
+
 
 
 

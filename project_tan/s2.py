@@ -106,15 +106,9 @@ class s2(Scene):
         self.play(ShowCreation(gr1[2]),
                   ShowCreation(gr1[3]))
         
-        
         # 移动C点
         # percent = 0.5
-        # circle_point = Dot(circle.point_from_proportion(percent))
-        # circle_point_lable = MathTex("C").next_to(circle_point, UP)
-        # line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
-        # line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
-
-        # gr2 = VGroup(circle_point, circle_point_lable, line_1, line_2)
+    
 
     def get_mov_point(self, percent):
         circle, line_diameter, origin, origin_lable = self.circle_gr

@@ -26,11 +26,11 @@ class s1(Scene):
         self.label_color = WHITE
 
     def construct(self):
-        self.introduce_triangle()
-        self.introduce_half_angle()
-        self.tri_flip()
+        # self.introduce_triangle()
+        # self.introduce_half_angle()
+        # self.tri_flip()
         # self.clear()
-        # self.introduce_four_half_angle_model()
+        self.introduce_four_half_angle_model()
         pass
 
     # 引入三角形
@@ -103,10 +103,10 @@ class s1(Scene):
                               label_p)
         
 
-        #model_1 = self.get_model_1()
+        model_1 = self.get_model_1()
         #model_2 = self.get_model_2()
         #model_3 = self.get_model_3()
-        model_4 = self.get_model_4()
+        #model_4 = self.get_model_4()
 
         pass
 

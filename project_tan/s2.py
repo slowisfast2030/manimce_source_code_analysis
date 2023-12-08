@@ -23,6 +23,7 @@ class s2(Scene):
 
     def construct(self):
         self.diameter_angle()
+        self.right_angle()
         pass
 
     # 直径所对的圆周角是直角
@@ -81,3 +82,12 @@ class s2(Scene):
                                 self.line_diameter,
                                 self.origin,
                                 self.origin_lable)
+    
+    # 在圆上任取一点, 连接和直径的端点
+    def right_angle(self):
+        self.clear()
+        self.add(self.circle_gr)
+
+        circle, line_diameter, origin, origin_lable = self.circle_gr
+        self.wait()
+

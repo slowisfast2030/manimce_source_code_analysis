@@ -77,6 +77,7 @@ class s1(Scene):
         
         ver_e = MathTex("E", color=self.flip_color).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
+        self.wait(2)
 
     # 角平分线4个model
     def introduce_four_half_angle_model(self):

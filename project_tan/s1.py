@@ -189,14 +189,14 @@ class s1(Scene):
     def play_model_12(self):
         line_gr_1, line_pm_1, line_pn_1, label_m_1, label_n_1 = self.model_1
         line_gr_2, line_pm_2, line_pn_2, label_m_2, label_n_2 = self.model_2
-        self.play(Write(line_gr_1), Write(line_gr_2),run_time=1)
+        self.play(ShowCreation(line_gr_1), ShowCreation(line_gr_2),run_time=1)
 
-        self.play(Write(line_pm_1.set_color(TEAL)), 
-                  Write(line_pn_1.set_color(TEAL)), 
+        self.play(ShowCreation(line_pm_1.set_color(TEAL)), 
+                  ShowCreation(line_pn_1.set_color(TEAL)), 
                   Write(label_m_1), 
                   Write(label_n_1), 
-                  Write(line_pm_2.set_color(TEAL)),
-                  Write(line_pn_2.set_color(TEAL)),
+                  ShowCreation(line_pm_2.set_color(TEAL)),
+                  ShowCreation(line_pn_2.set_color(TEAL)),
                   Write(label_m_2),
                   Write(label_n_2),
                   run_time=1)
@@ -227,10 +227,10 @@ class s1(Scene):
         line_gr_4, line_pn_4, label_n_4 = self.model_4
         self.play(Write(line_gr_3), Write(line_gr_4),run_time=1)
 
-        self.play(Write(line_pm_3.set_color(TEAL)), 
-                  Write(line_pn_3.set_color(TEAL)), 
+        self.play(ShowCreation(line_pm_3.set_color(TEAL)), 
+                  ShowCreation(line_pn_3.set_color(TEAL)), 
                   Write(label_m_3), 
                   Write(label_n_3), 
-                  Write(line_pn_4.set_color(TEAL)),
+                  ShowCreation(line_pn_4.set_color(TEAL)),
                   Write(label_n_4),
                   run_time=1)

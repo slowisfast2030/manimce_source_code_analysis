@@ -89,15 +89,13 @@ class s1(Scene):
 
         # o点就是c点, m点是a点, p点是d点, n点是e点
         coord_o = self.coord_c
-        coord_m = self.coord_a
         coord_p = self.coord_d
-        coord_n = self.coord_e
 
         line_om = Line(coord_o, [1, 3.75, 0], color=self.line_color)
         line_on = Line(coord_o, [2, 0, 0], color=self.line_color)
         line_op = Line(coord_o, [1.5, 11/6, 0], color=self.line_color)
-        dot_o = Dot(self.coord_c, color=RED)
-        dot_p = Dot(self.coord_d, color=RED)
+        dot_o = Dot(coord_o, color=RED)
+        dot_p = Dot(coord_p, color=RED)
         label_o = MathTex("o", color=self.label_color).next_to(dot_o, DOWN)
         label_p = MathTex("p", color=self.label_color).next_to(dot_p, RIGHT)
 

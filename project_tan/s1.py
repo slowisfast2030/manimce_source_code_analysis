@@ -120,6 +120,7 @@ class s1(Scene):
 
         self.remove(self.line_gr)
         self.play_model_12()
+        self.wait()
         self.play_model_34()
         self.wait(1)
         pass

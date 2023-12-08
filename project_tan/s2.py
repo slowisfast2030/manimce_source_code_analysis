@@ -64,7 +64,7 @@ class s2(Scene):
 
         # raidus_brace和radius_label的消失
         # 半径变成直径
-        line_diameter = Line(
+        self.line_diameter = Line(
             self.circle.get_left(),
             self.circle.get_right(),
             color = self.radial_line_color
@@ -72,7 +72,12 @@ class s2(Scene):
         self.play(
             FadeOut(self.radius_brace),
             FadeOut(self.radius_label),
-            GrowFromCenter(line_diameter),
+            GrowFromCenter(self.line_diameter),
             self.origin_lable.animate.next_to(self.origin, DOWN),
             run_time = 1
         )
+
+        self.circle_gr = VGroup(self.circle, 
+                                self.line_diameter,
+                                self.origin,
+                                self.origin_lable)

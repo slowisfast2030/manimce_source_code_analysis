@@ -144,7 +144,6 @@ class s2(Scene):
         move_lines.remove_updater(move_lines_updater)
         circle_point_lable.remove_updater(circle_point_lable_updater)
 
-
     # 圆心角和圆周角之间的关系
     def double_relation(self):
         self.clear()

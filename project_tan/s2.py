@@ -93,8 +93,8 @@ class s2(Scene):
         self.wait()
 
         # 在圆周上任取一点
-        percent = 0.2
-        gr1 = self.get_mov_point(percent)
+        angle = PI/3
+        gr1 = self.get_mov_point(angle)
 
 
 
@@ -107,13 +107,13 @@ class s2(Scene):
                   ShowCreation(gr1[3]))
         
         # 移动C点
-        # percent = 0.5
+        
     
 
-    def get_mov_point(self, percent):
+    def get_mov_point(self, angle):
         circle, line_diameter, origin, origin_lable = self.circle_gr
 
-        circle_point = Dot(circle.point_from_proportion(percent))
+        circle_point = Dot(circle.point_at_angle(angle))
         circle_point_lable = MathTex("C").next_to(circle_point, UP)
         line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
         line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)

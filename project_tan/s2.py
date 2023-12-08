@@ -116,6 +116,7 @@ class s2(Scene):
             new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color) 
             line_1.become(new_line_1)
             line_2.become(new_line_2)
+            print("===")
             #circle_point_lable.next_to(circle_point, UP)
 
         

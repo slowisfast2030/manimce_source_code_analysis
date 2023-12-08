@@ -22,6 +22,8 @@ class CircleAnimation(Scene):
             new_line_2 = Line(circle_point.get_center(), circle.get_right(), color=GREEN)
             line_1.become(new_line_1)
             line_2.become(new_line_2)
+            print("----->")
+
 
         # 添加更新器到move_lines
         move_lines.add_updater(circle_gr_updater)

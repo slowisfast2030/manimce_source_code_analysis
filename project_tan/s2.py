@@ -117,7 +117,7 @@ class s2(Scene):
         但不能仅仅是
         self.play(ShowCreation(line_1),
                   ShowCreation(line_2))
-
+        因为这种方式仅仅添加了line_1和line_2, 而没有添加move_lines
         """
         self.add(move_lines)
         self.play(ShowCreation(line_1),

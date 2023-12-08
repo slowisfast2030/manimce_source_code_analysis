@@ -4,6 +4,7 @@ class s1(Scene):
     def construct(self):
         self.introduce_triangle()
         self.introduce_half_angle()
+        self.tri_flip()
         pass
 
     # 引入三角形
@@ -25,6 +26,7 @@ class s1(Scene):
         self.coord_a = coord_a
         self.coord_b = coord_b
     
+    # 引入半角
     def introduce_half_angle(self):
         self.coord_d = [0, 4/3, 0]
         half_line = Line(self.coord_c, self.coord_d, color=BLUE)
@@ -39,3 +41,14 @@ class s1(Scene):
         label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
 
         self.play(Write(angle_half), Write(label_angle_half), run_time=1)
+
+    # 翻转动画
+    def tri_flip(self):
+        flip_axis = np.array(self.coord_c) - np.array(self.coord_d)
+        flip_point = self.coord_c
+        flip_tri = Polygon(self.coord_c, self.coord_a, self.coord_d, color=GREEN)
+        self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_point))
+        
+        self.coord_e = [-4/5, 12/5, 0]
+        ver_e = Tex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
+        self.play(FadeIn(ver_e), run_time=1)

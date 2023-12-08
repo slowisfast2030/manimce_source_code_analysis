@@ -104,11 +104,12 @@ class s2(Scene):
         # 创建两条线段，从圆周上的点指向圆的直径的两端
         line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
         line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
-        move_lines = VGroup(line_1, line_2, circle_point_lable)
-        #self.add(move_lines)
-        # self.play(ShowCreation(line_1),
-        #           ShowCreation(line_2))
-        self.play(ShowCreation(move_lines))
+        
+        move_lines = VGroup(line_1, line_2)
+        self.play(ShowCreation(line_1),
+                  ShowCreation(line_2))
+        #self.play(ShowCreation(move_lines))
+        
 
         # 定义一个更新器函数
         def circle_gr_updater(mob):

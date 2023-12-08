@@ -196,6 +196,7 @@ class s2(Scene):
         line_label_gr.add_updater(line_label_gr_updater)
 
         # 播放动画：点沿圆周运动
-        self.play(Rotate(point_c, 3*PI/4, about_point=circle.get_center(), rate_func=linear), run_time=3)
+        self.play(Rotate(point_c, 2*PI/4, about_point=circle.get_center(), rate_func=linear), run_time=2)
         self.wait()
+        self.play(Rotate(point_c, -PI, about_point=circle.get_center(), rate_func=linear), run_time=3)
 

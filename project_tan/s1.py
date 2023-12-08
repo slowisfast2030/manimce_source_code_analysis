@@ -109,9 +109,9 @@ class s1(Scene):
         
 
         #model_1 = self.get_model_1()
-        model_2 = self.get_model_2()
+        #model_2 = self.get_model_2()
         #model_3 = self.get_model_3()
-        #model_4 = self.get_model_4()
+        model_4 = self.get_model_4()
 
         pass
 
@@ -148,7 +148,6 @@ class s1(Scene):
                   Write(label_n), 
                   run_time=1)
 
-        
     def get_model_3(self):
         # 直线cd: y = 1/3x + 4/3
         # 直线cb: y = 3/4x + 3
@@ -158,24 +157,24 @@ class s1(Scene):
         coord_m = [4/9, 0, 0]
         coord_n = [-4/9, 8/3, 0]
 
-        line_pm = Line(self.coord_d, coord_m, color=RED)
-        line_pn = Line(self.coord_d, coord_n, color=RED)
-        label_m = MathTex("m", color=RED).next_to(coord_m, DOWN)
-        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+        line_pm = Line(self.coord_d, coord_m, color=self.line_color)
+        line_pn = Line(self.coord_d, coord_n, color=self.line_color)
+        label_m = MathTex("m", color=self.label_color).next_to(coord_m, DOWN)
+        label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
                   Write(label_n), 
                   run_time=1)
         
-    
     def get_model_4(self):
         self.play(Write(self.line_gr), run_time=1)
 
         # 通过计算可知
         coord_n = (-20/9, 4/3, 0)
-        line_pn = Line(self.coord_d, coord_n, color=RED) 
-        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+
+        line_pn = Line(self.coord_d, coord_n, color=self.line_color) 
+        label_n = MathTex("n", color=self.label_color).next_to(coord_n, LEFT)
         self.play(Write(line_pn), 
                   Write(label_n), 
                   run_time=1) 

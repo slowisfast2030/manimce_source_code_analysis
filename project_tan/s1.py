@@ -112,10 +112,9 @@ class s1(Scene):
         model_2 = self.get_model_2()
         model_3 = self.get_model_3()
         model_4 = self.get_model_4()
-
         model_12 = VGroup(model_1, model_2).arrange(RIGHT, buff=1)
         model_34 = VGroup(model_3, model_4).arrange(RIGHT, buff=1)
-        model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2).scale(0.65)
+        model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2).scale(0.6)
 
         self.remove(self.line_gr)
         self.add(model_1234)

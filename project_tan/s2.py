@@ -148,5 +148,9 @@ class s2(Scene):
     # 圆心角和圆周角之间的关系
     def double_relation(self):
         self.clear()
-        self.add(self.circle_gr)
+        circle, line_diameter, origin, origin_lable = self.circle_gr
+        self.add(circle, origin, origin_lable)
         self.wait()
+
+        # 显示圆周角和圆心角
+        

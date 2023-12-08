@@ -107,25 +107,21 @@ class s2(Scene):
         self.play(ShowCreation(line_1),
                   ShowCreation(line_2))
         
-        move_lines = VGroup(line_1, line_2, circle_point_lable)
+        move_lines = VGroup(line_1, line_2)
         
-        # 为self.circle_gr添加updater
+        # 为move_lines添加updater
         def circle_gr_updater(mob):
-            #line_1, line_2, circle_point_lable = move_lines
             new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
             new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color) 
             line_1.become(new_line_1)
             line_2.become(new_line_2)
             print("===")
-            #circle_point_lable.next_to(circle_point, UP)
-        
         
         move_lines.add_updater(circle_gr_updater)
 
         # C点绕圆周运动
         self.play(Rotate(circle_point, PI/2, about_point=circle.get_center()),
                   run_time=2) 
-        #self.play(circle_point.animate.shift(UP))
 
         # 移除更新器
         move_lines.remove_updater(circle_gr_updater)

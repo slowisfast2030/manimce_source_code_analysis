@@ -106,13 +106,23 @@ class s2(Scene):
         
         move_lines = VGroup(line_1, line_2)
         """
-        
-        """
-        # self.play(ShowCreation(line_1),
-        #           ShowCreation(line_2))
-        self.play(ShowCreation(move_lines))
-        
+        这里有一个非常奇怪的点
+        如果删除self.add(move_lines)
+        更新动画就会异常
 
+        猜想:
+        move_lines必须显示的添加到场景中, 后续的更新动画才会起作用
+        可以是self.add(move_lines)
+        也可以是self.play(ShowCreation(move_lines))
+        但不能仅仅是
+        self.play(ShowCreation(line_1),
+                  ShowCreation(line_2))
+
+        """
+        self.add(move_lines)
+        self.play(ShowCreation(line_1),
+                  ShowCreation(line_2))
+        
         # 更新器
         def move_lines_updater(mob):
             new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)

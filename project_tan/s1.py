@@ -138,6 +138,7 @@ class s1(Scene):
     def play_model_1(self):
         line_gr, line_pm, line_pn, label_m, label_n = self.model_1
         self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
@@ -160,6 +161,7 @@ class s1(Scene):
     def play_model_2(self):
         line_gr, line_pm, line_pn, label_m, label_n = self.model_2
         self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
@@ -184,6 +186,7 @@ class s1(Scene):
     def play_model_3(self):
         line_gr, line_pm, line_pn, label_m, label_n = self.model_3
         self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
         self.play(Write(line_pm), 
                   Write(line_pn), 
                   Write(label_m), 
@@ -203,6 +206,7 @@ class s1(Scene):
     def play_model_4(self):
         line_gr, line_pn, label_n = self.model_4
         self.play(Write(line_gr), run_time=1)
+        #self.add(line_gr)
         self.play(Write(line_pn), 
                   Write(label_n), 
                   run_time=1)

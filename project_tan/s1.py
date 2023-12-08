@@ -99,7 +99,8 @@ class s1(Scene):
 
         #model_1 = self.get_model_1()
         #model_2 = self.get_model_2()
-        model_3 = self.get_model_3()
+        #model_3 = self.get_model_3()
+        model_4 = self.get_model_4()
 
         pass
 
@@ -156,3 +157,14 @@ class s1(Scene):
                   Write(label_n), 
                   run_time=1)
         
+    
+    def get_model_4(self):
+        self.play(Write(self.line_gr), run_time=1)
+
+        # 通过计算可知
+        coord_n = (-20/9, 4/3, 0)
+        line_pn = Line(self.coord_d, coord_n, color=RED) 
+        label_n = MathTex("n", color=RED).next_to(coord_n, LEFT)
+        self.play(Write(line_pn), 
+                  Write(label_n), 
+                  run_time=1) 

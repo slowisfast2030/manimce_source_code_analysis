@@ -1,5 +1,12 @@
 from manim import *
 
+# 下面这几行设置竖屏
+config.frame_width = 9
+config.frame_height = 16
+
+config.pixel_width = 1080
+config.pixel_height = 1920
+
 class s1(Scene):
     def construct(self):
         self.introduce_triangle()
@@ -15,9 +22,9 @@ class s1(Scene):
         triangle = Polygon(coord_c, coord_a, coord_b, color=RED)
         self.play(Write(triangle), run_time=2)
 
-        ver_c = Tex("C", color=RED).next_to(coord_c, DOWN)
-        ver_a = Tex("A", color=RED).next_to(coord_a, DOWN)
-        ver_b = Tex("B", color=RED).next_to(coord_b, RIGHT)
+        ver_c = MathTex("C", color=RED).next_to(coord_c, DOWN)
+        ver_a = MathTex("A", color=RED).next_to(coord_a, DOWN)
+        ver_b = MathTex("B", color=RED).next_to(coord_b, RIGHT)
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
         self.play(*ver_ani, run_time=1)
@@ -32,7 +39,7 @@ class s1(Scene):
         half_line = Line(self.coord_c, self.coord_d, color=BLUE)
         self.play(Write(half_line), run_time=1)
 
-        ver_d = Tex("D", color=BLUE).next_to(self.coord_d, RIGHT)
+        ver_d = MathTex("D", color=BLUE).next_to(self.coord_d, RIGHT)
         self.play(FadeIn(ver_d), run_time=1)
 
         line_ca = Line(self.coord_c, self.coord_a, color=RED)
@@ -50,5 +57,5 @@ class s1(Scene):
         self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_point))
         
         self.coord_e = [-4/5, 12/5, 0]
-        ver_e = Tex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
+        ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)

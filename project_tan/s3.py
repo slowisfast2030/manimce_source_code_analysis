@@ -99,9 +99,9 @@ class s3(Scene):
                     run_time=1)
         
         # 显示费马点
-        line_ae = Line(c_a, tri_bc[2].get_center(), color=RED_C)
-        line_bd = Line(c_b, tri_ca[2].get_center(), color=RED_C)
-        line_cf = Line(c_c, tri_ab[2].get_center(), color=RED_C)
+        line_ae = Line(c_a, tri_bc[2].get_center(), color=GREEN_C)
+        line_bd = Line(c_b, tri_ca[2].get_center(), color=GREEN_C)
+        line_cf = Line(c_c, tri_ab[2].get_center(), color=GREEN_C)
 
         self.play(ShowCreation(line_ae),
                     ShowCreation(line_bd),
@@ -114,14 +114,14 @@ class s3(Scene):
         end = line.get_end() 
         
         # 以start为旋转中心，顺时针旋转PI/3
-        line1 = Line(start, end).copy().set_color(GREEN)
+        line1 = Line(start, end).copy().set_color(WHITE)
         line1.rotate(-PI/3, about_point=start) 
         # 将end也顺时针旋转PI/3
         dot = Dot(end)
         dot.rotate(-PI/3, about_point=start)
 
         # 以end为旋转中心，逆时针旋转PI/3
-        line2 = Line(start, end).copy().set_color(GREEN)
+        line2 = Line(start, end).copy().set_color(WHITE)
         line2.rotate(PI/3, about_point=end)
 
         return VGroup(line1, line2, dot)

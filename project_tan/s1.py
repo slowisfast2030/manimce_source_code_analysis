@@ -10,6 +10,10 @@ config.frame_height = 16
 config.pixel_width = 1080
 config.pixel_height = 1920
 
+# 一个很聪明的方案
+class ShowCreation(Create):
+    pass
+
 class s1(Scene):
     def setup(self):
         self.coord_c = [-4,0,0]
@@ -31,8 +35,12 @@ class s1(Scene):
 
     # 引入三角形
     def introduce_triangle(self):
-        triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color)
-        self.play(Write(triangle), run_time=2)
+        triangle = Polygon(self.coord_c, 
+                           self.coord_a, 
+                           self.coord_b, 
+                           color=self.line_color,
+                           stroke_width= 3)
+        self.play(ShowCreation(triangle), run_time=1)
 
         ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c, DOWN)
         ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a, DOWN)

@@ -12,6 +12,7 @@ class s1(Scene):
         self.introduce_triangle()
         self.introduce_half_angle()
         self.tri_flip()
+        self.clear()
         pass
 
     # 引入三角形
@@ -59,3 +60,7 @@ class s1(Scene):
         self.coord_e = [-4/5, 12/5, 0]
         ver_e = MathTex("E", color=GREEN).next_to(self.coord_e, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
+
+    # 角平分线4个model
+    def introduce_four_half_angle_model(self):
+        

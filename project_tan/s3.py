@@ -33,6 +33,9 @@ class s3(Scene):
         pass
         
     def introduce_triangle(self):
+        plane = NumberPlane()
+        self.play(Write(plane), run_time=1)
+
         triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
         self.play(Write(triangle), run_time=2)
 
@@ -47,8 +50,8 @@ class s3(Scene):
 
     # 添加坐标系
     def introduce_coordinate(self):
-        plane = NumberPlane()
-        self.play(Write(plane), run_time=2)
+        # plane = NumberPlane()
+        # self.play(Write(plane), run_time=2)
 
         # 显示角平分线
         half_line = Line(self.coord_c, self.coord_d, color=self.line_color)

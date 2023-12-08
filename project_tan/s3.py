@@ -16,7 +16,19 @@ class ShowCreation(Create):
 
 class s3(Scene):
     def setup(self):
+        self.coord_c = [-4,0,0]
+        self.coord_a = [0,0,0]
+        self.coord_b = [0,3,0]
+        self.line_color = MAROON_B
         pass
 
     def construct(self):
-        pass
+        triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
+        self.play(Write(triangle), run_time=2)
+
+        ver_c = MathTex("C", color=WHITE).next_to(self.coord_c, DOWN)
+        ver_a = MathTex("A", color=WHITE).next_to(self.coord_a, DOWN)
+        ver_b = MathTex("B", color=WHITE).next_to(self.coord_b, RIGHT)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        self.play(*ver_ani, run_time=1)

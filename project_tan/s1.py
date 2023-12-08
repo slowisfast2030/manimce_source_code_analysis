@@ -189,6 +189,24 @@ class s1(Scene):
     #               Write(label_n), 
     #               run_time=1)
     
+    # def play_model_3(self):
+    #     line_gr, line_pm, line_pn, label_m, label_n = self.model_3
+    #     self.play(Write(line_gr), run_time=1)
+    #     #self.add(line_gr)
+    #     self.play(Write(line_pm), 
+    #               Write(line_pn), 
+    #               Write(label_m), 
+    #               Write(label_n), 
+    #               run_time=1)
+
+    # def play_model_4(self):
+    #     line_gr, line_pn, label_n = self.model_4
+    #     self.play(Write(line_gr), run_time=1)
+    #     #self.add(line_gr)
+    #     self.play(Write(line_pn), 
+    #               Write(label_n), 
+    #               run_time=1)
+
     # 合并model_1和model_2的play
     def play_model_12(self):
         line_gr_1, line_pm_1, line_pn_1, label_m_1, label_n_1 = self.model_1
@@ -204,26 +222,6 @@ class s1(Scene):
                   Write(label_m_2),
                   Write(label_n_2),
                   run_time=1.5)
-
-    # def play_model_3(self):
-    #     line_gr, line_pm, line_pn, label_m, label_n = self.model_3
-    #     self.play(Write(line_gr), run_time=1)
-    #     #self.add(line_gr)
-    #     self.play(Write(line_pm), 
-    #               Write(line_pn), 
-    #               Write(label_m), 
-    #               Write(label_n), 
-    #               run_time=1)
-    #     pass 
-
-    # def play_model_4(self):
-    #     line_gr, line_pn, label_n = self.model_4
-    #     self.play(Write(line_gr), run_time=1)
-    #     #self.add(line_gr)
-    #     self.play(Write(line_pn), 
-    #               Write(label_n), 
-    #               run_time=1)
-    #     pass
 
     # 合并model_3和model_4的play
     def play_model_34(self):

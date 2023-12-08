@@ -84,7 +84,8 @@ class s1(Scene):
         line_om = Line(self.coord_c, [1, 3.75, 0], color=BLUE)
         line_on = Line(self.coord_c, [2, 0, 0], color=BLUE)
         line_op = Line(self.coord_c, [1.5, 11/6, 0], color=BLUE)
-        self.play(Write(line_om), Write(line_on), Write(line_op), run_time=1)
+        line_gr = VGroup(line_om, line_on, line_op)
+        self.play(Write(line_gr), run_time=1)
 
 
         pass

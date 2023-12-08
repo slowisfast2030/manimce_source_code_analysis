@@ -94,16 +94,35 @@ class s2(Scene):
 
         # 在圆周上任取一点
         percent = 0.2
-        circle_point = Dot(circle.point_from_proportion(percent))
-        circle_point_lable = MathTex("A").next_to(circle_point, UP)
-        line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
-        line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
-        self.play(ShowCreation(circle_point),
-                  Write(circle_point_lable),
+        gr1 = self.get_mov_point(percent)
+
+
+
+        self.play(ShowCreation(gr1[0]),
+                  Write(gr1[1]),
                   run_time=1)   
         self.wait()
 
-        self.play(ShowCreation(line_1),
-                  ShowCreation(line_2))
+        self.play(ShowCreation(gr1[2]),
+                  ShowCreation(gr1[3]))
         
+        
+        # 移动C点
+        # percent = 0.5
+        # circle_point = Dot(circle.point_from_proportion(percent))
+        # circle_point_lable = MathTex("C").next_to(circle_point, UP)
+        # line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
+        # line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
 
+        # gr2 = VGroup(circle_point, circle_point_lable, line_1, line_2)
+
+    def get_mov_point(self, percent):
+        circle, line_diameter, origin, origin_lable = self.circle_gr
+
+        circle_point = Dot(circle.point_from_proportion(percent))
+        circle_point_lable = MathTex("C").next_to(circle_point, UP)
+        line_1 = Line(circle_point, line_diameter.get_left(), color=self.radial_line_color)
+        line_2 = Line(circle_point, line_diameter.get_right(), color=self.radial_line_color)
+
+        gr = VGroup(circle_point, circle_point_lable, line_1, line_2)
+        return gr

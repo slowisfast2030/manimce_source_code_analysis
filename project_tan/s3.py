@@ -49,3 +49,17 @@ class s3(Scene):
         plane = NumberPlane()
         self.play(Write(plane), run_time=1)
 
+        # 显示角平分线
+        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
+        ver_d = MathTex("D", color=WHITE).next_to(self.coord_d, RIGHT)
+        self.play(ShowCreation(half_line), run_time=1)
+        self.play(Write(ver_d), run_time=1)
+
+        # 显示直线CD的垂线
+        line_ef = Line(self.coord_e, self.coord_f, color=self.line_color)
+        ver_e = MathTex("E", color=WHITE).next_to(self.coord_e, LEFT)
+        ver_f = MathTex("F", color=WHITE).next_to(self.coord_f, DOWN)
+
+        self.play(GrowFromPoint(line_ef, self.coord_d), run_time=1)
+        self.play(Write(ver_e), Write(ver_f), run_time=1)
+

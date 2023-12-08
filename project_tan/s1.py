@@ -75,6 +75,15 @@ class s1(Scene):
         为了显示这4个模型, 需要精确的点的控制
         所以, 借助上面的三角形, 来引入这4个模型
         """
+        model_1 = self.get_model_1()
+
+        
+        
+
+
+        pass
+
+    def get_model_1(self):
         # model 1
         # 直线cb的方程: y = 3/4*x + 3
         # 在直线cb上取点(1, 3.75)
@@ -109,9 +118,3 @@ class s1(Scene):
                   Write(label_a), 
                   Write(label_e), 
                   run_time=1)
-
-        
-        
-
-
-        pass

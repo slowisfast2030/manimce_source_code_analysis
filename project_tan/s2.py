@@ -180,5 +180,22 @@ class s2(Scene):
                     ShowCreation(line_bc))
         self.wait()
 
-        
+        # 将line_ac, line_bc, label_c打包
+        line_label_gr = VGroup(line_ac, line_bc, label_c)
+        self.add(line_label_gr)
+
+        # 更新器
+        def line_label_gr_updater(mob):
+            new_line_ac = Line(point_a.get_center(),point_c.get_center(), color=self.radial_line_color)
+            new_line_bc = Line(point_b.get_center(),point_c.get_center(), color=self.radial_line_color)
+            new_label_c = MathTex("C").next_to(point_c, UP)
+            line_ac.become(new_line_ac)
+            line_bc.become(new_line_bc)
+            label_c.become(new_label_c)
+
+        line_label_gr.add_updater(line_label_gr_updater)
+
+        # 播放动画：点沿圆周运动
+        self.play(Rotate(point_c, PI, about_point=circle.get_center(), rate_func=linear), run_time=2)
+        self.wait()
 

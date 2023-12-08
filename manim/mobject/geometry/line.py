@@ -1064,6 +1064,9 @@ class Angle(VMobject, metaclass=ConvertToOpenGL):
         return Angle(Line(B, A), Line(B, C), **kwargs)
 
 
+"""
+直角
+"""
 class RightAngle(Angle):
     """An elbow-type mobject representing a right angle between two lines.
 

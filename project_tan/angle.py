@@ -1,5 +1,24 @@
 from manim import *
 
+class DoubleArrowExample2(Scene):
+    def construct(self):
+        box = Square()
+        p1 = box.get_left()
+        p2 = box.get_right()
+        d1 = DoubleArrow(p1, p2, buff=0)
+        d2 = DoubleArrow(p1, p2, buff=0, tip_length=0.2, color=YELLOW)
+        d3 = DoubleArrow(p1, p2, buff=0, tip_length=0.4, color=BLUE)
+        Group(d1, d2, d3).arrange(DOWN)
+        self.add(box, d1, d2, d3)
+
+class DoubleArrowExample(Scene):
+    def construct(self):
+        circle = Circle(radius=2.0)
+        d_arrow = DoubleArrow(start=circle.get_left(), end=circle.get_right())
+        d_arrow_2 = DoubleArrow(tip_shape_end=ArrowCircleFilledTip, tip_shape_start=ArrowCircleFilledTip)
+        group = Group(Group(circle, d_arrow), d_arrow_2).arrange(UP, buff=1)
+        self.add(group)
+
 class RightAngleExample(Scene):
     def construct(self):
         line1 = Line( LEFT, RIGHT )

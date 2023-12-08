@@ -27,10 +27,13 @@ class s1(Scene):
     
     def introduce_half_angle(self):
         self.coord_d = [0, 4/3, 0]
-        line = Line(self.coord_c, self.coord_d, color=BLUE)
-        self.play(Write(line), run_time=1)
+        half_line = Line(self.coord_c, self.coord_d, color=BLUE)
+        self.play(Write(half_line), run_time=1)
 
         ver_d = Tex("D", color=BLUE).next_to(self.coord_d, RIGHT)
         self.play(FadeIn(ver_d), run_time=1)
 
-        angle_acd = Angle(C, A, D, radius=0.2, other_angle=False)
+        line_ca = Line(self.coord_c, self.coord_a, color=RED)
+        line_cd = Line(self.coord_c, self.coord_d, color=BLUE)
+        angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
+        self.play(Write(angle_half))

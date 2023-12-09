@@ -29,7 +29,8 @@ class s1(Scene):
         self.line_show_color = BLUE
 
         # 以abc三点画出的三角形在屏幕的偏左侧，需要调整下位置
-        #  [-2, 1.5, 0]是原三角形的中心
+        # [-2, 1.5, 0]是原三角形的中心
+        # n*UP是想把三角形放到屏幕的上方
         self.shift_vector = np.array([-2, 1.5, 0]) - 4*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector

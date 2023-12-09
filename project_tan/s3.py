@@ -20,6 +20,7 @@ class s3(Scene):
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
         self.line_color = MAROON_B
+        self.label_color = WHITE
 
         self.coord_d = [0, 4/3, 0]
         self.coord_e = [-4/5, 12/5, 0]
@@ -32,6 +33,7 @@ class s3(Scene):
         pass
 
     def construct(self):
+        self.opening()
         #self.introduce_triangle()
         #self.introduce_coordinate()
         #self.two_geometry()
@@ -44,7 +46,15 @@ class s3(Scene):
                            self.coord_a_shift, 
                            self.coord_b_shift, 
                            color=self.line_color, stroke_width=3)
-        
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        self.play(*ver_ani, 
+                  ShowCreation(triangle),
+                  run_time=1)
+        self.wait()
         
 
         pass

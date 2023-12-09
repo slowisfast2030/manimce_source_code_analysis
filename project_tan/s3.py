@@ -34,9 +34,7 @@ class s3(Scene):
 
     def construct(self):
         self.opening()
-        #self.introduce_triangle()
-        #self.introduce_coordinate()
-        #self.two_geometry()
+        self.introduce_vertical_line() 
         pass
         
     # 开场
@@ -84,9 +82,7 @@ class s3(Scene):
 
 
     # 添加坐标系
-    def introduce_coordinate(self):
-        # plane = NumberPlane()
-        # self.play(Write(plane), run_time=2)
+    def introduce_vertical_line(self):
 
         # 显示角平分线
         half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
@@ -102,7 +98,14 @@ class s3(Scene):
         self.play(GrowFromPoint(line_ef, self.coord_d), run_time=1)
         self.play(Write(ver_e), Write(ver_f), run_time=1)
 
-    # 以费马点的例子介绍两种几何
+
+class pr(s3):
+    def construct(self):
+        self.two_geometry()
+        pass
+
+    
+        # 以费马点的例子介绍两种几何
     def two_geometry(self):
         self.clear()
         c_a = [-1.4, -1, 0]
@@ -163,7 +166,6 @@ class s3(Scene):
         line2.rotate(PI/3, about_point=end)
 
         return VGroup(line1, line2, dot)
-
 
 
 

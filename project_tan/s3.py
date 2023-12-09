@@ -71,6 +71,8 @@ class s3(Scene):
                   run_time=1)
         self.wait()
 
+        self.tri_gr = tri_gr
+        self.plane = plane
         pass
 
     def introduce_triangle(self):

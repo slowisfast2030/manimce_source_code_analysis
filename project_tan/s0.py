@@ -20,3 +20,5 @@ class s0(Scene):
 
     def construct(self):
         pass
+
+    # 屏幕从上至下出现3种解法

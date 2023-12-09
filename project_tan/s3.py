@@ -129,8 +129,12 @@ class pr(s3):
         self.wait(1)
         pass
 
-    # 以费马点的例子介绍两种几何
+    # 以将军饮马问题介绍两种几何
     def two_geometry_example(self):
+        pass
+
+    # 以费马点的例子介绍两种几何
+    def two_geometry_example_depreate(self):
         self.clear()
         c_a = [-1.4, -1, 0]
         c_b = [1.1, -1.4, 0]

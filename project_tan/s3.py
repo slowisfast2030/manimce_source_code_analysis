@@ -26,7 +26,7 @@ class s3(Scene):
         self.coord_e = [-4/5, 12/5, 0]
         self.coord_f = [1, 0, 0]
 
-        self.shift_vector = np.array([-2, 1.5, 0]) - 2*UP
+        self.shift_vector = np.array([-2, 1.5, 0]) - 3*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
@@ -56,12 +56,15 @@ class s3(Scene):
                   ShowCreation(triangle),
                   run_time=1)
         self.wait()
+        
         # 引入坐标平面
-        plane = NumberPlane().shift(2*UP)
+        # 将整个画面网上提一点，为下方的pi生物让出空间
+        plane = NumberPlane().shift(3*UP)
         self.play(Write(plane), 
                   run_time=1)
         self.wait()
         
+        # 淡出pi生物
 
         pass
 

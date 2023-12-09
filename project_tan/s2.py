@@ -152,12 +152,33 @@ class s2(Scene):
             line_1.become(new_line_1)
             line_2.become(new_line_2)
             circle_point_lable.next_to(circle_point, UP)
+        
+        # 下圆更新器
+        line_label_gr = VGroup(line_ac, line_bc, label_c)
+        self.add(line_label_gr)
+        def line_label_gr_updater(mob):
+            new_line_ac = Line(point_a.get_center(),point_c.get_center(), color=self.radial_line_color)
+            new_line_bc = Line(point_b.get_center(),point_c.get_center(), color=self.radial_line_color)
+            new_label_c = MathTex("C").next_to(point_c, UP)
+            line_ac.become(new_line_ac)
+            line_bc.become(new_line_bc)
+            label_c.become(new_label_c)
 
         # 上圆添加更新器
         move_lines.add_updater(move_lines_updater)
+        # 下圆添加更新器
+        line_label_gr.add_updater(line_label_gr_updater)
+
 
         # 播放动画：点沿圆周运动
-        self.play(Rotate(circle_point, PI, about_point=circle_1.get_center(), rate_func=linear), run_time=4) 
+        self.play(Rotate(circle_point, PI, about_point=circle_1.get_center(), rate_func=linear),
+                  Rotate(point_c, 2*PI/4, about_point=circle_2.get_center(), rate_func=linear), 
+                  run_time=2) 
+        self.wait()
+
+        self.play(Rotate(circle_point, -PI, about_point=circle_1.get_center(), rate_func=linear),
+                    Rotate(point_c, -PI, about_point=circle_2.get_center(), rate_func=linear), 
+                    run_time=3)
         pass
 
     

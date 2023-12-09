@@ -27,8 +27,8 @@ class s3(Scene):
         pass
 
     def construct(self):
-        self.introduce_triangle()
-        self.introduce_coordinate()
+        #self.introduce_triangle()
+        #self.introduce_coordinate()
         #self.two_geometry()
         pass
         

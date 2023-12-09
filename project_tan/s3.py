@@ -116,7 +116,7 @@ class pr(s3):
         plane = NumberPlane().scale(0.5)
 
         # 整体
-        geo_gr = VGroup(svg_gr, plane).arrange(DOWN, buff=3)
+        geo_gr = VGroup(svg_gr, plane).arrange(DOWN, buff=2).scale(1.1)
 
         # Display the image
         self.play(Write(svg_gr[0]),

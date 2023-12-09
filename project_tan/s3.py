@@ -65,6 +65,13 @@ class s3(Scene):
                   run_time=1)
         self.wait()
         
+        """
+        此时, 这里需要剪辑技巧
+        新建一个场景, 专门解释平面几何和解析几何
+        将这个场景剪辑到这里
+        然后再执行下面的代码
+        """
+
         # 淡出pi生物, 将整个场景移到屏幕中间
         self.play(plane.animate.shift(-plane.get_center()),
                   tri_gr.animate.shift(-self.coord_a_shift),

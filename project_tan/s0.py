@@ -40,7 +40,7 @@ class s0(Scene):
     """
     def introduce_three_methods(self):
         
-        # self.introduce_first_method()
+        self.introduce_first_method()
         # self.introduce_second_method()
         # self.introduce_third_method()
 
@@ -48,9 +48,30 @@ class s0(Scene):
 
     # 第一种解法
     def introduce_first_method(self):
+        triangle = Polygon(self.coord_c, 
+                           self.coord_a, 
+                           self.coord_b, 
+                           color=self.line_color,
+                           stroke_width= 3)
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c, DOWN)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a, DOWN)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b, RIGHT)
 
-        pass
+        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
 
+        ver_d = MathTex("D", color=self.label_color).next_to(self.coord_d, RIGHT)
+
+        line_ca = Line(self.coord_c, self.coord_a)
+        line_cd = Line(self.coord_c, self.coord_d)
+        angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
+        label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
+        
+        result = VGroup(triangle, 
+                        ver_c, ver_a, ver_b, 
+                        half_line, ver_d,
+                        angle_half, label_angle_half)
+        return result
+        
     # 第二种解法
     def introduce_second_method(self):
 

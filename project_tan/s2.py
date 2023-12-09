@@ -110,6 +110,8 @@ class s2(Scene):
         circle_point = Dot(point=circle_1.point_at_angle(PI/3), color=RED)
         circle_point_lable = MathTex("C").next_to(circle_point, UP) 
         line_diameter = Line(circle_1.get_left(), circle_1.get_right(), color=self.radial_line_color)
+        line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+        line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
         # 下圆
         point_a = Dot(circle_2.point_at_angle(PI + PI/6), color=RED)
         point_b = Dot(circle_2.point_at_angle(PI + 5*PI/6), color=RED)
@@ -127,6 +129,8 @@ class s2(Scene):
         self.play(ShowCreation(circle_point),
                   Write(circle_point_lable),
                   GrowFromCenter(line_diameter),
+                  ShowCreation(line_1),
+                  ShowCreation(line_2),
                   ShowCreation(point_a),
                   ShowCreation(point_b),
                   ShowCreation(point_c),
@@ -139,7 +143,21 @@ class s2(Scene):
                   ShowCreation(line_bc),
                   run_time=1)  
 
+        # 上圆更新器
+        move_lines = VGroup(line_1, line_2, circle_point_lable)
+        self.add(move_lines)
+        def move_lines_updater(mob):
+            new_line_1 = Line(circle_point.get_center(), line_diameter.get_left(), color=self.radial_line_color)
+            new_line_2 = Line(circle_point.get_center(), line_diameter.get_right(), color=self.radial_line_color)
+            line_1.become(new_line_1)
+            line_2.become(new_line_2)
+            circle_point_lable.next_to(circle_point, UP)
 
+        # 上圆添加更新器
+        move_lines.add_updater(move_lines_updater)
+
+        # 播放动画：点沿圆周运动
+        self.play(Rotate(circle_point, PI, about_point=circle_1.get_center(), rate_func=linear), run_time=4) 
         pass
 
     

@@ -57,8 +57,10 @@ class s3(Scene):
                   run_time=1)
         self.wait()
         # 引入坐标平面
-        plane = NumberPlane()
-        self.play(Write(plane), run_time=1)
+        plane = NumberPlane().shift(2*UP)
+        self.play(Write(plane), 
+                  Animation(triangle),
+                  run_time=1)
         self.wait()
         
 

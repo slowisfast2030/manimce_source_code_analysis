@@ -23,6 +23,7 @@ class s2(Scene):
 
     def construct(self):
         self.diameter_angle()
+        self.show_two_property()
         # self.right_angle()
         # self.double_relation()
         pass
@@ -93,6 +94,28 @@ class s2(Scene):
                   TransformFromCopy(self.circle_gr, self.two_gr[1]),
                   FadeOut(self.circle_gr),
                   run_time=1)
+    
+    # 在上下圆中分别显示一个性质
+    def show_two_property(self):
+        self.clear()
+        self.add(self.two_gr)
+        self.wait()
+
+        # 上圆显示直径和一个动点
+        # 下圆显示三个动点
+        circle_1, origin_1, origin_lable_1 = self.two_gr[0]
+        circle_2, origin_2, origin_lable_2 = self.two_gr[1]
+
+        circle_point = Dot(point=circle_1.point_at_angle(PI/3), color=RED)
+        circle_point_lable = MathTex("C").next_to(circle_point, UP) 
+        line_diameter = Line(circle_1.get_left(), circle_1.get_right(), color=self.radial_line_color)
+        self.play(ShowCreation(circle_point),
+                  Write(circle_point_lable),
+                  GrowFromCenter(line_diameter),
+                  run_time=1)  
+
+
+        pass
 
     
     # 在圆上任取一点, 连接和直径的端点

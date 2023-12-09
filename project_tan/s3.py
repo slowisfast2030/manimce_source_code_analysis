@@ -75,21 +75,6 @@ class s3(Scene):
         self.plane = plane
         pass
 
-    def introduce_triangle(self):
-        plane = NumberPlane()
-        self.play(Write(plane), run_time=1)
-
-        triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
-        self.play(Write(triangle), run_time=2)
-
-        ver_c = MathTex("C", color=WHITE).next_to(self.coord_c, DOWN)
-        ver_a = MathTex("A", color=WHITE).next_to(self.coord_a, DOWN)
-        ver_b = MathTex("B", color=WHITE).next_to(self.coord_b, RIGHT)
-        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
-
-        self.play(*ver_ani, run_time=1)
-
-        self.triangle = triangle
 
     # 添加坐标系
     def introduce_coordinate(self):

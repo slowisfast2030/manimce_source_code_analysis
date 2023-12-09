@@ -40,7 +40,13 @@ class s3(Scene):
     # 开场
     # 屏幕中间出现一个三角形，屏幕下方出现pi生物
     def opening(self):
+        triangle = Polygon(self.coord_c_shift, 
+                           self.coord_a_shift, 
+                           self.coord_b_shift, 
+                           color=self.line_color, stroke_width=3)
         
+        
+
         pass
 
     def introduce_triangle(self):

@@ -27,6 +27,7 @@ class s0(Scene):
         pass
 
     def construct(self):
+        self.introduce_three_methods()
         pass
 
     # 屏幕从上至下出现3种解法
@@ -40,7 +41,11 @@ class s0(Scene):
     """
     def introduce_three_methods(self):
         
-        self.introduce_first_method()
+        method_1 = self.introduce_first_method()
+        self.add(method_1)
+        self.wait(1)
+
+
         # self.introduce_second_method()
         # self.introduce_third_method()
 

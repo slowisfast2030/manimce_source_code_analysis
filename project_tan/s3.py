@@ -67,7 +67,7 @@ class s3(Scene):
         
         # 淡出pi生物, 将整个场景移到屏幕中间
         self.play(plane.animate.shift(-plane.get_center()),
-                tri_gr.animate.shift(-self.coord_a_shift),
+                  tri_gr.animate.shift(-self.coord_a_shift),
                   run_time=1)
         self.wait()
 

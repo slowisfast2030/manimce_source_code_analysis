@@ -277,7 +277,7 @@ class s1(Scene):
         self.wait()
 
         # 设DA=x，则DE=x, BD=4-x
-        text1 = Text(r"设 DA=x, 则 DE=x, BD=4-x").next_to(tri_gr, DOWN, buff=2).scale(0.7)
+        text1 = Tex(r"Suppose DA=$x$, then DE=$x$, BD=$4-x$").next_to(tri_gr, DOWN, buff=2).scale(0.7)
         self.play(Write(text1))
         self.wait()
 

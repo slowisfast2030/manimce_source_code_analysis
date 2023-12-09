@@ -282,7 +282,7 @@ class s1(Scene):
         self.wait()
 
         # 勾股定理
-        text2 = Text(r"在直角三角形DEB中，由勾股定理可得：").next_to(text1, DOWN, buff=0.5).scale(0.7)
+        text2 = Text(r"在直角三角形DEB中, 由勾股定理可得:").next_to(text1, DOWN, buff=0.5).scale(0.7)
         self.play(Write(text2))
         self.wait()
         text3 = MathTex(r"BD^2=DE^2+BD^2").next_to(text2, DOWN, buff=0.5).scale(0.7)

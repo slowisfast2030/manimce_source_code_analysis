@@ -104,7 +104,6 @@ class pr(s3):
         self.two_geometry()
         pass
 
-    
         # 以费马点的例子介绍两种几何
     def two_geometry(self):
         self.clear()

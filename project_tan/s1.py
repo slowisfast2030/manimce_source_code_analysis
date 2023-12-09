@@ -285,7 +285,7 @@ class s1(Scene):
         text2 = Tex("In the right-angled triangle DEB, \\\\ according to the Pythagorean theorem, \\\\ it can be derived that").next_to(text1, DOWN, buff=0.5).scale(0.7)
         self.play(FadeIn(text2))
         self.wait()
-        text3 = MathTex(r"BD^2=DE^2+BD^2").next_to(text2, DOWN, buff=0.5).scale(0.7)
+        text3 = MathTex("BD^2=DE^2+BD^2").next_to(text2, DOWN, buff=0.5).scale(0.7)
         self.play(Write(text3))
         self.wait()
         text4 = MathTex(r"(3-x)^2=(4-3)^2 + x^2").next_to(text3, DOWN, buff=0.5).scale(0.7)

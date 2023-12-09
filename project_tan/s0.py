@@ -52,7 +52,12 @@ class s0(Scene):
 
         method_123 = VGroup(method_1, method_2, method_3).arrange(DOWN, buff=0.5).scale(0.7)
         self.add(method_123)
+        self.play(ShowCreation(method_1),
+                  ShowCreation(method_2),
+                  ShowCreation(method_3),
+                  run_time=2)
         self.wait()
+        
         
 
     # 第一种解法

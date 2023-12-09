@@ -65,8 +65,6 @@ class s0(Scene):
         #           ) 
         # self.wait() 
 
-        
-
     # 第一种解法
     def introduce_first_method(self):
         triangle = Polygon(self.coord_c, 

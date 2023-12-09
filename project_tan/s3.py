@@ -163,13 +163,14 @@ class pr(s3):
         self.play(Write(plane), 
                   Write(point_a_sym), 
                   Write(label_a_sym), 
-                  Write(point_c),
-                  Write(label_c),
-                  ShowCreation(line_a_sym_b),
                   run_time=1)
 
         self.wait()
 
+        self.play(Write(point_c),
+                  Write(label_c),
+                  ShowCreation(line_a_sym_b))
+        self.wait()
         pass
 
     # 以费马点的例子介绍两种几何

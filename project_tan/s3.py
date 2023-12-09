@@ -29,7 +29,7 @@ class s3(Scene):
     def construct(self):
         self.introduce_triangle()
         self.introduce_coordinate()
-        self.two_geometry()
+        #self.two_geometry()
         pass
         
     def introduce_triangle(self):

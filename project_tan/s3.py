@@ -123,7 +123,10 @@ class pr(s3):
                   Write(svg_gr[1]),
                   Write(plane),
                   run_time = 2)
-        self.wait(2)
+        self.wait(1)
+
+        self.play(FadeOut(geo_gr))
+        self.wait(1)
         pass
 
     # 以费马点的例子介绍两种几何

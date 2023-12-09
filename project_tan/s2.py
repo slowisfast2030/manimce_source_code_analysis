@@ -19,6 +19,14 @@ class s2(Scene):
         self.radius = 2
         self.stroke_color = WHITE
         self.radial_line_color = MAROON_B
+
+        self.coord_c = [-4,0,0]
+        self.coord_a = [0,0,0]
+        self.coord_b = [0,3,0]
+        self.shift_vector = np.array([-2, 1.5, 0]) - 4*UP
+        self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
+        self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
+        self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
         pass
 
     def construct(self):

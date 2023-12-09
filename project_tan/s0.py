@@ -22,6 +22,14 @@ class s0(Scene):
         pass
 
     # 屏幕从上至下出现3种解法
+    """
+    有一个很炫的转场
+    开场中间出现了一个三角形
+    然后这个三角形被分成了三个部分：上中下
+    然后在上中下三个三角形的基础上分别显示三种解法
+
+    非常丝滑
+    """
     def introduce_three_methods(self):
         
         # self.introduce_first_method()
@@ -44,5 +52,5 @@ class s0(Scene):
     def introduce_third_method(self):
 
         pass
-    
+
     

@@ -43,6 +43,12 @@ class s1(Scene):
                            self.coord_b, 
                            color=self.line_color,
                            stroke_width= 3)
+        # 需要知道这个三角形的中心在哪里
+        # print(triangle.get_center()) 
+        # [-2.   1.5  0. ]
+        triangle.shift(ORIGIN - np.array([-2, 1.5, 0]) + UP)
+        #self.add(Dot(ORIGIN))
+
         self.play(ShowCreation(triangle), run_time=1)
 
         ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c, DOWN)

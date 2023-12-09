@@ -133,6 +133,10 @@ class s2(Scene):
                   Write(label_a),
                   Write(label_b),
                   Write(label_c),
+                  ShowCreation(line_ao),
+                  ShowCreation(line_bo),
+                  ShowCreation(line_ac),
+                  ShowCreation(line_bc),
                   run_time=1)  
 
 

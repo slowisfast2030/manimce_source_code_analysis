@@ -131,6 +131,45 @@ class pr(s3):
 
     # 以将军饮马问题介绍两种几何
     def two_geometry_example(self):
+        bank = Line([-4, 0, 0], [4, 0, 0], color=WHITE)
+        point_a = Dot([-1, 1, 0], color=WHITE)
+        point_b = Dot([2, 2, 0], color=WHITE)
+        label_a = MathTex("A", color=WHITE).next_to(point_a, UP)
+        label_b = MathTex("B", color=WHITE).next_to(point_b, UP)
+        bank_gr = VGroup(bank, point_a, point_b, label_a, label_b)
+
+        # 上
+        bank_up = bank_gr.copy()
+        # 下
+        bank_down = bank_gr.copy()
+
+        bank_up_down = VGroup(bank_up, bank_down).arrange(DOWN, buff=3)
+        bank_up.shift(UP)
+        self.play(Write(bank_up_down), run_time=1)
+        self.wait()
+
+        # 求解A的对称点
+        ver_dis = bank_up[1].get_center()[1] - bank_up[0].get_center()[1]
+        point_a_sym_x = bank_up[1].get_center()[0]
+        point_a_sym_y = bank_up[1].get_center()[1] - 2*ver_dis
+        point_a_sym = Dot([point_a_sym_x, point_a_sym_y, 0], color=WHITE)
+        label_a_sym = MathTex("A'", color=WHITE).next_to(point_a_sym, DOWN)
+
+        line_a_sym_b = Line(point_a_sym.get_center(), bank_up[2].get_center(), color=RED)   
+        
+        plane = NumberPlane().shift(bank_down[0].get_center()).scale(0.7)
+        point_c = Dot(plane.get_center() + RIGHT, color=WHITE)
+        label_c = MathTex("C(x,y)", color=WHITE).next_to(point_c, DOWN)
+        self.play(Write(plane), 
+                  Write(point_a_sym), 
+                  Write(label_a_sym), 
+                  Write(point_c),
+                  Write(label_c),
+                  ShowCreation(line_a_sym_b),
+                  run_time=1)
+
+        self.wait()
+
         pass
 
     # 以费马点的例子介绍两种几何

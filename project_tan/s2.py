@@ -23,11 +23,12 @@ class s2(Scene):
 
     def construct(self):
         self.diameter_angle()
-        self.right_angle()
-        self.double_relation()
+        # self.right_angle()
+        # self.double_relation()
         pass
 
-    # 直径所对的圆周角是直角
+    # 在屏幕中间显示一个圆
+    # 分别向上和向下移动，作为接下来两个动画的基础
     def diameter_angle(self):
         self.origin = Dot(ORIGIN)
         self.origin_lable = MathTex("O").next_to(self.origin, UP)
@@ -74,15 +75,25 @@ class s2(Scene):
         self.play(
             FadeOut(self.radius_brace),
             FadeOut(self.radius_label),
-            GrowFromCenter(self.line_diameter),
+            FadeOut(self.radius_line),
+            #GrowFromCenter(self.line_diameter),
             self.origin_lable.animate.next_to(self.origin, DOWN),
             run_time = 1
         )
+        self.wait(1)
 
         self.circle_gr = VGroup(self.circle, 
-                                self.line_diameter,
+                                #self.line_diameter,
                                 self.origin,
                                 self.origin_lable)
+        
+        self.two_gr = VGroup(self.circle_gr.copy(),self.circle_gr.copy()).arrange(DOWN, buff=1)
+
+        self.play(TransformFromCopy(self.circle_gr, self.two_gr[0]),
+                  TransformFromCopy(self.circle_gr, self.two_gr[1]),
+                  FadeOut(self.circle_gr),
+                  run_time=1)
+
     
     # 在圆上任取一点, 连接和直径的端点
     def right_angle(self):

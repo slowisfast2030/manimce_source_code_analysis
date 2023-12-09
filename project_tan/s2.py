@@ -24,6 +24,8 @@ class s2(Scene):
     def construct(self):
         self.diameter_angle()
         self.show_two_property()
+        self.clear()
+
         # self.right_angle()
         # self.double_relation()
         pass

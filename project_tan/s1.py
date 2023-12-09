@@ -45,6 +45,8 @@ class s1(Scene):
         self.tri_flip()
         self.clear()
         self.introduce_four_half_angle_model()
+        self.clear()
+        self.solve()
         pass
 
     # 引入三角形
@@ -68,7 +70,10 @@ class s1(Scene):
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
         self.play(*ver_ani, run_time=1)
-    
+
+        # 需要保留一些mob供后面的方法使用
+        self.tri_gr = VGroup(triangle, ver_c, ver_a, ver_b)
+        
     # 引入半角
     def introduce_half_angle(self):
         
@@ -85,6 +90,9 @@ class s1(Scene):
 
         self.play(Write(angle_half), Write(label_angle_half), run_time=1)
 
+        # 需要保留一些mob供后面的方法使用
+        self.half_angle_gr = VGroup(half_line, ver_d, angle_half, label_angle_half)
+
     # 翻转动画
     def tri_flip(self):
         flip_axis = np.array(self.coord_c_shift) - np.array(self.coord_d_shift)
@@ -95,6 +103,12 @@ class s1(Scene):
         ver_e = MathTex("E", color=self.flip_color).next_to(self.coord_e_shift, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
         self.wait(2)
+
+        # 没有定义de直线
+        line_de = Line(self.coord_d_shift, self.coord_e_shift, color=self.flip_color)
+
+        # 需要保留一些mob供后面的方法使用
+        self.flip_gr = VGroup(line_de, ver_e)
 
     # 角平分线4个model
     def introduce_four_half_angle_model(self):
@@ -253,3 +267,12 @@ class s1(Scene):
     #     self.play(Write(line_pn), 
     #               Write(label_n), 
     #               run_time=1)
+
+    # 运用角平分线阶梯
+    def solve(self):
+        tri_gr = self.tri_gr
+        half_angle_gr = self.half_angle_gr
+        flip_gr = self.flip_gr
+        self.add(tri_gr, half_angle_gr, flip_gr)
+        self.wait()
+

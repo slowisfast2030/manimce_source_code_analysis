@@ -58,6 +58,13 @@ class s0(Scene):
                   run_time=2)
         self.wait()
         
+        # 将方法2和方法3变暗
+        # 并没有达到预期的效果，可以在方法2和方法3上添加一个矩形框
+        # self.play(method_2.animate.set_opacity(0.5),
+        #           method_3.animate.set_opacity(0.5)
+        #           ) 
+        # self.wait() 
+
         
 
     # 第一种解法

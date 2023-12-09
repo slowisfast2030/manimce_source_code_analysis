@@ -181,7 +181,10 @@ class s2(Scene):
                     run_time=3)
         pass
 
-    
+    # 解决问题
+    def solve(self):
+        pass
+
     # 在圆上任取一点, 连接和直径的端点
     def right_angle(self):
         self.clear()

@@ -42,6 +42,7 @@ class s3(Scene):
     # 开场
     # 屏幕中间出现一个三角形，屏幕下方出现pi生物
     def opening(self):
+        # 引入三角形
         triangle = Polygon(self.coord_c_shift, 
                            self.coord_a_shift, 
                            self.coord_b_shift, 
@@ -54,6 +55,10 @@ class s3(Scene):
         self.play(*ver_ani, 
                   ShowCreation(triangle),
                   run_time=1)
+        self.wait()
+        # 引入坐标平面
+        plane = NumberPlane()
+        self.play(Write(plane), run_time=1)
         self.wait()
         
 

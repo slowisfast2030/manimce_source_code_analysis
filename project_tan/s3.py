@@ -101,7 +101,7 @@ class s3(Scene):
 
 class pr(s3):
     def construct(self):
-        self.two_geometry()
+        #self.two_geometry()
         pass
 
         # 以费马点的例子介绍两种几何

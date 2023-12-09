@@ -16,6 +16,14 @@ class ShowCreation(Create):
 
 class s0(Scene):
     def setup(self):
+        self.coord_c = [-4,0,0]
+        self.coord_a = [0,0,0]
+        self.coord_b = [0,3,0]
+        self.coord_d = [0, 4/3, 0]
+        self.coord_e = [-4/5, 12/5, 0]
+
+        self.line_color = MAROON_B
+        self.label_color = WHITE
         pass
 
     def construct(self):

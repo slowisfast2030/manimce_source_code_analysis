@@ -57,6 +57,7 @@ class s3(Scene):
                   run_time=1)
         self.wait()
         
+        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b)
         # 引入坐标平面
         # 将整个画面网上提一点，为下方的pi生物让出空间
         plane = NumberPlane().shift(3*UP)
@@ -64,7 +65,11 @@ class s3(Scene):
                   run_time=1)
         self.wait()
         
-        # 淡出pi生物
+        # 淡出pi生物, 将整个场景移到屏幕中间
+        self.play(plane.animate.shift(-plane.get_center()),
+                tri_gr.animate.shift(-self.coord_a_shift),
+                  run_time=1)
+        self.wait()
 
         pass
 

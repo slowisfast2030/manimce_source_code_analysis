@@ -277,12 +277,12 @@ class s1(Scene):
         self.wait()
 
         # 设DA=x，则DE=x, BD=4-x
-        text1 = Tex(r"Suppose DA=$x$, then DE=$x$, BD=$4-x$").next_to(tri_gr, DOWN, buff=2).scale(0.7)
+        text1 = Tex("Suppose DA=$x$, then DE=$x$, BD=$4-x$").next_to(tri_gr, DOWN, buff=2).scale(0.7)
         self.play(Write(text1))
         self.wait()
 
         # 勾股定理
-        text2 = Text(r"在直角三角形DEB中, 由勾股定理可得:").next_to(text1, DOWN, buff=0.5).scale(0.7)
+        text2 = Tex("In the right-angled triangle DEB, \\\\ according to the Pythagorean theorem, \\\\ it can be derived that").next_to(text1, DOWN, buff=0.5).scale(0.7)
         self.play(Write(text2))
         self.wait()
         text3 = MathTex(r"BD^2=DE^2+BD^2").next_to(text2, DOWN, buff=0.5).scale(0.7)

@@ -27,3 +27,13 @@ class test(Scene):
         text = Tex("This is: $x^2 + y^2 = z^2$")
         self.play(Write(text))
         self.wait()
+
+
+
+class LineBreakTex(Scene):
+    def construct(self):
+        text = Tex("This is a very long line of text that we ", 
+                   "will break manually using \\\\ ", 
+                   "to create a new line.")
+        self.play(Write(text))
+        self.wait()

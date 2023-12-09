@@ -280,13 +280,13 @@ class s1(Scene):
         self.wait()
 
         # 设DA=x，则DE=x, BD=4-x
-        text1 = Tex("Suppose DA=$x$, then DE=$x$, BD=$4-x$").next_to(tri_gr, DOWN, buff=2).scale(self.text_scale)
+        text1 = Tex("Suppose DA=$x$, then DE=$x$, BD=$3-x$").next_to(tri_gr, DOWN, buff=2).scale(self.text_scale)
         line_ad = Line(self.coord_a_shift, self.coord_d_shift, color=self.line_color)
         line_de = Line(self.coord_d_shift, self.coord_e_shift, color=self.line_color)
         line_bd = Line(self.coord_b_shift, self.coord_d_shift, color=self.line_color)
         line_ad_label = MathTex("x", color=self.label_color).next_to(line_ad, RIGHT)
         line_de_label = MathTex("x", color=self.label_color).next_to(line_de, LEFT, 0.02)
-        line_bd_label = MathTex("4-x", color=self.label_color).next_to(line_bd, RIGHT)
+        line_bd_label = MathTex("3-x", color=self.label_color).next_to(line_bd, RIGHT)
 
         self.play(Write(text1),
                   Write(line_ad_label),
@@ -297,12 +297,16 @@ class s1(Scene):
 
         # 勾股定理
         text2 = Tex("In the right-angled triangle DEB, \\\\ according to the Pythagorean theorem, \\\\ it can be derived that").next_to(text1, DOWN, buff=0.5).scale(self.text_scale)
-        self.play(FadeIn(text2))
+        tri_deb = Polygon(self.coord_d_shift, self.coord_e_shift, self.coord_b_shift, color=self.line_color, stroke_width=3)
+        tri_deb.set_fill(color=BLUE, opacity=0.6)
+
+        self.play(FadeIn(text2),
+                  FadeIn(tri_deb))
         self.wait()
         text3 = MathTex("BD^2=DE^2+BE^2").next_to(text2, DOWN, buff=0.5).scale(self.text_scale)
         self.play(Write(text3))
         self.wait()
-        text4 = MathTex(r"(3-x)^2=(4-3)^2 + x^2").next_to(text3, DOWN, buff=0.5).scale(self.text_scale)
+        text4 = MathTex(r"(3-x)^2=x^2+(4-3)^2").next_to(text3, DOWN, buff=0.5).scale(self.text_scale)
         self.play(Write(text4))
         self.wait()
         text5 = MathTex(r"x=\frac{4}{3}").next_to(text4, DOWN, buff=0.5).scale(self.text_scale)

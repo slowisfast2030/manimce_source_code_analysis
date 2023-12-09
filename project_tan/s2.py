@@ -33,6 +33,9 @@ class s2(Scene):
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
+
+        # 文本缩放因子
+        self.text_scale = 0.8
         pass
 
     def construct(self):
@@ -243,6 +246,16 @@ class s2(Scene):
                     Write(e_label),
                     Write(f_label),
                     run_time=1)
+        
+        text1 = Tex("It is evident that \\\\ EF is the median line of triangle BCA").next_to(circle, DOWN, buff=1).scale(self.text_scale)
+        self.play(Write(text1), run_time=1)
+        self.wait()
+        text2 = MathTex(r"EF=ED+DF=\frac{5}{2}+2=\frac{9}{2}").next_to(text1, DOWN, buff=0.5).scale(self.text_scale)
+        self.play(Write(text2), run_time=1)
+        self.wait()
+        text3 = MathTex(r"\tan(\frac{\theta}{2})=\frac{BF}{EF}=\frac{1}{3}").next_to(text2, DOWN, buff=0.5).scale(self.text_scale)
+        self.play(Write(text3), run_time=1)
+        self.wait()
 
 
         pass

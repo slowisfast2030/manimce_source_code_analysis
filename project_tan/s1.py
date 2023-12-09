@@ -28,6 +28,15 @@ class s1(Scene):
         self.flip_color = BLUE
         self.line_show_color = BLUE
 
+        # 以abc三点画出的三角形在屏幕的偏左侧，需要调整下位置
+        #  [-2, 1.5, 0]是原三角形的中心
+        self.shift_vector = np.array([-2, 1.5, 0]) - UP
+        self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
+        self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
+        self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
+        self.coord_d_shift = np.array(self.coord_d) - self.shift_vector
+        self.coord_e_shift = np.array(self.coord_e) - self.shift_vector
+
     def construct(self):
         self.introduce_triangle()
         self.introduce_half_angle()
@@ -38,22 +47,22 @@ class s1(Scene):
 
     # 引入三角形
     def introduce_triangle(self):
-        triangle = Polygon(self.coord_c, 
-                           self.coord_a, 
-                           self.coord_b, 
+        triangle = Polygon(self.coord_c_shift, 
+                           self.coord_a_shift, 
+                           self.coord_b_shift, 
                            color=self.line_color,
                            stroke_width= 3)
         # 需要知道这个三角形的中心在哪里
         # print(triangle.get_center()) 
         # [-2.   1.5  0. ]
-        triangle.shift(ORIGIN - np.array([-2, 1.5, 0]) + UP)
+        #triangle.shift(ORIGIN - np.array([-2, 1.5, 0]) + UP)
         #self.add(Dot(ORIGIN))
 
         self.play(ShowCreation(triangle), run_time=1)
 
-        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c, DOWN)
-        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a, DOWN)
-        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b, RIGHT)
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT)
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
         self.play(*ver_ani, run_time=1)
@@ -61,14 +70,14 @@ class s1(Scene):
     # 引入半角
     def introduce_half_angle(self):
         
-        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
+        half_line = Line(self.coord_c_shift, self.coord_d_shift, color=self.line_color)
         self.play(Write(half_line), run_time=1)
 
-        ver_d = MathTex("D", color=self.label_color).next_to(self.coord_d, RIGHT)
+        ver_d = MathTex("D", color=self.label_color).next_to(self.coord_d_shift, RIGHT)
         self.play(FadeIn(ver_d), run_time=1)
 
-        line_ca = Line(self.coord_c, self.coord_a)
-        line_cd = Line(self.coord_c, self.coord_d)
+        line_ca = Line(self.coord_c_shift, self.coord_a_shift)
+        line_cd = Line(self.coord_c_shift, self.coord_d_shift)
         angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
         label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
 
@@ -76,12 +85,12 @@ class s1(Scene):
 
     # 翻转动画
     def tri_flip(self):
-        flip_axis = np.array(self.coord_c) - np.array(self.coord_d)
-        flip_about_point = self.coord_c
-        flip_tri = Polygon(np.array(self.coord_c)+np.array([0.1, 0, 0]), self.coord_a, self.coord_d, color=self.flip_color)
+        flip_axis = np.array(self.coord_c_shift) - np.array(self.coord_d_shift)
+        flip_about_point = self.coord_c_shift
+        flip_tri = Polygon(np.array(self.coord_c_shift)+np.array([0.1, 0, 0]), self.coord_a_shift, self.coord_d_shift, color=self.flip_color)
         self.play(flip_tri.animate.rotate(PI, axis=flip_axis, about_point=flip_about_point))
         
-        ver_e = MathTex("E", color=self.flip_color).next_to(self.coord_e, 0.5*(LEFT+UP))
+        ver_e = MathTex("E", color=self.flip_color).next_to(self.coord_e_shift, 0.5*(LEFT+UP))
         self.play(FadeIn(ver_e), run_time=1)
         self.wait(2)
 

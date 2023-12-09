@@ -23,10 +23,13 @@ class s2(Scene):
         # for solve method
         self.line_color = MAROON_B
         self.label_color = WHITE
+        self.line_color_auxiliary = BLUE
+        self.label_color_auxiliary = BLUE
+
         self.coord_c = [-4,0,0]
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
-        self.shift_vector = np.array([-2, 1.5, 0]) - 1*UP
+        self.shift_vector = np.array([-2, 1.5, 0]) - 2*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
@@ -224,6 +227,23 @@ class s2(Scene):
         ).move_to(origin)   
         self.play(ShowCreation(circle), run_time=2)
         self.wait()
+
+        # 绘制三条辅助线,EB,EA,EF
+        coord_e_shift = circle.get_left()
+        coord_f_shift = 0.5*(self.coord_a_shift + self.coord_b_shift)
+        line_eb = Line(coord_e_shift, self.coord_b_shift, color=self.line_color_auxiliary)
+        line_ea = Line(coord_e_shift, self.coord_a_shift, color=self.line_color_auxiliary)
+        line_ef = Line(coord_e_shift, coord_f_shift, color=self.line_color_auxiliary)
+        e_label = MathTex("E", color=self.label_color_auxiliary).next_to(coord_e_shift, LEFT)
+        f_label = MathTex("F", color=self.label_color_auxiliary).next_to(coord_f_shift, LEFT)
+
+        self.play(ShowCreation(line_eb),
+                    ShowCreation(line_ea),
+                    ShowCreation(line_ef),
+                    Write(e_label),
+                    Write(f_label),
+                    run_time=1)
+
 
         pass
 

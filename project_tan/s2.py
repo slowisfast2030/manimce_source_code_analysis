@@ -20,6 +20,8 @@ class s2(Scene):
         self.stroke_color = WHITE
         self.radial_line_color = MAROON_B
 
+        # for solve method
+        self.line_color = MAROON_B
         self.coord_c = [-4,0,0]
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
@@ -189,13 +191,30 @@ class s2(Scene):
         self.play(Rotate(circle_point, -PI, about_point=circle_1.get_center(), rate_func=linear),
                     Rotate(point_c, -PI, about_point=circle_2.get_center(), rate_func=linear), 
                     run_time=3)
+        self.wait()
         pass
 
     # 解决问题
     def solve(self):
+        triangle = Polygon(self.coord_c_shift, 
+                           self.coord_a_shift, 
+                           self.coord_b_shift, 
+                           color=self.line_color,
+                           stroke_width= 3)
+        
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        self.play(*ver_ani, 
+                  ShowCreation(triangle),
+                  run_time=1)
+        self.wait()
         pass
 
     # 在圆上任取一点, 连接和直径的端点
+    # 已合并到show_two_property中
     def right_angle(self):
         self.clear()
         self.add(self.circle_gr)
@@ -256,6 +275,7 @@ class s2(Scene):
         circle_point_lable.remove_updater(circle_point_lable_updater)
 
     # 圆心角和圆周角之间的关系
+    # 已合并到show_two_property中
     def double_relation(self):
         self.clear()
         circle, line_diameter, origin, origin_lable = self.circle_gr

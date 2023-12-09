@@ -22,6 +22,7 @@ class s2(Scene):
 
         # for solve method
         self.line_color = MAROON_B
+        self.label_color = WHITE
         self.coord_c = [-4,0,0]
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
@@ -35,9 +36,7 @@ class s2(Scene):
         self.diameter_angle()
         self.show_two_property()
         self.clear()
-
-        # self.right_angle()
-        # self.double_relation()
+        self.solve()
         pass
 
     # 在屏幕中间显示一个圆

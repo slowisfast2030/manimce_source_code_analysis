@@ -24,6 +24,11 @@ class s3(Scene):
         self.coord_d = [0, 4/3, 0]
         self.coord_e = [-4/5, 12/5, 0]
         self.coord_f = [1, 0, 0]
+
+        self.shift_vector = np.array([-2, 1.5, 0]) - 2*UP
+        self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
+        self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
+        self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
         pass
 
     def construct(self):
@@ -32,6 +37,12 @@ class s3(Scene):
         #self.two_geometry()
         pass
         
+    # 开场
+    # 屏幕中间出现一个三角形，屏幕下方出现pi生物
+    def opening(self):
+        
+        pass
+
     def introduce_triangle(self):
         plane = NumberPlane()
         self.play(Write(plane), run_time=1)

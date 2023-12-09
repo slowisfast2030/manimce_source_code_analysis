@@ -46,10 +46,10 @@ class s3(Scene):
         triangle = Polygon(self.coord_c_shift, 
                            self.coord_a_shift, 
                            self.coord_b_shift, 
-                           color=self.line_color, stroke_width=3)
-        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN)
-        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN)
-        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT)
+                           color=self.line_color, stroke_width=3).set_z_index(1)
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN).set_z_index(1)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN).set_z_index(1)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT).set_z_index(1)
         ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
 
         self.play(*ver_ani, 
@@ -59,7 +59,6 @@ class s3(Scene):
         # 引入坐标平面
         plane = NumberPlane().shift(2*UP)
         self.play(Write(plane), 
-                  Animation(triangle),
                   run_time=1)
         self.wait()
         

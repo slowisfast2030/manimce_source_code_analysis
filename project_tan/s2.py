@@ -26,7 +26,7 @@ class s2(Scene):
         self.coord_c = [-4,0,0]
         self.coord_a = [0,0,0]
         self.coord_b = [0,3,0]
-        self.shift_vector = np.array([-2, 1.5, 0]) - 4*UP
+        self.shift_vector = np.array([-2, 1.5, 0]) - 1*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
@@ -210,6 +210,21 @@ class s2(Scene):
                   ShowCreation(triangle),
                   run_time=1)
         self.wait()
+
+        origin = Dot(triangle.get_center())
+        origin_lable = MathTex("O").next_to(origin, DOWN)
+        self.play(ShowCreation(origin),
+                  Write(origin_lable),
+                  run_time=1)
+        
+        # 以origin为圆心，以OC为半径画圆
+        circle = Circle(
+            radius = 2.5,
+            stroke_color = self.stroke_color
+        ).move_to(origin)   
+        self.play(ShowCreation(circle), run_time=2)
+        self.wait()
+
         pass
 
     # 在圆上任取一点, 连接和直径的端点

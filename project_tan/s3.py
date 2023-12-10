@@ -77,7 +77,7 @@ class s3(Scene):
         self.play(Write(angle),
                   FadeIn(label_angle),)
         """
-        此时下方的pi生物老师说, 我们来看第二种方法
+        此时下方的pi生物老师说, 我们来看第三种方法
         """
 
         text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)

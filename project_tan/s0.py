@@ -74,7 +74,23 @@ class s0(Scene):
         self.play(Write(text), run_time=1)
         self.wait()
 
-        # 
+        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b)
+
+        tri_gr_up = tri_gr.copy()
+        tri_gr_mid = tri_gr.copy()
+        tri_gr_down = tri_gr.copy()
+        all_gr = VGroup(tri_gr_up, tri_gr_mid, tri_gr_down).arrange(DOWN, buff=1.5).scale(0.8)
+
+        self.play(FadeOut(angle),
+                  FadeOut(label_angle),
+                  FadeOut(text))
+        self.play(FadeOut(tri_gr),
+                  TransformFromCopy(tri_gr, tri_gr_up),
+                  TransformFromCopy(tri_gr, tri_gr_mid),
+                  TransformFromCopy(tri_gr, tri_gr_down))
+        self.wait()
+
+
         pass
 
     # 屏幕从上至下出现3种解法

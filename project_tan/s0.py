@@ -73,6 +73,8 @@ class s0(Scene):
         text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)
         self.play(Write(text), run_time=1)
         self.wait()
+
+        # 
         pass
 
     # 屏幕从上至下出现3种解法

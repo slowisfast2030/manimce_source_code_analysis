@@ -126,16 +126,20 @@ class s0(Scene):
                   run_time=2)
         self.wait()
         
-        rec_up = Rectangle(height=self.all_gr[0].get_height()+0.5, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[0]).set_z_index(2)
-        rec_mid = Rectangle(height=self.all_gr[1].get_height()+1.4, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[1]).set_z_index(2)
-        rec_down = Rectangle(height=self.all_gr[2].get_height()+2, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[2]).set_z_index(2)
+        rec_up = Rectangle(height=self.all_gr[0].get_height()+0.5, width=config.frame_width, color=BLACK, fill_opacity=0.6).move_to(self.all_gr[0]).set_z_index(2)
+        rec_mid = Rectangle(height=self.all_gr[1].get_height()+1.4, width=config.frame_width, color=BLACK, fill_opacity=0.6).move_to(self.all_gr[1]).set_z_index(2)
+        rec_down = Rectangle(height=self.all_gr[2].get_height()+2, width=config.frame_width, color=BLACK, fill_opacity=0.6).move_to(self.all_gr[2]).set_z_index(2)
 
         # 可视化1的长度
         # line = Line(ORIGIN, RIGHT).to_edge()
         # self.add(line)
 
-        self.play(FadeIn(rec_down), run_time=1)
-        self.wait()
+        self.play(FadeIn(rec_mid), FadeIn(rec_down), run_time=1)
+        self.wait(2)
+        self.play(FadeIn(rec_up), FadeIn(rec_down), FadeOut(rec_mid), run_time=1)
+        self.wait(2)
+        self.play(FadeIn(rec_up), FadeIn(rec_mid), FadeOut(rec_down),run_time=1)
+        self.wait(2)
 
     # 第一种解法
     def introduce_first_method(self):

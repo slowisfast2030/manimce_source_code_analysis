@@ -76,7 +76,6 @@ class s2(Scene):
                   run_time=1)
         self.play(Write(angle),
                   FadeIn(label_angle),)
-        self.wait(1)
         """
         此时下方的pi生物老师说, 我们来看第二种方法
         """
@@ -88,7 +87,21 @@ class s2(Scene):
         """
         淡出pi生物, 同时出现下方的动画
         """
-        
+        # 出现两行文字，第一行是“直角三角形”，第二行是“半角”
+        text1 = Text("直角三角形").scale(self.text_scale)
+        text2 = Text("半角").scale(self.text_scale)
+        text_gr = VGroup(text1, text2).arrange(DOWN, buff=1).to_edge(LEFT, buff=1)
+        text_gr.shift(3*DOWN)
+
+        self.play(FadeIn(text1),
+                  FadeIn(text2),
+                  run_time=1)
+        self.wait()
+
+        # 在text_gr右侧出现一个括号
+        brace = Brace(text_gr, direction=RIGHT)
+        self.play(GrowFromCenter(brace), run_time=1)
+        self.wait() 
 
         pass 
 

@@ -136,9 +136,9 @@ class s0(Scene):
 
         self.play(FadeIn(rec_mid), FadeIn(rec_down), run_time=1)
         self.wait(2)
-        self.play(FadeIn(rec_up), FadeIn(rec_down), FadeOut(rec_mid), run_time=1)
+        self.play(FadeIn(rec_up), FadeOut(rec_mid), run_time=1)
         self.wait(2)
-        self.play(FadeIn(rec_up), FadeIn(rec_mid), FadeOut(rec_down),run_time=1)
+        self.play(FadeIn(rec_mid), FadeOut(rec_down),run_time=1)
         self.wait(2)
 
     # 第一种解法

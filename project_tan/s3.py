@@ -33,13 +33,17 @@ class s3(Scene):
         pass
 
     def construct(self):
-        self.opening()
+        
+        self.introduce_triange_plane()
         self.introduce_vertical_line() 
         pass
         
-    # 开场
+    # 快速回顾问题
     # 屏幕中间出现一个三角形，屏幕下方出现pi生物
-    def opening(self):
+    def review_problem(self):
+        pass
+
+    def introduce_triange_plane(self):
         # 引入三角形
         triangle = Polygon(self.coord_c_shift, 
                            self.coord_a_shift, 

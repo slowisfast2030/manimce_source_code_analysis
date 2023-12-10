@@ -30,7 +30,7 @@ class s0(Scene):
         self.stroke_color = WHITE
         self.radial_line_color = MAROON_B
 
-        self.shift_vector = np.array([-2, 1.5, 0]) - 2*UP
+        self.shift_vector = np.array([-2, 1.5, 0]) - 3*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
@@ -46,18 +46,17 @@ class s0(Scene):
     # 在屏幕中间出现一个简单的三角形，
     # 在三角形下方显示tan(alpha) = 3/4，求解tan(alpha/2)
     def opening(self):
-        triangle = Polygon(self.coord_c_shift,  
+        triangle = Polygon(self.coord_c_shift, 
                            self.coord_a_shift, 
                            self.coord_b_shift, 
-                           color=self.line_color, 
-                           stroke_width= 3)
-        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN)
-        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN)
-        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT)
-        self.play(ShowCreation(triangle),
-                  Write(ver_c),
-                  Write(ver_a),
-                  Write(ver_b),
+                           color=self.line_color, stroke_width=3).set_z_index(1)
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN).set_z_index(1)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN).set_z_index(1)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT).set_z_index(1)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        self.play(*ver_ani, 
+                  ShowCreation(triangle),
                   run_time=1)
         self.wait()
         

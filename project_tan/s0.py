@@ -30,10 +30,12 @@ class s0(Scene):
         self.stroke_color = WHITE
         self.radial_line_color = MAROON_B
 
-        self.shift_vector = np.array([-2, 1.5, 0]) - 3*UP
+        self.shift_vector = np.array([-2, 1.5, 0]) - 4*UP
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
+
+        self.text_scale = 0.9
         pass
 
     def construct(self):
@@ -68,7 +70,9 @@ class s0(Scene):
         self.play(Write(angle), Write(label_angle), run_time=1)
         self.wait()
 
-        
+        text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)
+        self.play(Write(text), run_time=1)
+        self.wait()
         pass
 
     # 屏幕从上至下出现3种解法

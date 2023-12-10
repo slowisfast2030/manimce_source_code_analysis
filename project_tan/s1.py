@@ -158,7 +158,7 @@ class s1(Scene):
         self.play_model_12()
         self.wait()
         self.play_model_34()
-        self.wait(1)
+        self.wait(2)
 
     def get_model_1(self):                
         coord_m = self.coord_a
@@ -277,7 +277,7 @@ class s1(Scene):
         tri_gr = self.tri_gr
         half_angle_gr = self.half_angle_gr
         flip_gr = self.flip_gr
-        self.add(tri_gr, half_angle_gr, flip_gr)
+        self.play(FadeIn(tri_gr), FadeIn(half_angle_gr), FadeIn(flip_gr))
         self.wait()
 
         # 设DA=x，则DE=x, BD=4-x

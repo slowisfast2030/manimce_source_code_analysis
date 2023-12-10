@@ -37,6 +37,7 @@ class s3(Scene):
 
     def construct(self):
         self.review_problem()
+        self.clear()
         """
         通过pr剪辑插入pr Scene
         """

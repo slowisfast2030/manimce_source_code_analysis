@@ -40,7 +40,7 @@ class s2(Scene):
 
     def construct(self):
         self.review_problem()
-        #self.diameter_angle()
+        self.diameter_angle()
         #self.show_two_property()
         #self.clear()
         #self.solve()
@@ -108,11 +108,24 @@ class s2(Scene):
         text3.next_to(brace, RIGHT, 0.5)
         self.play(GrowFromCenter(text3), run_time=1)
         self.wait()
+
+        """
+        多亏了gpt4, 实现了我一直想要的操作
+        """
+        mobjects_to_fade_out = [mobject for mobject in self.mobjects if mobject != text3]
+        self.text3 = text3
+        self.mobjects_to_fade_out = mobjects_to_fade_out
+
+        # self.play(*[FadeOut(mobject) for mobject in mobjects_to_fade_out])
+        # self.wait()
         pass 
 
     # 在屏幕中间显示一个圆
     # 分别向上和向下移动，作为接下来两个动画的基础
     def diameter_angle(self):
+        self.play(self.text3.animate.move_to(ORIGIN+UP*1),
+            *[FadeOut(mobject) for mobject in self.mobjects_to_fade_out])
+
         self.origin = Dot(ORIGIN)
         self.origin_lable = MathTex("O").next_to(self.origin, UP)
 

@@ -98,6 +98,11 @@ class s3(Scene):
         text_ana_gr = VGroup(text_ana_en, text_ana_ch).arrange(DOWN, 0.5)
         text_gr = VGroup(text_syn_gr, text_ana_gr).arrange(RIGHT, 1).shift(DOWN*3)
         #self.play(FadeIn(text_gr))
+        self.play(Write(text_syn_en))
+        self.wait()
+        self.play(Write(text_syn_ch))
+        self.wait()
+        self.play(FadeIn(text_ana_gr))
         self.wait()
 
         pass

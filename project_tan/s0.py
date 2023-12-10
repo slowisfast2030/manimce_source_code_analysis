@@ -126,12 +126,16 @@ class s0(Scene):
                   run_time=2)
         self.wait()
         
-        # 将方法2和方法3变暗
-        # 并没有达到预期的效果，可以在方法2和方法3上添加一个矩形框
-        # self.play(method_2.animate.set_opacity(0.5),
-        #           method_3.animate.set_opacity(0.5)
-        #           ) 
-        # self.wait() 
+        rec_up = Rectangle(height=self.all_gr[0].get_height()+0.5, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[0]).set_z_index(2)
+        rec_mid = Rectangle(height=self.all_gr[1].get_height()+1.4, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[1]).set_z_index(2)
+        rec_down = Rectangle(height=self.all_gr[2].get_height()+2, width=config.frame_width, color=BLACK, fill_opacity=0.7).move_to(self.all_gr[2]).set_z_index(2)
+
+        # 可视化1的长度
+        # line = Line(ORIGIN, RIGHT).to_edge()
+        # self.add(line)
+
+        self.play(FadeIn(rec_down), run_time=1)
+        self.wait()
 
     # 第一种解法
     def introduce_first_method(self):

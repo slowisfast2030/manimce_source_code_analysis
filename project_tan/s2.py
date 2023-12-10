@@ -84,6 +84,12 @@ class s2(Scene):
         text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)
         self.play(FadeIn(text), run_time=1)
         self.wait()
+
+        """
+        淡出pi生物, 同时出现下方的动画
+        """
+        
+
         pass 
 
     # 在屏幕中间显示一个圆

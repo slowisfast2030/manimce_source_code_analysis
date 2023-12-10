@@ -41,9 +41,9 @@ class s2(Scene):
     def construct(self):
         self.review_problem()
         self.diameter_angle()
-        #self.show_two_property()
-        #self.clear()
-        #self.solve()
+        self.show_two_property()
+        self.clear()
+        self.solve()
         pass
 
     # 在第二章开头，首先需要回顾题目！！！且快速
@@ -126,7 +126,7 @@ class s2(Scene):
         self.play(self.text3.animate.move_to(ORIGIN+UP*3.2),
             *[FadeOut(mobject) for mobject in self.mobjects_to_fade_out])
         self.wait()
-        
+
         self.origin = Dot(ORIGIN)
         self.origin_lable = MathTex("O").next_to(self.origin, UP)
 

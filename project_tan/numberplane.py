@@ -43,7 +43,7 @@ class NumberPlaneExample(Scene):
         plane = NumberPlane(
             x_range=[-10, 10, 1],
             y_range=[-10, 10, 1],
-            axis_config={"color": BLUE},
+            axis_config={"color": WHITE},
             x_axis_config={
                 "numbers_to_include": range(-10, 11, 2),
                 "numbers_with_elongated_ticks": range(-10, 11, 2),
@@ -53,4 +53,6 @@ class NumberPlaneExample(Scene):
                 "numbers_with_elongated_ticks": range(-10, 11, 2),
             },
         )
-        self.add(plane)
+        #self.add(plane)
+        self.play(Write(plane))
+        self.wait()

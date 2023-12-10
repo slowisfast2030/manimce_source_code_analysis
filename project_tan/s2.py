@@ -108,7 +108,6 @@ class s2(Scene):
         text3.next_to(brace, RIGHT, 0.5)
         self.play(GrowFromCenter(text3), run_time=1)
         self.wait()
-
         pass 
 
     # 在屏幕中间显示一个圆

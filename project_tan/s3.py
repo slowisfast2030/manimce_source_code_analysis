@@ -126,6 +126,17 @@ class pr(s3):
                   run_time = 2)
         self.wait(1)
 
+        # 为了分别讲解两个几何, 需要设置一个起到遮罩的作用的矩形
+        rec_up = Rectangle(height=geo_gr[0].get_height()+0.5, width=config.frame_width, color=BLACK, fill_opacity=0.6).move_to(geo_gr[0]).set_z_index(2)
+        rec_down = Rectangle(height=geo_gr[1].get_height()+0.5, width=config.frame_width, color=BLACK, fill_opacity=0.6).move_to(geo_gr[1]).set_z_index(2)
+        
+        # 淡入下面的矩形
+        self.play(FadeIn(rec_down), run_time=1)
+        self.wait(1)
+        # 淡入上面的矩形
+        self.play(FadeIn(rec_up), FadeOut(rec_down),run_time=1)
+        self.wait(1)
+
         self.play(FadeOut(geo_gr))
         self.wait(1)
         pass

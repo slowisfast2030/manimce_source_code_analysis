@@ -132,12 +132,13 @@ class pr(s3):
         
         # 淡入下面的矩形
         self.play(FadeIn(rec_down), run_time=1)
-        self.wait(1)
+        self.wait(2)
         # 淡入上面的矩形
         self.play(FadeIn(rec_up), FadeOut(rec_down),run_time=1)
-        self.wait(1)
+        self.wait(2)
 
-        self.play(FadeOut(geo_gr))
+        self.play(FadeOut(geo_gr), 
+                  FadeOut(rec_up))
         self.wait(1)
         pass
 

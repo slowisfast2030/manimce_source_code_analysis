@@ -125,7 +125,8 @@ class s2(Scene):
     def diameter_angle(self):
         self.play(self.text3.animate.move_to(ORIGIN+UP*3.2),
             *[FadeOut(mobject) for mobject in self.mobjects_to_fade_out])
-
+        self.wait()
+        
         self.origin = Dot(ORIGIN)
         self.origin_lable = MathTex("O").next_to(self.origin, UP)
 

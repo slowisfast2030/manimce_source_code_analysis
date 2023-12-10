@@ -102,7 +102,7 @@ class s3(Scene):
         self.wait()
         self.play(Write(text_syn_ch))
         self.wait()
-        self.play(FadeIn(text_ana_gr))
+        self.play(GrowFromCenter(text_ana_gr))
         self.wait()
 
         pass

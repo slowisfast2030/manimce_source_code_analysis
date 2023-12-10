@@ -83,7 +83,7 @@ class s0(Scene):
         tri_gr_up = tri_gr.copy()
         tri_gr_mid = tri_gr.copy()
         tri_gr_down = tri_gr.copy()
-        all_gr = VGroup(tri_gr_up, tri_gr_mid, tri_gr_down).arrange(DOWN, buff=1.5).scale(0.8)
+        all_gr = VGroup(tri_gr_up, tri_gr_mid, tri_gr_down).arrange(DOWN, buff=2).scale(0.8)
 
         self.play(FadeOut(angle),
                   FadeOut(label_angle),
@@ -112,8 +112,6 @@ class s0(Scene):
         method_2 = self.introduce_second_method()
         method_3 = self.introduce_third_method()
 
-        # method_123 = VGroup(method_1, method_2, method_3).arrange(DOWN, buff=0.5).scale(0.7)
-        # self.add(method_123)
         self.play(ShowCreation(method_1),
                   ShowCreation(method_2),
                   ShowCreation(method_3),

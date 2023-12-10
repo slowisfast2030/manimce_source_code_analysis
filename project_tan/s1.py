@@ -26,7 +26,7 @@ class s1(Scene):
         self.label_color = WHITE
 
         self.flip_color = BLUE
-        self.line_show_color = BLUE
+        self.line_show_color = WHITE
 
         # 以abc三点画出的三角形在屏幕的偏左侧，需要调整下位置
         # [-2, 1.5, 0]是原三角形的中心
@@ -89,9 +89,10 @@ class s1(Scene):
         line_ca = Line(self.coord_c_shift, self.coord_a_shift)
         line_cd = Line(self.coord_c_shift, self.coord_d_shift)
         angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
-        label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
+        label_angle_half = MathTex(r"\frac{\alpha}{2}").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
 
         self.play(Write(angle_half), Write(label_angle_half), run_time=1)
+        self.wait()
 
         # 需要保留一些mob供后面的方法使用
         self.half_angle_gr = VGroup(half_line, ver_d, angle_half, label_angle_half)
@@ -219,7 +220,7 @@ class s1(Scene):
                   ShowCreation(line_pn_2.set_color(self.line_show_color)),
                   Write(label_m_2),
                   Write(label_n_2),
-                  run_time=1.5)
+                  run_time=2)
 
     # 合并model_3和model_4的play
     def play_model_34(self):
@@ -233,7 +234,7 @@ class s1(Scene):
                   Write(label_n_3), 
                   ShowCreation(line_pn_4.set_color(self.line_show_color)),
                   Write(label_n_4),
-                  run_time=1.5)
+                  run_time=2)
         
     # def play_model_1(self):
     #     line_gr, line_pm, line_pn, label_m, label_n = self.model_1

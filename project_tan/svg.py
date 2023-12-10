@@ -8,7 +8,7 @@ config.pixel_width = 1080
 config.pixel_height = 1920
 
 
-class SVGDemo(Scene):
+class svg(Scene):
     def construct(self):
         # 综合几何
         svg_compass = SVGMobject("compass.svg").set_color(GREEN_B)

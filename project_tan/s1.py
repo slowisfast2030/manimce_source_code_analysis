@@ -165,7 +165,7 @@ class s1(Scene):
         line_mid = DashedLine(0.5*(coord_dl+coord_ul), 0.5*(coord_ur+coord_dr)) 
 
         text = Text("角平分线4种模型").scale(0.7).next_to(line_up, UP, 0.8)
-        self.play(Write(text))
+        self.play(FadeIn(text))
         self.wait()
 
         self.play(GrowFromCenter(line_up),

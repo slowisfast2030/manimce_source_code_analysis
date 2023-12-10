@@ -39,11 +39,49 @@ class s2(Scene):
         pass
 
     def construct(self):
-        self.diameter_angle()
-        self.show_two_property()
-        self.clear()
-        self.solve()
+        self.review_problem()
+        #self.diameter_angle()
+        #self.show_two_property()
+        #self.clear()
+        #self.solve()
         pass
+
+    # 在第二章开头，首先需要回顾题目！！！且快速
+    def review_problem(self):
+        triangle = Polygon(self.coord_c_shift, 
+                           self.coord_a_shift, 
+                           self.coord_b_shift, 
+                           color=self.line_color, stroke_width=3).set_z_index(1)
+        point_c = Dot(self.coord_c_shift)
+        point_a = Dot(self.coord_a_shift)
+        point_b = Dot(self.coord_b_shift)
+
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN).set_z_index(1)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN).set_z_index(1)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT).set_z_index(1)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        
+        
+        line_ca = Line(self.coord_c_shift, self.coord_a_shift)
+        line_cd = Line(self.coord_c_shift, self.coord_b_shift)
+        angle = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
+        label_angle = MathTex(r"\alpha").next_to(angle, RIGHT).scale(0.8).shift(0.05*UP)
+
+        # 将所有的mob向上移动2个单位，为下方的pi生物让出空间
+        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b, angle, label_angle).shift(2*UP)
+
+        self.play(*ver_ani, 
+                  ShowCreation(triangle),
+                  run_time=1)
+        self.play(Write(angle),
+                  FadeIn(label_angle),)
+        self.wait()
+
+        text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)
+        self.play(FadeIn(text), run_time=1)
+        self.wait()
+        pass 
 
     # 在屏幕中间显示一个圆
     # 分别向上和向下移动，作为接下来两个动画的基础

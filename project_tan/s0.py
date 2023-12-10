@@ -40,7 +40,7 @@ class s0(Scene):
 
     def construct(self):
         self.opening()  
-        #self.introduce_three_methods()
+        self.introduce_three_methods()
         pass
 
 
@@ -52,6 +52,10 @@ class s0(Scene):
                            self.coord_a_shift, 
                            self.coord_b_shift, 
                            color=self.line_color, stroke_width=3).set_z_index(1)
+        point_c = Dot(self.coord_c_shift)
+        point_a = Dot(self.coord_a_shift)
+        point_b = Dot(self.coord_b_shift)
+
         ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN).set_z_index(1)
         ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN).set_z_index(1)
         ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT).set_z_index(1)
@@ -74,7 +78,7 @@ class s0(Scene):
         self.play(Write(text), run_time=1)
         self.wait()
 
-        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b)
+        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b, point_a, point_b, point_c)
 
         tri_gr_up = tri_gr.copy()
         tri_gr_mid = tri_gr.copy()
@@ -89,7 +93,7 @@ class s0(Scene):
                   TransformFromCopy(tri_gr, tri_gr_mid),
                   TransformFromCopy(tri_gr, tri_gr_down))
         self.wait()
-
+        self.all_gr = all_gr    
 
         pass
 
@@ -108,8 +112,8 @@ class s0(Scene):
         method_2 = self.introduce_second_method()
         method_3 = self.introduce_third_method()
 
-        method_123 = VGroup(method_1, method_2, method_3).arrange(DOWN, buff=0.5).scale(0.7)
-        self.add(method_123)
+        # method_123 = VGroup(method_1, method_2, method_3).arrange(DOWN, buff=0.5).scale(0.7)
+        # self.add(method_123)
         self.play(ShowCreation(method_1),
                   ShowCreation(method_2),
                   ShowCreation(method_3),
@@ -125,28 +129,26 @@ class s0(Scene):
 
     # 第一种解法
     def introduce_first_method(self):
-        triangle = Polygon(self.coord_c, 
-                           self.coord_a, 
-                           self.coord_b, 
-                           color=self.line_color,
-                           stroke_width= 3)
-        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c, DOWN)
-        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a, DOWN)
-        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b, RIGHT)
+        tri_gr_up = self.all_gr[0]
+        point_a = tri_gr_up[4]
+        point_b = tri_gr_up[5]
+        point_c = tri_gr_up[6]
+        # 根据比例计算出点D的坐标
+        point_d = Dot(5/9*point_a.get_center() + 4/9*point_b.get_center())
 
-        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
+        half_line = Line(point_c.get_center(), point_d.get_center(), color=self.line_color)
 
-        ver_d = MathTex("D", color=self.label_color).next_to(self.coord_d, RIGHT)
+        ver_d = MathTex("D", color=self.label_color).next_to(point_d, RIGHT)
 
-        line_ca = Line(self.coord_c, self.coord_a)
-        line_cd = Line(self.coord_c, self.coord_d)
+        line_ca = Line(point_c.get_center(), point_a.get_center())
+        line_cd = Line(point_c.get_center(), point_d.get_center())
         angle_half = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
-        label_angle_half = MathTex(r"\alpha").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
+        label_angle_half = MathTex(r"\frac{\alpha}{2}").next_to(angle_half, RIGHT).scale(0.8).shift(0.05*UP)
         
-        result = VGroup(triangle, 
-                        ver_c, ver_a, ver_b, 
-                        half_line, ver_d,
-                        angle_half, label_angle_half)
+        result = VGroup(half_line, 
+                        ver_d,
+                        angle_half, 
+                        label_angle_half)
         return result
         
     # 第二种解法

@@ -45,7 +45,7 @@ class s0(Scene):
 
 
     
-    # 在屏幕中间出现一个简单的三角形，
+    # 在屏幕上方出现一个简单的三角形，下方位置留给pi生物
     # 在三角形下方显示tan(alpha) = 3/4，求解tan(alpha/2)
     def opening(self):
         triangle = Polygon(self.coord_c_shift, 

@@ -60,6 +60,15 @@ class s0(Scene):
                   run_time=1)
         self.wait()
         
+        line_ca = Line(self.coord_c_shift, self.coord_a_shift)
+        line_cd = Line(self.coord_c_shift, self.coord_b_shift)
+        angle = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
+        label_angle = MathTex(r"\alpha").next_to(angle, RIGHT).scale(0.8).shift(0.05*UP)
+
+        self.play(Write(angle), Write(label_angle), run_time=1)
+        self.wait()
+
+        
         pass
 
     # 屏幕从上至下出现3种解法

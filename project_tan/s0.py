@@ -175,26 +175,16 @@ class s0(Scene):
 
     # 第三种解法    
     def introduce_third_method(self):
-        plane = NumberPlane()
-        triangle = Polygon(self.coord_c, self.coord_a, self.coord_b, color=self.line_color, stroke_width= 3)
+        
+        tri_gr_down = self.all_gr[2]
+        point_a = tri_gr_down[4]
+        point_b = tri_gr_down[5]
+        point_c = tri_gr_down[6]
 
-        ver_c = MathTex("C", color=WHITE).next_to(self.coord_c, DOWN)
-        ver_a = MathTex("A", color=WHITE).next_to(self.coord_a, DOWN)
-        ver_b = MathTex("B", color=WHITE).next_to(self.coord_b, RIGHT)
+        plane = NumberPlane().move_to(tri_gr_down.get_center()).scale(0.6)
+        
 
-        # 显示角平分线
-        half_line = Line(self.coord_c, self.coord_d, color=self.line_color)
-        ver_d = MathTex("D", color=WHITE).next_to(self.coord_d, RIGHT)
-
-        # 显示直线CD的垂线
-        line_ef = Line(self.coord_e, self.coord_f, color=self.line_color)
-        ver_e = MathTex("E", color=WHITE).next_to(self.coord_e, LEFT)
-        ver_f = MathTex("F", color=WHITE).next_to(self.coord_f, DOWN)
-
-        result = VGroup(plane, 
-                        triangle, ver_c, ver_a, ver_b, 
-                        half_line, ver_d, 
-                        line_ef, ver_e, ver_f)
+        result = VGroup(plane)
         return result
 
     

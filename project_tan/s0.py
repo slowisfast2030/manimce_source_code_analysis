@@ -113,16 +113,16 @@ class s0(Scene):
         method_3 = self.introduce_third_method()
 
         # 为每一个方法添加文字说明
-        text_1 = Text("法一").scale(self.text_scale).next_to(self.all_gr[0], LEFT, 0.5)
-        text_2 = Text("法二").scale(self.text_scale).next_to(self.all_gr[1], LEFT, 0.5)
-        text_3 = Text("法三").scale(self.text_scale).next_to(self.all_gr[2], LEFT, 0.5)
+        # text_1 = Text("法一").scale(self.text_scale).next_to(self.all_gr[0], LEFT, 0.5)
+        # text_2 = Text("法二").scale(self.text_scale).next_to(self.all_gr[1], LEFT, 0.5)
+        # text_3 = Text("法三").scale(self.text_scale).next_to(self.all_gr[2], LEFT, 0.5)
 
         self.play(ShowCreation(method_1),
                   ShowCreation(method_2),
                   ShowCreation(method_3),
-                    Write(text_1),
-                    Write(text_2),
-                    Write(text_3),
+                    # Write(text_1),
+                    # Write(text_2),
+                    # Write(text_3),
                   run_time=2)
         self.wait()
         

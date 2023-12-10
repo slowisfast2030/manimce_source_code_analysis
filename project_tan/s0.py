@@ -153,24 +153,24 @@ class s0(Scene):
         
     # 第二种解法
     def introduce_second_method(self):
-        origin = Dot(ORIGIN)
+        tri_gr_mid = self.all_gr[1]
+        point_a = tri_gr_mid[4]
+        point_b = tri_gr_mid[5]
+        point_c = tri_gr_mid[6]
+
+        # 圆心是c和b的中点
+        origin = Dot((point_c.get_center() + point_b.get_center())/2)
         origin_lable = MathTex("O").next_to(origin, UP)
 
         circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color
-        )
-        radius_line = Line(
-            circle.get_center(),
-            circle.get_right(),
-            color = self.radial_line_color
-        )
-        radius_brace = Brace(radius_line, buff = SMALL_BUFF)
-        radius_label = radius_brace.get_tex("R", buff = SMALL_BUFF)
+        ).move_to(origin)
 
-        result = VGroup(origin, origin_lable, 
-                        circle, radius_line, 
-                        radius_brace, radius_label)
+
+        result = VGroup(origin, 
+                        origin_lable, 
+                        circle)
         return result
 
     # 第三种解法    

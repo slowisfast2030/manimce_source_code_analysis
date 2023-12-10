@@ -106,7 +106,7 @@ class s2(Scene):
         # 在括号右侧出现一行文字“辅助圆”
         text3 = Text("辅助圆").scale(self.text_scale)   
         text3.next_to(brace, RIGHT, 0.5)
-        self.play(Write(text3), run_time=1)
+        self.play(GrowFromCenter(text3), run_time=1)
         self.wait()
 
         pass 

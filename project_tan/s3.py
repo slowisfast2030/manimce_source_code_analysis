@@ -30,10 +30,16 @@ class s3(Scene):
         self.coord_c_shift = np.array(self.coord_c) - self.shift_vector
         self.coord_a_shift = np.array(self.coord_a) - self.shift_vector
         self.coord_b_shift = np.array(self.coord_b) - self.shift_vector
+
+        # 文本缩放因子
+        self.text_scale = 0.8
         pass
 
     def construct(self):
-        
+        self.review_problem()
+        """
+        通过pr剪辑插入pr Scene
+        """
         self.introduce_triange_plane()
         self.introduce_vertical_line() 
         pass
@@ -41,6 +47,45 @@ class s3(Scene):
     # 快速回顾问题
     # 屏幕中间出现一个三角形，屏幕下方出现pi生物
     def review_problem(self):
+        triangle = Polygon(self.coord_c_shift, 
+                           self.coord_a_shift, 
+                           self.coord_b_shift, 
+                           color=self.line_color, stroke_width=3).set_z_index(1)
+        point_c = Dot(self.coord_c_shift)
+        point_a = Dot(self.coord_a_shift)
+        point_b = Dot(self.coord_b_shift)
+
+        ver_c = MathTex("C", color=self.label_color).next_to(self.coord_c_shift, DOWN).set_z_index(1)
+        ver_a = MathTex("A", color=self.label_color).next_to(self.coord_a_shift, DOWN).set_z_index(1)
+        ver_b = MathTex("B", color=self.label_color).next_to(self.coord_b_shift, RIGHT).set_z_index(1)
+        ver_ani = list(map(FadeIn, [ver_c, ver_a, ver_b]))
+
+        
+        
+        line_ca = Line(self.coord_c_shift, self.coord_a_shift)
+        line_cd = Line(self.coord_c_shift, self.coord_b_shift)
+        angle = Angle(line_ca, line_cd, radius=0.6, other_angle=False)
+        label_angle = MathTex(r"\alpha").next_to(angle, RIGHT).scale(0.8).shift(0.05*UP)
+
+        # 将所有的mob向上移动2个单位，为下方的pi生物让出空间
+        tri_gr = VGroup(triangle, ver_c, ver_a, ver_b, angle, label_angle).shift(1*UP)
+
+        self.play(*ver_ani, 
+                  ShowCreation(triangle),
+                  run_time=1)
+        self.play(Write(angle),
+                  FadeIn(label_angle),)
+        """
+        此时下方的pi生物老师说, 我们来看第二种方法
+        """
+
+        text = Tex("It is already to know that $tan(\\alpha) = \\frac{3}{4}$, \\\\ then what is value of $tan(\\frac{\\alpha}{2})$?").scale(self.text_scale).next_to(triangle, DOWN, 1)
+        self.play(FadeIn(text), run_time=1)
+        self.wait()
+
+        """
+        淡出pi生物, 同时出现下方的动画
+        """
         pass
 
     def introduce_triange_plane(self):
@@ -67,13 +112,6 @@ class s3(Scene):
                   run_time=1)
         self.wait()
         
-        """重要！！！
-        此时, 这里需要剪辑技巧
-        新建一个场景, 专门解释平面几何和解析几何
-        将这个场景剪辑到这里
-        然后再执行下面的代码
-        """
-
         # 淡出pi生物, 将整个场景移到屏幕中间
         self.play(plane.animate.shift(-plane.get_center()),
                   tri_gr.animate.shift(-self.coord_a_shift),

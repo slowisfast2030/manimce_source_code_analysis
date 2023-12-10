@@ -170,7 +170,7 @@ class pr(s3):
 
         line_a_sym_b = Line(point_a_sym.get_center(), bank_up[2].get_center(), color=RED)   
         
-        plane = NumberPlane().shift(bank_down[0].get_center()).scale(0.5).set_z_index(-1)
+        plane = NumberPlane().shift(bank_down[0].get_center()).scale(0.7).set_z_index(-1)
         point_c = Dot(plane.get_center() + RIGHT, color=WHITE)
         label_c = MathTex("C(x,y)", color=RED).next_to(point_c, DOWN)
         self.play(Write(plane), 

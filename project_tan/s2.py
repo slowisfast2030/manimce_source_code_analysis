@@ -103,6 +103,13 @@ class s2(Scene):
         self.play(GrowFromCenter(brace), run_time=1)
         self.wait() 
 
+        circle_origin = Circle(1.5).move_to(brace.get_center()+2*RIGHT)
+        circle_origin_lable = MathTex("O").next_to(circle_origin, DOWN)
+        self.play(ShowCreation(circle_origin),
+                  Write(circle_origin_lable),
+                  run_time=1)
+        self.wait()
+
         pass 
 
     # 在屏幕中间显示一个圆

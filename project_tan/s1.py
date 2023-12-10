@@ -154,6 +154,20 @@ class s1(Scene):
         model_34 = VGroup(self.model_3, self.model_4).arrange(RIGHT, buff=1)
         model_1234 = VGroup(model_12, model_34).arrange(DOWN, buff=2).scale(0.6)
 
+        # 获取model_1234左上角、右上角、左下角和右下角的坐标
+        coord_ul = model_1234.get_corner(UL) + UP*0.6
+        coord_ur = model_1234.get_corner(UR) + UP*0.6
+        coord_dl = model_1234.get_corner(DL) - UP*0.6
+        coord_dr = model_1234.get_corner(DR) - UP*0.6
+
+        line_up = DashedLine(coord_ul, coord_ur)
+        line_down = DashedLine(coord_dl, coord_dr)
+        line_mid = DashedLine(0.5*(coord_dl+coord_ul), 0.5*(coord_ur+coord_dr)) 
+        self.play(GrowFromCenter(line_up),
+                  GrowFromCenter(line_down),
+                  GrowFromCenter(line_mid))
+        self.wait()
+
         self.remove(self.line_gr)
         self.play_model_12()
         self.wait()

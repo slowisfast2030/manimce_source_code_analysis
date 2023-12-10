@@ -87,6 +87,19 @@ class s3(Scene):
         """
         淡出pi生物, 同时出现下方的动画
         """
+        # 出现文字：systhetic geometry
+        text_syn_en = Tex("Synthetic Geometry").scale(self.text_scale)
+        text_syn_ch = Text("综合几何").scale(self.text_scale)
+        # 出现文字：analytic geometry
+        text_ana_en = Tex("Analytic Geometry").scale(self.text_scale)
+        text_ana_ch = Text("解析几何").scale(self.text_scale)
+
+        text_syn_gr = VGroup(text_syn_en, text_syn_ch).arrange(DOWN, 0.5)
+        text_ana_gr = VGroup(text_ana_en, text_ana_ch).arrange(DOWN, 0.5)
+        text_gr = VGroup(text_syn_gr, text_ana_gr).arrange(RIGHT, 1).shift(DOWN*4)
+        self.play(FadeIn(text_gr))
+        self.wait()
+
         pass
 
     def introduce_triange_plane(self):

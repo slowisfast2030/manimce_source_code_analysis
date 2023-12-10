@@ -90,8 +90,8 @@ class s2(Scene):
         # 出现两行文字，第一行是“直角三角形”，第二行是“半角”
         text1 = Text("直角三角形").scale(self.text_scale)
         text2 = Text("半角").scale(self.text_scale)
-        text_gr = VGroup(text1, text2).arrange(DOWN, buff=1).to_edge(LEFT, buff=1)
-        text_gr.shift(3*DOWN)
+        text12_gr = VGroup(text1, text2).arrange(DOWN, buff=1).to_edge(LEFT, buff=1.5)
+        text12_gr.shift(3*DOWN)
 
         self.play(FadeIn(text1),
                   FadeIn(text2),
@@ -99,15 +99,14 @@ class s2(Scene):
         self.wait()
 
         # 在text_gr右侧出现一个括号
-        brace = Brace(text_gr, direction=RIGHT)
+        brace = Brace(text12_gr, direction=RIGHT, buff=0.5)
         self.play(GrowFromCenter(brace), run_time=1)
         self.wait() 
 
-        circle_origin = Circle(1.5).move_to(brace.get_center()+2*RIGHT)
-        circle_origin_lable = MathTex("O").next_to(circle_origin, DOWN)
-        self.play(ShowCreation(circle_origin),
-                  Write(circle_origin_lable),
-                  run_time=1)
+        # 在括号右侧出现一行文字“辅助圆”
+        text3 = Text("辅助圆").scale(self.text_scale)   
+        text3.next_to(brace, RIGHT, 0.5)
+        self.play(Write(text3), run_time=1)
         self.wait()
 
         pass 

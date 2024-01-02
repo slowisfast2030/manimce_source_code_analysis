@@ -83,7 +83,9 @@ class RingSum(Scene):
 
         最后, 通过动画将所有的圆环(target)和加号、省略号一起显示出来
         """
+        # target和符号
         arranged_group = VGroup()
+        # 符号
         tex_mobs = VGroup()
         for ring in rings:
             ring.generate_target()

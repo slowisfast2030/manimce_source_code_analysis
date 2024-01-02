@@ -134,10 +134,13 @@ class RingSum(Scene):
         genius!!!
         """
         # 注意path_arc参数
+        # 负号表示顺时针，正号表示逆时针
+        # 绝对值越大，弧线角度越大
         draw_ring_sum_anims += [
             MoveToTarget(
                 ring,
                 run_time = 3,
+                #path_arc = -np.pi/3,
                 path_arc = -np.pi/3,
                 rate_func = squish_rate_func(smooth, alpha, alpha+0.8)
             )

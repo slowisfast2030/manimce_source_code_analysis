@@ -148,7 +148,7 @@ class RingSum(Scene):
         ]
         """
         深入对比下上面代码中的rate_func和下面代码中的lag_ratio
-        
+
         ring_anim_kwargs = {
             "run_time" : 3,
             "lag_ratio" : 0.1
@@ -157,6 +157,8 @@ class RingSum(Scene):
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
+
+        注: rings和unwrapped_rings是VGroup
         """
         
         ring_sum = VGroup(rings, tex_mobs)

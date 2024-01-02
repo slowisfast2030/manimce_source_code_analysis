@@ -119,6 +119,13 @@ class RingSum(Scene):
                 dots.get_center(), last_ring.target.get_center(), alpha
             ))
 
+        #print(dots.get_left())
+        #print(dots.get_center())
+        """
+        [-5.33114233  0.13028663  0.        ]
+        [-5.31205727  0.13028663  0.        ]
+        """
+
         draw_ring_sum_anims = [Write(tex_mobs)]
         draw_ring_sum_anims += [
             MoveToTarget(

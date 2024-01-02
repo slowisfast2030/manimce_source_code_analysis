@@ -33,8 +33,10 @@ class RingSum(Scene):
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
-        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]
-        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:64][::-1]
+        # 将64改为32。因为圆弧一共只有32个点
+        # 将32改为28。可以更清楚的看见缺口位置
+        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:28]
+        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:28][::-1]
 
         line1 = [outer_circle[-1], 
                  interpolate(outer_circle[-1], inner_circle[0], 0.3),

@@ -73,7 +73,10 @@ class RingSum(Scene):
     def get_ring_sum(self, rings):
         """
         整体的思路：
-        将前3个圆环和最后一个圆环用加号了省略号相连
+        将前3个圆环(target)和最后一个圆环(target)用加号了省略号相连
+        然后通过arrange函数排列好
+
+        剩余的圆环设置为透明，
         """
         arranged_group = VGroup()
         tex_mobs = VGroup()

@@ -1,5 +1,11 @@
 from manim import *
 
+"""
+左上角出现一个圆
+圆变成圆环
+圆环展开为长条
+"""
+
 # 下面这几行设置竖屏
 config.frame_width = 9
 config.frame_height = 16

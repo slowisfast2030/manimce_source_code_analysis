@@ -122,10 +122,18 @@ class RingSum(Scene):
 
         如果不旋转, 就会将开口放在右侧
         这样比较适合展开为竖直的长条
-        """
-        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]
-        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:64][::-1]
 
+        以cairo作为后端
+        circle的点集数目是多少?
+        """
+        #print(len(Circle(radius=radius+dR).rotate(PI/2).get_points()))
+        # 经过打印后发现点集的数目是32，不是64
+        # 奇怪：为何一开始写64呢？
+        # 圆是由8段圆弧拼接而成，每一段圆弧由4个点构成
+        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:32]
+        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:32][::-1]
+
+        # 遵守manimce的约定，每一段贝塞尔曲线由4个点构成
         line1 = [outer_circle[-1], 
                  interpolate(outer_circle[-1], inner_circle[0], 0.3),
                  interpolate(outer_circle[-1], inner_circle[0], 0.6),

@@ -71,6 +71,10 @@ class RingSum(Scene):
         return rings
     
     def get_ring_sum(self, rings):
+        """
+        整体的思路：
+        将前3个圆环和最后一个圆环用加号了省略号相连
+        """
         arranged_group = VGroup()
         tex_mobs = VGroup()
         for ring in rings:

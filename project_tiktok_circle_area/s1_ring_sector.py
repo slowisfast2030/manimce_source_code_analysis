@@ -4,6 +4,7 @@ import itertools as it
 """
 上下屏各出现一个圆
 分别采取ring和sector的切割方法
+展示圆的面积
 """
 # 下面这几行设置竖屏
 config.frame_width = 9

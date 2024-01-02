@@ -152,3 +152,20 @@ class RingSum(Scene):
         ring_sum.tex_mobs = tex_mobs
         
         return ring_sum, draw_ring_sum_anims
+    
+"""from gpt4
+Here's what the path_arc parameter does in detail:
+
+Purpose: It determines the curvature of the path that the mobject takes 
+from its initial to its final position. Instead of moving in a straight 
+line, the mobject will move along an arc.
+
+Value: The value of path_arc is given in radians. In your code, np.pi/2 
+is used, which is equivalent to 90 degrees. This means the mobject will 
+move along a quarter-circle arc from its starting point to its ending point.
+
+Visualization: If you imagine the starting and ending points of the mobject's 
+path as two points on a circle, the path_arc determines how much of that 
+circle's circumference the mobject will follow. A path_arc of np.pi/2 means 
+it follows a path equivalent to a quarter of the circle's circumference.
+"""

@@ -146,6 +146,18 @@ class RingSum(Scene):
             )
             for ring, alpha in zip(rings, np.linspace(0, 0.2, len(rings)))
         ]
+        """
+        深入对比下上面代码中的rate_func和下面代码中的lag_ratio
+        
+        ring_anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.1
+        }
+
+        self.play(
+            Transform(rings, unwrapped_rings, **ring_anim_kwargs),
+        )
+        """
         
         ring_sum = VGroup(rings, tex_mobs)
         ring_sum.rings = VGroup(*[r.target for r in rings])

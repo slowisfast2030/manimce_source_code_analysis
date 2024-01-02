@@ -1,4 +1,4 @@
 git pull
 git add *
-git commit -m "产品方法论: 用户 + 迭代"
+git commit -m "借势"
 git push

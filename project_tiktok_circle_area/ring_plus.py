@@ -127,6 +127,9 @@ class RingSum(Scene):
         """
 
         draw_ring_sum_anims = [Write(tex_mobs)]
+        """
+        genius!!!
+        """
         draw_ring_sum_anims += [
             MoveToTarget(
                 ring,

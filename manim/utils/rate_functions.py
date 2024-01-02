@@ -217,7 +217,9 @@ def not_quite_there(
 def wiggle(t: float, wiggles: float = 2) -> float:
     return there_and_back(t) * np.sin(wiggles * np.pi * t)
 
-
+"""
+将整个动画压缩到[a, b]区间内
+"""
 def squish_rate_func(
     func: typing.Callable[[float], float],
     a: float = 0.4,

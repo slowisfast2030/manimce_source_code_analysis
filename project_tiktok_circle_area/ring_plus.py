@@ -159,6 +159,10 @@ class RingSum(Scene):
         )
 
         注: rings和unwrapped_rings是VGroup
+
+        一点简单的思考:
+        如果只有一个MoveToTarget动画, 那么rate_func参数没意义
+        如果有多个MoveToTarget动画, 那么rate_func参数有意义
         """
         
         ring_sum = VGroup(rings, tex_mobs)

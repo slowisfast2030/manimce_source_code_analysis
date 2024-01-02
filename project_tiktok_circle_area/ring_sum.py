@@ -115,6 +115,14 @@ class RingSum(Scene):
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
+        """
+        为何要旋转90度
+        当旋转90度后, 圆的起点正好在正上方
+        后续需要将这个圆环展开横向的长条, 开口放在正上方比较好看
+
+        如果不旋转, 就会将开口放在右侧
+        这样比较适合展开为竖直的长条
+        """
         outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:64]
         inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:64][::-1]
 
@@ -128,9 +136,18 @@ class RingSum(Scene):
                 interpolate(inner_circle[-1], outer_circle[0], 0.6),
                 outer_circle[0]]
         
+        """
+        将内环和外环的点集
+        加上连接内外环的直线
+        一起作为新的点集
+        """
         points_to_add = list(outer_circle) + line1 + list(inner_circle) + line2
+
         ring.append_points(points_to_add)
         ring.set_stroke(width = 0)
+        """
+        
+        """
         ring.set_fill(color, opacity = 1)
         ring.move_to(self.circle)
         ring.R = radius 

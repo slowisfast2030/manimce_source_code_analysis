@@ -89,6 +89,7 @@ class RingSum(Scene):
             ring.generate_target()
             ring.target.set_stroke(width = 0)
 
+        # 前3个圆环
         for ring in rings[:self.num_rings_in_ring_sum_start]:
             plus = Tex("+")
             arranged_group.add(ring.target)
@@ -99,20 +100,23 @@ class RingSum(Scene):
         arranged_group.add(dots, plus)
         tex_mobs.add(dots, plus)
         last_ring = rings[-1]
-
+        # 最后一个圆环
         arranged_group.add(last_ring.target)
         arranged_group.arrange(DOWN, buff = SMALL_BUFF)
+        # 调整整体的高度
         arranged_group.set_height(config.frame_height-1)
         arranged_group.to_corner(DOWN+LEFT, buff = MED_SMALL_BUFF)
         for mob in tex_mobs:
             mob.scale(0.7)
 
+        # 为剩余的圆环设置style和位置
         middle_rings = rings[self.num_rings_in_ring_sum_start:-1]
         alphas = np.linspace(0, 1, len(middle_rings))
         for ring, alpha in zip(middle_rings, alphas):
             ring.target.set_fill(opacity = 0)
             ring.target.move_to(interpolate(
-                dots.get_left(), last_ring.target.get_center(), alpha
+                #dots.get_left(), last_ring.target.get_center(), alpha
+                dots.get_center(), last_ring.target.get_center(), alpha
             ))
 
         draw_ring_sum_anims = [Write(tex_mobs)]

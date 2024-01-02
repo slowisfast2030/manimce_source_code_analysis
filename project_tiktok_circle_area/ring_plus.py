@@ -28,7 +28,7 @@ class RingSum(Scene):
         rings = self.get_rings()
         self.add(rings)
         ring_sum, draw_ring_sum_anims = self.get_ring_sum(rings)
-        #self.play(*draw_ring_sum_anims)
+        self.play(*draw_ring_sum_anims)
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()

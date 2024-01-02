@@ -163,6 +163,9 @@ class RingSum(Scene):
         一点简单的思考:
         如果只有一个MoveToTarget动画, 那么rate_func参数没意义
         如果有多个MoveToTarget动画, 那么rate_func参数有意义
+
+        本质来看, rate_func和lag_ratio所达到的效果是类似的
+        同类动画如果不施加这两个参数, 会显得很生硬
         """
         
         ring_sum = VGroup(rings, tex_mobs)

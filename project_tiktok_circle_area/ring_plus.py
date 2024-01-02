@@ -133,6 +133,7 @@ class RingSum(Scene):
         """
         genius!!!
         """
+        # 注意path_arc参数
         draw_ring_sum_anims += [
             MoveToTarget(
                 ring,

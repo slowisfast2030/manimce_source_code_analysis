@@ -101,6 +101,7 @@ class RingSum(Scene):
         )
 
         self.wait()
+        # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),
             rings.animate.move_to(unwrapped_rings.get_top()),

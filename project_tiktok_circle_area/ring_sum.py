@@ -191,6 +191,16 @@ class RingSum(Scene):
         
         # 如果manim没有自己想要的形状，可以自己构造点集
         result = VMobject()
+        """
+        这里有一个魔鬼细节：
+        贝塞尔曲线和折线上的点的对应关系
+        需要深刻理解
+
+        通过set_points_as_corners方法传入了18个点【折线】的列表
+        但这18个点需要进一步转换为更本质的贝塞尔曲线
+        
+        (18-1)*4=68
+        """
         result.set_points_as_corners([
             interpolate(np.pi*R_plus_dr*LEFT,  np.pi*R_plus_dr*RIGHT, a)
             for a in np.linspace(0, 1, n_anchors//2)
@@ -198,6 +208,8 @@ class RingSum(Scene):
             interpolate(np.pi*R*RIGHT+ring.dR*UP,  np.pi*R*LEFT+ring.dR*UP, a)
             for a in np.linspace(0, 1, n_anchors//2)
         ])
+        # 68
+        # print(len(result.get_points()))
 
         line = [result.get_points()[-1], 
                 interpolate(result.get_points()[-1], result.get_points()[0], 0.3),

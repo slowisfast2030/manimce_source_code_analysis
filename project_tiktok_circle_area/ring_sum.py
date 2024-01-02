@@ -186,6 +186,8 @@ class RingSum(Scene):
         R = ring.R
         R_plus_dr = ring.R + ring.dR
         n_anchors = ring.get_num_curves()
+        # 18。每段圆弧由8段贝塞尔曲线构成。内外环，一共16段曲线。再加上两段直线。
+        # print(n_anchors)
         
         # 如果manim没有自己想要的形状，可以自己构造点集
         result = VMobject()
@@ -202,6 +204,9 @@ class RingSum(Scene):
                 interpolate(result.get_points()[-1], result.get_points()[0], 0.6),
                 result.get_points()[0]] 
         result.append_points(line)
+        # 猜测，这里的result的点集数目是32+32+4+4=72，这是圆环的点集的数目
+        # 经过打印，确实
+        # print(len(result.get_points()))
 
         result.set_style(
             stroke_color = ring.get_stroke_color(),

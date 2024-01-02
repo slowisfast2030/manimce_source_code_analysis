@@ -2,6 +2,7 @@ from manim import *
 
 """
 圆环的竖直相加
+用加号相连
 """
 # 下面这几行设置竖屏
 # config.frame_width = 9

@@ -95,6 +95,7 @@ class RingSum(Scene):
         }
         self.add(rings)
 
+        # 很有层次感
         self.play(
             FadeIn(rings, **ring_anim_kwargs),
         )
@@ -162,6 +163,7 @@ class RingSum(Scene):
         opengl后端不容易理解
         """
         ring.set_fill(color, opacity = 1)
+        # 在这里明确了ring的位置
         ring.move_to(self.circle)
         ring.R = radius 
         ring.dR = dR

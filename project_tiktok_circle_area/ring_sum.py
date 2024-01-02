@@ -146,7 +146,12 @@ class RingSum(Scene):
         ring.append_points(points_to_add)
         ring.set_stroke(width = 0)
         """
-        
+        我非常奇怪的一点:
+        这样人工构造出了点集之后
+        着色的时候是如何区分区域的内外呢？
+
+        cairo后端似乎很容易
+        opengl后端不容易理解
         """
         ring.set_fill(color, opacity = 1)
         ring.move_to(self.circle)

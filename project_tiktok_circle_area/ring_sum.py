@@ -211,6 +211,7 @@ class RingSum(Scene):
         # 68
         # print(len(result.get_points()))
 
+        # 将折线闭合
         line = [result.get_points()[-1], 
                 interpolate(result.get_points()[-1], result.get_points()[0], 0.3),
                 interpolate(result.get_points()[-1], result.get_points()[0], 0.6),

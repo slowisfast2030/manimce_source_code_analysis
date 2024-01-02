@@ -70,6 +70,7 @@ class RingSum(Scene):
         ])
         return rings
     
+    # 这个函数和艺术品一样
     def get_ring_sum(self, rings):
         """
         整体的思路：

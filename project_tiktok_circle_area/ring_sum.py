@@ -218,7 +218,7 @@ class RingSum(Scene):
                 result.get_points()[0]] 
         result.append_points(line)
         # 猜测，这里的result的点集数目是32+32+4+4=72，这是圆环的点集的数目
-        # 经过打印，确实
+        # 经过打印，确实 68+4=72
         # print(len(result.get_points()))
 
         result.set_style(

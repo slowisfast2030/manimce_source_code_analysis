@@ -36,7 +36,7 @@ class RingSum(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(self.circle_corner, buff = MED_LARGE_BUFF)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         
         self.radius_line = Line(
             self.circle.get_center(),

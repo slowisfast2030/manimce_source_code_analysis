@@ -45,6 +45,9 @@ class rings2rects(Scene):
             rect_index = index + 1
             ring.target = self.get_target_rect(ring, rect_index)    
         
+        """
+        黄金5s的第一部分
+        """
         self.play(*[
             MoveToTarget(
                 ring,
@@ -57,14 +60,20 @@ class rings2rects(Scene):
                 np.linspace(0, 0.75, len(self.rings))
             )])
         
-        # self.play(ApplyWave(
-        #     self.rings,
-        #     direction = RIGHT,
-        #     time_width=0.5,
-        #     amplitude=0.2,
-        #     run_time=3
-        # ))
-        # self.wait()
+        """
+        黄金5s的第二部分
+        """
+        ring_anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.1
+        }
+        self.rings_again = self.get_rings()
+        self.add(self.rings_again)
+        self.play(FadeOut(self.rings),
+                  FadeOut(self.ax_rects_curve),
+                  FadeIn(self.rings_again, **ring_anim_kwargs))
+        
+        pass
 
     def get_target_rect(self, ring: VMobject, rect_index):
         rect = self.rects[rect_index]

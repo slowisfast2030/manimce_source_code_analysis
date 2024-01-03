@@ -65,10 +65,10 @@ class rings2rects(Scene):
         """
         黄金5s的第二部分
         """
-        self.dR = 2/20
+        self.dR = 2/30
         self.wait()
         ring_anim_kwargs = {
-            "run_time" : 3,
+            "run_time" : 4,
             "lag_ratio" : 0.1
         }
         self.rings_again = VGroup(*reversed(self.get_rings())).rotate(PI/2)

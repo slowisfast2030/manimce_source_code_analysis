@@ -131,8 +131,10 @@ class rings2rects(Scene):
 
         # 获取黎曼矩形
         rects_left = ax.get_riemann_rectangles(
-            quadratic, x_range=[0, 3], dx=0.3, color=[BLUE, GREEN]
+            quadratic, x_range=[0, 3], dx=3/11, color=[BLUE, GREEN], input_sample_type="left"
         )
+        print(len(rects_left))
+        rects_left[2].set_opacity(0.5)
 
         res = VGroup()
         res.add(ax, rects_left, quadratic)

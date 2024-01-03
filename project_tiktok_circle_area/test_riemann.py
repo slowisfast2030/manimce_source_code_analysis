@@ -1,11 +1,11 @@
 from manim import *
 
 # 下面这几行设置竖屏
-config.frame_width = 9
-config.frame_height = 16
+# config.frame_width = 9
+# config.frame_height = 16
 
-config.pixel_width = 1080
-config.pixel_height = 1920
+# config.pixel_width = 1080
+# config.pixel_height = 1920
 
 class GetRiemannRectanglesExample(Scene):
     def construct(self):
@@ -60,7 +60,7 @@ class GetRiemannRectanglesExample(Scene):
                 stroke_width = 1./(n),
                 color=[BLUE, GREEN]
             )
-            for n in range(2, 6)
+            for n in range(2, 4)
         ]
 
         for new_rects in thinner_rects_list:

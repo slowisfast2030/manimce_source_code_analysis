@@ -74,7 +74,7 @@ class rings2rects(Scene):
             "run_time" : 4,
             "lag_ratio" : 0.1
         }
-        self.rings_again = VGroup(*reversed(self.get_rings())).rotate(PI/2).set_opacity(0.9)
+        self.rings_again = VGroup(*reversed(self.get_rings())).rotate(PI/2)
         self.add(self.rings_again)
         self.play(FadeOut(self.rings),
                   FadeOut(self.ax_rects_curve),
@@ -249,7 +249,7 @@ class rings2rects(Scene):
         rings = VGroup(*[
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
-        ])
+        ]).set_opacity(0.8)
         return rings
     
     def get_ax_rects_curve(self, **kwargs):

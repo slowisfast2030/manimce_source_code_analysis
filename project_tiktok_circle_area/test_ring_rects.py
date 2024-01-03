@@ -31,6 +31,7 @@ class rings2rects(Scene):
         self.add(self.ax_rects_curve)
 
         self.rects = self.ax_rects_curve[1]
+        self.rects.set_opacity(0.5)
 
         # 为每一个ring找到对应的rect
         for index, ring in enumerate(self.rings):

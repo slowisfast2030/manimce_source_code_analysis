@@ -10,7 +10,7 @@ config.pixel_height = 1920
 class rings2rects(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 2/50
+        self.dR = 2/60
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE
@@ -56,7 +56,15 @@ class rings2rects(Scene):
                 self.rings, 
                 np.linspace(0, 0.75, len(self.rings))
             )])
-            
+        
+        self.play(ApplyWave(
+            self.rings,
+            direction = RIGHT,
+            time_width=0.5,
+            amplitude=0.2,
+            run_time=3
+        ))
+        self.wait()
 
     def get_target_rect(self, ring: VMobject, rect_index):
         rect = self.rects[rect_index]

@@ -105,6 +105,45 @@ class rings2rects(Scene):
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
         self.play(FadeOut(self.rings_again),
                   FadeIn(sectors))
+        """
+        将sectors展开
+        """
+        laid_sectors = sectors.copy()
+        N = len(sectors)
+        dtheta = TAU / N
+        angles = np.arange(0, TAU, dtheta)
+        for sector, angle in zip(laid_sectors, angles):
+            sector.rotate(-90 * DEGREES - angle - dtheta / 2)
+
+        laid_sectors.arrange(RIGHT, buff=0, aligned_edge=DOWN)
+        laid_sectors.move_to(1.5 * DOWN)
+
+        """
+        深度思考
+        """
+        self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
+        self.wait()
+
+        """
+        左右的锯齿的合并
+        """
+        lh, rh = laid_sectors[:N // 2], laid_sectors[N // 2:]
+        lh.generate_target()
+        rh.generate_target()
+        rh.target.rotate(PI)
+        rh.target.move_to(lh[0].get_top(), UL)
+        VGroup(lh.target, rh.target).set_x(0)
+        rh.target.shift(UP)
+        lh.target.shift(DOWN)
+
+        self.play(
+            MoveToTarget(lh, run_time=1.5),
+            MoveToTarget(rh, run_time=1.5, path_arc=PI),
+        )
+        self.play(
+            lh.animate.shift(UP),
+            rh.animate.shift(DOWN),
+        )
         self.wait()
         pass
 

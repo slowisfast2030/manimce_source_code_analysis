@@ -26,7 +26,7 @@ class RingSum(Scene):
         self.fill_opacity = 0.75
         self.circle_corner = UP + LEFT
         self.radial_line_color = MAROON_B
-        self.dR = 0.1
+        self.dR = 1.5/30
         self.ring_colors = [BLUE, GREEN]
         self.unwrapped_tip = ORIGIN
 
@@ -70,7 +70,7 @@ class RingSum(Scene):
                 about_point = self.circle.get_center(),
             ),
             ShowCreation(self.circle),
-            run_time = 2
+            run_time = 1
         )
 
         # 当circle执行了下面的动画后会覆盖掉radius_group

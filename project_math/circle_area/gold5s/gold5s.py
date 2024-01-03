@@ -153,7 +153,7 @@ class rings2rects(Scene):
 
         # 内外环一共16段曲线，外加两条直线，一共18段
         n_anchors = ring.get_num_curves()
-        print(n_anchors)            
+        #print(n_anchors)            
         target = VMobject()
         target.set_points_as_corners([
             interpolate(ORIGIN,  DOWN, a)
@@ -177,8 +177,8 @@ class rings2rects(Scene):
         target.set_stroke(BLACK, 1)
         target.set_fill(ring.get_fill_color(), 1)
 
-        print(len(ring.get_points()))
-        print(len(target.get_points()))
+        #print(len(ring.get_points()))
+        #print(len(target.get_points()))
 
         ring.target = target
         ring.original_ring = ring.copy()
@@ -289,7 +289,7 @@ class rings2rects(Scene):
         rects_left = ax.get_riemann_rectangles(
             quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
         )
-        print(len(rects_left))
+        #print(len(rects_left))
         rects_left[2].set_opacity(0.5)
 
         res = VGroup()

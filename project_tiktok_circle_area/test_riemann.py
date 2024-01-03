@@ -21,11 +21,11 @@ class GetRiemannRectanglesExample(Scene):
         
         ax.set_opacity(0.5)
         # 绘制函数
-        quadratic = ax.plot(lambda x: 1 * x, x_range=[0, 9], color=TEAL)
+        quadratic = ax.plot(lambda x: 1 * x, x_range=[0, 9], color=TEAL, stroke_width=2)
 
         # 获取黎曼矩形
         rects_left = ax.get_riemann_rectangles(
-            quadratic, x_range=[0, 9], dx=0.2, color=[BLUE, GREEN]
+            quadratic, x_range=[0, 9], dx=0.25, color=[BLUE, GREEN]
         )
 
         self.add(

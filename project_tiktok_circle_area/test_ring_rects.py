@@ -9,8 +9,8 @@ config.pixel_height = 1920
 
 class rings2rects(Scene):
     def setup(self):
-        self.radius = 1.5
-        self.dR = 0.15/5
+        self.radius = 2
+        self.dR = 2/50
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE
@@ -25,7 +25,7 @@ class rings2rects(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*5)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         self.add(self.circle)
 
         self.rings = self.get_rings()
@@ -34,7 +34,7 @@ class rings2rects(Scene):
         self.rings[3].set_opacity(0.5)
 
         self.ax_rects_curve = self.get_ax_rects_curve()
-        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*5)
+        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4)
         self.add(self.ax_rects_curve)
 
         self.rects = self.ax_rects_curve[1]
@@ -167,8 +167,8 @@ class rings2rects(Scene):
         ax = Axes(
             x_range=[-0.1, 4, 1],  # 从-0.5开始以确保0会显示
             y_range=[-0.5, 20, 2.5],  # 从-0.5开始以确保0会显示
-            x_length=6,
-            y_length=6,
+            x_length=7,
+            y_length=7,
             tips=False,
             axis_config={"color": GRAY},  # 将坐标轴线条设置为灰色
             x_axis_config={

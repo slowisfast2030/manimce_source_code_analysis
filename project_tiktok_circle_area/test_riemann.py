@@ -2,8 +2,12 @@ from manim import *
 
 class GetRiemannRectanglesExample(Scene):
     def construct(self):
-        ax = Axes(x_range=[0, 10, 1], y_range=[0, 10, 1])
-        quadratic = ax.plot(lambda x: 1.5 * x)
+        ax = Axes(x_range=[0, 10, 1], 
+                  y_range=[0, 10, 1],
+                  x_length=10,
+                  y_length=5,
+                  tips=False)
+        quadratic = ax.plot(lambda x: 1.5 * x, x_range=[0, 7], color=TEAL)
 
         
         # the colour of rectangles below the x-axis is inverted
@@ -15,5 +19,5 @@ class GetRiemannRectanglesExample(Scene):
         
 
         self.add(
-            ax, quadratic, rects_left
+            ax, rects_left, quadratic
         )

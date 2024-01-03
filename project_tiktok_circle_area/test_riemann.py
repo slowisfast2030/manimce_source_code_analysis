@@ -86,3 +86,6 @@ class GetRiemannRectanglesExample(Scene):
             run_time=3
         ))
         self.wait()
+
+        rects_left[50].set_opacity(0.5)
+        self.wait()

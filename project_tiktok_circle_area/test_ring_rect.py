@@ -22,7 +22,8 @@ class ring2rect(Scene):
         for i, point in enumerate(bezier_points):
             dot = Dot(point, color=RED).scale(0.5)  # Create a small red dot at the point
             label = Text(f"{i}", font_size=20).next_to(dot, dr)  # Create a label with the index number
-            self.add(dot, label)  # Add the dot and label to the scene
+            if i<=22:
+                self.add(dot, label)  # Add the dot and label to the scene
         
         pass
 

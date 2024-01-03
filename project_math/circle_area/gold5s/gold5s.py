@@ -105,6 +105,7 @@ class rings2rects(Scene):
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
         self.play(FadeOut(self.rings_again),
                   FadeIn(sectors))
+        self.wait()
         pass
 
     def get_target_rect(self, ring: VMobject, rect_index):

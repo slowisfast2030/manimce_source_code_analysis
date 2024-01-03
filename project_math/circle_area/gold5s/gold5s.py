@@ -65,7 +65,7 @@ class rings2rects(Scene):
         """
         ring_anim_kwargs = {
             "run_time" : 1,
-            "lag_ratio" : 0.1
+            #"lag_ratio" : 0.1
         }
         self.rings_again = self.get_rings()
         self.add(self.rings_again)

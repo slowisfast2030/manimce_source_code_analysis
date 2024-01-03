@@ -104,7 +104,7 @@ class RingSum(Scene):
         # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),
-            rings.animate.move_to(unwrapped_rings.get_top()),
+            rings.animate.move_to(unwrapped_rings.get_top()+DOWN),
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )
@@ -181,7 +181,6 @@ class RingSum(Scene):
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
         ])
-        rings.shift(DOWN)
         return rings
 
     def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):

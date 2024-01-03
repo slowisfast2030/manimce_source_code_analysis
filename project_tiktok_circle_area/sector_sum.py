@@ -60,7 +60,7 @@ class SectorSum(Scene):
         laid_sectors.move_to(1.5 * DOWN)
 
         self.play(
-            sectors.animate.scale(0.7).to_corner(UL),
+            sectors.animate.scale(1).to_corner(UP, buff=MED_LARGE_BUFF*3),
             question.animate.to_corner(UR),
         )
         """

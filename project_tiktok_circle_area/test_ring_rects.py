@@ -23,6 +23,10 @@ class rings2rects(Scene):
 
         self.rings = self.get_rings()
         self.add(self.rings)
+
+        self.rects = self.get_rects()
+        self.rects.to_corner(RIGHT, buff = MED_LARGE_BUFF)
+        self.add(self.rects)
         pass
     
     def get_ring(self, radius, dR, color = GREEN):
@@ -123,13 +127,13 @@ class rings2rects(Scene):
         )
         
         # 绘制函数
-        quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3.5], color=BLUE, stroke_width=2)
+        quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3], color=BLUE, stroke_width=2)
 
         # 获取黎曼矩形
         rects_left = ax.get_riemann_rectangles(
-            quadratic, x_range=[0, 3.5], dx=0.1, color=[BLUE, GREEN]
+            quadratic, x_range=[0, 3], dx=0.3, color=[BLUE, GREEN]
         )
 
-        self.add(
-            ax, rects_left, quadratic
-        )
+        res = VGroup()
+        res.add(ax, rects_left, quadratic)
+        return res 

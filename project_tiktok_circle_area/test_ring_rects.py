@@ -20,6 +20,8 @@ class rings2rects(Scene):
         )
         self.circle.to_corner(LEFT, buff = MED_LARGE_BUFF)
         self.add(self.circle)
+
+        self.rings = 
         pass
     
     def get_ring(self, radius, dR, color = GREEN):

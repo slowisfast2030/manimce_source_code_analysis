@@ -19,15 +19,16 @@ class GetRiemannRectanglesExample(Scene):
                 "numbers_to_include": [0, 5, 10,15,20],  # 在y轴上也只显示0, 5, 10
                 "decimal_number_config": {
                     "num_decimal_places": 0,  # 设置为0以显示整数
+                    "color": BLUE,  # 设置x轴数字的颜色
                 },
             },
         )
         
-        # 设置坐标轴的颜色为灰色
+        # 设置坐标轴的颜BLUE
         #ax.set_color(GRAY)
         ax.set_opacity(1)
         # 绘制函数
-        quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3], color=TEAL, stroke_width=2)
+        quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3], color=BLUE, stroke_width=2)
 
         # 获取黎曼矩形
         rects_left = ax.get_riemann_rectangles(

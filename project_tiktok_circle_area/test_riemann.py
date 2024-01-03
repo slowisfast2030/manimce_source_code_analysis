@@ -1,5 +1,12 @@
 from manim import *
 
+# 下面这几行设置竖屏
+config.frame_width = 9
+config.frame_height = 16
+
+config.pixel_width = 1080
+config.pixel_height = 1920
+
 class GetRiemannRectanglesExample(Scene):
     def construct(self):
         # 创建坐标轴并设置x轴和y轴的配置
@@ -60,9 +67,18 @@ class GetRiemannRectanglesExample(Scene):
             self.play(
                 Transform(
                     rects_left, new_rects, 
-                    lag_ratio = 0.3,
+                    lag_ratio = 0.5,
                     run_time = 1
                 )
             )
 
+        # self.wait()
+
+        self.play(ApplyWave(
+            rects_left,
+            direction = RIGHT,
+            time_width=0.5,
+            amplitude=0.2,
+            run_time=3
+        ))
         self.wait()

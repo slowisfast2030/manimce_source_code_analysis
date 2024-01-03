@@ -61,12 +61,11 @@ class rings2rects(Scene):
                 self.rings, 
                 np.linspace(0, 0.75, len(self.rings))
             )])
-        
+        self.wait()
         """
         黄金5s的第二部分
         """
         self.dR = 2/30
-        self.wait()
         ring_anim_kwargs = {
             "run_time" : 4,
             "lag_ratio" : 0.1
@@ -96,6 +95,10 @@ class rings2rects(Scene):
         )
         self.wait()
         
+        """
+        黄金5s的第三部分
+        """
+        self.play(FadeOut(self.rings_again))
         pass
 
     def get_target_rect(self, ring: VMobject, rect_index):

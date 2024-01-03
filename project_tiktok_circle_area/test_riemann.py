@@ -41,7 +41,7 @@ class GetRiemannRectanglesExample(Scene):
 
         # 获取黎曼矩形
         rects_left = ax.get_riemann_rectangles(
-            quadratic, x_range=[0, 3], dx=0.1, color=[BLUE, GREEN]
+            quadratic, x_range=[0, 3.5], dx=0.1, color=[BLUE, GREEN]
         )
 
         # 创建x轴标签并指定位置
@@ -55,7 +55,7 @@ class GetRiemannRectanglesExample(Scene):
         thinner_rects_list = [
             ax.get_riemann_rectangles(
                 quadratic,
-                x_range=[0,3],
+                x_range=[0,3.5],
                 dx = 1./(10*n),
                 stroke_width = 1./(n),
                 color=[BLUE, GREEN]

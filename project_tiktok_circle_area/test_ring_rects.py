@@ -3,7 +3,7 @@ from manim import *
 class rings2rects(Scene):
     def setup(self):
         self.radius = 1.5
-        self.dR = 0.15/3
+        self.dR = 0.15/5
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE

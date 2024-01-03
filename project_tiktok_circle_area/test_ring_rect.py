@@ -7,8 +7,23 @@ class ring2rect(Scene):
         rect = self.get_rect(ring)  
         self.add(rect)
 
+        self.show_point_label(ring)
+        self.show_point_label(rect)
+
         self.play(MoveToTarget(ring))
         self.wait()
+        pass
+    
+    def show_point_label(self, vm: VMobject):
+
+        bezier_points = vm.get_points()
+        
+        # Iterate over each point and add a label
+        for i, point in enumerate(bezier_points):
+            dot = Dot(point, color=RED).scale(0.5)  # Create a small red dot at the point
+            label = Text(f"{i}", font_size=24).next_to(dot, UP)  # Create a label with the index number
+            self.add(dot, label)  # Add the dot and label to the scene
+        
         pass
 
     def get_ring(self, radius, dR, color = GREEN):

@@ -33,6 +33,7 @@ class RingSum(Scene):
         self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
+            stroke_width=1,
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )

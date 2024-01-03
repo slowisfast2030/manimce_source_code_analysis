@@ -41,7 +41,7 @@ class rings2rects(Scene):
             MoveToTarget(
                 ring,
                 path_arc = -np.pi/2,
-                run_time = 4,
+                run_time = 2,
                 rate_func = squish_rate_func(smooth, alpha, alpha+0.25)
             )
             for ring, alpha in zip(
@@ -103,8 +103,8 @@ class rings2rects(Scene):
         # 经过打印后发现点集的数目是32，不是64
         # 奇怪：为何一开始写64呢？
         # 圆是由8段圆弧拼接而成，每一段圆弧由4个点构成
-        outer_circle = Circle(radius=radius+dR).rotate(0*PI/2).get_points()[:28]
-        inner_circle = Circle(radius=radius).rotate(0*PI/2).get_points()[:28][::-1]
+        outer_circle = Circle(radius=radius+dR).rotate(0*PI/2).get_points()[:]
+        inner_circle = Circle(radius=radius).rotate(0*PI/2).get_points()[:][::-1]
 
         # 遵守manimce的约定，每一段贝塞尔曲线由4个点构成
         line1 = [outer_circle[-1], 

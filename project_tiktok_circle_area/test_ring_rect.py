@@ -7,8 +7,8 @@ class ring2rect(Scene):
         rect = self.get_rect(ring)  
         self.add(rect)
 
-        self.show_point_label_ring(ring)
-        self.show_point_label_rect(rect)
+        #self.show_point_label_ring(ring)
+        #self.show_point_label_rect(rect)
 
         self.play(MoveToTarget(ring))
         self.wait()
@@ -54,8 +54,8 @@ class ring2rect(Scene):
         # 经过打印后发现点集的数目是32，不是64
         # 奇怪：为何一开始写64呢？
         # 圆是由8段圆弧拼接而成，每一段圆弧由4个点构成
-        outer_circle = Circle(radius=radius+dR).rotate(0*PI).get_points()[4:28]
-        inner_circle = Circle(radius=radius).rotate(0*PI).get_points()[4:28][::-1]
+        outer_circle = Circle(radius=radius+dR).rotate(0*PI).get_points()[:]
+        inner_circle = Circle(radius=radius).rotate(0*PI).get_points()[:][::-1]
 
         # 遵守manimce的约定，每一段贝塞尔曲线由4个点构成
         line1 = [outer_circle[-1], 

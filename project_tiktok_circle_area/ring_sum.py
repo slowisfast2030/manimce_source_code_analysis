@@ -117,7 +117,7 @@ class RingSum(Scene):
     
         self.play(ApplyWave(
             rings,
-            direction = RIGHT,
+            direction = UP,
             time_width=0.5,
             amplitude=0.2,
             run_time=3

@@ -20,7 +20,11 @@ class GetRiemannRectanglesExample(Scene):
             x_axis_config={
                 "include_numbers": True,
                 "numbers_to_include": [0, 1,2,3,4],  # 在x轴上只显示0, 5, 10
-                "include_ticks": True
+                "include_ticks": True,
+                "decimal_number_config": {
+                    "num_decimal_places": 0,  # 设置为0以显示整数
+                    "color": BLUE,  # 设置x轴数字的颜色
+                },
             },
             y_axis_config={
                 "include_numbers": True,

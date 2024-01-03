@@ -3,7 +3,7 @@ from manim import *
 class rings2rects(Scene):
     def setup(self):
         self.radius = 1.5
-        self.dR = 0.15
+        self.dR = 0.15/3
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE
@@ -41,7 +41,7 @@ class rings2rects(Scene):
             MoveToTarget(
                 ring,
                 path_arc = -np.pi/2,
-                run_time = 2,
+                run_time = 4,
                 rate_func = squish_rate_func(smooth, alpha, alpha+0.25)
             )
             for ring, alpha in zip(
@@ -187,8 +187,9 @@ class rings2rects(Scene):
         quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3], color=BLUE, stroke_width=2)
 
         # 获取黎曼矩形
+        rect_num = self.radius/self.dR
         rects_left = ax.get_riemann_rectangles(
-            quadratic, x_range=[0, 3], dx=3/11, color=[BLUE, GREEN], input_sample_type="left"
+            quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
         )
         print(len(rects_left))
         rects_left[2].set_opacity(0.5)

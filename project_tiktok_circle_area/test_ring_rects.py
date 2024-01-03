@@ -34,9 +34,57 @@ class rings2rects(Scene):
 
         # 为每一个ring找到对应的rect
         for index, ring in enumerate(self.rings):
-            pass
-
+            rect_index = index + 1
+            ring.target = self.get_target_rect(ring, rect_index)    
         
+        self.play(*[
+            MoveToTarget(
+                ring,
+                path_arc = -np.pi/2,
+                run_time = 4,
+                rate_func = squish_rate_func(smooth, alpha, alpha+0.25)
+            )
+            for ring, alpha in zip(
+                self.rings, 
+                np.linspace(0, 0.75, len(self.rings))
+            )])
+            
+
+    def get_target_rect(self, ring: VMobject, rect_index):
+        rect = self.rects[rect_index]
+
+        # 内外环一共16段曲线，外加两条直线，一共18段
+        n_anchors = ring.get_num_curves()
+        print(n_anchors)            
+        target = VMobject()
+        target.set_points_as_corners([
+            interpolate(ORIGIN,  DOWN, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(DOWN+RIGHT, RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+        # 将折线闭合
+        #target.add_line_to(ORIGIN)    
+        line = [target.get_points()[-1], 
+                interpolate(target.get_points()[-1], target.get_points()[0], 0.3),
+                interpolate(target.get_points()[-1], target.get_points()[0], 0.6),
+                target.get_points()[0]] 
+        target.append_points(line)
+
+
+        target.stretch_to_fit_height(rect.get_height())
+        target.stretch_to_fit_width(rect.get_width())
+        target.move_to(rect)
+        target.set_stroke(BLACK, 1)
+        target.set_fill(ring.get_fill_color(), 1)
+
+        print(len(ring.get_points()))
+        print(len(target.get_points()))
+
+        ring.target = target
+        ring.original_ring = ring.copy()
+        return target
     
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()

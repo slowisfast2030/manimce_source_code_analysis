@@ -105,7 +105,7 @@ class RingSum(Scene):
         # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),
-            rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0.3),
+            rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0),
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )

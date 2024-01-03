@@ -31,7 +31,7 @@ class rings2rects(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*3)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         self.add(self.circle)
 
         self.rings = self.get_rings()
@@ -69,42 +69,45 @@ class rings2rects(Scene):
         """
         黄金5s的第二部分
         """
-        self.dR = 2/30
-        ring_anim_kwargs = {
-            "run_time" : 4,
-            "lag_ratio" : 0.1
-        }
-        #self.circle.set_fill(PURPLE,0.5)
-        self.rings_again = VGroup(*reversed(self.get_rings(colors=[BLUE, GREEN]))).rotate(PI/2)
-        self.add(self.rings_again)
-        self.play(FadeOut(self.rings),
-                  FadeOut(self.ax_rects_curve),
-                  FadeIn(self.rings_again))
+        # self.dR = 2/30
+        # ring_anim_kwargs = {
+        #     "run_time" : 4,
+        #     "lag_ratio" : 0.1
+        # }
+        # #self.circle.set_fill(PURPLE,0.5)
+        # self.rings_again = VGroup(*reversed(self.get_rings(colors=[BLUE, GREEN]))).rotate(PI/2)
+        # self.add(self.rings_again)
+        # self.play(FadeOut(self.rings),
+        #           FadeOut(self.ax_rects_curve),
+        #           FadeIn(self.rings_again))
         
-        unwrapped_rings = VGroup(*[
-            self.get_unwrapped(ring, to_edge = None)
-            for ring in self.rings_again
-        ])
-        unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
-        unwrapped_rings.move_to(self.unwrapped_tip, UP)
+        # unwrapped_rings = VGroup(*[
+        #     self.get_unwrapped(ring, to_edge = None)
+        #     for ring in self.rings_again
+        # ])
+        # unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
+        # unwrapped_rings.move_to(self.unwrapped_tip, UP)
 
-        self.play(
-            #rings.animate.rotate(PI/2),
-            self.rings_again.animate.move_to(unwrapped_rings.get_top()),
-            path_arc = np.pi/2,
-            **ring_anim_kwargs
-        )
+        # self.play(
+        #     #rings.animate.rotate(PI/2),
+        #     self.rings_again.animate.move_to(unwrapped_rings.get_top()),
+        #     path_arc = np.pi/2,
+        #     **ring_anim_kwargs
+        # )
 
-        self.play(
-            Transform(self.rings_again, unwrapped_rings, **ring_anim_kwargs),
-        )
-        self.wait()
+        # self.play(
+        #     Transform(self.rings_again, unwrapped_rings, **ring_anim_kwargs),
+        # )
+        # self.wait()
         
         """
         黄金5s的第三部分
         """
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices).set_opacity(0.8)
-        self.play(FadeOut(self.rings_again),
+        # self.play(FadeOut(self.rings_again),
+        #           FadeIn(sectors))
+        self.play(FadeOut(self.rings),
+                  FadeOut(self.ax_rects_curve),
                   FadeIn(sectors))
         """
         将sectors展开

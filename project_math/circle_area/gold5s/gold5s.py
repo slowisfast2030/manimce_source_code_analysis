@@ -65,7 +65,7 @@ class rings2rects(Scene):
         """
         黄金5s的第二部分
         """
-        self.dR = 2/30
+        self.dR = 2/20
         self.wait()
         ring_anim_kwargs = {
             "run_time" : 3,

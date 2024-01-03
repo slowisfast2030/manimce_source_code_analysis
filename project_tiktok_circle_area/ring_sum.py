@@ -181,6 +181,7 @@ class RingSum(Scene):
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
         ])
+        rings.shift(DOWN)
         return rings
 
     def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):

@@ -37,7 +37,7 @@ class RingSum(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*3)
         
         self.radius_line = Line(
             self.circle.get_center(),
@@ -105,7 +105,7 @@ class RingSum(Scene):
         # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),
-            rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0.5),
+            rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0.3),
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )

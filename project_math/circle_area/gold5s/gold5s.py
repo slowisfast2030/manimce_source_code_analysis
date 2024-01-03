@@ -65,6 +65,7 @@ class rings2rects(Scene):
         """
         黄金5s的第二部分
         """
+        self.wait()
         ring_anim_kwargs = {
             "run_time" : 3,
             "lag_ratio" : 0.1
@@ -89,6 +90,9 @@ class rings2rects(Scene):
             **ring_anim_kwargs
         )
 
+        self.play(
+            Transform(self.rings_again, unwrapped_rings, **ring_anim_kwargs),
+        )
         self.wait()
         
         pass

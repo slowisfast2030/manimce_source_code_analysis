@@ -25,7 +25,7 @@ class rings2rects(Scene):
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*3)
         self.add(self.circle)
 
         self.rings = self.get_rings()

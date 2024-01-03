@@ -20,13 +20,13 @@ class ShowCreation(Create):
 class RingSum(Scene):
 
     def setup(self):
-        self.radius = 1.5
+        self.radius = 2
         self.stroke_color = WHITE
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
         self.circle_corner = UP + LEFT
         self.radial_line_color = MAROON_B
-        self.dR = 1.5/30
+        self.dR = self.radius/30
         self.ring_colors = [BLUE, GREEN]
         self.unwrapped_tip = ORIGIN
 

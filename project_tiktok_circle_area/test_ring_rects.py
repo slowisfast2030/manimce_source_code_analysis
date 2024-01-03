@@ -24,9 +24,14 @@ class rings2rects(Scene):
         self.rings = self.get_rings()
         self.add(self.rings)
 
-        self.rects = self.get_rects()
-        self.rects.to_corner(RIGHT, buff = MED_LARGE_BUFF)
-        self.add(self.rects)
+        self.ax_rects_curve = self.get_ax_rects_curve()
+        self.ax_rects_curve.to_corner(RIGHT, buff = MED_LARGE_BUFF)
+        self.add(self.ax_rects_curve)
+
+        self.rects = self.ax_rects_curve[1]
+        
+
+
         pass
     
     def get_ring(self, radius, dR, color = GREEN):
@@ -97,7 +102,7 @@ class rings2rects(Scene):
         ])
         return rings
     
-    def get_rects(self, **kwargs):
+    def get_ax_rects_curve(self, **kwargs):
         # 创建坐标轴并设置x轴和y轴的配置
         ax = Axes(
             x_range=[-0.1, 4, 1],  # 从-0.5开始以确保0会显示

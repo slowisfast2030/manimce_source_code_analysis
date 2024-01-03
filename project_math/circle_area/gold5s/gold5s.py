@@ -102,7 +102,7 @@ class rings2rects(Scene):
         """
         黄金5s的第三部分
         """
-        sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
+        sectors = self.get_sectors(self.circle, n_slices=self.n_slices).set_opacity(0.8)
         self.play(FadeOut(self.rings_again),
                   FadeIn(sectors))
         """

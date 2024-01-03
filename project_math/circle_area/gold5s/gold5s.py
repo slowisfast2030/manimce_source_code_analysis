@@ -10,7 +10,7 @@ config.pixel_height = 1920
 class rings2rects(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 2/60
+        self.dR = 2/40
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE

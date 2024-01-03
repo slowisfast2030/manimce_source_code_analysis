@@ -3,7 +3,7 @@ from manim import *
 class rings2rects(Scene):
     def setup(self):
         self.radius = 1.5
-        self.dR = 0.1
+        self.dR = 0.15
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE
@@ -21,7 +21,8 @@ class rings2rects(Scene):
         self.circle.to_corner(LEFT, buff = MED_LARGE_BUFF)
         self.add(self.circle)
 
-        self.rings = 
+        self.rings = self.get_rings()
+        self.add(self.rings)
         pass
     
     def get_ring(self, radius, dR, color = GREEN):
@@ -41,8 +42,8 @@ class rings2rects(Scene):
         # 经过打印后发现点集的数目是32，不是64
         # 奇怪：为何一开始写64呢？
         # 圆是由8段圆弧拼接而成，每一段圆弧由4个点构成
-        outer_circle = Circle(radius=radius+dR).rotate(PI/2).get_points()[:32]
-        inner_circle = Circle(radius=radius).rotate(PI/2).get_points()[:32][::-1]
+        outer_circle = Circle(radius=radius+dR).rotate(0*PI/2).get_points()[:28]
+        inner_circle = Circle(radius=radius).rotate(0*PI/2).get_points()[:28][::-1]
 
         # 遵守manimce的约定，每一段贝塞尔曲线由4个点构成
         line1 = [outer_circle[-1], 

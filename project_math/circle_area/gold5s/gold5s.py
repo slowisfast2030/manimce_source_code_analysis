@@ -10,7 +10,7 @@ config.pixel_height = 1920
 class rings2rects(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 2/40
+        self.dR = 2/60
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = WHITE
@@ -65,6 +65,7 @@ class rings2rects(Scene):
         """
         黄金5s的第二部分
         """
+        self.dR = 2/30
         self.wait()
         ring_anim_kwargs = {
             "run_time" : 3,

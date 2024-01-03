@@ -114,6 +114,14 @@ class RingSum(Scene):
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
+    
+        self.play(ApplyWave(
+            rings,
+            direction = RIGHT,
+            time_width=0.5,
+            amplitude=0.2,
+            run_time=3
+        ))
         self.wait()
 
     def get_ring(self, radius, dR, color = GREEN):

@@ -18,7 +18,7 @@ class ShowCreation(Create):
     pass
 
 class SectorSum(Scene):
-    n_slices = 40
+    n_slices = 60
     sector_stroke_width = 1.0
 
     def construct(self):

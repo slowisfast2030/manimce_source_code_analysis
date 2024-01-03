@@ -118,6 +118,7 @@ class rings2rects(Scene):
         laid_sectors.arrange(RIGHT, buff=0, aligned_edge=DOWN)
         laid_sectors.move_to(1.5 * DOWN)
 
+
         """
         深度思考
         """

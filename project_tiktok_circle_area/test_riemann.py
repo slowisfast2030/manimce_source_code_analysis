@@ -48,10 +48,21 @@ class GetRiemannRectanglesExample(Scene):
         thinner_rects_list = [
             ax.get_riemann_rectangles(
                 quadratic,
-                x_range=[0,3]
-                dx = 1./(10*2**n),
-                stroke_width = 1./(2**n),
+                x_range=[0,3],
+                dx = 1./(10*n),
+                stroke_width = 1./(n),
                 color=[BLUE, GREEN]
             )
-            for n in range(1, 5)
+            for n in range(2, 6)
         ]
+
+        for new_rects in thinner_rects_list:
+            self.play(
+                Transform(
+                    rects_left, new_rects, 
+                    lag_ratio = 0.3,
+                    run_time = 1
+                )
+            )
+
+        self.wait()

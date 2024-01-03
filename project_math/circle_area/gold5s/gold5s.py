@@ -1,4 +1,5 @@
 from manim import *
+import itertools as it
 
 # 下面这几行设置竖屏
 config.frame_width = 9
@@ -18,6 +19,9 @@ class rings2rects(Scene):
         self.fill_opacity = 0.75
 
         self.unwrapped_tip = ORIGIN
+
+        self.n_slices=60
+        self.sector_stroke_width = 1.0
 
     def construct(self):
         self.circle = Circle(
@@ -98,7 +102,9 @@ class rings2rects(Scene):
         """
         黄金5s的第三部分
         """
-        self.play(FadeOut(self.rings_again))
+        sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
+        self.play(FadeOut(self.rings_again),
+                  FadeIn(sectors))
         pass
 
     def get_target_rect(self, ring: VMobject, rect_index):
@@ -296,3 +302,13 @@ class rings2rects(Scene):
         )
 
         return result
+    
+    def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
+        angle = TAU / n_slices
+        sectors = VGroup(*(
+            Sector(angle=angle, start_angle=i * angle, fill_color=color, fill_opacity=1)
+            for i, color in zip(range(n_slices), it.cycle(fill_colors))
+        ))
+        sectors.set_stroke(WHITE, self.sector_stroke_width)
+        sectors.replace(circle, stretch=True)
+        return sectors

@@ -26,6 +26,9 @@ class s3(Scene):
         self.num_lines = 24
         self.line_color = BLACK
 
+        self.ring_index_proportion = 0.6
+        self.ring_shift_val = 5*DOWN
+
         self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
@@ -37,8 +40,12 @@ class s3(Scene):
         self.add(self.circle)
 
     def construct(self):
+        # 引入多种分割
         self.try_to_understand_area()
+        # 引入ring分割
         self.slice_into_rings()
+
+        self.isolate_one_ring()
 
     def try_to_understand_area(self):
         line_sets = [
@@ -86,8 +93,7 @@ class s3(Scene):
             )
         )
         self.wait(1)
-
-        self.rigns = rings
+        self.rings = rings
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
@@ -156,3 +162,29 @@ class s3(Scene):
             for radius, color in zip(radii, colors)
         ]).set_opacity(0.8)
         return rings
+    
+    def isolate_one_ring(self):
+        rings = self.rings
+        index = int(self.ring_index_proportion*len(rings))
+        original_ring = rings[index]
+        ring = original_ring.copy()
+
+        self.play(
+            ring.animate.shift(self.ring_shift_val),
+            original_ring.animate.set_fill(None, 0.25)
+        )
+
+        self.wait()
+
+        self.play(*[
+            ApplyMethod(
+                r.set_fill, YELLOW, 
+                rate_func = squish_rate_func(there_and_back, alpha, alpha+0.15),
+                run_time = 3
+            )
+            for r, alpha in zip(rings, np.linspace(0, 0.85, len(rings)))
+        ])
+        self.wait()
+
+        self.original_ring = original_ring
+        self.ring = ring

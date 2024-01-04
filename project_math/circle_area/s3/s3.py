@@ -49,11 +49,12 @@ class s3(Scene):
 
         self.unwrap_rings(self.ring)
 
-        self.play(ApplyWave(self.ring),
-                  direction = RIGHT,
-                  time_width=0.5,
-                  amplitude=0.2,
-                  run_time=3)
+        self.play(ApplyWave(self.rings,
+                            #direction = RIGHT,
+                            #time_width=0.5,
+                            amplitude=0.1,
+                            run_time=3),
+                  )
         
         self.wait()
 

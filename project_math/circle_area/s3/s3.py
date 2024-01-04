@@ -16,7 +16,7 @@ class s3(Scene):
         self.dR = 2/60
         self.ring_colors = [BLUE, GREEN]
 
-        self.stroke_color = WHITE
+        self.stroke_color = BLACK
         self.stroke_width = 1
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
@@ -24,6 +24,7 @@ class s3(Scene):
         self.unwrapped_tip = ORIGIN
 
         self.num_lines = 24
+        self.line_color = BLACK
 
     def construct(self):
         self.circle = Circle(
@@ -55,7 +56,7 @@ class s3(Scene):
             ]
         ]
         for lines in line_sets:
-            lines.set_stroke(BLACK, 2)
+            lines.set_stroke(self.line_color, 2)
         lines = line_sets[0]
 
         self.play(
@@ -65,7 +66,6 @@ class s3(Scene):
                 lag_ratio = 0.5
             )
         )
-        self.wait(2)
         for new_lines in line_sets[1:]:
             self.play(
                 Transform(lines, new_lines),

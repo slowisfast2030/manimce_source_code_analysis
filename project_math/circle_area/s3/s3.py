@@ -66,13 +66,14 @@ class s3(Scene):
         """
         将圆分割为更多的圆环
         """
+        rings_copy = self.rings.copy()
         rings_list = [
             self.get_rings(dR = self.radius/n)
-            for n in [20,25,30,5]
+            for n in [20,25,30]
         ]
         for rings in rings_list:
             self.play(
-                Transform(self.rings, rings),
+                Transform(rings_copy, rings),
                 lag_ratio = 0,
                 run_time = 2
             )
@@ -129,6 +130,7 @@ class s3(Scene):
         )
         self.wait(1)
         self.rings = rings
+        
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()

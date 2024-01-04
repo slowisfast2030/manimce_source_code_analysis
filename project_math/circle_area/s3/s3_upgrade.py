@@ -91,7 +91,8 @@ class s3(Scene):
         # 所以需要将radius_group放到circle的上面
         self.bring_to_front(self.radius_group)
 
-        circle_text = Text("如何分割圆？").set_color(BLUE).scale(0.8)
+        circle_text = Text("如何分割圆？").scale(0.8)
+        circle_text.set_color_by_gradient(BLUE, GREEN)
         circle_text.to_corner(UP, buff = MED_LARGE_BUFF*6)
         self.play(
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity),

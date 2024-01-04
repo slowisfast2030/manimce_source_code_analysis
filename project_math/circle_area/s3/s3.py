@@ -13,7 +13,7 @@ class ShowCreation(Create):
 class s3(Scene):
     def setup(self):
         self.radius = 2
-        self.dR = 2/15
+        self.dR = self.radius/15
         self.ring_colors = [BLUE, GREEN]
 
         self.stroke_color = BLACK
@@ -67,13 +67,13 @@ class s3(Scene):
         将圆分割为更多的圆环
         """
         rings_list = [
-            self.get_rings(dR = self.dR/n)
+            self.get_rings(dR = self.radius/n)
             for n in [20,25,30,35,40]
         ]
         for rings in rings_list:
             self.play(
                 Transform(self.rings, rings),
-                lag_ratio = 0.5,
+                lag_ratio = 0,
                 run_time = 2
             )
             self.wait()

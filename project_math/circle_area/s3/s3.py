@@ -66,14 +66,14 @@ class s3(Scene):
         """
         将圆分割为更多的圆环
         """
-        rings_copy = self.rings.copy()
+        print(self.radius)
         rings_list = [
             self.get_rings(dR = self.radius/n)
-            for n in [20,25,30]
+            for n in [20]
         ]
         for rings in rings_list:
             self.play(
-                Transform(rings_copy, rings),
+                Transform(self.rings, rings),
                 lag_ratio = 0,
                 run_time = 2
             )

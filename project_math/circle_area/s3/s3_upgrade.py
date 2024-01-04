@@ -82,8 +82,32 @@ class s3(Scene):
         拿出一个圆环并展开
         """
         self.isolate_one_ring()
-        self.unwrap_rings(self.ring)
-
+        self.unwrap_ring(self.ring)
+        """
+        分镜5:
+        将圆分割为更多的圆环
+        """
+        self.play(FadeOut(self.ring),
+                  FadeOut(self.unwrapped),)
+        rings_list = [
+            self.get_rings(dR = self.radius/n).set_stroke(BLACK, 1)
+            #self.get_rings(dR = self.radius/n)
+            for n in [20,25,30]
+        ]
+        # self.add(rings_list[0].shift(6*DOWN))
+        # self.wait()
+        for rings in rings_list:
+            self.play(
+                Transform(self.rings, rings),
+                lag_ratio = 0.5,
+                run_time = 1
+            )
+            self.wait(0.5)
+        """
+        分镜6:
+        展开所有圆环
+        """
+        self.unwrap_rings(self.rings)
         pass
 
     def introduce_circle(self):
@@ -271,10 +295,48 @@ class s3(Scene):
 
         return result
 
-    def unwrap_rings(self, ring, **kwargs):
+    def unwrap_ring(self, ring, **kwargs):
         unwrapped = self.get_unwrapped(ring, **kwargs)
         unwrapped.move_to(ring.get_bottom()+DOWN*1.5)
         self.play(
             TransformFromCopy(ring, unwrapped, run_time = 1),
         )
         self.unwrapped = unwrapped
+
+    def unwrap_rings(self, rings, **kwargs):
+        self.remove(rings)
+        #rings = VGroup(*reversed(rings))
+        self.dR = self.radius/30
+        rings = VGroup(*reversed(self.get_rings()))
+        unwrapped_rings = VGroup(*[
+            self.get_unwrapped(ring, to_edge = None)
+            for ring in rings
+        ])
+        unwrapped_rings.arrange(UP, buff = SMALL_BUFF)
+        unwrapped_rings.move_to(self.unwrapped_tip, UP)
+        ring_anim_kwargs = {
+            "run_time" : 3,
+            "lag_ratio" : 0.1
+        }
+        self.add(rings)
+
+        # 很有层次感
+        self.play(
+            FadeIn(rings, **ring_anim_kwargs),
+        )
+
+        self.wait()
+        # 注意path_arc参数
+        self.play(
+            #rings.animate.rotate(PI/2),
+            rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0),
+            path_arc = np.pi/2,
+            **ring_anim_kwargs
+        )
+
+        self.wait()
+        self.play(
+            Transform(rings, unwrapped_rings, **ring_anim_kwargs),
+        )
+    
+

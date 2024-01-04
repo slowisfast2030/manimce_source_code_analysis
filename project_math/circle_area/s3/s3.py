@@ -190,6 +190,7 @@ class s3(Scene):
 
     def get_rings(self, **kwargs):
         dR = kwargs.get("dR", self.dR)
+        print(dR)
         colors = kwargs.get("colors", self.ring_colors)
         radii = np.arange(0, self.radius, dR)
         colors = color_gradient(colors, len(radii))

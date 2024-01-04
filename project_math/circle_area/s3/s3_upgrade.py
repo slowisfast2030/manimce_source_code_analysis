@@ -66,7 +66,7 @@ class s3(Scene):
         """
         self.bring_to_front(self.radius_group)
         self.slice_into_rings()
-
+        self.wait(1)
         pass
 
     def introduce_circle(self):
@@ -110,7 +110,6 @@ class s3(Scene):
                 run_time = 1
             )
         )
-        self.wait(1)
         self.rings = rings
         
 

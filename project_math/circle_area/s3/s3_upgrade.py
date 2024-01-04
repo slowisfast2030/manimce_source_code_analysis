@@ -74,7 +74,7 @@ class s3(Scene):
         """
         all_gr = VGroup(self.circle, self.radius_group, self.rings)
         self.play(
-            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
+            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*3),
             FadeOut(self.text)
         )
         """
@@ -308,6 +308,7 @@ class s3(Scene):
         #rings = VGroup(*reversed(rings))
         self.dR = self.radius/30
         rings = VGroup(*reversed(self.get_rings()))
+        rings.set_stroke(BLACK, 1)
         unwrapped_rings = VGroup(*[
             self.get_unwrapped(ring, to_edge = None)
             for ring in rings
@@ -321,9 +322,9 @@ class s3(Scene):
         self.add(rings)
 
         # 很有层次感
-        self.play(
-            FadeIn(rings, **ring_anim_kwargs),
-        )
+        # self.play(
+        #     FadeIn(rings, **ring_anim_kwargs),
+        # )
 
         self.wait()
         # 注意path_arc参数

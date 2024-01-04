@@ -69,7 +69,7 @@ class s3(Scene):
         print(self.radius)
         rings_list = [
             self.get_rings(dR = self.radius/n)
-            for n in [20]
+            for n in [10]
         ]
         for rings in rings_list:
             self.play(

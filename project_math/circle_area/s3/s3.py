@@ -54,6 +54,11 @@ class s3(Scene):
                             #time_width=0.5,
                             amplitude=0.1,
                             run_time=3),
+                  ApplyWave(self.circle,
+                            #direction = RIGHT,
+                            #time_width=0.5,
+                            amplitude=0.1,
+                            run_time=3), 
                   )
         
         self.wait()

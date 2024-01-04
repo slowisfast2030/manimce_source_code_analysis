@@ -49,17 +49,17 @@ class s3(Scene):
 
         self.unwrap_rings(self.ring)
 
-        self.play(ApplyWave(self.rings,
-                            #direction = RIGHT,
-                            #time_width=0.5,
-                            amplitude=0.1,
-                            run_time=3),
-                  ApplyWave(self.circle,
-                            #direction = RIGHT,
-                            #time_width=0.5,
-                            amplitude=0.1,
-                            run_time=3), 
-                  )
+        # self.play(ApplyWave(self.rings,
+        #                     #direction = RIGHT,
+        #                     #time_width=0.5,
+        #                     amplitude=0.1,
+        #                     run_time=3),
+        #           ApplyWave(self.circle,
+        #                     #direction = RIGHT,
+        #                     #time_width=0.5,
+        #                     amplitude=0.1,
+        #                     run_time=3), 
+        #           )
         
         self.wait()
 

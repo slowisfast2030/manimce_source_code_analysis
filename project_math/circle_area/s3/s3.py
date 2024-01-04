@@ -241,7 +241,7 @@ class s3(Scene):
     
     def unwrap_rings(self, ring, **kwargs):
         unwrapped = self.get_unwrapped(ring, **kwargs)
-        unwrapped.move_to(ring.get_bottom())
+        unwrapped.move_to(ring.get_bottom()+DOWN)
         self.play(
-            Transform(ring, unwrapped, run_time = 3),
+            TransformFromCopy(ring, unwrapped, run_time = 3),
         )

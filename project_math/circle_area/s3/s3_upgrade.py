@@ -67,6 +67,24 @@ class s3(Scene):
         self.bring_to_front(self.radius_group)
         self.slice_into_rings()
         self.wait(1)
+        """
+        分镜3:
+        将圆环和圆上移, 移除文字
+        拿出一个圆环进行展开
+        """
+        all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        self.play(
+            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
+            FadeOut(self.text)
+        )
+        """
+        分镜4:
+        拿出一个圆环并展开
+        """
+        self.isolate_one_ring()
+
+        self.unwrap_rings(self.ring)
+
         pass
 
     def introduce_circle(self):
@@ -98,6 +116,7 @@ class s3(Scene):
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity),
             Write(circle_text)
         )
+        self.text = circle_text
 
         
     def slice_into_rings(self):
@@ -182,4 +201,85 @@ class s3(Scene):
             for radius, color in zip(radii, colors)
         ])
         return rings
+    
+    def isolate_one_ring(self):
+        rings = self.rings
+        index = int(self.ring_index_proportion*len(rings))
+        original_ring = rings[index]
+        ring = original_ring.copy()
 
+        self.play(
+            ring.animate.shift(self.ring_shift_val),
+            original_ring.animate.set_fill(None, 0.25)
+        )
+
+        self.wait()
+
+        self.play(*[
+            ApplyMethod(
+                r.set_fill, YELLOW, 
+                rate_func = squish_rate_func(there_and_back, alpha, alpha+0.15),
+                run_time = 3
+            )
+            for r, alpha in zip(rings, np.linspace(0, 0.85, len(rings)))
+        ])
+        self.wait()
+
+        self.original_ring = original_ring
+        self.ring = ring
+
+    def get_unwrapped(self, ring:VMobject, to_edge = LEFT, **kwargs):
+        R = ring.R
+        R_plus_dr = ring.R + ring.dR
+        n_anchors = ring.get_num_curves()
+        # 18。每段圆弧由8段贝塞尔曲线构成。内外环，一共16段曲线。再加上两段直线。
+        # print(n_anchors)
+        
+        # 如果manim没有自己想要的形状，可以自己构造点集
+        result = VMobject()
+        """
+        这里有一个魔鬼细节：
+        贝塞尔曲线和折线上的点的对应关系
+        需要深刻理解
+
+        通过set_points_as_corners方法传入了18个点【折线】的列表
+        但这18个点需要进一步转换为更本质的贝塞尔曲线
+        
+        (18-1)*4=68
+        """
+        result.set_points_as_corners([
+            interpolate(np.pi*R_plus_dr*LEFT,  np.pi*R_plus_dr*RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(np.pi*R*RIGHT+ring.dR*UP,  np.pi*R*LEFT+ring.dR*UP, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+        # 68
+        # print(len(result.get_points()))
+
+        # 将折线闭合
+        line = [result.get_points()[-1], 
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.3),
+                interpolate(result.get_points()[-1], result.get_points()[0], 0.6),
+                result.get_points()[0]] 
+        result.append_points(line)
+        # 猜测，这里的result的点集数目是32+32+4+4=72，这是圆环的点集的数目
+        # 经过打印，确实 68+4=72
+        # print(len(result.get_points()))
+
+        result.set_style(
+            stroke_color = ring.get_stroke_color(),
+            stroke_width = ring.get_stroke_width(),
+            fill_color = ring.get_fill_color(),
+            fill_opacity = ring.get_fill_opacity(),
+        )
+
+        return result
+
+    def unwrap_rings(self, ring, **kwargs):
+        unwrapped = self.get_unwrapped(ring, **kwargs)
+        unwrapped.move_to(ring.get_bottom()+DOWN*2)
+        self.play(
+            TransformFromCopy(ring, unwrapped, run_time = 3),
+        )
+        self.unwrapped = unwrapped

@@ -63,6 +63,25 @@ class s3(Scene):
         
         self.wait()
 
+        """
+        将圆分割为更多的圆环
+        """
+        rings_list = [
+            self.get_rings(dR = self.dR/n)
+            for n in [20,25,30,35,40]
+        ]
+        for rings in rings_list:
+            self.play(
+                Transform(self.rings, rings),
+                lag_ratio = 0.5,
+                run_time = 2
+            )
+            self.wait()
+
+
+        # self.play(FadeOut(self.ring),
+        #           FadeOut(self.unwrapped))
+
     def try_to_understand_area(self):
         line_sets = [
             VGroup(*[
@@ -259,3 +278,4 @@ class s3(Scene):
         self.play(
             TransformFromCopy(ring, unwrapped, run_time = 3),
         )
+        self.unwrapped = unwrapped

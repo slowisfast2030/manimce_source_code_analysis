@@ -71,7 +71,6 @@ class s3(Scene):
                 Transform(lines, new_lines),
             )
             self.wait()
-        self.wait()
         self.play(FadeOut(lines))
 
         self.slice_into_rings()
@@ -88,7 +87,7 @@ class s3(Scene):
                 run_time = 1
             )
         )
-        self.wait(2)
+        self.wait(1)
 
         self.rigns = rings
 

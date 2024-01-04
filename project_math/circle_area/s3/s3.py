@@ -85,7 +85,7 @@ class s3(Scene):
             FadeIn(
                 rings,
                 lag_ratio = 0.5,
-                run_time = 3
+                run_time = 1
             )
         )
         self.wait(2)

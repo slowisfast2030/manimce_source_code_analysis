@@ -7,6 +7,9 @@ config.frame_height = 16
 config.pixel_width = 1080
 config.pixel_height = 1920
 
+class ShowCreation(Create):
+    pass
+
 class s3(Scene):
     def setup(self):
         self.radius = 2
@@ -20,6 +23,8 @@ class s3(Scene):
 
         self.unwrapped_tip = ORIGIN
 
+        self.num_lines = 24
+
     def construct(self):
         self.circle = Circle(
             radius = self.radius,
@@ -30,3 +35,41 @@ class s3(Scene):
         )
         self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         self.add(self.circle)
+        self.try_to_understand_area()
+
+
+    def try_to_understand_area(self):
+        line_sets = [
+            VGroup(*[
+                Line(
+                    self.circle.point_from_proportion(alpha),
+                    self.circle.point_from_proportion(func(alpha)),
+                )
+                for alpha in np.linspace(0, 1, self.num_lines)
+            ])
+            for func in [
+                lambda alpha : 1-alpha,
+                lambda alpha : (0.5-alpha)%1,
+                lambda alpha : (alpha + 0.4)%1,
+                lambda alpha : (alpha + 0.5)%1,
+            ]
+        ]
+        for lines in line_sets:
+            lines.set_stroke(BLACK, 2)
+        lines = line_sets[0]
+
+        self.play(
+            ShowCreation(
+                lines, 
+                run_time = 2, 
+                lag_ratio = 0.5
+            )
+        )
+        self.wait(2)
+        for new_lines in line_sets[1:]:
+            self.play(
+                Transform(lines, new_lines),
+            )
+            self.wait()
+        self.wait()
+        self.play(FadeOut(lines))

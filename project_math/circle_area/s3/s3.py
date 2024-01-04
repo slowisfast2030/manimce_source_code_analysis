@@ -68,7 +68,7 @@ class s3(Scene):
         """
         rings_list = [
             self.get_rings(dR = self.radius/n)
-            for n in [20,25,30,35,40]
+            for n in [20,25,30,5]
         ]
         for rings in rings_list:
             self.play(

@@ -305,7 +305,7 @@ class s3(Scene):
 
     def unwrap_rings(self, rings, **kwargs):
         self.remove(rings)
-        self.add(self.radius_group.move_to(self.circle))
+        self.add(self.radius_group.to_corner(UP, buff = MED_LARGE_BUFF*3+2))
         #rings = VGroup(*reversed(rings))
         self.dR = self.radius/30
         rings = VGroup(*reversed(self.get_rings()))

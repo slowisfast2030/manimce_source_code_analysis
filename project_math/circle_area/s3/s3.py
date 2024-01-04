@@ -16,7 +16,7 @@ class s3(Scene):
         self.dR = 2/60
         self.ring_colors = [BLUE, GREEN]
 
-        self.stroke_color = BLACK
+        self.stroke_color = WHITE
         self.stroke_width = 1
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75

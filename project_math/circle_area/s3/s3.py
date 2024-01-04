@@ -26,7 +26,6 @@ class s3(Scene):
         self.num_lines = 24
         self.line_color = BLACK
 
-    def construct(self):
         self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
@@ -36,8 +35,10 @@ class s3(Scene):
         )
         self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         self.add(self.circle)
-        self.try_to_understand_area()
 
+    def construct(self):
+        self.try_to_understand_area()
+        self.slice_into_rings()
 
     def try_to_understand_area(self):
         line_sets = [
@@ -72,9 +73,6 @@ class s3(Scene):
             )
             self.wait()
         self.play(FadeOut(lines))
-
-        self.slice_into_rings()
-
 
     def slice_into_rings(self):
         rings = self.get_rings()

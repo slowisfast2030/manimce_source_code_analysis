@@ -82,7 +82,6 @@ class s3(Scene):
         拿出一个圆环并展开
         """
         self.isolate_one_ring()
-
         self.unwrap_rings(self.ring)
 
         pass
@@ -117,8 +116,7 @@ class s3(Scene):
             Write(circle_text)
         )
         self.text = circle_text
-
-        
+  
     def slice_into_rings(self):
         rings = self.get_rings()
         rings.set_stroke(BLACK, 1)
@@ -132,7 +130,6 @@ class s3(Scene):
         )
         self.rings = rings
         
-
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()
         """

@@ -208,22 +208,20 @@ class s3(Scene):
         original_ring = rings[index]
         ring = original_ring.copy()
 
+        self.remove(self.radius_group)
         self.play(
             ring.animate.shift(self.ring_shift_val),
-            original_ring.animate.set_fill(None, 0.25)
+            original_ring.animate.set_fill(None, 0.25),
+            path_arc = np.pi/2,
         )
-
-        self.wait()
-
-        self.play(*[
-            ApplyMethod(
-                r.set_fill, YELLOW, 
-                rate_func = squish_rate_func(there_and_back, alpha, alpha+0.15),
-                run_time = 3
-            )
-            for r, alpha in zip(rings, np.linspace(0, 0.85, len(rings)))
-        ])
-        self.wait()
+        # self.play(*[
+        #     ApplyMethod(
+        #         r.set_fill, YELLOW, 
+        #         rate_func = squish_rate_func(there_and_back, alpha, alpha+0.15),
+        #         run_time = 3
+        #     )
+        #     for r, alpha in zip(rings, np.linspace(0, 0.85, len(rings)))
+        # ])
 
         self.original_ring = original_ring
         self.ring = ring
@@ -278,8 +276,8 @@ class s3(Scene):
 
     def unwrap_rings(self, ring, **kwargs):
         unwrapped = self.get_unwrapped(ring, **kwargs)
-        unwrapped.move_to(ring.get_bottom()+DOWN*2)
+        unwrapped.move_to(ring.get_bottom()+DOWN*1.5)
         self.play(
-            TransformFromCopy(ring, unwrapped, run_time = 3),
+            TransformFromCopy(ring, unwrapped, run_time = 1),
         )
         self.unwrapped = unwrapped

@@ -69,7 +69,7 @@ class s3(Scene):
         print(self.radius)
         rings_list = [
             self.get_rings(dR = self.radius/n).set_stroke(BLACK, 1)
-            for n in [20,25]
+            for n in [20,25,30]
         ]
         # self.add(rings_list[0].shift(6*DOWN))
         # self.wait()
@@ -77,7 +77,7 @@ class s3(Scene):
             self.play(
                 Transform(self.rings, rings),
                 lag_ratio = 0.5,
-                run_time = 2
+                run_time = 1
             )
             self.wait()
 

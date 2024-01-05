@@ -28,16 +28,16 @@ class s3_opening(Scene):
         self.radial_line_color = MAROON_B
         self.dR = self.radius/30
         self.ring_colors = [BLUE, GREEN]
-        self.unwrapped_tip = ORIGIN
+        self.unwrapped_tip = ORIGIN + MED_LARGE_BUFF*DOWN
 
         self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
-            stroke_width=1,
+            stroke_width=2,
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*3)
+        self.circle.to_corner(UP, buff = MED_LARGE_BUFF*4)
         self.circle.set_fill(self.fill_color, self.fill_opacity)
         self.add(self.circle)
         
@@ -46,7 +46,7 @@ class s3_opening(Scene):
         self.introduce_rings()
 
     def introduce_area(self):   
-        area = MathTex("\pi R^2").scale(2)
+        area = MathTex("\pi R^2").scale(1.3)
         area.move_to(self.circle)
         self.add(area)
         pass
@@ -71,7 +71,7 @@ class s3_opening(Scene):
             **ring_anim_kwargs
         )
 
-        self.wait()
+        self.wait(0.5)
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )

@@ -42,8 +42,14 @@ class s3_opening(Scene):
         self.add(self.circle)
         
     def construct(self):
+        self.introduce_area()
         self.introduce_rings()
-        
+
+    def introduce_area(self):   
+        area = MathTex("\pi R^2").scale(2)
+        area.move_to(self.circle)
+        self.add(area)
+        pass
         
     def introduce_rings(self):
         rings = VGroup(*reversed(self.get_rings()))
@@ -59,15 +65,7 @@ class s3_opening(Scene):
         }
         self.add(rings)
 
-        # 很有层次感
-        # self.play(
-        #     FadeIn(rings, **ring_anim_kwargs),
-        # )
-
-        # self.wait()
-        # 注意path_arc参数
         self.play(
-            #rings.animate.rotate(PI/2),
             rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0),
             path_arc = np.pi/2,
             **ring_anim_kwargs

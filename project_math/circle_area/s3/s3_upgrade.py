@@ -140,7 +140,7 @@ class s3(Scene):
         self.play(
             MoveToTarget(self.rings),
                   )
-        self.wait()
+        self.wait(0.5)
         
         """
         分镜8:

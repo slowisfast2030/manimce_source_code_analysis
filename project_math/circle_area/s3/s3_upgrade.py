@@ -118,7 +118,8 @@ class s3(Scene):
         all_gr = VGroup(self.circle, self.radius_group, self.rings)
         self.play(
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
-            FadeOut(self.text)
+            FadeOut(self.text),
+            FadeOut(self.text_en),
         )
         """
         分镜6:

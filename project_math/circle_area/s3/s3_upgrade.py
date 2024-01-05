@@ -129,12 +129,40 @@ class s3(Scene):
 
         """
         分镜7:
-        显示面积计算
+        缩小三角形
+        """
+        self.rings.target = self.rings.copy()
+        self.rings.target.scale(0.65)
+        self.rings.target.move_to(self.unwrapped_tip, UP)
+        self.play(
+            MoveToTarget(self.rings),
+                  )
+        self.wait()
         
         """
-        self.play(
-            self.rings.animate.scale(0.65).shift(1*UP),
-                  )
+        分镜8:
+        显示三角形的底和高
+        底是2piR
+        高是R
+        """
+        first_ring = self.rings[-1]
+        last_ring = self.rings[0]
+
+        line_width = Line(last_ring.get_left(), last_ring.get_right())
+        tri_width = Brace(last_ring, DOWN)
+        tri_width_text = tri_width.get_tex("2\pi R")
+
+        line_height = Line(last_ring.get_bottom(), first_ring.get_top())
+        tri_height = Brace(Line(last_ring.get_bottom(), first_ring.get_top()), RIGHT)
+        tri_height_text = tri_height.get_tex("R")
+        tri_group = VGroup(
+                           #line_width,
+                           tri_width, 
+                           tri_width_text, 
+                           line_height,
+                           tri_height, 
+                           tri_height_text)
+        self.add(tri_group)
         self.wait()
 
 

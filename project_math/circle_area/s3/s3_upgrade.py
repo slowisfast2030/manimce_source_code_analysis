@@ -201,7 +201,7 @@ class s3(Scene):
         self.add(area_gr)
         #self.play(Write(area_gr))
         self.play(
-            Write(area),
+            FadeIn(area),
             Write(l_brace),
             TransformFromCopy(self.circle, small_circle),
             Write(r_brace),

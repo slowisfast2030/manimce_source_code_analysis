@@ -154,6 +154,7 @@ class s3(Scene):
             #self.circle.animate.set_stroke_color(BLACK),
             Write(text_split),
             Write(text_split_en),
+            run_time=0.5
         )
         self.play(self.circle.animate.set_stroke_color(BLACK))
         self.text = text_split

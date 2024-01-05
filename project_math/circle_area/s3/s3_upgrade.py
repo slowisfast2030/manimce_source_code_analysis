@@ -29,7 +29,7 @@ class s3(Scene):
         self.line_color = BLACK
 
         self.ring_index_proportion = 0.6
-        self.ring_shift_val = 5*DOWN
+        self.ring_shift_val = 3.5*DOWN
 
 
         self.circle = Circle(
@@ -83,8 +83,8 @@ class s3(Scene):
         分镜4:
         拿出一个圆环并展开
         """
-        # self.isolate_one_ring()
-        # self.unwrap_ring(self.ring)
+        self.isolate_one_ring()
+        self.unwrap_ring(self.ring)
         """
         分镜5:
         将圆分割为更多的圆环
@@ -271,14 +271,6 @@ class s3(Scene):
             original_ring.animate.set_fill(None, 0.25),
             path_arc = np.pi/2,
         )
-        # self.play(*[
-        #     ApplyMethod(
-        #         r.set_fill, YELLOW, 
-        #         rate_func = squish_rate_func(there_and_back, alpha, alpha+0.15),
-        #         run_time = 3
-        #     )
-        #     for r, alpha in zip(rings, np.linspace(0, 0.85, len(rings)))
-        # ])
 
         self.original_ring = original_ring
         self.ring = ring
@@ -333,9 +325,9 @@ class s3(Scene):
 
     def unwrap_ring(self, ring, **kwargs):
         unwrapped = self.get_unwrapped(ring, **kwargs)
-        unwrapped.move_to(ring.get_bottom()+DOWN*1.5)
+        unwrapped.move_to(ring.get_bottom())
         self.play(
-            TransformFromCopy(ring, unwrapped, run_time = 1),
+            Transform(ring, unwrapped, run_time = 1),
         )
         self.unwrapped = unwrapped
 

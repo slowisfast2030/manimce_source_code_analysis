@@ -172,8 +172,46 @@ class s3(Scene):
             Write(tri_height_text),
         )
         self.wait()
-
         
+        # 显示面积
+        #area_text = MathTex(r"S=\frac{1}{2}\cdot 2\pi R \cdot R")
+        #area_text.next_to(self.circle, DOWN)
+        #self.add(area_text)
+
+        area = Text("面积")
+        l_brace = MathTex(r"(")
+        r_brace = MathTex(r") = \frac{1}{2} \times")
+        height = MathTex(r"R")
+        mul = MathTex(r"\times")
+        bottom = MathTex(r"2 \pi R")
+        remains = MathTex(r"= \pi R^2")
+        #r_brace = MathTex(r")")
+        small_circle = self.circle.copy().match_height(l_brace)
+        area_gr = VGroup(area, 
+                         l_brace, 
+                         small_circle, 
+                         r_brace,
+                         height,
+                         mul,
+                         bottom,
+                         remains).arrange(RIGHT, buff = SMALL_BUFF)
+        
+        pos = (self.circle.get_bottom() + self.rings.get_top())/2
+        area_gr.move_to(pos)
+        self.add(area_gr)
+        #self.play(Write(area_gr))
+        self.play(
+            Write(area),
+            Write(l_brace),
+            TransformFromCopy(self.circle, small_circle),
+            Write(r_brace),
+            Write(mul),
+            Write(remains),
+            TransformFromCopy(tri_height_text, height),
+            TransformFromCopy(tri_width_text, bottom),
+            run_time = 2
+        )
+        self.wait()
         """
         
         """

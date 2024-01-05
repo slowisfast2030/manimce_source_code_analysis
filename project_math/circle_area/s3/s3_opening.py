@@ -75,6 +75,7 @@ class s3_opening(Scene):
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
+        self.wait()
 
     def get_ring(self, radius, dR, color = GREEN):
         ring = VMobject()

@@ -53,6 +53,7 @@ class s3_opening(Scene):
         
     def introduce_rings(self):
         rings = VGroup(*reversed(self.get_rings()))
+        rings.set_stroke(BLACK, 0.2)
         unwrapped_rings = VGroup(*[
             self.get_unwrapped(ring, to_edge = None)
             for ring in rings

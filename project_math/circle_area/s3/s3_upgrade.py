@@ -137,9 +137,10 @@ class s3(Scene):
         circle_text.to_corner(UP, buff = MED_LARGE_BUFF*6)
         self.play(
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity),
-            self.circle.animate.set_stroke(width = 0),
+            #self.circle.animate.set_stroke_color(BLACK),
             Write(circle_text)
         )
+        self.play(self.circle.animate.set_stroke_color(BLACK))
         self.text = circle_text
     
     def try_to_understand_area(self):
@@ -178,7 +179,7 @@ class s3(Scene):
 
     def slice_into_rings(self):
         rings = self.get_rings()
-        rings.set_stroke(BLACK, 1)
+        rings.set_stroke(BLACK, 0.3)
 
         self.play(
             FadeIn(

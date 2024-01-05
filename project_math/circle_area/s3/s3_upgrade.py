@@ -132,8 +132,9 @@ class s3(Scene):
         显示面积计算
         
         """
-        self.play(self.rings.animate.scale(0.7),
-                  self.rings.animate.shift(2*UP),)
+        self.play(
+            self.rings.animate.scale(0.7).shift(2*UP),
+                  )
         self.wait()
 
 

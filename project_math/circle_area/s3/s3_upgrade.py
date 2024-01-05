@@ -23,7 +23,7 @@ class s3(Scene):
         self.fill_color = BLUE_E
         self.fill_opacity = 0.75
 
-        self.unwrapped_tip = ORIGIN
+        self.unwrapped_tip = ORIGIN + MED_LARGE_BUFF*DOWN
 
         self.num_lines = 24
         self.line_color = BLACK
@@ -69,45 +69,49 @@ class s3(Scene):
         self.bring_to_front(self.radius_group)
         self.slice_into_rings()
         self.wait(1)
+        
         """
         分镜3:
-        将圆环和圆上移, 移除文字
-        拿出一个圆环进行展开
-        """
-        # all_gr = VGroup(self.circle, self.radius_group, self.rings)
-        # self.play(
-        #     all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*3),
-        #     FadeOut(self.text)
-        # )
-        """
-        分镜4:
         拿出一个圆环并展开
         """
         self.isolate_one_ring()
         self.unwrap_ring(self.ring)
+
+        
         """
-        分镜5:
+        分镜4:
         将圆分割为更多的圆环
         """
-        # self.play(FadeOut(self.ring),
-        #           FadeOut(self.unwrapped),)
-        # rings_list = [
-        #     self.get_rings(dR = self.radius/n).set_stroke(BLACK, 1)
-        #     for n in [20,25,30]
-        # ]
+        self.play(FadeOut(self.ring),
+                  FadeOut(self.unwrapped),)
+        rings_list = [
+            self.get_rings(dR = self.radius/n).set_stroke(BLACK, 0.1)
+            for n in [20,25,30]
+        ]
         
-        # for rings in rings_list:
-        #     self.play(
-        #         Transform(self.rings, rings),
-        #         lag_ratio = 0.5,
-        #         run_time = 1
-        #     )
-        #     self.wait(0.5)
+        for rings in rings_list:
+            self.play(
+                Transform(self.rings, rings),
+                lag_ratio = 0.5,
+                run_time = 1
+            )
+            self.wait(0.5)
+
+        """
+        分镜5:
+        将圆环和圆上移, 移除文字
+        拿出一个圆环进行展开
+        """
+        all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        self.play(
+            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
+            FadeOut(self.text)
+        )
         """
         分镜6:
         展开所有圆环
         """
-        # self.unwrap_rings(self.rings)
+        self.unwrap_rings(self.rings)
         # pass
 
     def introduce_circle(self):
@@ -333,11 +337,11 @@ class s3(Scene):
 
     def unwrap_rings(self, rings, **kwargs):
         self.remove(rings)
-        self.add(self.radius_group.to_corner(UP, buff = MED_LARGE_BUFF*3+2))
+        self.add(self.radius_group.to_corner(UP, buff = MED_LARGE_BUFF*4+2))
         #rings = VGroup(*reversed(rings))
         self.dR = self.radius/30
         rings = VGroup(*reversed(self.get_rings()))
-        rings.set_stroke(BLACK, 1)
+        rings.set_stroke(BLACK, 0.1)
         unwrapped_rings = VGroup(*[
             self.get_unwrapped(ring, to_edge = None)
             for ring in rings

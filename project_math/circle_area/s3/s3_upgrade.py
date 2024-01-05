@@ -275,12 +275,14 @@ class s3(Scene):
 
         self.remove(self.radius_group)
         self.play(
-            Transform(self.text, text_one_ring),
+            FadeOut(self.text),
+            Write(text_one_ring),
             ring.animate.shift(self.ring_shift_val),
             original_ring.animate.set_fill(None, 0.25),
             path_arc = np.pi/2,
         )
 
+        self.text = text_one_ring
         self.original_ring = original_ring
         self.ring = ring
 

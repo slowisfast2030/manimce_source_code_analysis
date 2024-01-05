@@ -91,9 +91,16 @@ class s3(Scene):
         text_more_rings = Text("更多的圆环").scale(0.8)
         text_more_rings.set_color_by_gradient(BLUE, GREEN)
         text_more_rings.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_more_rings_en = Text("More rings").scale(0.8)
+        text_more_rings_en.set_color_by_gradient(BLUE, GREEN)
+        text_more_rings_en.next_to(text_more_rings, DOWN, buff = MED_LARGE_BUFF*0.5)
+
         self.play(FadeOut(self.text),
-                    FadeIn(text_more_rings))
+                    FadeOut(self.text_en),
+                    FadeIn(text_more_rings),
+                    FadeIn(text_more_rings_en))
         self.text = text_more_rings
+        self.text_en = text_more_rings_en
 
         for rings in rings_list:
             self.play(
@@ -154,10 +161,11 @@ class s3(Scene):
             #self.circle.animate.set_stroke_color(BLACK),
             Write(text_split),
             Write(text_split_en),
-            run_time=0.5
+            run_time=1
         )
         self.play(self.circle.animate.set_stroke_color(BLACK))
         self.text = text_split
+        self.text_en = text_split_en
     
     def try_to_understand_area(self):
         line_sets = [
@@ -279,6 +287,9 @@ class s3(Scene):
         text_one_ring = Text("取出一个圆环").scale(0.8)
         text_one_ring.set_color_by_gradient(BLUE, GREEN)
         text_one_ring.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_one_ring_en = Text("Isolate one ring").scale(0.8)
+        text_one_ring_en.set_color_by_gradient(BLUE, GREEN)
+        text_one_ring_en.next_to(text_one_ring, DOWN, buff = MED_LARGE_BUFF*0.5)
 
         rings = self.rings
         index = int(self.ring_index_proportion*len(rings))
@@ -288,13 +299,17 @@ class s3(Scene):
         self.remove(self.radius_group)
         self.play(
             FadeOut(self.text),
+            FadeOut(self.text_en),
             FadeIn(text_one_ring),
+            FadeIn(text_one_ring_en),
+
             ring.animate.shift(self.ring_shift_val),
             original_ring.animate.set_fill(None, 0.25),
             path_arc = np.pi/2,
         )
 
         self.text = text_one_ring
+        self.text_en = text_one_ring_en
         self.original_ring = original_ring
         self.ring = ring
 

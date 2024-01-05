@@ -68,14 +68,16 @@ class s3(Scene):
         """
         self.bring_to_front(self.radius_group)
         self.slice_into_rings()
-        self.wait(1)
+        self.wait(3.2)
         
         """
         分镜3:
         拿出一个圆环并展开
         """
         self.isolate_one_ring()
+        self.wait()
         self.unwrap_ring(self.ring)
+        self.wait(2)
 
         
         """
@@ -296,7 +298,7 @@ class s3(Scene):
         self.play(
             ShowCreation(
                 lines, 
-                run_time = 2, 
+                run_time = 1.5, 
                 lag_ratio = 0.5
             )
         )
@@ -304,7 +306,7 @@ class s3(Scene):
             self.play(
                 Transform(lines, new_lines),
             )
-            self.wait()
+            self.wait(0.5)
         self.play(FadeOut(lines))
 
     def slice_into_rings(self):

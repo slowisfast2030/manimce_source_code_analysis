@@ -68,13 +68,14 @@ class s3_opening(Scene):
         self.add(rings)
 
         self.play(
+            Indicate(self.area,rate_func = squish_rate_func(there_and_back,0.7,1)),
             rings.animate.move_to(unwrapped_rings.get_top()+DOWN*0),
             path_arc = np.pi/2,
             **ring_anim_kwargs
         )
 
         #self.wait(0.5)
-        self.play(Indicate(self.area))
+        #self.play(Indicate(self.area))
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )

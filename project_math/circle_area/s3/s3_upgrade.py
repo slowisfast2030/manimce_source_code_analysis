@@ -88,7 +88,7 @@ class s3(Scene):
             self.get_rings(dR = self.radius/n).set_stroke(BLACK, 0.1)
             for n in [20,25,30]
         ]
-        text_more_rings = Text("将圆分割为更多的圆环").scale(0.8)
+        text_more_rings = Text("更多的圆环").scale(0.8)
         text_more_rings.set_color_by_gradient(BLUE, GREEN)
         text_more_rings.to_corner(UP, buff = MED_LARGE_BUFF*6)
         self.play(FadeOut(self.text),

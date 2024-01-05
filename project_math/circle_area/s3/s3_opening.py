@@ -49,6 +49,7 @@ class s3_opening(Scene):
         area = MathTex("\pi R^2").scale(1.3)
         area.move_to(self.circle)
         self.add(area)
+        self.area = area
         pass
         
     def introduce_rings(self):
@@ -73,6 +74,7 @@ class s3_opening(Scene):
         )
 
         #self.wait(0.5)
+        self.play(Indicate(self.area))
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )

@@ -126,6 +126,10 @@ class s3(Scene):
         展开所有圆环
         """
         self.unwrap_rings(self.rings)
+
+        """
+        
+        """
         # pass
 
     def introduce_circle(self):

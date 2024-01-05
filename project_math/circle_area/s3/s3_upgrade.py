@@ -60,6 +60,8 @@ class s3(Scene):
         """
         self.introduce_circle()
         self.wait()
+        # 多种划分
+        self.try_to_understand_area()
         """
         分镜2:
         显示分割
@@ -72,43 +74,41 @@ class s3(Scene):
         将圆环和圆上移, 移除文字
         拿出一个圆环进行展开
         """
-        all_gr = VGroup(self.circle, self.radius_group, self.rings)
-        self.play(
-            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*3),
-            FadeOut(self.text)
-        )
+        # all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        # self.play(
+        #     all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*3),
+        #     FadeOut(self.text)
+        # )
         """
         分镜4:
         拿出一个圆环并展开
         """
-        self.isolate_one_ring()
-        self.unwrap_ring(self.ring)
+        # self.isolate_one_ring()
+        # self.unwrap_ring(self.ring)
         """
         分镜5:
         将圆分割为更多的圆环
         """
-        self.play(FadeOut(self.ring),
-                  FadeOut(self.unwrapped),)
-        rings_list = [
-            self.get_rings(dR = self.radius/n).set_stroke(BLACK, 1)
-            #self.get_rings(dR = self.radius/n)
-            for n in [20,25,30]
-        ]
-        # self.add(rings_list[0].shift(6*DOWN))
-        # self.wait()
-        for rings in rings_list:
-            self.play(
-                Transform(self.rings, rings),
-                lag_ratio = 0.5,
-                run_time = 1
-            )
-            self.wait(0.5)
+        # self.play(FadeOut(self.ring),
+        #           FadeOut(self.unwrapped),)
+        # rings_list = [
+        #     self.get_rings(dR = self.radius/n).set_stroke(BLACK, 1)
+        #     for n in [20,25,30]
+        # ]
+        
+        # for rings in rings_list:
+        #     self.play(
+        #         Transform(self.rings, rings),
+        #         lag_ratio = 0.5,
+        #         run_time = 1
+        #     )
+        #     self.wait(0.5)
         """
         分镜6:
         展开所有圆环
         """
-        self.unwrap_rings(self.rings)
-        pass
+        # self.unwrap_rings(self.rings)
+        # pass
 
     def introduce_circle(self):
         self.remove(self.circle)
@@ -132,15 +132,50 @@ class s3(Scene):
         # 所以需要将radius_group放到circle的上面
         self.bring_to_front(self.radius_group)
 
-        circle_text = Text("如何分割圆？").scale(0.8)
+        circle_text = Text("圆面积可视化").scale(0.8)
         circle_text.set_color_by_gradient(BLUE, GREEN)
         circle_text.to_corner(UP, buff = MED_LARGE_BUFF*6)
         self.play(
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity),
+            self.circle.animate.set_stroke(width = 0),
             Write(circle_text)
         )
         self.text = circle_text
-  
+    
+    def try_to_understand_area(self):
+        line_sets = [
+            VGroup(*[
+                Line(
+                    self.circle.point_from_proportion(alpha),
+                    self.circle.point_from_proportion(func(alpha)),
+                )
+                for alpha in np.linspace(0, 1, self.num_lines)
+            ])
+            for func in [
+                lambda alpha : 1-alpha,
+                lambda alpha : (0.5-alpha)%1,
+                lambda alpha : (alpha + 0.4)%1,
+                lambda alpha : (alpha + 0.5)%1,
+            ]
+        ]
+        for lines in line_sets:
+            lines.set_stroke(self.line_color, 2)
+        lines = line_sets[0]
+
+        self.play(
+            ShowCreation(
+                lines, 
+                run_time = 2, 
+                lag_ratio = 0.5
+            )
+        )
+        for new_lines in line_sets[1:]:
+            self.play(
+                Transform(lines, new_lines),
+            )
+            self.wait()
+        self.play(FadeOut(lines))
+
     def slice_into_rings(self):
         rings = self.get_rings()
         rings.set_stroke(BLACK, 1)

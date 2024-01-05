@@ -145,7 +145,7 @@ class s3(Scene):
         text_split = Text("圆的分割").scale(0.8)
         text_split.set_color_by_gradient(BLUE, GREEN)
         text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
-        text_split_en = Text("Circle Split").scale(0.8)
+        text_split_en = Text("Division of circle").scale(0.8)
         text_split_en.set_color_by_gradient(BLUE, GREEN)
         text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 

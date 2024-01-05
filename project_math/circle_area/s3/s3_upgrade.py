@@ -136,16 +136,16 @@ class s3(Scene):
         # 所以需要将radius_group放到circle的上面
         self.bring_to_front(self.radius_group)
 
-        circle_text = Text("圆面积可视化").scale(0.8)
-        circle_text.set_color_by_gradient(BLUE, GREEN)
-        circle_text.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_split = Text("圆的分割").scale(0.8)
+        text_split.set_color_by_gradient(BLUE, GREEN)
+        text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
         self.play(
             self.circle.animate.set_fill(self.fill_color, self.fill_opacity),
             #self.circle.animate.set_stroke_color(BLACK),
-            Write(circle_text)
+            Write(text_split)
         )
         self.play(self.circle.animate.set_stroke_color(BLACK))
-        self.text = circle_text
+        self.text = text_split
     
     def try_to_understand_area(self):
         line_sets = [
@@ -264,6 +264,10 @@ class s3(Scene):
         return rings
     
     def isolate_one_ring(self):
+        text_one_ring = Text("取出一个圆环").scale(0.8)
+        text_one_ring.set_color_by_gradient(BLUE, GREEN)
+        text_one_ring.to_corner(UP, buff = MED_LARGE_BUFF*6)
+
         rings = self.rings
         index = int(self.ring_index_proportion*len(rings))
         original_ring = rings[index]
@@ -271,6 +275,7 @@ class s3(Scene):
 
         self.remove(self.radius_group)
         self.play(
+            Transform(self.text, text_one_ring),
             ring.animate.shift(self.ring_shift_val),
             original_ring.animate.set_fill(None, 0.25),
             path_arc = np.pi/2,

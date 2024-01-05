@@ -59,7 +59,7 @@ class s3(Scene):
         画出圆, 抛出问题
         """
         self.introduce_circle()
-        self.wait()
+        #self.wait()
         # 多种划分
         self.try_to_understand_area()
         """
@@ -179,7 +179,7 @@ class s3(Scene):
 
     def slice_into_rings(self):
         rings = self.get_rings()
-        rings.set_stroke(BLACK, 0.3)
+        rings.set_stroke(BLACK, 0.2)
 
         self.play(
             FadeIn(

@@ -122,6 +122,7 @@ class s3(Scene):
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
             FadeOut(self.text),
             FadeOut(self.text_en),
+            run_time=0.5
         )
         """
         分镜6:
@@ -502,7 +503,7 @@ class s3(Scene):
         #     FadeIn(rings, **ring_anim_kwargs),
         # )
 
-        self.wait()
+        
         # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),

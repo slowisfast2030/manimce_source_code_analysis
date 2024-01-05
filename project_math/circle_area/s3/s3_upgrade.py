@@ -178,7 +178,7 @@ class s3(Scene):
         #area_text.next_to(self.circle, DOWN)
         #self.add(area_text)
 
-        area = Text("面积")
+        area = Text("面积").scale(0.8)
         l_brace = MathTex(r"(")
         r_brace = MathTex(r") = \frac{1}{2} \times")
         height = MathTex(r"R")
@@ -213,9 +213,19 @@ class s3(Scene):
         )
         self.wait()
         """
-        
+        分镜9:
+        在三角形下方显示点赞+关注
         """
-
+        #like = Text("点赞")
+        svg_file = "heart.svg"        
+        like = SVGMobject(svg_file).set_fill(RED, 1)
+        plus = MathTex(r"+")
+        follow = Text("关注").scale(0.8)
+        like.match_height(follow)
+        like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = SMALL_BUFF)
+        like_plus_follow.next_to(self.rings, DOWN, buff = MED_LARGE_BUFF*3)
+        self.add(like_plus_follow)
+        self.wait()
         # pass
 
     def introduce_circle(self):

@@ -110,7 +110,7 @@ class s3(Scene):
                 lag_ratio = 0.5,
                 run_time = 1
             )
-            self.wait(0.5)
+            #self.wait(0.5)
 
         """
         分镜5:

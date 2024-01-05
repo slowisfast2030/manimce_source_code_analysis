@@ -233,7 +233,7 @@ class s3(Scene):
         self.play(FadeIn(like_plus_follow))
         self.play(Indicate(like),
                   Indicate(follow))
-        self.wait()
+        self.wait(5)
         # pass
 
     def introduce_circle(self):

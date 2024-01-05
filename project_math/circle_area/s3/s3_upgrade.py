@@ -128,8 +128,13 @@ class s3(Scene):
         self.unwrap_rings(self.rings)
 
         """
-        
+        分镜7:
+        显示面积计算
+        注意此时展开的圆环是self.rings
         """
+        self.play(self.rings.animate.scale(0.5))
+        
+
         # pass
 
     def introduce_circle(self):

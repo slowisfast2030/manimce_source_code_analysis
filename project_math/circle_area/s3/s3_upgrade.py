@@ -122,7 +122,7 @@ class s3(Scene):
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
             FadeOut(self.text),
             FadeOut(self.text_en),
-            run_time=0.5
+            run_time=1
         )
         """
         分镜6:
@@ -512,7 +512,7 @@ class s3(Scene):
             **ring_anim_kwargs
         )
 
-        self.wait()
+        self.wait(0.5)
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )

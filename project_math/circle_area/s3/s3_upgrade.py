@@ -178,7 +178,7 @@ class s3(Scene):
         #area_text.next_to(self.circle, DOWN)
         #self.add(area_text)
 
-        area = Text("面积").scale(0.8)
+        area = Text("面积").scale(0.8).set_color_by_gradient(BLUE, BLUE)
         l_brace = MathTex(r"(")
         r_brace = MathTex(r") = \frac{1}{2} \times")
         height = MathTex(r"R")
@@ -220,7 +220,7 @@ class s3(Scene):
         svg_file = "heart.svg"        
         like = SVGMobject(svg_file).set_fill(RED, 1)
         plus = MathTex(r"+")
-        follow = Text("关注").scale(0.8)
+        follow = Text("关注").scale(0.8).set_color_by_gradient(BLUE, GREEN)
         like.match_height(follow)
         #like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
         like_plus = VGroup(like, plus).arrange(RIGHT, buff = MED_LARGE_BUFF*0.5)
@@ -387,6 +387,7 @@ class s3(Scene):
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
         ])
+        rings.set_opacity(1)
         return rings
     
     def isolate_one_ring(self):

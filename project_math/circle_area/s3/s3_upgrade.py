@@ -133,7 +133,7 @@ class s3(Scene):
         
         """
         self.play(
-            self.rings.animate.scale(0.7).shift(2*UP),
+            self.rings.animate.scale(0.65).shift(1*UP),
                   )
         self.wait()
 

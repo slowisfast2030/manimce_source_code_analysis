@@ -130,10 +130,12 @@ class s3(Scene):
         """
         分镜7:
         显示面积计算
-        注意此时展开的圆环是self.rings
-        """
-        self.play(self.rings.animate.scale(0.5))
         
+        """
+        self.play(self.rings.animate.scale(0.7),
+                  self.rings.animate.shift(2*UP),)
+        self.wait()
+
 
         # pass
 
@@ -416,5 +418,6 @@ class s3(Scene):
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
+        self.rings = rings
     
 

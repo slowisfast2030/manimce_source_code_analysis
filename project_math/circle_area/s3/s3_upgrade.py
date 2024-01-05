@@ -133,7 +133,7 @@ class s3(Scene):
         """
         self.rings.target = self.rings.copy()
         self.rings.target.scale(0.65)
-        self.rings.target.move_to(self.unwrapped_tip, UP)
+        self.rings.target.move_to(self.unwrapped_tip+MED_LARGE_BUFF*UP*0, UP)
         self.play(
             MoveToTarget(self.rings),
                   )
@@ -148,11 +148,11 @@ class s3(Scene):
         first_ring = self.rings[-1]
         last_ring = self.rings[0]
 
-        line_width = Line(last_ring.get_left(), last_ring.get_right())
+        line_width = Line(last_ring.get_left(), last_ring.get_right()).set_color(self.radius_line_color)
         tri_width = Brace(last_ring, DOWN)
         tri_width_text = tri_width.get_tex("2\pi R")
 
-        line_height = Line(last_ring.get_bottom(), first_ring.get_top())
+        line_height = Line(last_ring.get_bottom(), first_ring.get_top()).set_color(self.radius_line_color)
         tri_height = Brace(Line(last_ring.get_bottom(), first_ring.get_top()), RIGHT)
         tri_height_text = tri_height.get_tex("R")
         tri_group = VGroup(
@@ -162,9 +162,21 @@ class s3(Scene):
                            line_height,
                            tri_height, 
                            tri_height_text)
-        self.add(tri_group)
+        #self.add(tri_group)
+        self.play(
+            ShowCreation(line_height),
+            #ShowCreation(line_width),
+            GrowFromCenter(tri_width),
+            GrowFromCenter(tri_height),
+            Write(tri_width_text),
+            Write(tri_height_text),
+        )
         self.wait()
 
+        
+        """
+        
+        """
 
         # pass
 

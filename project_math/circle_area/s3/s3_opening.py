@@ -38,50 +38,13 @@ class s3_opening(Scene):
             fill_opacity = self.fill_opacity,
         )
         self.circle.to_corner(UP, buff = MED_LARGE_BUFF*3)
-        
-        self.radius_line = Line(
-            self.circle.get_center(),
-            self.circle.get_right(),
-            color = self.radial_line_color
-        )
-        self.radius_brace = Brace(self.radius_line, buff = SMALL_BUFF)
-        self.radius_label = self.radius_brace.get_tex("R", buff = SMALL_BUFF)
-
-        self.radius_group = VGroup(
-            self.radius_line, self.radius_brace, self.radius_label
-        )
-        self.add(self.circle, *self.radius_group)
+        self.circle.set_fill(self.fill_color, self.fill_opacity)
+        self.add(self.circle)
         
     def construct(self):
-        self.introduce_circle()
         self.introduce_rings()
         
-    def introduce_circle(self):
-        self.remove(self.circle)
-        self.play(
-            ShowCreation(self.radius_line),
-            GrowFromCenter(self.radius_brace),
-            Write(self.radius_label),
-        )
-        self.circle.set_fill(opacity = 0)
-
-        self.play(
-            Rotate(
-                self.radius_line, 2*PI-0.001, 
-                about_point = self.circle.get_center(),
-            ),
-            ShowCreation(self.circle),
-            run_time = 1
-        )
-
-        # 当circle执行了下面的动画后会覆盖掉radius_group
-        # 所以需要将radius_group放到circle的上面
-        self.bring_to_front(self.radius_group)
-
-        self.play(
-            self.circle.animate.set_fill(self.fill_color, self.fill_opacity)
-        )
-
+        
     def introduce_rings(self):
         rings = VGroup(*reversed(self.get_rings()))
         unwrapped_rings = VGroup(*[
@@ -97,11 +60,11 @@ class s3_opening(Scene):
         self.add(rings)
 
         # 很有层次感
-        self.play(
-            FadeIn(rings, **ring_anim_kwargs),
-        )
+        # self.play(
+        #     FadeIn(rings, **ring_anim_kwargs),
+        # )
 
-        self.wait()
+        # self.wait()
         # 注意path_arc参数
         self.play(
             #rings.animate.rotate(PI/2),
@@ -114,14 +77,6 @@ class s3_opening(Scene):
         self.play(
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
-    
-        self.play(ApplyWave(
-            rings,
-            direction = UP,
-            time_width=0.5,
-            amplitude=0.2,
-            run_time=3
-        ))
         self.wait()
 
     def get_ring(self, radius, dR, color = GREEN):

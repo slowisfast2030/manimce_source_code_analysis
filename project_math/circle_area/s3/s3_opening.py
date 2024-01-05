@@ -76,7 +76,7 @@ class s3_opening(Scene):
         #self.wait(0.5)
         #self.play(Indicate(self.area))
         self.play(
-            Indicate(self.area,rate_func = squish_rate_func(there_and_back,0,0.5)),
+            Indicate(self.area,rate_func = squish_rate_func(there_and_back,0,1)),
             Transform(rings, unwrapped_rings, **ring_anim_kwargs),
         )
         #self.wait()

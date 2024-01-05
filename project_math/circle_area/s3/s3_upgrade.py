@@ -222,9 +222,12 @@ class s3(Scene):
         plus = MathTex(r"+")
         follow = Text("关注").scale(0.8)
         like.match_height(follow)
-        like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = SMALL_BUFF)
+        like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
         like_plus_follow.next_to(self.rings, DOWN, buff = MED_LARGE_BUFF*3)
         self.add(like_plus_follow)
+        self.play(FadeIn(like_plus_follow))
+        self.play(Indicate(like),
+                  Indicate(follow))
         self.wait()
         # pass
 

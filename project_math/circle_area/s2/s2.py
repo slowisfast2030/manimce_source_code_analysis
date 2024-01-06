@@ -59,7 +59,8 @@ class s2(Scene):
         分镜4:
         将扇形和圆环上移，移除文字
         """
-        all_gr = VGroup(self.sectors, self.circle)
+        all_gr = VGroup(self.circle,
+                        self.sectors)
         self.play(
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
             FadeOut(self.text),

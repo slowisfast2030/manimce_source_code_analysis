@@ -66,6 +66,11 @@ class s2(Scene):
             FadeOut(self.text),
             run_time=1
         )
+        """
+        分镜5:
+        展开所有扇形, 得到近似的矩形
+        """
+        self.unwrap_sectors()
 
 
 
@@ -119,3 +124,48 @@ class s2(Scene):
         sectors.set_stroke(WHITE, self.sector_stroke_width)
         sectors.replace(circle, stretch=True)
         return sectors
+    
+    def unwrap_sectors(self):
+        """
+        将sectors展开
+        """
+        sectors = self.sectors
+        laid_sectors = sectors.copy()
+        N = len(sectors)
+        dtheta = TAU / N
+        angles = np.arange(0, TAU, dtheta)
+        for sector, angle in zip(laid_sectors, angles):
+            sector.rotate(-90 * DEGREES - angle - dtheta / 2)
+
+        laid_sectors.arrange(RIGHT, buff=0, aligned_edge=DOWN)
+        laid_sectors.move_to(1.5 * DOWN)
+
+        self.play(
+            sectors.animate.scale(1).to_corner(UP, buff=MED_LARGE_BUFF*3),
+        )
+        """
+        深度思考
+        """
+        self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
+        self.wait()
+
+        """
+        左右的锯齿的合并
+        """
+        lh, rh = laid_sectors[:N // 2], laid_sectors[N // 2:]
+        lh.generate_target()
+        rh.generate_target()
+        rh.target.rotate(PI)
+        rh.target.move_to(lh[0].get_top(), UL)
+        VGroup(lh.target, rh.target).set_x(0)
+        rh.target.shift(UP)
+        lh.target.shift(DOWN)
+
+        self.play(
+            MoveToTarget(lh, run_time=1.5),
+            MoveToTarget(rh, run_time=1.5, path_arc=PI),
+        )
+        self.play(
+            lh.animate.shift(UP),
+            rh.animate.shift(DOWN),
+        )

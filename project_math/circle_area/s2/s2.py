@@ -165,13 +165,13 @@ class s2(Scene):
         """
         深度思考
         """
-        self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
+        self.play(Transform(sectors, laid_sectors, run_time=2))
         self.wait()
 
         """
         左右的锯齿的合并
         """
-        lh, rh = laid_sectors[:N // 2], laid_sectors[N // 2:]
+        lh, rh = sectors[:N // 2], sectors[N // 2:]
         lh.generate_target()
         rh.generate_target()
         rh.target.rotate(PI)

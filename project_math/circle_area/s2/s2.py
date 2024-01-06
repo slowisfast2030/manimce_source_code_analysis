@@ -19,7 +19,7 @@ class ShowCreation(Create):
 
 class s2(Scene):
     def setup(self):
-        self.n_slices = 60
+        self.n_slices = 30
         self.sector_stroke_width = 1.0
 
     def construct(self):

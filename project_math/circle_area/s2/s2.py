@@ -55,6 +55,17 @@ class s2(Scene):
                       lag_ratio = 0.5,
                       run_time = 1)
             self.wait()
+        """
+        分镜4:
+        将扇形和圆环上移，移除文字
+        """
+        all_gr = VGroup(self.sectors, self.circle)
+        self.play(
+            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
+            FadeOut(self.text),
+            run_time=1
+        )
+
 
 
 

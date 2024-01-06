@@ -115,7 +115,6 @@ class s3(Scene):
         """
         分镜5:
         将圆环和圆上移, 移除文字
-        拿出一个圆环进行展开
         """
         all_gr = VGroup(self.circle, self.radius_group, self.rings)
         self.play(

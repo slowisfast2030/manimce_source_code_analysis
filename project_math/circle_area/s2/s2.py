@@ -29,12 +29,20 @@ class s2(Scene):
         self.sector_stroke_width = 1.0
 
     def construct(self):
-        
-
         """
         分镜1:
         显示圆的分割
         """
+        self.split_circle()
+        
+
+        """
+        分镜2:
+        取出一个扇形, 下移
+        """
+        sector = self.sectors[0]
+
+    def split_circle(self):
         circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
@@ -61,8 +69,10 @@ class s2(Scene):
         
         self.play(Write(sectors),
                   Write(text_split))
+        
+        self.text = text_split
         self.circle = circle
-
+        self.sectors = sectors
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
         angle = TAU / n_slices

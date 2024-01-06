@@ -28,6 +28,8 @@ class s2(Scene):
         self.n_slices = 20
         self.sector_stroke_width = 1.0
 
+        self.radius_line_color = MAROON_B
+
     def construct(self):
         """
         分镜1:
@@ -72,6 +74,26 @@ class s2(Scene):
         """
         self.unwrap_sectors()
 
+        """
+        分镜6:
+        计算面积
+        """
+        line_width = Line(self.lh[0].get_corner(DL), self.lh[-1].get_corner(DR))
+        line_width.set_color(self.radius_line_color)
+        line_width_br = Brace(line_width, DOWN)
+        text_width = line_width_br.get_tex("\pi R")
+
+        line_height = Line(self.lh[15].get_bottom(), self.lh[15].get_top()) 
+        line_height.set_color(self.radius_line_color)
+        line_height_br = Brace(line_height, RIGHT)
+        text_height = line_height_br.get_tex("R")
+
+        self.play(ShowCreation(line_height),
+                  ShowCreation(line_width),
+                  GrowFromCenter(line_width_br),
+                  GrowFromCenter(line_height_br),
+                  Write(text_width),
+                  Write(text_height))
 
 
 
@@ -166,3 +188,6 @@ class s2(Scene):
             lh.animate.shift(UP),
             rh.animate.shift(DOWN),
         )
+
+        self.lh = lh
+        self.rh = rh

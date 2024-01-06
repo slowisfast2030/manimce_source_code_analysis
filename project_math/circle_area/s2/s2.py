@@ -19,14 +19,30 @@ class ShowCreation(Create):
 
 class s2(Scene):
     def setup(self):
+        self.radius = 2.0
+        self.stroke_color = WHITE
+        self.stroke_width = 2
+        self.fill_color = BLUE_E
+        self.fill_opacity = 0.75
+
         self.n_slices = 20
         self.sector_stroke_width = 1.0
 
     def construct(self):
-        radius = 2.0
+        
 
-        # Slice up circle
-        circle = Circle(radius=radius)
+        """
+        分镜1:
+        显示圆的分割
+        """
+        circle = Circle(
+            radius = self.radius,
+            stroke_color = self.stroke_color,
+            stroke_width=self.stroke_width,
+            fill_color = self.fill_color,
+            fill_opacity = self.fill_opacity,
+        )
+        circle.move_to(ORIGIN)
         circle.move_to(ORIGIN)  
         circle.set_stroke(WHITE, 1)
         circle.set_fill(BLUE_E, 0.75)
@@ -42,13 +58,11 @@ class s2(Scene):
             
         )
         #self.wait()
-        """
-        这个效果挺不错
-        sectors会覆盖在circle上
-        """
+        
         self.play(Write(sectors),
                   Write(text_split))
-        self.remove(circle)
+        self.circle = circle
+
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
         angle = TAU / n_slices

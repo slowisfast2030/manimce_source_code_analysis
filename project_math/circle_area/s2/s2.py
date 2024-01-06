@@ -28,7 +28,7 @@ class s2(Scene):
         self.n_slices = 20
         self.sector_stroke_width = 1.0
 
-        self.radius_line_color = MAROON_B
+        self.radius_line_color = YELLOW
 
     def construct(self):
         """

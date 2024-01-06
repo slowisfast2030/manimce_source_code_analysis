@@ -27,17 +27,19 @@ class s2(Scene):
 
         # Slice up circle
         circle = Circle(radius=radius)
+        circle.move_to(ORIGIN)  
         circle.set_stroke(WHITE, 1)
-        circle.set_fill(BLUE_E, 1)
+        circle.set_fill(BLUE_E, 0.75)
 
-        question = Text("Area?")
-        question.next_to(circle, UP)
+        text_split = Text("圆的分割").scale(0.8)
+        text_split.set_color_by_gradient(BLUE, GREEN)
+        text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
 
         sectors = self.get_sectors(circle, n_slices=self.n_slices)
 
         self.play(
             DrawBorderThenFill(circle),
-            Write(question, stroke_color=WHITE)
+            Write(text_split, stroke_color=WHITE)
         )
         self.wait()
         """

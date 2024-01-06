@@ -39,14 +39,15 @@ class s2(Scene):
 
         self.play(
             DrawBorderThenFill(circle),
-            Write(text_split, stroke_color=WHITE)
+            
         )
         #self.wait()
         """
         这个效果挺不错
         sectors会覆盖在circle上
         """
-        self.play(Write(sectors))
+        self.play(Write(sectors),
+                  Write(text_split))
         self.remove(circle)
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):

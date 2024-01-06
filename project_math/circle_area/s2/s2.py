@@ -34,13 +34,29 @@ class s2(Scene):
         显示圆的分割
         """
         self.split_circle()
-        
-
+        self.wait()
         """
         分镜2:
         取出一个扇形, 下移
         """
-        sector = self.sectors[0]
+        self.isolate_one_sector()
+        self.wait()
+        """
+        分镜3:
+        将圆分割为更多的扇形
+        """
+        self.play(FadeOut(self.sector))
+        sectors_list = [
+            self.get_sectors(self.circle, n_slices=n_slices)
+            for n_slices in [30, 44, 60]
+        ]
+        for sectors in sectors_list:
+            self.play(Transform(self.sectors, sectors),
+                      lag_ratio = 0.5,
+                      run_time = 1)
+            self.wait()
+
+
 
     def split_circle(self):
         circle = Circle(
@@ -73,6 +89,14 @@ class s2(Scene):
         self.text = text_split
         self.circle = circle
         self.sectors = sectors
+
+    def isolate_one_sector(self):
+        sector = self.sectors[0]
+        sector.generate_target()
+        sector.target.rotate(-11/20*PI, about_point=ORIGIN)
+        sector.target.shift(2.5*DOWN)
+        self.play(MoveToTarget(sector))
+        self.sector = sector
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
         angle = TAU / n_slices

@@ -95,6 +95,40 @@ class s2(Scene):
                   Write(text_width),
                   Write(text_height))
 
+        area = Text("面积").scale(0.8).set_color_by_gradient(BLUE, BLUE)
+        l_brace = MathTex(r"(")
+        r_brace = MathTex(r")")
+        height = MathTex(r"R")
+        mul = MathTex(r"\times")
+        bottom = MathTex(r"\pi R")
+        remains = MathTex(r"= \pi R^2")
+        #r_brace = MathTex(r")")
+        small_circle = self.circle.copy().match_height(l_brace)
+        area_gr = VGroup(area, 
+                         l_brace, 
+                         small_circle, 
+                         r_brace,
+                         height,
+                         mul,
+                         bottom,
+                         remains).arrange(RIGHT, buff = SMALL_BUFF)
+        
+        pos = (self.circle.get_bottom() + self.lh.get_top())/2
+        area_gr.move_to(pos)
+        self.add(area_gr)
+        #self.play(Write(area_gr))
+        self.play(
+            FadeIn(area),
+            Write(l_brace),
+            TransformFromCopy(self.circle, small_circle),
+            Write(r_brace),
+            Write(mul),
+            Write(remains),
+            TransformFromCopy(text_height, height),
+            TransformFromCopy(text_width, bottom),
+            run_time = 2
+        )
+
 
 
     def split_circle(self):

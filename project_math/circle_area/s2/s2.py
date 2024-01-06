@@ -19,7 +19,7 @@ class ShowCreation(Create):
 
 class s2(Scene):
     def setup(self):
-        self.n_slices = 30
+        self.n_slices = 20
         self.sector_stroke_width = 1.0
 
     def construct(self):
@@ -41,7 +41,7 @@ class s2(Scene):
             DrawBorderThenFill(circle),
             Write(text_split, stroke_color=WHITE)
         )
-        self.wait()
+        #self.wait()
         """
         这个效果挺不错
         sectors会覆盖在circle上

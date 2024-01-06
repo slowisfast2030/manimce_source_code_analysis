@@ -97,7 +97,7 @@ class s2(Scene):
 
         area = Text("面积").scale(0.8).set_color_by_gradient(BLUE, BLUE)
         l_brace = MathTex(r"(")
-        r_brace = MathTex(r")")
+        r_brace = MathTex(r")=")
         height = MathTex(r"R")
         mul = MathTex(r"\times")
         bottom = MathTex(r"\pi R")

@@ -239,7 +239,7 @@ class s2(Scene):
         #tri.set_fill(opacity = 0.75)
         sym = MathTex(r"\approx")
         sector_copy = sector.target.copy()
-        sector_tri = VGroup(sector_copy, sym, tri).arrange(RIGHT, buff = 0.5).shift(2.5*DOWN)
+        sector_tri = VGroup(sector_copy, sym, tri).arrange(RIGHT, buff = 0.5).move_to(sector.target, DOWN)
         self.play(
             Transform(sector, sector_copy),
             Write(sym),

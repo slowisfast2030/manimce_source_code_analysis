@@ -132,26 +132,53 @@ class s2(Scene):
 
 
     def split_circle(self):
-        circle = Circle(
+        self.circle = Circle(
             radius = self.radius,
             stroke_color = self.stroke_color,
             stroke_width=self.stroke_width,
             fill_color = self.fill_color,
             fill_opacity = self.fill_opacity,
         )
-        circle.move_to(ORIGIN)
-        circle.move_to(ORIGIN)  
-        circle.set_stroke(WHITE, 1)
-        circle.set_fill(BLUE_E, 0.75)
+        self.circle.move_to(ORIGIN)
+        self.radius_line = Line(
+            self.circle.get_center(),
+            self.circle.get_right(),
+            color = self.radius_line_color
+        )
+        self.radius_brace = Brace(self.radius_line, buff = SMALL_BUFF)
+        self.radius_label = self.radius_brace.get_tex("R", buff = SMALL_BUFF)
+
+        self.radius_group = VGroup(
+            self.radius_line, self.radius_brace, self.radius_label
+        )
+        self.play(
+            ShowCreation(self.radius_line),
+            GrowFromCenter(self.radius_brace),
+            Write(self.radius_label),
+        )
+        self.circle.set_fill(opacity = 0)
+
+        self.play(
+            Rotate(
+                self.radius_line, 2*PI-0.001, 
+                about_point = self.circle.get_center(),
+            ),
+            ShowCreation(self.circle),
+            run_time = 1
+        )
+
+        # 当circle执行了set_fill的动画后会覆盖掉radius_group
+        # 所以需要将radius_group放到circle的上面
+        self.bring_to_front(self.radius_group)
 
         text_split = Text("圆的分割").scale(0.8)
         text_split.set_color_by_gradient(BLUE, GREEN)
         text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
 
-        sectors = self.get_sectors(circle, n_slices=self.n_slices)
+        sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
 
         self.play(
-            DrawBorderThenFill(circle),
+            DrawBorderThenFill(self.circle),
             
         )
         #self.wait()
@@ -160,7 +187,6 @@ class s2(Scene):
                   Write(text_split))
         
         self.text = text_split
-        self.circle = circle
         self.sectors = sectors
 
     def isolate_one_sector(self):

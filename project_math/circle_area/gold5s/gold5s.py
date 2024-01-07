@@ -132,7 +132,7 @@ class rings2rects(Scene):
         """
         左右的锯齿的合并
         """
-        lh, rh = laid_sectors[:N // 2], laid_sectors[N // 2:]
+        lh, rh = sectors[:N // 2], sectors[N // 2:]
         lh.generate_target()
         rh.generate_target()
         rh.target.rotate(PI)

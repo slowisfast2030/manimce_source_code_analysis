@@ -65,7 +65,7 @@ class rings2rects(Scene):
                 self.rings, 
                 np.linspace(0, 0.75, len(self.rings))
             )])
-        self.wait()
+        #self.wait()
         """
         黄金5s的第二部分
         """

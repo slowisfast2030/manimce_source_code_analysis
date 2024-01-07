@@ -73,7 +73,7 @@ class s2(Scene):
             self.play(Transform(self.sectors, sectors),
                       lag_ratio = 0.5,
                       run_time = 1)
-            self.wait()
+            #self.wait()
         """
         分镜4:
         将扇形和圆环上移，移除文字

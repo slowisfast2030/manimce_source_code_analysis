@@ -71,7 +71,7 @@ class s2(Scene):
         ]
         for sectors in sectors_list:
             self.play(Transform(self.sectors, sectors),
-                      lag_ratio = 0.5,
+                      lag_ratio = 0,
                       run_time = 1)
             #self.wait()
         """
@@ -219,7 +219,7 @@ class s2(Scene):
         text_one_sector_en.next_to(text_one_sector, DOWN, buff = MED_LARGE_BUFF*0.5)
 
         self.remove(self.radius_group)
-        sector = self.sectors[0]
+        sector = self.sectors[0].copy()
         sector.generate_target()
         sector.target.rotate(-11/20*PI, about_point=ORIGIN)
         sector.target.shift(2.5*DOWN)

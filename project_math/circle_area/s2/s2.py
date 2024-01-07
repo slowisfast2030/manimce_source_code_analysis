@@ -47,7 +47,9 @@ class s2(Scene):
         分镜3:
         将圆分割为更多的扇形
         """
-        self.play(FadeOut(self.sector))
+        self.play(FadeOut(self.sector),
+                  FadeOut(self.tri),
+                  FadeOut(self.sym))
 
         text_more_sectors = Text("更多的扇形").scale(0.8)
         text_more_sectors.set_color_by_gradient(BLUE, GREEN)
@@ -236,7 +238,7 @@ class s2(Scene):
             stroke_color = WHITE,
             fill_color = BLUE_E,
         )
-        #tri.set_fill(opacity = 0.75)
+        tri.set_fill(opacity = 0.75)
         sym = MathTex(r"\approx")
         sector_copy = sector.target.copy()
         sector_tri = VGroup(sector_copy, sym, tri).arrange(RIGHT, buff = 0.5).move_to(sector.target, DOWN)
@@ -247,6 +249,8 @@ class s2(Scene):
         )
 
         self.sector = sector
+        self.tri = tri
+        self.sym = sym
         self.text = text_one_sector
         self.text_en = text_one_sector_en
 

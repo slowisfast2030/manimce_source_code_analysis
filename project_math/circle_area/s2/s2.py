@@ -146,7 +146,24 @@ class s2(Scene):
             TransformFromCopy(text_width, bottom),
             run_time = 2
         )
-
+        """
+        分镜7:
+        点赞 + 关注
+        """
+        svg_file = "../s3/heart.svg"        
+        like = SVGMobject(svg_file).set_fill(RED, 1)
+        plus = MathTex(r"+")
+        follow = Text("关注").scale(0.8).set_color_by_gradient(BLUE, GREEN)
+        like.match_height(follow)
+        #like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
+        like_plus = VGroup(like, plus).arrange(RIGHT, buff = MED_LARGE_BUFF*0.5)
+        like_plus_follow = VGroup(like_plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF*0.5)
+        like_plus_follow.next_to(self.rings, DOWN, buff = MED_LARGE_BUFF*3)
+        self.add(like_plus_follow)
+        self.play(FadeIn(like_plus_follow))
+        self.play(Indicate(like),
+                  Indicate(follow))
+        self.wait(5)
 
 
     def split_circle(self):
@@ -228,6 +245,7 @@ class s2(Scene):
             FadeOut(self.text_en),
             FadeIn(text_one_sector),
             FadeIn(text_one_sector_en),
+            self.sectors[0].animate.set_fill(None, 0),
             MoveToTarget(sector))
         
         tri = Polygon(
@@ -285,7 +303,7 @@ class s2(Scene):
         深度思考
         """
         self.play(Transform(sectors, laid_sectors, run_time=2))
-        self.wait()
+        #self.wait()
 
         """
         左右的锯齿的合并

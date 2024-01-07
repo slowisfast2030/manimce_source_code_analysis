@@ -186,6 +186,7 @@ class s2(Scene):
         self.sectors = sectors
 
     def isolate_one_sector(self):
+        self.remove(self.radius_group)
         sector = self.sectors[0]
         sector.generate_target()
         sector.target.rotate(-11/20*PI, about_point=ORIGIN)

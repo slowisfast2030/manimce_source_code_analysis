@@ -183,6 +183,8 @@ class s2(Scene):
             Write(sectors),
             Write(text_split))
         
+        
+        
         self.text = text_split
         self.sectors = sectors
 
@@ -209,6 +211,7 @@ class s2(Scene):
         """
         将sectors展开
         """
+        self.circle.set_stroke(BLACK)
         self.circle.set_fill(opacity = 1)
         sectors = self.sectors
         laid_sectors = sectors.copy()

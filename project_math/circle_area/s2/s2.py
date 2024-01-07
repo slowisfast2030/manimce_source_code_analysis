@@ -176,26 +176,45 @@ class s2(Scene):
         text_split = Text("圆的分割").scale(0.8)
         text_split.set_color_by_gradient(BLUE, GREEN)
         text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_split_en = Text("Division of circle").scale(0.8)
+        text_split_en.set_color_by_gradient(BLUE, GREEN)
+        text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
         
         self.play(
             Write(sectors),
-            Write(text_split))
+            Write(text_split),
+            Write(text_split_en),)
         
         
         
         self.text = text_split
+        self.text_en = text_split_en
         self.sectors = sectors
 
     def isolate_one_sector(self):
+        text_one_sector = Text("取出一个扇形").scale(0.8)
+        text_one_sector.set_color_by_gradient(BLUE, GREEN)
+        text_one_sector.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_one_sector_en = Text("Isolate one sector").scale(0.8)
+        text_one_sector_en.set_color_by_gradient(BLUE, GREEN)
+        text_one_sector_en.next_to(text_one_sector, DOWN, buff = MED_LARGE_BUFF*0.5)
+
         self.remove(self.radius_group)
         sector = self.sectors[0]
         sector.generate_target()
         sector.target.rotate(-11/20*PI, about_point=ORIGIN)
         sector.target.shift(2.5*DOWN)
-        self.play(MoveToTarget(sector))
+        self.play(
+            FadeOut(self.text),
+            FadeOut(self.text_en),
+            FadeIn(text_one_sector),
+            FadeIn(text_one_sector_en),
+            MoveToTarget(sector))
         self.sector = sector
+        self.text = text_one_sector
+        self.text_en = text_one_sector_en
 
     def get_sectors(self, circle, n_slices=20, fill_colors=[BLUE_D, BLUE_E]):
         angle = TAU / n_slices

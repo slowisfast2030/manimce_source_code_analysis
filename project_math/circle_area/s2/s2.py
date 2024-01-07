@@ -146,6 +146,7 @@ class s2(Scene):
             TransformFromCopy(text_width, bottom),
             run_time = 2
         )
+        self.wait(2)
         """
         分镜7:
         点赞 + 关注

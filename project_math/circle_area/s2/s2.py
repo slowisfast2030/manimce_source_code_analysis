@@ -62,6 +62,7 @@ class s2(Scene):
         将扇形和圆环上移，移除文字
         """
         all_gr = VGroup(self.circle,
+                        self.radius_group,
                         self.sectors)
         self.play(
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
@@ -208,6 +209,7 @@ class s2(Scene):
         """
         将sectors展开
         """
+        self.circle.set_fill(opacity = 1)
         sectors = self.sectors
         laid_sectors = sectors.copy()
         N = len(sectors)

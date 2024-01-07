@@ -164,6 +164,7 @@ class s2(Scene):
                 about_point = self.circle.get_center(),
             ),
             ShowCreation(self.circle),
+            
             run_time = 1
         )
 
@@ -177,8 +178,9 @@ class s2(Scene):
 
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
         
-        self.play(Write(sectors),
-                  Write(text_split))
+        self.play(
+            Write(sectors),
+            Write(text_split))
         
         self.text = text_split
         self.sectors = sectors

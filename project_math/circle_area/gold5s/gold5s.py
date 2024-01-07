@@ -40,7 +40,7 @@ class rings2rects(Scene):
         self.rings[3].set_opacity(0.5)
 
         self.ax_rects_curve = self.get_ax_rects_curve()
-        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4)
+        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.5)
         self.add(self.ax_rects_curve)
 
         self.rects = self.ax_rects_curve[1]

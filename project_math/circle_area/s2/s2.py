@@ -176,12 +176,6 @@ class s2(Scene):
         text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
 
         sectors = self.get_sectors(self.circle, n_slices=self.n_slices)
-
-        self.play(
-            DrawBorderThenFill(self.circle),
-            
-        )
-        #self.wait()
         
         self.play(Write(sectors),
                   Write(text_split))

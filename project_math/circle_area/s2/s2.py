@@ -236,9 +236,9 @@ class s2(Scene):
             sector.target.get_top(),
             stroke_width = 1,
             stroke_color = WHITE,
-            fill_color = BLUE_E,
+            fill_color = BLUE_D,
         )
-        tri.set_fill(opacity = 0.75)
+        tri.set_fill(opacity = 1)
         sym = MathTex(r"\approx")
         sector_copy = sector.target.copy()
         sector_tri = VGroup(sector_copy, sym, tri).arrange(RIGHT, buff = 0.5).move_to(sector.target, DOWN)

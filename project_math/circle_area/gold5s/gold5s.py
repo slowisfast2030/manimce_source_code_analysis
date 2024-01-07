@@ -127,7 +127,6 @@ class rings2rects(Scene):
         深度思考
         """
         self.play(Transform(sectors, laid_sectors, run_time=2))
-        self.wait()
 
         """
         左右的锯齿的合并
@@ -149,7 +148,6 @@ class rings2rects(Scene):
             lh.animate.shift(UP),
             rh.animate.shift(DOWN),
         )
-        self.wait()
         pass
 
     def get_target_rect(self, ring: VMobject, rect_index):

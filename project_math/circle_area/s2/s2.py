@@ -227,6 +227,25 @@ class s2(Scene):
             FadeIn(text_one_sector),
             FadeIn(text_one_sector_en),
             MoveToTarget(sector))
+        
+        tri = Polygon(
+            sector.target.get_corner(DL),
+            sector.target.get_corner(DR),
+            sector.target.get_top(),
+            stroke_width = 1,
+            stroke_color = WHITE,
+            fill_color = BLUE_E,
+        )
+        #tri.set_fill(opacity = 0.75)
+        sym = MathTex(r"\approx")
+        sector_copy = sector.target.copy()
+        sector_tri = VGroup(sector_copy, sym, tri).arrange(RIGHT, buff = 0.5)
+        self.play(
+            Transform(sector, sector_copy),
+            Write(sym),
+            ShowCreation(tri),
+        )
+
         self.sector = sector
         self.text = text_one_sector
         self.text_en = text_one_sector_en

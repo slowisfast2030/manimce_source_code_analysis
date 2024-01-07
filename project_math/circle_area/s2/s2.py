@@ -48,6 +48,21 @@ class s2(Scene):
         将圆分割为更多的扇形
         """
         self.play(FadeOut(self.sector))
+
+        text_more_sectors = Text("更多的扇形").scale(0.8)
+        text_more_sectors.set_color_by_gradient(BLUE, GREEN)
+        text_more_sectors.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_more_sectors_en = Text("More rings").scale(0.8)
+        text_more_sectors_en.set_color_by_gradient(BLUE, GREEN)
+        text_more_sectors_en.next_to(text_more_sectors, DOWN, buff = MED_LARGE_BUFF*0.5)
+
+        self.play(FadeOut(self.text),
+                    FadeOut(self.text_en),
+                    FadeIn(text_more_sectors),
+                    FadeIn(text_more_sectors_en))
+        self.text = text_more_sectors
+        self.text_en = text_more_sectors_en
+
         sectors_list = [
             self.get_sectors(self.circle, n_slices=n_slices)
             for n_slices in [30, 44, 60]

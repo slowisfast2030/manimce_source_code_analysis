@@ -126,7 +126,7 @@ class rings2rects(Scene):
         """
         深度思考
         """
-        self.play(TransformFromCopy(sectors, laid_sectors, run_time=2))
+        self.play(Transform(sectors, laid_sectors, run_time=2))
         self.wait()
 
         """

@@ -17,6 +17,9 @@ class ShowCreation(Create):
 class s1(Scene):
     def setup(self):
         self.radius = 2.0
+        self.dR = self.radius/15
+        self.ring_colors = [BLUE, GREEN]
+
         self.stroke_color = WHITE
         self.stroke_width = 2
         self.fill_color = BLUE_E
@@ -33,6 +36,18 @@ class s1(Scene):
         显示圆的分割
         """
         self.split_circle()
+        """
+        分镜2:
+        将圆环上移, 下方同时出现坐标轴
+        """
+        all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        self.play(
+            all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
+            FadeOut(self.text),
+            FadeOut(self.text_en),
+            run_time=1
+        )
+
 
 
     def split_circle(self):
@@ -83,8 +98,8 @@ class s1(Scene):
         text_split_en.set_color_by_gradient(BLUE, GREEN)
         text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 
-        rings = self.get_rings(self.circle)
-        rings.set_stroke(BLACK, 1)
+        rings = self.get_rings()
+        rings.set_stroke(BLACK, 0.2)
         
         self.play(
             FadeIn(
@@ -92,6 +107,7 @@ class s1(Scene):
                 lag_ratio = 0.5,
                 run_time = 1
             ),
+            #FadeOut(self.radius_group),
             Write(text_split),
             Write(text_split_en),)
         
@@ -165,5 +181,5 @@ class s1(Scene):
         rings = VGroup(*[
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
-        ]).set_opacity(0.8)
+        ]).set_opacity(1)
         return rings

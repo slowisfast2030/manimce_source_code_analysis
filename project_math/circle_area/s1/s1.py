@@ -84,6 +84,20 @@ class s1(Scene):
         """
         分割为更多的圆环
         """
+        self.ax = self.ax_rects_curve[0]
+        text_more_rings = Text("更多的圆环").scale(0.8)
+        text_more_rings.set_color_by_gradient(BLUE, GREEN)
+        text_more_rings.move_to(self.ax.coords_to_point(2, 13))
+        text_more_rings_en = Text("More rings").scale(0.8)
+        text_more_rings_en.set_color_by_gradient(BLUE, GREEN)
+        text_more_rings_en.next_to(text_more_rings, DOWN, buff = MED_LARGE_BUFF*0.5)
+
+        self.play(
+                    FadeIn(text_more_rings),
+                    FadeIn(text_more_rings_en))
+        self.text = text_more_rings
+        self.text_en = text_more_rings_en
+
         rings_list = [
             self.get_rings(dR = self.radius/n).set_stroke(BLACK, 0.1)
             for n in [30,45,60]
@@ -138,7 +152,7 @@ class s1(Scene):
         """
         显示圆面积的计算
         """
-        self.ax = self.ax_rects_curve[0]
+        
         line_width = Line(
             self.ax.coords_to_point(0, 0),
             self.ax.coords_to_point(3, 0),

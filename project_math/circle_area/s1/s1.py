@@ -99,8 +99,9 @@ class s1(Scene):
 
         # 显示直线
         self.play(
-            ShowCreation(self.ax_rects_curve[0]),
+            ShowCreation(self.ax_rects_curve[2]),
         )
+        self.wait()
 
 
         # 为每一个ring找到对应的rect

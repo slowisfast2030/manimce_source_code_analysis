@@ -37,7 +37,7 @@ class rings2rects(Scene):
         self.rings = self.get_rings()
         self.add(self.rings)
 
-        self.rings[3].set_opacity(0.5)
+        #self.rings[3].set_opacity(0.5)
 
         self.ax_rects_curve = self.get_ax_rects_curve()
         self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
@@ -251,7 +251,7 @@ class rings2rects(Scene):
         rings = VGroup(*[
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
-        ]).set_opacity(0.8)
+        ]).set_opacity(1).set_stroke(BLACK, 0.2)
         return rings
     
     def get_ax_rects_curve(self, **kwargs):
@@ -292,7 +292,7 @@ class rings2rects(Scene):
             quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
         )
         #print(len(rects_left))
-        rects_left[2].set_opacity(0.5)
+        #rects_left[2].set_opacity(0.5)
 
         res = VGroup()
         res.add(ax, rects_left, quadratic)

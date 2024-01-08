@@ -72,8 +72,6 @@ class s1(Scene):
         self.text = text_one_ring
         self.text_en = text_one_ring_en
 
-        
-
         # 为每一个ring找到对应的rect
         ring_index = 7
         rect_index = ring_index + 1
@@ -130,8 +128,6 @@ class s1(Scene):
         self.ax_rects_curve = self.get_ax_rects_curve()
         self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
         self.rects = self.ax_rects_curve[1]
-        #self.rects.set_opacity(0.5)
-
         
         # 为每一个ring找到对应的rect
         for index, ring in enumerate(self.rings):
@@ -271,9 +267,6 @@ class s1(Scene):
             quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
         )
         #print(len(rects_left))
-        # 这一行干嘛的？
-        #rects_left[2].set_opacity(0.5)
-
         res = VGroup()
         res.add(ax, rects_left, quadratic)
         return res 

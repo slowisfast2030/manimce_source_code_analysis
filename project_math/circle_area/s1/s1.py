@@ -125,7 +125,7 @@ class s1(Scene):
                       direction=RIGHT,
                       amplitude=0.2,
                       time_width=0.5),
-            run_time=2
+            run_time=3
         )
         self.wait()
 

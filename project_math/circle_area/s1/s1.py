@@ -129,6 +129,10 @@ class s1(Scene):
         )
         self.wait()
 
+        """
+        显示圆面积的计算
+        """
+
 
     def get_target_rect(self, ring: VMobject, rect_index):
         rect = self.rects[rect_index]

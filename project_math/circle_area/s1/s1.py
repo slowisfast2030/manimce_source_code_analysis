@@ -41,13 +41,61 @@ class s1(Scene):
         将圆环上移, 下方同时出现坐标轴
         """
         all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        self.ax_rects_curve = self.get_ax_rects_curve()
+        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
+
         self.play(
             all_gr.animate.to_corner(UP, buff = MED_LARGE_BUFF*4),
             FadeOut(self.text),
             FadeOut(self.text_en),
+            Write(self.ax_rects_curve[0]),
             run_time=1
         )
 
+
+    def get_ax_rects_curve(self, **kwargs):
+        # 创建坐标轴并设置x轴和y轴的配置
+        ax = Axes(
+            x_range=[-0.1, 4, 1],  # 从-0.5开始以确保0会显示
+            y_range=[-0.5, 20, 2.5],  # 从-0.5开始以确保0会显示
+            x_length=7,
+            y_length=7,
+            tips=False,
+            axis_config={"color": GRAY},  # 将坐标轴线条设置为灰色
+            x_axis_config={
+                "include_numbers": True,
+                "numbers_to_include": [0, 1,2,3,4],  # 在x轴上只显示0, 5, 10
+                "include_ticks": True,
+                "decimal_number_config": {
+                    "num_decimal_places": 0,  # 设置为0以显示整数
+                    "color": BLUE,  # 设置x轴数字的颜色
+                },
+            },
+            y_axis_config={
+                "include_numbers": True,
+                "numbers_to_include": [0, 5, 10,15,20],  # 在y轴上也只显示0, 5, 10
+                "numbers_with_elongated_ticks": [0, 5, 10,15,20],
+                "decimal_number_config": {
+                    "num_decimal_places": 0,  # 设置为0以显示整数
+                    "color": BLUE,  # 设置x轴数字的颜色
+                },
+            },
+        )
+        
+        # 绘制函数
+        quadratic = ax.plot(lambda x: 2*PI*x, x_range=[0, 3], color=BLUE, stroke_width=2)
+
+        # 获取黎曼矩形
+        rect_num = self.radius/self.dR
+        rects_left = ax.get_riemann_rectangles(
+            quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
+        )
+        #print(len(rects_left))
+        rects_left[2].set_opacity(0.5)
+
+        res = VGroup()
+        res.add(ax, rects_left, quadratic)
+        return res 
 
 
     def split_circle(self):
@@ -99,7 +147,7 @@ class s1(Scene):
         text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 
         rings = self.get_rings()
-        rings.set_stroke(BLACK, 0.2)
+        rings.set_stroke(BLACK, 1)
         
         self.play(
             FadeIn(

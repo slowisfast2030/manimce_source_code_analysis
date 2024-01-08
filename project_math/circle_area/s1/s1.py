@@ -83,7 +83,7 @@ class s1(Scene):
         text_split_en.set_color_by_gradient(BLUE, GREEN)
         text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 
-        rings = self.get_rings(self.circle, n_slices=self.n_slices)
+        rings = self.get_rings(self.circle)
         rings.set_stroke(BLACK, 1)
         
         self.play(

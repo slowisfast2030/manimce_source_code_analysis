@@ -55,7 +55,8 @@ class s1(Scene):
         )
         self.rects = self.ax_rects_curve[1]
         self.rects.set_opacity(0.5)
-
+        self.wait()
+        
         self.ax = self.ax_rects_curve[0]
         text_one_ring = Text("取出一个圆环").scale(0.8)
         text_one_ring.set_color_by_gradient(BLUE, GREEN)

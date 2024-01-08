@@ -125,6 +125,10 @@ class s1(Scene):
             rect_index = index + 1
             ring.target = self.get_target_rect(ring, rect_index)
         
+        self.play(
+            FadeOut(self.text),
+            FadeOut(self.text_en),
+        )
         self.play(*[
             MoveToTarget(
                 ring,

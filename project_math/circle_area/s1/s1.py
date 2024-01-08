@@ -122,7 +122,7 @@ class s1(Scene):
         self.play(
             ShowCreation(self.ax_rects_curve[2].set_stroke(BLUE, 4)),
             ApplyWave(self.rings,
-                      direction=UP,
+                      direction=RIGHT,
                       amplitude=0.2,
                       time_width=0.5),
             run_time=2
@@ -136,14 +136,14 @@ class s1(Scene):
         line_width = Line(
             self.ax.coords_to_point(0, 0),
             self.ax.coords_to_point(3, 0),
-        ).set_color(self.radius_line_color)
+        ).set_color(self.radius_line_color).set_stroke(width=4)
         br_width = Brace(line_width, DOWN)
         text_width = br_width.get_tex("R")
 
         line_height = Line(
             self.rects[-1].get_corner(DR),
             self.rects[-1].get_corner(UR),
-        ).set_color(self.radius_line_color)
+        ).set_color(self.radius_line_color).set_stroke(width=4)
         br_height = Brace(line_height, RIGHT)
         text_height = br_height.get_tex("2\pi R")
 

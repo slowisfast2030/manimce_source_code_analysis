@@ -97,6 +97,10 @@ class s1(Scene):
         self.rects = self.ax_rects_curve[1]
         self.rects.set_opacity(0.5)
 
+        # 显示直线
+        self.play(
+            ShowCreation(self.ax_rects_curve[0]),
+        )
 
 
         # 为每一个ring找到对应的rect

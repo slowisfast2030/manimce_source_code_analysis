@@ -190,7 +190,23 @@ class s1(Scene):
         )
         self.wait()
 
-        
+        """
+        点赞+关注
+        """
+        svg_file = "../s3/heart.svg"        
+        like = SVGMobject(svg_file).set_fill(RED, 1)
+        plus = MathTex(r"+")
+        follow = Text("关注").scale(0.8).set_color_by_gradient(BLUE, GREEN)
+        like.match_height(follow)
+        #like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
+        like_plus = VGroup(like, plus).arrange(RIGHT, buff = MED_LARGE_BUFF*0.5)
+        like_plus_follow = VGroup(like_plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF*0.5)
+        like_plus_follow.move_to(self.ax.coords_to_point(1, 17))
+        self.add(like_plus_follow)
+        self.play(FadeIn(like_plus_follow))
+        self.play(Indicate(like),
+                  Indicate(follow))
+        self.wait(5)
 
 
     def get_target_rect(self, ring: VMobject, rect_index):

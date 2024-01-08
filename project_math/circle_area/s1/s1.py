@@ -40,7 +40,9 @@ class s1(Scene):
         分镜2:
         将圆环上移, 下方同时出现坐标轴
         """
-        all_gr = VGroup(self.circle, self.radius_group, self.rings)
+        self.remove(self.radius_group)
+        self.circle.set_fill(self.fill_color, self.fill_opacity)
+        all_gr = VGroup(self.circle, self.rings)
         self.ax_rects_curve = self.get_ax_rects_curve()
         self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
 

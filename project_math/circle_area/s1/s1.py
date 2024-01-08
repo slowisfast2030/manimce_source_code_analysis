@@ -132,6 +132,32 @@ class s1(Scene):
         """
         显示圆面积的计算
         """
+        self.ax = self.ax_rects_curve[0]
+        line_width = Line(
+            self.ax.coords_to_point(0, 0),
+            self.ax.coords_to_point(3, 0),
+        ).set_color(self.radius_line_color)
+        br_width = Brace(line_width, DOWN)
+        text_width = br_width.get_tex("R")
+
+        line_height = Line(
+            self.rects[-1].get_corner(DR),
+            self.rects[-1].get_corner(UR),
+        ).set_color(self.radius_line_color)
+        br_height = Brace(line_height, RIGHT)
+        text_height = br_height.get_tex("2\pi R")
+
+        self.play(
+            GrowFromCenter(line_height),
+            GrowFromCenter(line_width),
+            GrowFromCenter(br_width),
+            GrowFromCenter(br_height),
+            Write(text_width),
+            Write(text_height),
+        )
+        self.wait()
+
+        
 
 
     def get_target_rect(self, ring: VMobject, rect_index):

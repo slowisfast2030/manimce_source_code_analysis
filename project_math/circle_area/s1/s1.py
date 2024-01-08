@@ -72,7 +72,20 @@ class s1(Scene):
             path_arc = np.pi/2,
             run_time = 2,
         )
-
+        self.wait()
+        """
+        分割为更多的圆环
+        """
+        rings_list = [
+            self.get_rings(dR = self.radius/n).set_stroke(BLACK, 0.1)
+            for n in [20,25,30]
+        ]
+        for rings in rings_list:
+            self.play(
+                Transform(self.rings, rings),
+                lag_ratio = 0.5,
+                run_time = 1
+            )
 
         # 为每一个ring找到对应的rect
         # for index, ring in enumerate(self.rings):

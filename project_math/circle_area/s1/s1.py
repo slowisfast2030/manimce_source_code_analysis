@@ -36,6 +36,7 @@ class s1(Scene):
         显示圆的分割
         """
         self.split_circle()
+        self.wait(1.5)
         """
         分镜2:
         将圆环上移, 下方同时出现坐标轴

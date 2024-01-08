@@ -121,6 +121,7 @@ class s1(Scene):
         # 显示直线
         self.play(
             ShowCreation(self.ax_rects_curve[2].set_stroke(BLUE, 4)),
+            ApplyWave(self.rects),
         )
         self.wait()
 

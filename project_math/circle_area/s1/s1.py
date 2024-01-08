@@ -57,7 +57,7 @@ class s1(Scene):
         # 为每一个ring找到对应的rect
         for index, ring in enumerate(self.rings):
             rect_index = index + 1
-            ring.target = self.get_target_rect(ring, rect_index)  
+            ring.target = self.get_target_rect(ring, rect_index).set_width(self.dR)  
         
         self.play(
             MoveToTarget(

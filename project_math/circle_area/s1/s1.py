@@ -56,6 +56,23 @@ class s1(Scene):
         self.rects = self.ax_rects_curve[1]
         self.rects.set_opacity(0.5)
 
+        self.ax = self.ax_rects_curve[0]
+        text_one_ring = Text("取出一个圆环").scale(0.8)
+        text_one_ring.set_color_by_gradient(BLUE, GREEN)
+        text_one_ring.move_to(self.ax.coords_to_point(2, 13))
+        text_one_ring_en = Text("Isolate one ring").scale(0.8)
+        text_one_ring_en.set_color_by_gradient(BLUE, GREEN)
+        text_one_ring_en.next_to(text_one_ring, DOWN, buff = MED_LARGE_BUFF*0.5)
+        
+        self.play(
+                FadeIn(text_one_ring),
+                FadeIn(text_one_ring_en)
+                )
+        self.text = text_one_ring
+        self.text_en = text_one_ring_en
+
+        
+
         # 为每一个ring找到对应的rect
         ring_index = 7
         rect_index = ring_index + 1
@@ -84,7 +101,7 @@ class s1(Scene):
         """
         分割为更多的圆环
         """
-        self.ax = self.ax_rects_curve[0]
+        
         text_more_rings = Text("更多的圆环").scale(0.8)
         text_more_rings.set_color_by_gradient(BLUE, GREEN)
         text_more_rings.move_to(self.ax.coords_to_point(2, 13))
@@ -92,7 +109,8 @@ class s1(Scene):
         text_more_rings_en.set_color_by_gradient(BLUE, GREEN)
         text_more_rings_en.next_to(text_more_rings, DOWN, buff = MED_LARGE_BUFF*0.5)
 
-        self.play(
+        self.play(FadeOut(self.text),
+                    FadeOut(self.text_en),
                     FadeIn(text_more_rings),
                     FadeIn(text_more_rings_en))
         self.text = text_more_rings

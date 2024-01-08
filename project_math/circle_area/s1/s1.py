@@ -124,7 +124,8 @@ class s1(Scene):
             ApplyWave(self.rings,
                       direction=UP,
                       amplitude=0.2,
-                      time_width=2),
+                      time_width=0.5),
+            run_time=2
         )
         self.wait()
 

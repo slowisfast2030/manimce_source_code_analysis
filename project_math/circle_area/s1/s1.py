@@ -51,7 +51,58 @@ class s1(Scene):
             Write(self.ax_rects_curve[0]),
             run_time=1
         )
+        self.rects = self.ax_rects_curve[1]
+        self.rects.set_opacity(0.5)
 
+        # 为每一个ring找到对应的rect
+        for index, ring in enumerate(self.rings):
+            rect_index = index + 1
+            ring.target = self.get_target_rect(ring, rect_index)  
+        
+        self.play(
+            MoveToTarget(
+                self.rings[7],
+                path_arc = -np.pi/2,
+                run_time = 2,
+            )
+        )
+
+
+    def get_target_rect(self, ring: VMobject, rect_index):
+        rect = self.rects[rect_index]
+
+        # 内外环一共16段曲线，外加两条直线，一共18段
+        n_anchors = ring.get_num_curves()
+        #print(n_anchors)            
+        target = VMobject()
+        target.set_points_as_corners([
+            interpolate(ORIGIN,  DOWN, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ]+[
+            interpolate(DOWN+RIGHT, RIGHT, a)
+            for a in np.linspace(0, 1, n_anchors//2)
+        ])
+        # 将折线闭合
+        #target.add_line_to(ORIGIN)    
+        line = [target.get_points()[-1], 
+                interpolate(target.get_points()[-1], target.get_points()[0], 0.3),
+                interpolate(target.get_points()[-1], target.get_points()[0], 0.6),
+                target.get_points()[0]] 
+        target.append_points(line)
+
+
+        target.stretch_to_fit_height(rect.get_height())
+        target.stretch_to_fit_width(rect.get_width())
+        target.move_to(rect)
+        target.set_stroke(BLACK, 1)
+        target.set_fill(ring.get_fill_color(), 1)
+
+        #print(len(ring.get_points()))
+        #print(len(target.get_points()))
+
+        ring.target = target
+        ring.original_ring = ring.copy()
+        return target
 
     def get_ax_rects_curve(self, **kwargs):
         # 创建坐标轴并设置x轴和y轴的配置
@@ -91,6 +142,7 @@ class s1(Scene):
             quadratic, x_range=[0, 3], dx=3/(rect_num+1), color=[BLUE, GREEN], input_sample_type="left"
         )
         #print(len(rects_left))
+        # 这一行干嘛的？
         rects_left[2].set_opacity(0.5)
 
         res = VGroup()
@@ -146,8 +198,8 @@ class s1(Scene):
         text_split_en.set_color_by_gradient(BLUE, GREEN)
         text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
 
-        rings = self.get_rings()
-        rings.set_stroke(BLACK, 1)
+        rings = self.get_rings() 
+        rings.set_stroke(BLACK, 0.2)
         
         self.play(
             FadeIn(

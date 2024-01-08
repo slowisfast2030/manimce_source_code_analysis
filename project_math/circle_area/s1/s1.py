@@ -62,10 +62,10 @@ class s1(Scene):
         self.rings[ring_index].target = self.get_target_rect(self.rings[ring_index], rect_index).stretch_to_fit_width(self.dR+0.05)  
         
         # 将除了index之外的ring变暗
-        self.play(
-            self.rings.animate.set_opacity(0.2),
-            self.rings[ring_index].animate.set_opacity(1)
-        )
+        # self.play(
+        #     self.rings.animate.set_opacity(0.2),
+        #     self.rings[ring_index].animate.set_opacity(1)
+        # )
 
         self.rings[7].original = self.rings[7].copy()
         self.play(

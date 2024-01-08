@@ -338,7 +338,7 @@ class s1(Scene):
         
 
         rings = self.get_rings() 
-        rings.set_stroke(BLACK, 0.2)
+        #rings.set_stroke(BLACK, 0.2)
         
         self.play(
             FadeIn(
@@ -419,5 +419,5 @@ class s1(Scene):
         rings = VGroup(*[
             self.get_ring(radius, dR = dR, color = color)
             for radius, color in zip(radii, colors)
-        ]).set_opacity(1)
+        ]).set_opacity(1).set_stroke(BLACK, 0.2)
         return rings

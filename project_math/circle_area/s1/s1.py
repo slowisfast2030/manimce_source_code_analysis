@@ -57,6 +57,10 @@ class s1(Scene):
         self.rects.set_opacity(1)
         #self.wait()
 
+        """
+        分镜3:
+        取出一个圆环展开
+        """
         self.ax = self.ax_rects_curve[0]
         text_one_ring = Text("取出一个圆环").scale(0.8)
         text_one_ring.set_color_by_gradient(BLUE, GREEN)
@@ -92,6 +96,7 @@ class s1(Scene):
         )
         self.wait()
         """
+        分镜4:
         分割为更多的圆环
         """
         
@@ -121,7 +126,8 @@ class s1(Scene):
                 run_time = 1
             )
         """
-        全部展开
+        分镜5:
+        圆环全部展开
         """
         # 在全部展开之前需要重新生成rects
         self.dR = self.radius/60
@@ -151,7 +157,6 @@ class s1(Scene):
             )])
         self.wait()
 
-        # 显示直线
         self.play(
             ShowCreation(self.ax_rects_curve[2].set_stroke(BLUE, 4)),
             ApplyWave(self.rings,
@@ -163,6 +168,7 @@ class s1(Scene):
         self.wait()
 
         """
+        分镜6:
         显示圆面积的计算
         """
         
@@ -191,6 +197,7 @@ class s1(Scene):
         self.wait()
 
         """
+        分镜7:
         点赞+关注
         """
         svg_file = "../s3/heart.svg"        
@@ -201,7 +208,7 @@ class s1(Scene):
         #like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
         like_plus = VGroup(like, plus).arrange(RIGHT, buff = MED_LARGE_BUFF*0.5)
         like_plus_follow = VGroup(like_plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF*0.5)
-        like_plus_follow.move_to(self.ax.coords_to_point(1.5, 17))
+        like_plus_follow.move_to(self.ax.coords_to_point(1.3, 17))
         self.add(like_plus_follow)
         self.play(FadeIn(like_plus_follow))
         self.play(Indicate(like),

@@ -59,12 +59,18 @@ class s1(Scene):
         rect_index = ring_index + 1
         self.rings[7].target = self.get_target_rect(self.rings[7], rect_index).stretch_to_fit_width(self.dR+0.05)  
         
+        self.rings[7].original = self.rings[7].copy()
         self.play(
             MoveToTarget(
                 self.rings[7],
                 path_arc = -np.pi/2,
                 run_time = 2,
             )
+        )
+        self.play(
+            Transform(self.rings[7], self.rings[7].original),
+            path_arc = np.pi/2,
+            run_time = 2,
         )
 
 

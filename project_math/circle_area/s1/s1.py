@@ -78,27 +78,44 @@ class s1(Scene):
         """
         rings_list = [
             self.get_rings(dR = self.radius/n).set_stroke(BLACK, 0.1)
-            for n in [20,25,30]
+            for n in [30,45,60]
         ]
+        
         for rings in rings_list:
             self.play(
                 Transform(self.rings, rings),
                 lag_ratio = 0.5,
                 run_time = 1
             )
+        """
+        全部展开
+        """
+        # 在全部展开之前需要重新生成rects
+        self.dR = self.radius/60
+        self.ax_rects_curve = self.get_ax_rects_curve()
+        self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
+        self.rects = self.ax_rects_curve[1]
+        self.rects.set_opacity(0.5)
+
+
 
         # 为每一个ring找到对应的rect
-        # for index, ring in enumerate(self.rings):
-        #     rect_index = index + 1
-        #     ring.target = self.get_target_rect(ring, rect_index).stretch_to_fit_width(self.dR+0.05)  
+        for index, ring in enumerate(self.rings):
+            rect_index = index + 1
+            ring.target = self.get_target_rect(ring, rect_index)
         
-        # self.play(
-        #     MoveToTarget(
-        #         self.rings[7],
-        #         path_arc = -np.pi/2,
-        #         run_time = 2,
-        #     )
-        # )
+        self.play(*[
+            MoveToTarget(
+                ring,
+                path_arc = -np.pi/2,
+                run_time = 4,
+                rate_func = squish_rate_func(smooth, alpha, alpha+0.25)
+            )
+            for ring, alpha in zip(
+                self.rings, 
+                np.linspace(0, 0.75, len(self.rings))
+            )])
+        self.wait()
 
 
     def get_target_rect(self, ring: VMobject, rect_index):

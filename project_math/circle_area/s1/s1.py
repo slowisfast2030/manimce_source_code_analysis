@@ -201,7 +201,7 @@ class s1(Scene):
         #like_plus_follow = VGroup(like, plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF)
         like_plus = VGroup(like, plus).arrange(RIGHT, buff = MED_LARGE_BUFF*0.5)
         like_plus_follow = VGroup(like_plus, follow).arrange(RIGHT, buff = MED_SMALL_BUFF*0.5)
-        like_plus_follow.move_to(self.ax.coords_to_point(1, 17))
+        like_plus_follow.move_to(self.circle)
         self.add(like_plus_follow)
         self.play(FadeIn(like_plus_follow))
         self.play(Indicate(like),

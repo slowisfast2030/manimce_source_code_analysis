@@ -55,9 +55,9 @@ class s1(Scene):
         self.rects.set_opacity(0.5)
 
         # 为每一个ring找到对应的rect
-        for index, ring in enumerate(self.rings):
-            rect_index = index + 1
-            ring.target = self.get_target_rect(ring, rect_index).stretch_to_fit_width(self.dR+0.05)  
+        ring_index = 7
+        rect_index = ring_index + 1
+        self.rings[7].target = self.get_target_rect(self.rings[7], rect_index).stretch_to_fit_width(self.dR+0.05)  
         
         self.play(
             MoveToTarget(
@@ -66,6 +66,20 @@ class s1(Scene):
                 run_time = 2,
             )
         )
+
+
+        # 为每一个ring找到对应的rect
+        # for index, ring in enumerate(self.rings):
+        #     rect_index = index + 1
+        #     ring.target = self.get_target_rect(ring, rect_index).stretch_to_fit_width(self.dR+0.05)  
+        
+        # self.play(
+        #     MoveToTarget(
+        #         self.rings[7],
+        #         path_arc = -np.pi/2,
+        #         run_time = 2,
+        #     )
+        # )
 
 
     def get_target_rect(self, ring: VMobject, rect_index):

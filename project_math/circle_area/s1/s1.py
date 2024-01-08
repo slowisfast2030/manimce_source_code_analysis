@@ -54,7 +54,7 @@ class s1(Scene):
             run_time=1
         )
         self.rects = self.ax_rects_curve[1]
-        self.rects.set_opacity(0.5)
+        self.rects.set_opacity(1)
         #self.wait()
 
         self.ax = self.ax_rects_curve[0]
@@ -79,12 +79,6 @@ class s1(Scene):
         rect_index = ring_index + 1
         self.rings[ring_index].target = self.get_target_rect(self.rings[ring_index], rect_index).stretch_to_fit_width(self.dR+0.05)  
         
-        # 将除了index之外的ring变暗
-        # self.play(
-        #     self.rings.animate.set_opacity(0.2),
-        #     self.rings[ring_index].animate.set_opacity(1)
-        # )
-
         self.rings[7].original = self.rings[7].copy()
         self.play(
             MoveToTarget(
@@ -136,7 +130,7 @@ class s1(Scene):
         self.ax_rects_curve = self.get_ax_rects_curve()
         self.ax_rects_curve.to_corner(DOWN, buff = MED_LARGE_BUFF*4).shift(RIGHT*0.3)
         self.rects = self.ax_rects_curve[1]
-        self.rects.set_opacity(0.5)
+        #self.rects.set_opacity(0.5)
 
         
         # 为每一个ring找到对应的rect
@@ -278,7 +272,7 @@ class s1(Scene):
         )
         #print(len(rects_left))
         # 这一行干嘛的？
-        rects_left[2].set_opacity(0.5)
+        #rects_left[2].set_opacity(0.5)
 
         res = VGroup()
         res.add(ax, rects_left, quadratic)

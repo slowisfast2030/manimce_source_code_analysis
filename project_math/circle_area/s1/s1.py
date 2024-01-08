@@ -275,12 +275,21 @@ class s1(Scene):
         )
         self.circle.set_fill(opacity = 0)
 
+        text_split = Text("圆的分割").scale(0.8)
+        text_split.set_color_by_gradient(BLUE, GREEN)
+        text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
+        text_split_en = Text("Division of circle").scale(0.8)
+        text_split_en.set_color_by_gradient(BLUE, GREEN)
+        text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
+
         self.play(
             Rotate(
                 self.radius_line, 2*PI-0.001, 
                 about_point = self.circle.get_center(),
             ),
             ShowCreation(self.circle),
+            Write(text_split),
+            Write(text_split_en),
             
             run_time = 1
         )
@@ -289,12 +298,7 @@ class s1(Scene):
         # 所以需要将radius_group放到circle的上面
         self.bring_to_front(self.radius_group)
 
-        text_split = Text("圆的分割").scale(0.8)
-        text_split.set_color_by_gradient(BLUE, GREEN)
-        text_split.to_corner(UP, buff = MED_LARGE_BUFF*6)
-        text_split_en = Text("Division of circle").scale(0.8)
-        text_split_en.set_color_by_gradient(BLUE, GREEN)
-        text_split_en.next_to(text_split, DOWN, buff = MED_LARGE_BUFF*0.5)
+        
 
         rings = self.get_rings() 
         rings.set_stroke(BLACK, 0.2)
@@ -306,8 +310,7 @@ class s1(Scene):
                 run_time = 1
             ),
             #FadeOut(self.radius_group),
-            Write(text_split),
-            Write(text_split_en),)
+            )
         
         self.text = text_split
         self.text_en = text_split_en

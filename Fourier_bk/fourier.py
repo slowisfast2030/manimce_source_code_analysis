@@ -441,7 +441,7 @@ class ZoomToFullScreen(FourierCirclesSceneWithCamera):
             "func": there_and_back_with_pause,
             "velocity_factor": 1
         })#控制缩放镜头边框长短
-        f=open(r"music.txt","r")
+        f=open(r"A.txt","r")
         freqs=[]
         coefs=[]
         lines=f.readlines()

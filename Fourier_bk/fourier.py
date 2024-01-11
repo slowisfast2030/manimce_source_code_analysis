@@ -364,7 +364,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
 class Normal(FourierCirclesSceneWithCamera):
     def construct(self):
-        super().__init__(n_vectors=200,#控制向量数量
+        super().__init__(n_vectors=500,#控制向量数量
         slow_factor=1/10,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,)#控制缩放镜头边框长短

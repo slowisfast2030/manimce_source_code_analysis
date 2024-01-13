@@ -2,7 +2,7 @@ import svgpathtools
 import numpy as np
 import matplotlib.pyplot as plt
 
-def svg_to_coef(path_to_file,nvec=2000,npoint=1000000,npath=0,conj=True,reverse=False):
+def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=False):
     
     path,_=svgpathtools.svg2paths(path_to_file)
     path=path[npath]

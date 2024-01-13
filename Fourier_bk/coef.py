@@ -64,10 +64,15 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     并将它们加起来，可以得到整个函数在给定区间的积分近似值。
     """
     fourier_coef=np.zeros(nvec,dtype="complex")
+    # points原本的范围是[0,1], 现在变为[0,2pi]
+    # 可以作为np.trapz的x参数
     points*=2*np.pi
     for i in range(len(coefs)):
         coef=coefs[i]
-        exponent=np.exp(1j*coef*points)
+        #exponent=np.exp(1j*coef*points)
+        # 使用-1更加符合傅里叶级数的计算公式
+        exponent=np.exp(-1j*coef*points)
+
         fourier_coef[i]=np.trapz(np.multiply(exponent,pathvals),points)/(2*np.pi)
     # 从list变为array
     coefs=np.array(coefs)
@@ -99,5 +104,5 @@ def save_coef(coefs,fourier_coef,file_path):
             f.write("\n")
 
 if __name__ == "__main__":
-    coefs,fourier_coef = svg_to_coef("A.svg")
+    coefs,fourier_coef = svg_to_coef("A.svg", conj=False)
     save_coef(coefs,fourier_coef,"A.txt")

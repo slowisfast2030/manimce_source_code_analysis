@@ -414,18 +414,7 @@ class Normal(FourierCirclesSceneWithCamera):
         原因出在这里
         最后一帧没有画出来
         """
-        self.wait(1/self.slow_factor)
-
-        # 暂停所有updater
-        self.pause_updaters()
-
-        self.wait(0.1)
-    
-    def pause_updaters(self):
-        # 暂停所有updater的函数
-        for mobject in self.mobjects:
-            if hasattr(mobject, "suspend_updating"):
-                mobject.suspend_updating()
+        self.wait(1/self.slow_factor + 1/30)
         
 
 

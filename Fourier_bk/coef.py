@@ -28,6 +28,7 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     pathvals=np.zeros_like(points,dtype="complex")
     """
     svg文件第一个path的长度
+    单位: 像素
     """
     pathlength=path.length()
     if reverse:

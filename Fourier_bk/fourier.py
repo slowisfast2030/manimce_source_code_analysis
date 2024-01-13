@@ -389,6 +389,15 @@ class Normal(FourierCirclesSceneWithCamera):
         coefs/=110
         """
         这里可以设置为原点
+
+        一个有趣的问题:
+        如果一份svg文件有多个path, 比如汉字"乐"
+        分别读取每一个path, 然后分别计算傅里叶级数
+        分别画出来
+
+        如果将某一个path的coefs[0]设置为原点
+        那么其他的path也需要移到合适的位置
+        即平移
         """
         #coefs[0]=-0.5j
         coefs[0]=0+0j

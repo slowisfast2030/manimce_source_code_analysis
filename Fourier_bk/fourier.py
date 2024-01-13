@@ -411,9 +411,10 @@ class Normal(FourierCirclesSceneWithCamera):
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         """
         以前的代码中, 画图画到最后总是没有封口
-        原因出在这里
-        最后一帧没有画出来
+        原因出在这里, 最后一帧没有画出来
+        补上最后一帧的时间
         """
+        #self.wait(1/self.slow_factor)
         self.wait(1/self.slow_factor + 1/30)
         
 

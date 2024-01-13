@@ -76,12 +76,17 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     """
     fourier_coef=np.zeros(nvec,dtype="complex")
     # points原本的范围是[0,1], 现在变为[0,2pi]
+    # 可以理解为周期由1变为2pi
     # 可以作为np.trapz的x参数
     points*=2*np.pi
     for i in range(len(coefs)):
         coef=coefs[i]
         #exponent=np.exp(1j*coef*points)
         # 使用-1更加符合傅里叶级数的计算公式
+        # 这里的points中包含了2pi
+        # 需要和傅里叶级数的计算公式中的2pi进行区分
+        # 傅里叶级数的计算公式中的2pif已经被抵消了，就是1
+        # 而这里的points本质是时间t的采样
         exponent=np.exp(-1j*coef*points)
 
         fourier_coef[i]=np.trapz(np.multiply(exponent,pathvals),points)/(2*np.pi)

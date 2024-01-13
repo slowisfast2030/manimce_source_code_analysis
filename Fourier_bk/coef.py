@@ -46,6 +46,8 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
 
     取共轭相当于将路径沿着x轴翻转
     图像形状不变
+
+    经过测试后发现, 只有取共轭才能按照预期的顺序还出图像
     """
     if conj==True:
         pathvals=np.conj(pathvals).copy()
@@ -104,5 +106,5 @@ def save_coef(coefs,fourier_coef,file_path):
             f.write("\n")
 
 if __name__ == "__main__":
-    coefs,fourier_coef = svg_to_coef("A.svg", conj=False)
+    coefs,fourier_coef = svg_to_coef("A.svg", conj=True)
     save_coef(coefs,fourier_coef,"A.txt")

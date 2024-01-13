@@ -54,12 +54,22 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     coefs.sort(key=abs)
     # coefs: [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5]
     
+    """
+    np.trapz 是 NumPy 库中的一个函数, 用于通过梯形法则（Trapezoidal rule）来近似计算数值积分。
+    这个方法在数值分析和计算数学中非常常见, 特别是在处理离散数据集或者无法获得解析解的积分问题时。
+
+    梯形法则的原理：
+    梯形法则基于将积分区间分割为许多小的梯形段，然后计算这些梯形的面积之和来近似整个积分的值。
+    对于每个小梯形, 底边是x轴上的一小段区间, 而上边是函数值所形成的线段。通过计算所有这些梯形的面积
+    并将它们加起来，可以得到整个函数在给定区间的积分近似值。
+    """
     fourier_coef=np.zeros(nvec,dtype="complex")
     points*=2*np.pi
     for i in range(len(coefs)):
         coef=coefs[i]
         exponent=np.exp(1j*coef*points)
         fourier_coef[i]=np.trapz(np.multiply(exponent,pathvals),points)/(2*np.pi)
+    # 从list变为array
     coefs=np.array(coefs)
     return coefs,fourier_coef
 

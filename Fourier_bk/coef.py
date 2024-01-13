@@ -62,7 +62,7 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     # coefs: [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5]
     
     """
-    np.trapz 是 NumPy 库中的一个函数, 用于通过梯形法则（Trapezoidal rule）来近似计算数值积分。
+    np.trapz 是 NumPy 库中的一个函数, 用于通过梯形法则(Trapezoidal rule)来近似计算数值积分。
     这个方法在数值分析和计算数学中非常常见, 特别是在处理离散数据集或者无法获得解析解的积分问题时。
 
     梯形法则的原理：

@@ -110,7 +110,7 @@ def plot_coef(coefs,fourier_coef,npoint=10000,endpoint=True):
 画出来的图显得有点小
 可以通过调整coef_scale来放大
 """
-coef_scale = 5
+coef_scale = 1
 def save_coef(coefs,fourier_coef,file_path):
     f=open(file_path,"w")
     for i in range(len(coefs)):

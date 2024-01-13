@@ -387,6 +387,7 @@ class Normal(FourierCirclesSceneWithCamera):
         难怪一开始觉得图像很小
         """
         coefs/=110
+        coefs*=5 
         """
         这里可以设置为原点
 
@@ -408,7 +409,7 @@ class Normal(FourierCirclesSceneWithCamera):
 
         self.add(music_vector,music_circle,music_drawn_path)
         self.vectors=music_vector#Need to define vectors for zoom_config to work
-        self.wait(1/self.slow_factor)
+        self.wait(1/self.slow_factor+1)
 
 
 class NeedZoom(FourierCirclesSceneWithCamera):

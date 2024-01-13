@@ -409,7 +409,23 @@ class Normal(FourierCirclesSceneWithCamera):
 
         self.add(music_vector,music_circle,music_drawn_path)
         self.vectors=music_vector#Need to define vectors for zoom_config to work
-        self.wait(1/self.slow_factor+1)
+        """
+        以前的代码中, 画图画到最后总是没有封口
+        原因出在这里
+        """
+        self.wait(1/self.slow_factor)
+
+        # 暂停所有updater
+        self.pause_updaters()
+
+        self.wait(0.1)
+    
+    def pause_updaters(self):
+        # 暂停所有updater的函数
+        for mobject in self.mobjects:
+            if hasattr(mobject, "suspend_updating"):
+                mobject.suspend_updating()
+        
 
 
 class NeedZoom(FourierCirclesSceneWithCamera):

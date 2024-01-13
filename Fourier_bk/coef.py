@@ -10,8 +10,11 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
     需要特别注意这里的endpoint参数
     查看画出来的图，发现普遍没有闭合
     可能是这个原因
+
+    将endpoint改为True,有显著变化
+    
     """
-    points=np.linspace(0,1,npoint,endpoint=False)
+    points=np.linspace(0,1,npoint,endpoint=True)
     pathvals=np.zeros_like(points,dtype="complex")
     """
     svg文件第一个path的长度

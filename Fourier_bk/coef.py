@@ -40,11 +40,16 @@ def plot_coef(coefs,fourier_coef,npoint=10000,endpoint=True):
     #plt.plot([vals.real[0],vals.real[100]],[vals.imag[0],vals.imag[100]],"r-")
     #plt.plot([vals.real[100],vals.real[200]],[vals.imag[100],vals.imag[200]],"g-")
     #plt.plot([vals.real[200],vals.real[300]],[vals.imag[200],vals.imag[300]],"b-")
-    
+
+"""
+画出来的图显得有点小
+可以通过调整coef_scale来放大
+"""
+coef_scale = 5
 def save_coef(coefs,fourier_coef,file_path):
     f=open(file_path,"w")
     for i in range(len(coefs)):
-        f.write("{} {}".format(coefs[i],5*fourier_coef[i]))
+        f.write("{} {}".format(coefs[i],coef_scale*fourier_coef[i]))
         if i<len(coefs)-1:
             f.write("\n")
 

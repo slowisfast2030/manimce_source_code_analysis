@@ -6,7 +6,11 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
     
     path,_=svgpathtools.svg2paths(path_to_file)
     path=path[npath]
-
+    """
+    需要特别注意这里的endpoint参数
+    查看画出来的图，发现普遍没有闭合
+    可能是这个原因
+    """
     points=np.linspace(0,1,npoint,endpoint=False)
     pathvals=np.zeros_like(points,dtype="complex")
     pathlength=path.length()

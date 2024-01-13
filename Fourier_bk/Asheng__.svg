@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="A_.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.61023429"
+     inkscape:cx="344.94948"
+     inkscape:cy="535.0404"
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="图层 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="M 54.361005,99.208244 Q 36.581047,149.28497 14.144435,180.58294 l -3.809992,-2.72156 Q 36.157714,129.41758 50.76268,38.245262 l 18.414956,12.519184 q 3.386658,2.177249 3.386658,4.082343 0,1.632936 -3.386658,2.449406 -0.846665,0.272156 -3.598326,5.443122 -2.539992,5.170968 -4.444988,12.519185 -1.904996,7.348216 -4.233323,16.057214 h 42.96823 V 64.100098 q 0,-28.576398 -1.058326,-43.544987 l 22.436617,11.702715 q 2.32832,1.088625 2.32832,2.721562 0,1.632937 -2.32832,2.993717 l -5.92666,4.082343 v 49.260268 h 43.81489 l 13.54664,-20.683869 15.23997,23.40543 q 1.48166,2.17725 1.48166,3.810188 0,1.360779 -2.32834,1.360779 h -71.75482 v 65.317486 h 32.38492 l 14.60496,-21.50035 15.87497,24.76622 q 1.26999,2.17726 1.26999,3.53803 0,1.08863 -2.53999,1.08863 h -61.59485 v 71.57707 h 56.09154 l 14.18162,-20.68386 15.6633,24.22189 q 1.48166,2.17725 1.48166,3.26586 0,1.36079 -2.75166,1.36079 H 28.326066 q -8.889979,0 -13.969966,2.99373 l -7.6199816,-12.5192 q 7.8316486,1.36079 16.9332926,1.36079 H 99.869229 V 172.41826 H 57.535997 q -8.678313,0 -13.969966,2.72155 l -7.619982,-12.24703 q 7.831647,1.63295 16.933292,1.63295 H 99.869229 V 99.208244 Z"
+       id="text1"
+       style="font-size:215.467px;font-family:'Songti TC';-inkscape-font-specification:'Songti TC';stroke-width:1.25005"
+       aria-label="生" />
+  </g>
+</svg>

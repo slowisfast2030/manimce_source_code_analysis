@@ -53,6 +53,10 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     图像形状不变
 
     经过测试后发现, 只有取共轭才能按照预期的顺序还出图像
+
+    终于明白为何要取共轭了:
+    svg文件的坐标系与数学中的坐标系不同
+    svg文件中的y轴是向下的
     """
     if conj==True:
         pathvals=np.conj(pathvals).copy()

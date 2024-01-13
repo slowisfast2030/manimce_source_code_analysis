@@ -12,7 +12,15 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
     可能是这个原因
 
     将endpoint改为True,有显著变化
-    
+
+    在修改之前，画图有两个问题:
+    1. 画出来的图不是闭合的
+    2. 画图开始部分有点扭曲
+
+    修改之后, 画图的开始部分变得光滑了
+    但是画出来的图还是不闭合的
+
+    需要进一步研究
     """
     points=np.linspace(0,1,npoint,endpoint=True)
     pathvals=np.zeros_like(points,dtype="complex")

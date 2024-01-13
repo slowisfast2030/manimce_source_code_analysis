@@ -5,6 +5,10 @@ import matplotlib.pyplot as plt
 def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=False):
     
     path,_=svgpathtools.svg2paths(path_to_file)
+    """
+    svg文件解析后的path是一个list
+    即可能有多个path标签
+    """
     path=path[npath]
     """
     需要特别注意这里的endpoint参数

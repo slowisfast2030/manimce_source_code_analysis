@@ -2,7 +2,7 @@ import svgpathtools
 import numpy as np
 import matplotlib.pyplot as plt
 
-def svg_to_coef(path_to_file,nvec=2000,npoint=100000,npath=0,conj=True,reverse=False):
+def svg_to_coef(path_to_file,nvec=2000,npoint=1000000,npath=0,conj=True,reverse=False):
     
     path,_=svgpathtools.svg2paths(path_to_file)
     path=path[npath]
@@ -41,6 +41,9 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=100000,npath=0,conj=True,reverse=F
     
     """
     这里为何要取共轭?
+
+    取共轭相当于将路径沿着x轴翻转
+    图像形状不变
     """
     if conj==True:
         pathvals=np.conj(pathvals).copy()

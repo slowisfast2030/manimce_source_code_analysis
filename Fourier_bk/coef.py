@@ -52,6 +52,8 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     
     coefs=list(range(nvec // 2, -nvec// 2, -1))
     coefs.sort(key=abs)
+    # coefs: [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5]
+    
     fourier_coef=np.zeros(nvec,dtype="complex")
     points*=2*np.pi
     for i in range(len(coefs)):

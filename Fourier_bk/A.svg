@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25)"
-   sodipodi:docname="A.svg"
+   sodipodi:docname="A_.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -38,20 +38,10 @@
      inkscape:label="图层 1"
      inkscape:groupmode="layer"
      id="layer1">
-     <path
-       style="font-size:208.684px;font-family:AppleMyungjo;-inkscape-font-specification:AppleMyungjo;stroke-width:0.243032"
-       d="m 192.78001,146.78833 h -75.81099 v 71.32755 q 0,6.11378 -3.66827,9.88395 -3.56638,3.77017 -8.86499,4.48345 -5.298622,0.71328 -22.722921,0.71328 l -5.400514,-16.50724 q 10.902924,0.91707 15.284473,0.91707 5.909996,0 7.438444,-0.81517 1.528448,-0.81517 1.528448,-3.26069 v -66.7422 H 29.134251 L 36.470798,69.347004 Q 108.40972,68.124246 160.58072,47.031674 l 11.7181,14.367404 Q 121.24868,80.249928 50.838203,83.714409 L 46.252861,131.50386 H 100.56369 V 89.420612 h 16.40533 v 42.083248 h 75.81099 z"
-       transform="scale(0.98154161,1.0188055)"
-       id="text2" />
     <path
-       style="font-size:208.684px;font-family:AppleMyungjo;-inkscape-font-specification:AppleMyungjo;stroke-width:0.243032"
-       d="m 198.7919,206.09209 -11.00482,11.41241 q -24.14947,-26.39119 -60.7303,-50.64256 l 8.96689,-11.10671 q 41.47187,24.45515 62.76823,50.33686 z"
-       transform="scale(0.98154161,1.0188055)"
-       id="path3" />
-    <path
-       style="font-size:208.684px;font-family:AppleMyungjo;-inkscape-font-specification:AppleMyungjo;stroke-width:0.243032"
-       d="M 88.6418,164.31453 Q 78.248358,176.8478 59.295612,192.13227 40.342865,207.41674 22.918566,215.87415 L 12.62702,203.13709 q 36.784632,-16.20154 64.092891,-48.60462 z"
-       transform="scale(0.98154161,1.0188055)"
-       id="path2" />
+       d="M 175.52847,202.5051 H 44.371821 V 191.62075 H 101.10289 V 159.77122 H 59.970926 v -10.9574 H 101.10289 V 120.83591 H 70.137506 q -4.656448,12.56448 -21.419665,29.36584 L 36.611073,144.0656 Q 63.308048,121.56639 65.71388,88.401985 l 12.02916,3.433321 q 0,5.770899 -3.337122,18.116244 H 101.10289 V 78.028975 h 12.10677 v 31.922575 h 52.15223 v 10.88436 h -52.15223 v 27.97791 h 44.70192 v 10.9574 h -44.70192 v 31.84953 h 62.31881 z"
+       id="text1"
+       style="font-size:154.202px;stroke-width:12.8502"
+       aria-label="生" />
   </g>
 </svg>

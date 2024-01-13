@@ -44,7 +44,7 @@ def plot_coef(coefs,fourier_coef,npoint=10000,endpoint=True):
 def save_coef(coefs,fourier_coef,file_path):
     f=open(file_path,"w")
     for i in range(len(coefs)):
-        f.write("{} {}".format(coefs[i],fourier_coef[i]))
+        f.write("{} {}".format(coefs[i],5*fourier_coef[i]))
         if i<len(coefs)-1:
             f.write("\n")
 

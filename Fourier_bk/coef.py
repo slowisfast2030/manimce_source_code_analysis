@@ -21,6 +21,8 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
     但是画出来的图还是不闭合的
 
     需要进一步研究
+
+    注: 提高points, 图像仍然无法闭合
     """
     points=np.linspace(0,1,npoint,endpoint=True)
     pathvals=np.zeros_like(points,dtype="complex")

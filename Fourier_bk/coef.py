@@ -11,14 +11,21 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
     查看画出来的图，发现普遍没有闭合
     可能是这个原因
     """
-    points=np.linspace(0,1,npoint,endpoint=False)
+    points=np.linspace(0,0.5,npoint,endpoint=False)
     pathvals=np.zeros_like(points,dtype="complex")
+    """
+    svg文件第一个path的长度
+    """
     pathlength=path.length()
     if reverse:
         for i in range(len(points)):
             pathvals[i]=path.point(path.ilength(pathlength-pathlength*points[i]))
     else:
         for i in range(len(points)):
+            """
+            先获取路径物理长度的百分比所对应的长度
+            然后再获取该百分比长度对应的百分比
+            """
             pathvals[i]=path.point(path.ilength(pathlength*points[i]))
     if conj==True:
         pathvals=np.conj(pathvals).copy()

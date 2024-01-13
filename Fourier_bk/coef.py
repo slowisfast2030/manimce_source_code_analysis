@@ -2,7 +2,7 @@ import svgpathtools
 import numpy as np
 import matplotlib.pyplot as plt
 
-def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=False):
+def svg_to_coef(path_to_file,nvec=2000,npoint=100000,npath=0,conj=True,reverse=False):
     
     path,_=svgpathtools.svg2paths(path_to_file)
     path=path[npath]
@@ -38,8 +38,13 @@ def svg_to_coef(path_to_file,nvec=2000,npoint=10000,npath=0,conj=True,reverse=Fa
             然后再获取该百分比长度对应的百分比
             """
             pathvals[i]=path.point(path.ilength(pathlength*points[i]))
+    
+    """
+    这里为何要取共轭?
+    """
     if conj==True:
         pathvals=np.conj(pathvals).copy()
+    
     coefs=list(range(nvec // 2, -nvec// 2, -1))
     coefs.sort(key=abs)
     fourier_coef=np.zeros(nvec,dtype="complex")

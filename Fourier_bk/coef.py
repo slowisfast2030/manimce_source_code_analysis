@@ -50,6 +50,7 @@ def save_coef(coefs,fourier_coef,file_path):
     f=open(file_path,"w")
     for i in range(len(coefs)):
         f.write("{} {}".format(coefs[i],coef_scale*fourier_coef[i]))
+        # 写完一个参数后换行
         if i<len(coefs)-1:
             f.write("\n")
 

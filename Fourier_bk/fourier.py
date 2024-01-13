@@ -412,6 +412,7 @@ class Normal(FourierCirclesSceneWithCamera):
         """
         以前的代码中, 画图画到最后总是没有封口
         原因出在这里
+        最后一帧没有画出来
         """
         self.wait(1/self.slow_factor)
 

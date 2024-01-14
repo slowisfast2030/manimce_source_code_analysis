@@ -227,6 +227,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         return vector
 
     def update_last_vector(self, vector, dt):
+        """
+        和update_vector一样
+        """
         time = self.get_vector_time()
         coef = vector.coefficient
         freq = vector.freq
@@ -240,8 +243,11 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         return vector
 
     def get_rotating_last_vector(self, coefficient, freq, center_func):
+        """
+        获取最后一个旋转向量
+        和get_rotating_vector一样
+        """
         vector = Vector(abs(coefficient)*RIGHT, **self.vector_config)
-        #vector.scale(abs(coefficient))
         if abs(coefficient) == 0:
             phase = 0
         else:

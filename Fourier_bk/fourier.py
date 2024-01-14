@@ -462,9 +462,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
 
     def scale_zoom_camera_to_full_screen_config(self):
-        print(f"self.camera.frame_height: {self.camera.frame_height}") # 16
-        print(f"self.camera.frame_width: {self.camera.frame_width}") # 9
-        print(f"self.camera.frame_rate: {self.camera.frame_rate}") # 15
+        print(f"\033[91mself.camera.frame_height: {self.camera.frame_height}\033[0m") # 16
+        print(f"\033[91mself.camera.frame_width: {self.camera.frame_width}\033[0m") # 9
+        print(f"\033[91mself.camera.frame_rate: {self.camera.frame_rate}\033[0m") # 15
 
         BigSquare=Rectangle(height=self.camera.frame_height,width=self.camera.frame_width).shift(self.camera.frame_width*self.zoomed_display_corner[0]*RIGHT).shift(self.camera.frame_height*self.zoomed_display_corner[1]*UP)
 
@@ -502,9 +502,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             不明白为什么要做这种修正
             """
             mob.start_time += fix_update(mob, dt, velocity_factor, fps)
-            print(f"fix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}") # 0.06666666666666667 = 1/15
-            print(f"mob.start_time: {mob.start_time}") # 每次以1/15的速度增加
-            print(f"run_time: {run_time}") # 10
+            print(f"\033[93mfix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}\033[0m") # 0.06666666666666667 = 1/15
+            print(f"\033[93mmob.start_time: {mob.start_time}\033[0m") # 每次以1/15的速度增加
+            print(f"\033[93mrun_time: {run_time}\033[0m") # 10
 
             if mob.start_time <= run_time:
                 """

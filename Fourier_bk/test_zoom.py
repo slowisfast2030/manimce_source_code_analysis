@@ -54,6 +54,10 @@ class ZoomedScene(ZoomedScene):
 
 class MyMovingCameraScene(MovingCameraScene):
 #class MyMovingCameraScene(Scene):
+    """
+    选择Scene继承的话
+    self.camera没有frame属性
+    """
     def construct(self):
         # Create objects
         square = Square(color=BLUE)

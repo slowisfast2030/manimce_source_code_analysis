@@ -121,6 +121,14 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         if coefficients is None:
             coefficients = self.get_coefficients()
 
+        """
+        有一系列vector
+        每一个vector的旋转中心都是上一个vector的终点
+        环环相扣
+
+        所以, 这里的last_vector是上一个vector
+        而不是最后一个vector
+        """
         last_vector = None
         
         for i in range(len(freqs)):

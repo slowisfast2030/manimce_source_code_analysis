@@ -276,6 +276,11 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         return ans
 
     def get_circle(self, vector):
+        """
+        对于每一个circle来讲
+        半径应该是固定的
+        不需要为半径添加updater
+        """
         circle = Circle(color=self.circle_color, **self.circle_config)
         circle.center_func = vector.get_start
         circle.radius_func = vector.get_length

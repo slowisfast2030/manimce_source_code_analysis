@@ -660,6 +660,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         freqs=np.array(freqs)
         #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
         coefs/=110
+        coefs*=5
         coefs[0]=-0.5j
 
         music_vector=self.get_rotating_vectors(coefficients=coefs,freqs=freqs)

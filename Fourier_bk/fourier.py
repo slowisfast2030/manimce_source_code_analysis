@@ -514,6 +514,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 经过打印后发现, 
                 alpha的值是从0到1
                 alpha_func的值是从0到1, 然后再从1到0【会在1处持续一段时间】
+
+                让gpt4画了smooth函数的图像
+                却不是想象的增长--持平--减小
+                费解
+
+                原来被继承后的类修改为了there_and_back_with_pause
                 """
                 alpha = mob.start_time / run_time
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)

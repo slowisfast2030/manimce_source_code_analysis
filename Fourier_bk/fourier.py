@@ -344,6 +344,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         转换后, path就分为了很多段
         经过打印, 发现是1000份
+
+        查看path的代码, 发现是ParametricFunction
+        ParametricFunction的参数t_range=[0,1,0.001]
         """
         broken_path = CurvesAsSubmobjects(path)
         broken_path.curr_time = 0

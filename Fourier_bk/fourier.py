@@ -147,14 +147,24 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 center_func=center_func,
             )
             else:
+                """
+                这里的取名就有点歧义了
+                这里的last就不是上一个的意思了
+                而是最后一个
+                """
                 vector=self.get_rotating_last_vector(
                 coefficient=coefficient,
                 freq=freq,
                 center_func=center_func,
             )
+                
             if (i==0 and self.Hide_0th_vector):
                 vector.set_opacity(0)
+
             vectors.add(vector)
+            """
+            重置上一个vector
+            """
             last_vector = vector
         return vectors
 

@@ -179,8 +179,6 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             last_vector = vector
         return vectors
 
-
-
     def get_rotating_vector(self, coefficient, freq, center_func):
         """
         获取每一个旋转向量

@@ -127,7 +127,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         更新:
         第一个vector在整个动画中被隐藏了
         第一个vector是静止的, 旋转中心即起点是原点
-        所以，在动画中, 第一个可见的向量(即第二个向量)的起点其实在原点和coeffs[0]的和
+        所以，在动画中, 第一个可见的向量(即第二个向量)的起点其实是原点和coeffs[0]的和
         """
         self.center_tracker = VectorizedPoint(ORIGIN)
 

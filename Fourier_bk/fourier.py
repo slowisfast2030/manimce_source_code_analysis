@@ -388,7 +388,7 @@ class Normal(FourierCirclesSceneWithCamera):
         freqs=freqs[:self.n_vectors]
         coefs=np.array(coefs)
         freqs=np.array(freqs)
-        #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
+        
         """
         对全部的coefs进行了缩小
         难怪一开始觉得图像很小
@@ -407,6 +407,7 @@ class Normal(FourierCirclesSceneWithCamera):
         那么其他的path也需要移到合适的位置
         即平移
         """
+        #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
         #coefs[0]=-0.5j
         coefs[0]=0+0j
 

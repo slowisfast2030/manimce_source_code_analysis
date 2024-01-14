@@ -502,6 +502,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             不明白为什么要做这种修正
             """
             mob.start_time += fix_update(mob, dt, velocity_factor, fps)
+            print(f"fix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}")
+            print(f"mob.start_time: {mob.start_time}")
+            print(f"run_time: {run_time}") # 10
 
             if mob.start_time <= run_time:
                 """
@@ -803,7 +806,7 @@ class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
         #下面两行开启左上的缩放镜头，若不需要可删除
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
-        self.wait(0)
+        self.wait(3/self.camera.frame_rate)
         #print(self.camera.frame_rate) #l15 m30 h60
         self.scale_zoom_camera_to_full_screen_config()
-        self.wait(30+1/self.camera.frame_rate)
+        self.wait(30-2/self.camera.frame_rate)

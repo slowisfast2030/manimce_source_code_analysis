@@ -293,6 +293,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         return circle
 
     def get_vector_sum_path(self, vectors, color=YELLOW):
+        """
+        所有的vectors首尾相连
+        最后一个vector的终点是t的函数
+        """
         coefs = np.array([v.coefficient for v in vectors])
         freqs = np.array([v.freq for v in vectors])
         center = vectors[0].get_start()

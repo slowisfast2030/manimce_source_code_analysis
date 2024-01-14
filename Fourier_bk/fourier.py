@@ -529,6 +529,11 @@ class Normal(FourierCirclesSceneWithCamera):
         #coefs[0]=-0.5j
         coefs[0]=0+0j
 
+        """
+        整体的设计思路:
+        1.确定动画中包含的元素: 向量, 圆, 路径
+        2.为每一个元素设置updater
+        """
         music_vector=self.get_rotating_vectors(coefficients=coefs,freqs=freqs)
         music_circle=self.get_circles(music_vector)
         music_drawn_path=self.get_drawn_path(music_vector)

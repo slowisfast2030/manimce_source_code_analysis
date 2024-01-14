@@ -800,6 +800,6 @@ class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
         self.wait(1)
-        print(self.camera.frame_rate)
+        print(self.camera.frame_rate) #l15 m30 h60
         self.scale_zoom_camera_to_full_screen_config()
         self.wait(29+1/self.camera.frame_rate)

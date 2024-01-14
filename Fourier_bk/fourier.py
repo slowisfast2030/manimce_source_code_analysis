@@ -342,7 +342,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             stroke_width = self.drawn_path_stroke_width
         path = self.get_vector_sum_path(vectors, **kwargs)
         """
-        转换后path就分为了很多段
+        转换后, path就分为了很多段
         经过打印, 发现是1000份
         """
         broken_path = CurvesAsSubmobjects(path)

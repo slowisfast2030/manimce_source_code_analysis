@@ -513,7 +513,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
                 经过打印后发现, 
                 alpha的值是从0到1
-                alpha_func的值是从0到1, 然后再从1到0
+                alpha_func的值是从0到1, 然后再从1到0【会在1处持续一段时间】
                 """
                 alpha = mob.start_time / run_time
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)

@@ -400,8 +400,6 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         broken_path.add_updater(update_path)
         return broken_path
 
-
-
     def get_coefficients_of_path(self, path, n_samples=10000, freqs=None):
         """
         并没有使用这个函数
@@ -425,7 +423,6 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         ]
 
     #Setup the vector clock 
-    
 
     def zoom_config(self):
         self.activate_zooming(animate=False)
@@ -434,8 +431,6 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_camera.frame.add_updater(lambda mob: mob.move_to(self.vectors[-1].get_end()))
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
-
-    
 
     def scale_zoom_camera_to_full_screen_config(self):
         BigSquare=Rectangle(height=self.camera.frame_height,width=self.camera.frame_width).shift(self.camera.frame_width*self.zoomed_display_corner[0]*RIGHT).shift(self.camera.frame_height*self.zoomed_display_corner[1]*UP)

@@ -168,6 +168,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         对于每一个vector而言, 都有一个freq, coefficient, center_func
         最让人眼前一亮的是center_func
         center_func是一个函数, 返回的是vector的旋转中心
+        每一帧调用这个函数一次, 计算新的旋转中心
 
         在python中, 从来没有见过将函数作为对象的属性
         """

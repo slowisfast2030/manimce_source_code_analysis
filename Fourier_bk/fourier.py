@@ -164,9 +164,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 freq=freq,
                 center_func=center_func,
             )
-                
+            
             if (i==0 and self.Hide_0th_vector):
-                vector.set_opacity(0)
+                vector.set_opacity(1)
 
             vectors.add(vector)
             """

@@ -9,14 +9,15 @@ class MyZoomedScene(ZoomedScene):
         # Activate Zooming
         self.activate_zooming(animate=False)
 
-        # Move and set the zoomed camera frame
+        # 缩放镜头有一个属性frame，它是一个Square，可以用来调整镜头的大小和位置
         self.zoomed_camera.frame.move_to(square)
         self.zoomed_camera.frame.set_color(PURPLE)
+        self.zoomed_camera.frame.scale(1)
+
+        # 放大的区域
         self.zoomed_display.to_corner(UL)
         self.zoomed_display.scale(1)
-        #self.zoomed_camera.frame.set_height(2)
-        #self.zoomed_camera.frame.set_width(3)
-        #self.zoomed_camera.frame.scale(2)
+        
  
         # Animate the zoom
         #self.play(self.zoomed_camera.frame.animate.scale(0.5))

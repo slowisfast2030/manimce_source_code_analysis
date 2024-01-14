@@ -261,7 +261,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
     def get_circles(self, vectors):
         """
-        基于vectors集合, 获取圆集合
+        基于vectors集合, 获取circles集合
         """
         ans=VGroup(*[
             self.get_circle(

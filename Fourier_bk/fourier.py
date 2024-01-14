@@ -329,6 +329,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         return self.get_vector_time()
 
     def get_drawn_path(self, vectors, stroke_width=None, fade=False, **kwargs):
+        """
+        初步理解:
+        如何显示画图的过程:
+        将图像分成n段, 每一段的宽度为stroke_width
+        还没有画出来的部分, 宽度为0
+        """
         if stroke_width is None:
             stroke_width = self.drawn_path_stroke_width
         path = self.get_vector_sum_path(vectors, **kwargs)

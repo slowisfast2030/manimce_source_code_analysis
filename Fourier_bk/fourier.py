@@ -341,6 +341,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         if stroke_width is None:
             stroke_width = self.drawn_path_stroke_width
         path = self.get_vector_sum_path(vectors, **kwargs)
+        """
+        转换后path就分为了很多段
+        经过打印, 发现是1000份
+        """
         broken_path = CurvesAsSubmobjects(path)
         broken_path.curr_time = 0
         start, end = self.interpolate_config
@@ -348,6 +352,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         def update_path(path, dt):
             alpha = self.get_drawn_path_alpha()
             n_curves = len(path)
+            #print(n_curves)
+            #1000
             for a, sp in zip(np.linspace(0, 1, n_curves), path):
                 b = (alpha - a)
                 if b < 0:
@@ -459,7 +465,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
 class Normal(FourierCirclesSceneWithCamera):
     def construct(self):
-        super().__init__(n_vectors=600,#控制向量数量
+        super().__init__(n_vectors=200,#控制向量数量
         slow_factor=1/10,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,)#控制缩放镜头边框长短

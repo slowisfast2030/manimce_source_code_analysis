@@ -491,10 +491,26 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         frame_width=self.default_frame_stroke_width
  
         def update_camera(mob, dt):
+            """
+            初步印象:
+            mob.start_time逐步增加
+            每次增加的值不是dt, 而是fix_update(mob, dt, velocity_factor, fps)
+            不明白为什么要做这种修正
+            """
             mob.start_time += fix_update(mob, dt, velocity_factor, fps)
+
             if mob.start_time <= run_time:
+                """
+                计算执行进度
+                """
                 alpha = mob.start_time / run_time
+                """
+                修正执行进度
+                """
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)
+                """
+                基于修正的执行进度, 更新self.zoomed_display的宽度和高度
+                """
                 mob.stretch_to_fit_height(
                     interpolate(
                         mob_height,
@@ -513,6 +529,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                         0,
                         alpha_func)
                     )
+                """
+                mob的位置
+                """
                 mob.next_to(BigSquare,-self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
             return mob
 

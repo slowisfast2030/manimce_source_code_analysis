@@ -565,7 +565,7 @@ class Normal(FourierCirclesSceneWithCamera):
         补上最后一帧的时间
         """
         #self.wait(1/self.slow_factor)
-        self.wait(1/self.slow_factor + 1/30)
+        self.wait(1/self.slow_factor + 1/15)
 
         """
         此时可以将场景中的所有对象清楚

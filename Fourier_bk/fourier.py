@@ -606,9 +606,9 @@ class Normal_happy(FourierCirclesSceneWithCamera):
         coefs_2, freqs_2=self.read_coefs_freqs(r"Ale_2.txt", self.n_vectors)
 
         # 需要缩小参数
-        coefs_0/=110*5
-        coefs_1/=110*5
-        coefs_2/=110*5
+        coefs_0/=110*50
+        coefs_1/=110*50
+        coefs_2/=110*50
     
         #coefs_i[0]控制了图像的中心位置，需要微调到最适合的位置
         shift_val = complex(0,0) - coefs_0[0]

@@ -509,14 +509,16 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             if mob.start_time <= run_time:
                 """
                 计算执行进度
+                修正执行进度
+
+                经过打印后发现, 
+                alpha的值是从0到1
+                alpha_func的值是从0到1, 然后再从1到0
                 """
                 alpha = mob.start_time / run_time
-                """
-                修正执行进度
-                """
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)
-                print(f"alpha: {alpha}")
-                print(f"alpha_func: {alpha_func}")
+                print(f"\033[92malpha: {alpha}\033[0m")
+                print(f"\033[92malpha_func: {alpha_func}\033[0m")
                 """
                 基于修正的执行进度, 更新self.zoomed_display的宽度和高度
                 """

@@ -577,12 +577,8 @@ class Normal_happy(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
     """
-    def construct(self):
-        super().__init__(n_vectors=200,#控制向量数量
-        slow_factor=1/10,#控制时间长短，slow factor越小，画的速度越慢,      
-        cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
-        default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
-        f=open(r"music.txt","r")
+    def read_coefs_freqs(self,filename, vector_num):
+        f=open(filename,"r")
         freqs=[]
         coefs=[]
         lines=f.readlines()
@@ -590,22 +586,58 @@ class Normal_happy(FourierCirclesSceneWithCamera):
             a,b=line.split()
             freqs.append(int(a))
             coefs.append(complex(b))
-
-        coefs=coefs[:self.n_vectors]
-        freqs=freqs[:self.n_vectors]
+        
+        coefs=coefs[:vector_num]
+        freqs=freqs[:vector_num]
         coefs=np.array(coefs)
         freqs=np.array(freqs)
-        #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
-        coefs/=110
-        coefs[0]=-0.5j
 
-        music_vector=self.get_rotating_vectors(coefficients=coefs,freqs=freqs)
-        music_circle=self.get_circles(music_vector)
-        music_drawn_path=self.get_drawn_path(music_vector)
+        return coefs,freqs
+       
+    def construct(self):
+        super().__init__(n_vectors=200,#控制向量数量
+        slow_factor=1/10,#控制时间长短，slow factor越小，画的速度越慢,      
+        cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
+        default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
+        
+        # 读取三部分参数 
+        coefs_0, freqs_0=self.read_coefs_freqs(r"Ale_0.txt", self.n_vectors)
+        coefs_1, freqs_1=self.read_coefs_freqs(r"Ale_1.txt", self.n_vectors)
+        coefs_2, freqs_2=self.read_coefs_freqs(r"Ale_2.txt", self.n_vectors)
 
-        self.add(music_vector,music_circle,music_drawn_path)
-        self.vectors=music_vector#Need to define vectors for zoom_config to work
-        self.wait(1/self.slow_factor)
+        # 需要缩小参数
+        coefs_0/=110*5
+        coefs_1/=110*5
+        coefs_2/=110*5
+    
+        #coefs_i[0]控制了图像的中心位置，需要微调到最适合的位置
+        shift_val = complex(0,0) - coefs_0[0]
+        coefs_0[0]+=shift_val
+        coefs_1[0]+=shift_val
+        coefs_2[0]+=shift_val
+        
+        # 画出三部分
+        le0_vector=self.get_rotating_vectors(coefficients=coefs_0,freqs=freqs_0)
+        le0_circle=self.get_circles(le0_vector)
+        le0_drawn_path=self.get_drawn_path(le0_vector)
+
+        le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
+        le1_circle=self.get_circles(le1_vector)
+        le1_drawn_path=self.get_drawn_path(le1_vector)
+
+        le2_vector=self.get_rotating_vectors(coefficients=coefs_2,freqs=freqs_2)
+        le2_circle=self.get_circles(le2_vector)
+        le2_drawn_path=self.get_drawn_path(le2_vector)
+
+
+        self.add(le0_vector,le0_circle,le0_drawn_path,
+                 le1_vector,le1_circle,le1_drawn_path,
+                 le2_vector,le2_circle,le2_drawn_path)
+        
+        self.vectors= [le0_vector, le1_vector, le2_vector]
+
+        self.wait(1/self.slow_factor + 1/15)
+
 
 class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):

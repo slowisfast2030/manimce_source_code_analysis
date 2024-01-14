@@ -120,7 +120,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         for i in range(len(freqs)):
             freq=freqs[i]
             coefficient=coefficients[i]
-            
+
             if last_vector:
                 center_func = last_vector.get_end
             else:
@@ -147,6 +147,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
 
     def get_rotating_vector(self, coefficient, freq, center_func):
+        """
+        获取每一个旋转向量
+        coefficient: 复数。模长为向量长度，幅角为向量初始旋转角度
+        freq: 旋转频率
+        center_func: 函数。返回向量的旋转中心
+        """
         vector = Vector(abs(coefficient)*RIGHT, **self.vector_config)
         #vector.scale(abs(coefficient))
         if abs(coefficient) == 0:

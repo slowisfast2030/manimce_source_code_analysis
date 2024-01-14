@@ -508,8 +508,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
             if mob.start_time <= run_time:
                 """
-                计算执行进度
-                修正执行进度
+                计算执行进度为alpha
+                修正执行进度为alpha_func
 
                 经过打印后发现, 
                 alpha的值是从0到1

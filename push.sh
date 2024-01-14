@@ -1,4 +1,4 @@
 git pull
 git add *
-git commit -m "何谓伟大？？？ 战神雷军 + 借势 + 极致的具体 ---> 深入理解海参哥说的抄袭"
+git commit -m "做好一件事 = 80%的执行套路 + 20%的创造力"
 git push

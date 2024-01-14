@@ -520,6 +520,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 费解
 
                 原来被继承后的类修改为了there_and_back_with_pause
+                
+                这份代码的作者真的是煞费苦心!!!
                 """
                 alpha = mob.start_time / run_time
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)

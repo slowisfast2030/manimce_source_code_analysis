@@ -387,6 +387,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
 
     def get_coefficients_of_path(self, path, n_samples=10000, freqs=None):
+        """
+        并没有使用这个函数
+        """
         if freqs is None:
             freqs = self.get_freqs()
         dt = 1 / n_samples

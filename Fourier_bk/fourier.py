@@ -163,6 +163,14 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         else:
             phase = np.log(coefficient).imag
         vector.rotate(phase, about_point=ORIGIN)
+
+        """
+        对于每一个vector而言, 都有一个freq, coefficient, center_func
+        最让人眼前一亮的是center_func
+        center_func是一个函数, 返回的是vector的旋转中心
+
+        在python中, 从来没有见过将函数作为对象的属性
+        """
         vector.freq = freq
         vector.coefficient = coefficient
         vector.center_func = center_func

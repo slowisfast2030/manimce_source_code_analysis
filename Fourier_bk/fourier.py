@@ -339,8 +339,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             """
             return complex_to_R3(coefs.dot(np.exp(TAU*1j*freqs*t)))
 
-        path = ParametricFunction(compute_curve
-            ,
+        path = ParametricFunction(compute_curve,
             t_range=[0,1,self.parametric_function_step_size],
             color=self.drawn_path_color,use_smoothing=False
         )

@@ -175,10 +175,23 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         vector.freq = freq
         vector.coefficient = coefficient
         vector.center_func = center_func
+
+        """
+        使用updater的示例:
+
+        def update_dot(mob, dt):
+            mob.rotate_about_origin(dt)
+
+        dot.add_updater(update_dot)
+        """
         vector.add_updater(self.update_vector)
         return vector
 
     def update_vector(self, vector, dt):
+        """
+        每一帧调用一次
+        更新向量的长度和角度和起点
+        """
         time = self.get_vector_time()
         coef = vector.coefficient
         freq = vector.freq

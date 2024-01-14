@@ -327,7 +327,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         def compute_curve(t):
             """
-            看来第一版作者也是煞费苦心
+            看来第一版的作者也是煞费苦心
             """
             """
             lambda t: center + functools.reduce(operator.add, [

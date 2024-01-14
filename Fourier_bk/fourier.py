@@ -82,7 +82,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         自定义了一个时钟
 
         由于整个动画的播放时间为self.wait(1/self.slow_factor)
-        导致了self.vector_clock的zhi最大值为1
+        导致了self.vector_clock的最大值为1
         """
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())
@@ -122,9 +122,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         猜测: 后续还需要将其移到coefficients[0]的位置
 
         更新: 在执行这个函数以前, coefs[0]已经被设置为了0+2j
-        需要搞明白, 第一个vector的旋转中心是何时移到这个位置的
+        需要搞明白, 第一个vector的旋转中心是何时移到这个位UP
         """
-        self.center_tracker = VectorizedPoint(ORIGIN)
+        self.center_tracker = VectorizedPoint(ORIGIN-2*UP)
 
         if freqs is None:
             freqs = self.get_freqs()

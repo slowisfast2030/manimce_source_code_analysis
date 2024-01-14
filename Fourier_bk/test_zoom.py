@@ -41,7 +41,7 @@ class ZoomedScene(ZoomedScene):
         self.zoomed_camera.frame.set_stroke(width=1)
         self.activate_zooming(animate=True)
         print(self.get_zoom_factor()) # 0.15
-        print(self.zoomed_camera.frame.height) # 0.44999999999999996
+        print(self.zoomed_camera.frame.height) # 0.45
         print(self.zoomed_display.height) # 3.0
 
         # More animations inside the zoomed camera

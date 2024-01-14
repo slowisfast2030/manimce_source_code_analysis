@@ -17,6 +17,9 @@ class MyZoomedScene(ZoomedScene):
         # 放大的区域
         self.zoomed_display.to_corner(UL)
         self.zoomed_display.scale(1)
+
+        self.zoomed_camera.cairo_line_width_multiple =0.02
+        self.zoomed_camera.default_frame_stroke_width=22
         
  
         # Animate the zoom

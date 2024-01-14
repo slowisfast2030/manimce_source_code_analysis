@@ -433,11 +433,32 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
     #Setup the vector clock 
 
     def zoom_config(self):
+        """
+        启动缩放镜头
+        在启动镜头后会有一个短暂动画, 显示缩放的过程
+        animate=False表示不播放动画
+        """
         self.activate_zooming(animate=False)
+        """
+        self.zoomed_display: 被放大的区域
+        将其放到左上角
+        """
         self.zoomed_display.to_corner(self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
         #self.zoom_position(self.zoomed_display)
+        """
+        self.zoomed_camera: 缩放镜头
+        self.zoomed_camera.frame: 缩放镜头的边框
+        永远将缩放镜头的边框放到最后一个vector的终点    
+        """
         self.zoomed_camera.frame.add_updater(lambda mob: mob.move_to(self.vectors[-1].get_end()))
+        """
+        self.zoomed_display是一个矩形框, 里面显示放大的区域
+        设置矩形框的宽度
+        """
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
+        """
+        没有搞懂
+        """
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
 
     def scale_zoom_camera_to_full_screen_config(self):

@@ -737,4 +737,4 @@ class ZoomToFullScreen(FourierCirclesSceneWithCamera):
         self.zoom_config()
         self.wait(10)
         self.scale_zoom_camera_to_full_screen_config()
-        self.wait(20)
+        self.wait(20+1/self.camera.frame_rate)

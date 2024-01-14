@@ -80,6 +80,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
         """"
         自定义了一个时钟
+
+        由于整个动画的播放时间为self.wait(1/self.slow_factor)
+        导致了self.vector_clock的zhi最大值为1
         """
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())

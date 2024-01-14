@@ -148,6 +148,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 center_func = self.center_tracker.get_location
             
             if i<len(freqs)-1:
+                """
+                返回添加了updater的vector
+                有点震惊
+                """
                 vector = self.get_rotating_vector(
                 coefficient=coefficient,
                 freq=freq,

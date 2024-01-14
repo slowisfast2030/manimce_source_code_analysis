@@ -462,6 +462,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
 
     def scale_zoom_camera_to_full_screen_config(self):
+        print(f"self.camera.frame_height: {self.camera.frame_height}") # 16
+        print(f"self.camera.frame_width: {self.camera.frame_width}") # 9
+        print(f"self.camera.frame_rate: {self.camera.frame_rate}") # 15
+
         BigSquare=Rectangle(height=self.camera.frame_height,width=self.camera.frame_width).shift(self.camera.frame_width*self.zoomed_display_corner[0]*RIGHT).shift(self.camera.frame_height*self.zoomed_display_corner[1]*UP)
 
         # This is not in the original version of the code.
@@ -800,6 +804,6 @@ class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
         self.wait(0)
-        print(self.camera.frame_rate) #l15 m30 h60
+        #print(self.camera.frame_rate) #l15 m30 h60
         self.scale_zoom_camera_to_full_screen_config()
         self.wait(30+1/self.camera.frame_rate)

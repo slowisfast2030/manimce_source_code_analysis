@@ -661,7 +661,8 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
         coefs/=110
         coefs*=5
-        coefs[0]=-0.5j
+        #coefs[0]=-0.5j
+        coefs[0]=0+0j
 
         music_vector=self.get_rotating_vectors(coefficients=coefs,freqs=freqs)
         music_circle=self.get_circles(music_vector)
@@ -671,7 +672,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         #下面两行开启左上的缩放镜头，若不需要可删除
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
-        self.wait(1/self.slow_factor)
+        self.wait(1/self.slow_factor+1/15)
 
 
 class ZoomToFullScreen(FourierCirclesSceneWithCamera):

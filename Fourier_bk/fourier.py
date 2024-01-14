@@ -269,8 +269,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             )
             for vector in vectors
         ])
+
         if self.Hide_0th_vector:
             ans[0].set_opacity(0)
+        
         return ans
 
     def get_circle(self, vector):

@@ -123,6 +123,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
         更新: 在执行这个函数以前, coefs[0]已经被设置为了0+2j
         需要搞明白, 第一个vector的旋转中心是何时移到这个位UP
+
+        更新:
+        第一个vector在整个动画中被隐藏了
+        第一个vector是静止的, 旋转中心是原点
         """
         self.center_tracker = VectorizedPoint(ORIGIN)
 

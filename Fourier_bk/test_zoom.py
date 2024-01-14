@@ -44,11 +44,8 @@ class ZoomedScene(ZoomedScene):
         print(self.zoomed_camera.frame.height) # 0.44999999999999996
         print(self.zoomed_display.height) # 3.0
 
-        # Animate
-        self.play(square.animate.scale(1))
-        self.wait(1)
-
         # More animations inside the zoomed camera
         self.play(square.animate.rotate(PI/4))
         self.wait(1)
 
+        #self.play(self.get_zoomed_display_pop_out_animation())

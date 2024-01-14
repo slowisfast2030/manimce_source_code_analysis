@@ -758,3 +758,48 @@ class ZoomToFullScreen(FourierCirclesSceneWithCamera):
         self.wait(10)
         self.scale_zoom_camera_to_full_screen_config()
         self.wait(20+1/self.camera.frame_rate)
+
+
+class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
+    def construct(self):
+        super().__init__(n_vectors=200,#控制向量数量
+        slow_factor=1/30,#控制时间长短，slow factor越小，画的速度越慢,      
+        cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
+        default_frame_stroke_width=0.1,
+        zoomed_display_corner=UR,
+        zoomed_display_corner_buff=0,
+        zoom_camera_to_full_screen_config= {
+            "run_time": 5,
+            "func": there_and_back_with_pause,
+            "velocity_factor": 1
+        })#控制缩放镜头边框长短
+        f=open(r"A.txt","r")
+        freqs=[]
+        coefs=[]
+        lines=f.readlines()
+        for line in lines:
+            a,b=line.split()
+            freqs.append(int(a))
+            coefs.append(complex(b))
+
+        coefs=coefs[:self.n_vectors]
+        freqs=freqs[:self.n_vectors]
+        coefs=np.array(coefs)
+        freqs=np.array(freqs)
+        #coefs[0]控制了图像的中心位置，需要微调到最适合的位置。
+        coefs/=110
+        coefs*=5
+        coefs[0]=0+0j
+
+        music_vector=self.get_rotating_vectors(coefficients=coefs,freqs=freqs)
+        music_circle=self.get_circles(music_vector)
+        music_drawn_path=self.get_drawn_path(music_vector)
+
+        self.add(music_vector,music_circle,music_drawn_path)
+        #下面两行开启左上的缩放镜头，若不需要可删除
+        self.vectors=music_vector#Need to define vectors for zoom_config to work
+        self.zoom_config()
+        self.wait(1)
+        print(self.camera.frame_rate)
+        self.scale_zoom_camera_to_full_screen_config()
+        self.wait(29+1/self.camera.frame_rate)

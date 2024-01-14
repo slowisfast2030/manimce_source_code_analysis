@@ -381,6 +381,9 @@ class Normal(FourierCirclesSceneWithCamera):
             freqs.append(int(a))
             coefs.append(complex(b))
 
+        """
+        截取前n_vectors个系数
+        """
         coefs=coefs[:self.n_vectors]
         freqs=freqs[:self.n_vectors]
         coefs=np.array(coefs)

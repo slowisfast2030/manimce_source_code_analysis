@@ -502,8 +502,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             不明白为什么要做这种修正
             """
             mob.start_time += fix_update(mob, dt, velocity_factor, fps)
-            print(f"fix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}")
-            print(f"mob.start_time: {mob.start_time}")
+            print(f"fix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}") # 0.06666666666666667 = 1/15
+            print(f"mob.start_time: {mob.start_time}") # 每次以1/15的速度增加
             print(f"run_time: {run_time}") # 10
 
             if mob.start_time <= run_time:
@@ -515,6 +515,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 修正执行进度
                 """
                 alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)
+                print(f"alpha: {alpha}")
+                print(f"alpha_func: {alpha_func}")
                 """
                 基于修正的执行进度, 更新self.zoomed_display的宽度和高度
                 """

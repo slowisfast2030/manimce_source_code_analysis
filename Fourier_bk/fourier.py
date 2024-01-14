@@ -556,6 +556,11 @@ class Normal(FourierCirclesSceneWithCamera):
         """
         #self.wait(1/self.slow_factor)
         self.wait(1/self.slow_factor + 1/30)
+
+        """
+        此时可以将场景中的所有对象清楚
+        开始画下一个动画
+        """
         
 
 

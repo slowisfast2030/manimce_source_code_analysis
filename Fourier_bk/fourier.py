@@ -165,8 +165,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 center_func=center_func,
             )
             
+            """
+            将频率为0的向量隐藏
+            因为频率为0的向量, 是静止的
+            """
             if (i==0 and self.Hide_0th_vector):
-                vector.set_opacity(1)
+                vector.set_opacity(0)
 
             vectors.add(vector)
             """

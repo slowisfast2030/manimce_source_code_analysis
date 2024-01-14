@@ -28,3 +28,24 @@ class MyZoomedScene(ZoomedScene):
         self.play(square.animate.shift(RIGHT*1))
         
         # Additional animations or objects can be added here
+
+class ZoomedScene(ZoomedScene):
+    def construct(self):
+        # Create a square
+        square = Square(color=BLUE, fill_opacity=0.5)
+        self.add(square)
+
+        # Set up the zoom
+        self.zoomed_camera.frame.move_to(square)
+        self.zoomed_camera.frame.set_color(PURPLE)
+        self.zoomed_camera.frame.set_stroke(width=1)
+        self.activate_zooming(animate=True)
+
+        # Animate
+        self.play(square.animate.scale(0.3))
+        self.wait(1)
+
+        # More animations inside the zoomed camera
+        self.play(square.animate.rotate(PI/4))
+        self.wait(1)
+

@@ -527,7 +527,7 @@ class Normal(FourierCirclesSceneWithCamera):
         即平移
         """
         #coefs[0]=-0.5j
-        coefs[0]=0+0j
+        coefs[0]=0+5j
 
         """
         整体的设计思路:

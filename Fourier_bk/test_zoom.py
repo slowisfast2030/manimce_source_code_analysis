@@ -53,6 +53,7 @@ class ZoomedScene(ZoomedScene):
 
 
 class MyMovingCameraScene(MovingCameraScene):
+#class MyMovingCameraScene(Scene):
     def construct(self):
         # Create objects
         square = Square(color=BLUE)

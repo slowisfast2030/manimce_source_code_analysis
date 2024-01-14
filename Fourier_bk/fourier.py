@@ -77,6 +77,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.slow_factor_tracker = ValueTracker(
             self.slow_factor
         )
+
+        """"
+        自定义了一个时钟
+        """
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)

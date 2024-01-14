@@ -296,6 +296,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         coefs = np.array([v.coefficient for v in vectors])
         freqs = np.array([v.freq for v in vectors])
         center = vectors[0].get_start()
+        """
+        如果 coefs = [c1, c2], freqs = [f1, f2]
+        先拿出c1, f1
+        然后拿出c2, f2
+        最后求和
+        """
         def compute_curve(t):
             return complex_to_R3(coefs.dot(np.exp(TAU*1j*freqs*t)))
         """lambda t: center + functools.reduce(operator.add, [

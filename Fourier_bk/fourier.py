@@ -117,6 +117,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         是第一个向量的旋转中心
 
         猜测: 后续还需要将其移到coefficients[0]的位置
+
+        更新: 在执行这个函数以前, coefs[0]已经被设置为了0+2j
+        需要搞明白, 第一个vector的旋转中心是何时移到这个位置的
         """
         self.center_tracker = VectorizedPoint(ORIGIN)
 

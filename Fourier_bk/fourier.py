@@ -315,6 +315,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         coefs = np.array([v.coefficient for v in vectors])
         freqs = np.array([v.freq for v in vectors])
+        """
+        第一个vector的起点其实是原点
+        """
         center = vectors[0].get_start()
         """
         如果 coefs = [c1, c2], freqs = [f1, f2]

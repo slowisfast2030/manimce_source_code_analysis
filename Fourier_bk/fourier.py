@@ -120,10 +120,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         for i in range(len(freqs)):
             freq=freqs[i]
             coefficient=coefficients[i]
+            
             if last_vector:
                 center_func = last_vector.get_end
             else:
                 center_func = self.center_tracker.get_location
+            
             if i<len(freqs)-1:
                 vector = self.get_rotating_vector(
                 coefficient=coefficient,

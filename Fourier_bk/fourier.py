@@ -108,6 +108,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
     def get_rotating_vectors(self, freqs=None, coefficients=None):
         vectors = VGroup()
+        """
+        self.center_tracker只使用了一次
+        是第一个向量的旋转中心
+
+        猜测: 后续还需要将其移到coefficients[0]的位置
+        """
         self.center_tracker = VectorizedPoint(ORIGIN)
 
         if freqs is None:

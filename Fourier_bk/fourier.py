@@ -154,7 +154,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         center_func: 函数。返回向量的旋转中心
         """
         vector = Vector(abs(coefficient)*RIGHT, **self.vector_config)
-        #vector.scale(abs(coefficient))
+
+        """
+        获取向量的初始相位
+        """
         if abs(coefficient) == 0:
             phase = 0
         else:

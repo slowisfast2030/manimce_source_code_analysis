@@ -124,7 +124,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         更新: 在执行这个函数以前, coefs[0]已经被设置为了0+2j
         需要搞明白, 第一个vector的旋转中心是何时移到这个位UP
         """
-        self.center_tracker = VectorizedPoint(ORIGIN-2*UP)
+        self.center_tracker = VectorizedPoint(ORIGIN)
 
         if freqs is None:
             freqs = self.get_freqs()

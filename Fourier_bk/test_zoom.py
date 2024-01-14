@@ -7,7 +7,7 @@ class MyZoomedScene(ZoomedScene):
         self.add(square)
 
         # Activate Zooming
-        self.activate_zooming(animate=True)
+        self.activate_zooming(animate=False)
 
         # Move and set the zoomed camera frame
         self.zoomed_camera.frame.move_to(square)

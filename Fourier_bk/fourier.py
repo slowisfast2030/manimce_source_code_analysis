@@ -545,6 +545,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 )
                 mob.stretch_to_fit_width(interpolate(mob_width,self.camera.frame_width,alpha_func))
 
+                """
+                下面两个属性没有搞明白
+                """
                 self.zoomed_camera.cairo_line_width_multiple = interpolate(
                     ctx,
                     self.camera.cairo_line_width_multiple*.3,

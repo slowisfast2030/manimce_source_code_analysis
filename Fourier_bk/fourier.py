@@ -347,6 +347,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 
         查看path的代码, 发现是ParametricFunction
         ParametricFunction的参数t_range=[0,1,0.001]
+
+        如果整个路径被划分为1000份
+        每一帧可以显示一份
+        那么一共需要1000帧的时间
+        假设1秒钟30帧
+        那么一共需要33.3333秒的时间
         """
         broken_path = CurvesAsSubmobjects(path)
         broken_path.curr_time = 0

@@ -283,6 +283,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             for vector in vectors
         ])
 
+        """
+        隐藏第一个circle
+        """
         if self.Hide_0th_vector:
             ans[0].set_opacity(0)
         

@@ -49,3 +49,21 @@ class ZoomedScene(ZoomedScene):
         self.wait(1)
 
         #self.play(self.get_zoomed_display_pop_out_animation())
+
+
+
+class MyMovingCameraScene(MovingCameraScene):
+    def construct(self):
+        # Create objects
+        square = Square(color=BLUE)
+        text = Text("Hello, World!").next_to(square, DOWN)
+
+        # Add objects to the scene
+        self.add(square, text)
+
+        # Camera animations
+        self.play(self.camera.frame.animate.move_to(square).set(width=square.width*2))
+        self.wait(1)
+        self.play(self.camera.frame.animate.scale(2))
+        self.wait(1)
+

@@ -171,7 +171,19 @@ class ParametricFunction(VMobject, metaclass=ConvertToOpenGL):
 
     init_points = generate_points
 
+"""from gpt4
+Key Differences:
+1.Function Type: ParametricFunction for parametric equations (both x and 
+y as functions of another variable), FunctionGraph for standard functions (
+y as a function of x).
 
+2.Complexity of Curves: ParametricFunction can handle more complex curves, including those that double back on themselves.
+
+3.Use Cases: FunctionGraph is simpler and more straightforward for basic graphs, whereas ParametricFunction offers more flexibility for complex shapes.
+
+简单来说, ParametricFunction可以画出更复杂的曲线, 而FunctionGraph只能画出简单的函数图像
+比如: ParametricFunction可以画出圆, 而FunctionGraph只能画出圆的一半
+"""
 class FunctionGraph(ParametricFunction):
     """A :class:`ParametricFunction` that spans the length of the scene by default.
 

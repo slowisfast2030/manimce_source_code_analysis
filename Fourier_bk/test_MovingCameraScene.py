@@ -11,6 +11,14 @@ class CameraFocusExample(MovingCameraScene):
 
         # Add objects to the scene
         self.add(square, circle, triangle)
+        zoomed_display = ImageMobjectFromCamera(self.camera)
+        zoomed_display.scale(0.5)
+        zoomed_display.move_to(UP * 2.5)
+        zoomed_display.add_display_frame()
+        zoomed_display.display_frame.set_color(RED)
+        self.add(zoomed_display)
+
+
 
         # Focus on the square
         self.play(self.camera.frame.animate.move_to(square).set(width=square.width * 5))

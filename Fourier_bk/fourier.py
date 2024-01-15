@@ -583,7 +583,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                     )
                 """
                 mob的位置
-                盲猜:主要是保证右上角的位置不变
+                主要是保证右上角的位置不变
                 """
                 mob.next_to(BigSquare,-self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
             return mob

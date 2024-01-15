@@ -480,7 +480,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         但是, 无论是哪一个, 这里的代码都是错误的
         很有可能是manim本身的一个bug
         """
-        self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
+        #self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
         
 
     def scale_zoom_camera_to_full_screen_config(self):

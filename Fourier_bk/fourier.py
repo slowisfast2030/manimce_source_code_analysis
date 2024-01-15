@@ -458,6 +458,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         self.zoomed_display是一个矩形框, 里面显示放大的区域
         被放大区域的线宽
+
+        self.camera.cairo_line_width_multiple =self.cairo_line_width_multiple
+        在ZoomedScene中有两个camera
+        可以分别设置线宽
         """
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         """
@@ -744,9 +748,11 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         music_drawn_path=self.get_drawn_path(music_vector)
 
         self.add(music_vector,music_circle,music_drawn_path)
+        
         #下面两行开启左上的缩放镜头，若不需要可删除
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
+        
         self.wait(1/self.slow_factor+1/15)
 
 

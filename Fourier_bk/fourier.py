@@ -453,7 +453,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_camera.frame.add_updater(lambda mob: mob.move_to(self.vectors[-1].get_end()))
         """
         self.zoomed_display是一个矩形框, 里面显示放大的区域
-        设置矩形框的宽度
+        被放大区域的线宽
         """
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         """

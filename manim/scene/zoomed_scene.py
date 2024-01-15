@@ -148,6 +148,9 @@ class ZoomedScene(MovingCameraScene):
                 buff=self.zoomed_display_corner_buff,
             )
 
+        """linus
+        ZoomedScene的核心就是这两个属性
+        """
         self.zoomed_camera = zoomed_camera
         self.zoomed_display = zoomed_display
 

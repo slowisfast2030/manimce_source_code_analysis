@@ -446,6 +446,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_display.to_corner(self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
         #self.zoom_position(self.zoomed_display)
         """
+        linus
+        """
+        self.zoomed_display.display_frame.set_color(GREEN)
+        """
         self.zoomed_camera: 缩放镜头
         self.zoomed_camera.frame: 缩放镜头的边框
         永远将缩放镜头的边框放到最后一个vector的终点    
@@ -460,6 +464,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         没有搞懂
         """
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
+        
 
     def scale_zoom_camera_to_full_screen_config(self):
         print(f"\033[91mself.camera.frame_height: {self.camera.frame_height}\033[0m") # 16

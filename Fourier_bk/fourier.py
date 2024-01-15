@@ -826,7 +826,7 @@ class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
         cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
         default_frame_stroke_width=2, #linus 这个参数的存在目的存疑
         zoomed_display_corner=UR,
-        zoomed_display_corner_buff=0.2,
+        zoomed_display_corner_buff=0,
         zoom_camera_to_full_screen_config= {
             "run_time": 5,
             "func": there_and_back_with_pause,

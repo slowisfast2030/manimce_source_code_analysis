@@ -220,6 +220,9 @@ class ZoomedScene(MovingCameraScene):
         ApplyMethod
             The Animation of the Zoomed Display popping out.
         """
+        """linus
+        对save_state()和restore()用法真是优雅
+        """
         display = self.zoomed_display
         display.save_state()
         display.replace(self.zoomed_camera.frame, stretch=True)

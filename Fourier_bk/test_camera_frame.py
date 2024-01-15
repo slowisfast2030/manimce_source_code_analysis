@@ -20,7 +20,7 @@ class FollowingGraphCamera(MovingCameraScene):
             mob.move_to(moving_dot.get_center())
 
         self.camera.frame.add_updater(update_curve)
-        self.play(MoveAlongPath(moving_dot, graph, rate_func=linear))
+        self.play(MoveAlongPath(moving_dot, graph, rate_func=linear), run_time=3)
         self.camera.frame.remove_updater(update_curve)
 
         self.play(Restore(self.camera.frame))

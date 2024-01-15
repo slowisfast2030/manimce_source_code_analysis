@@ -712,7 +712,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):
         super().__init__(n_vectors=200,#控制向量数量
         slow_factor=1/5,#控制时间长短，slow factor越小，画的速度越慢,      
-        cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
+        cairo_line_width_multiple=0.005,#控制缩放镜头里线的粗细
         default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
         f=open(r"A.txt","r")
         freqs=[]

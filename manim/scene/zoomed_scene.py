@@ -232,5 +232,7 @@ class ZoomedScene(MovingCameraScene):
         很奇怪, 定义成
         self.zoomed_display.height / self.zoomed_camera.frame.height
         不是更合理吗?
+
+        看init部分的代码就明白了
         """
         return self.zoomed_camera.frame.height / self.zoomed_display.height

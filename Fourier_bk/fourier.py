@@ -449,7 +449,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         linus
         设置缩放镜头边框的颜色和粗细
         """
-        self.zoomed_display.display_frame.set_stroke(GREEN, 2)
+        self.zoomed_display.display_frame.set_stroke(RED, 2)
         """
         self.zoomed_camera: 缩放镜头
         self.zoomed_camera.frame: 缩放镜头的边框

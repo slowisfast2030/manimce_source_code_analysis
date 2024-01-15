@@ -191,6 +191,14 @@ class ZoomedScene(MovingCameraScene):
         ApplyMethod
             The animation of the camera zooming in.
         """
+        """linus
+        这里很好的显示了ZoomedScene的两个camera
+        self.camera是全局的camera
+        self.zoomed_camera是局部的camera
+        
+        整个动画的过程是:
+        一个大frame, 缩小为一个小frame
+        """
         frame = self.zoomed_camera.frame
         full_frame_height = self.camera.frame_height
         full_frame_width = self.camera.frame_width

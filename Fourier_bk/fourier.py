@@ -754,7 +754,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         self.add(music_vector,music_circle,music_drawn_path)
         
         #下面两行开启左上的缩放镜头，若不需要可删除
-        self.vectors=music_vector#Need to define vectors for zoom_config to work
+        self.vectors=music_vector #Need to define vectors for zoom_config to work
         self.zoom_config()
         
         self.wait(1/self.slow_factor + 1/self.camera.frame_rate)

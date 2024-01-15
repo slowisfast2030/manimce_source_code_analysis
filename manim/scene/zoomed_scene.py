@@ -109,6 +109,11 @@ class ZoomedScene(MovingCameraScene):
         """
         super().setup()
         # Initialize camera and display
+        """
+        ZoomedScene有两个camera
+        self.camera = MultiCamera(**self.camera_config)
+        self.zoomed_camera = MovingCamera(**self.zoomed_camera_config)
+        """
         zoomed_camera = MovingCamera(**self.zoomed_camera_config)
         zoomed_display = ImageMobjectFromCamera(
             zoomed_camera, **self.zoomed_camera_image_mobject_config

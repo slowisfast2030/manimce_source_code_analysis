@@ -576,6 +576,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 """
                 这里的代码可以和self.zoom_config中最后一行代码对比
                 更加确信, 上面的代码是错误的
+
+                这里的代码本身也有问题
+                给self.zoomed_camera.frame设置线宽设置动画的目的是啥?
+                没有意义
                 """
                 # self.zoomed_camera.frame.set_stroke(width=interpolate(frame_width,
                 #         0,

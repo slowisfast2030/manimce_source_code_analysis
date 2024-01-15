@@ -450,14 +450,14 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         设置缩放镜头边框的颜色和粗细
         """
         #print(self.zoomed_display.display_frame.get_stroke_width())
-        self.zoomed_display.display_frame.set_stroke(RED, 2)
+        self.zoomed_display.display_frame.set_stroke(RED, 3)
         """
         self.zoomed_camera: 缩放镜头
         self.zoomed_camera.frame: 缩放镜头的边框
         永远将缩放镜头的边框放到最后一个vector的终点    
         """
         #print(self.zoomed_camera.frame.get_stroke_width())
-        self.zoomed_camera.frame.set_stroke(GREEN, 2)
+        self.zoomed_camera.frame.set_stroke(YELLOW, 2)
         self.zoomed_camera.frame.add_updater(lambda mob: mob.move_to(self.vectors[-1].get_end()))
         """
         self.zoomed_display是一个矩形框, 里面显示放大的区域

@@ -724,7 +724,7 @@ class Normal_happy(FourierCirclesSceneWithCamera):
 class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):
         super().__init__(n_vectors=200,#控制向量数量
-        slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
+        slow_factor=1/10,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.005,#控制缩放镜头里线的粗细
         default_frame_stroke_width=0.1*1000,#控制缩放镜头边框粗细 #linus似乎没有效果
         zoomed_display_corner_buff=0.2)
@@ -757,7 +757,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
         
-        self.wait(1/self.slow_factor+1/15)
+        self.wait(1/self.slow_factor+1/self.camera.frame_rate)
 
 
 class ZoomToFullScreen(FourierCirclesSceneWithCamera):

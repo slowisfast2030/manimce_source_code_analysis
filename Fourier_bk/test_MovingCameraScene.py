@@ -18,8 +18,6 @@ class CameraFocusExample(MovingCameraScene):
         zoomed_display.display_frame.set_color(RED)
         self.add(zoomed_display)
 
-
-
         # Focus on the square
         self.play(self.camera.frame.animate.move_to(square).set(width=square.width * 5))
 

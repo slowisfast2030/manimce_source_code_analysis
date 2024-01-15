@@ -1,6 +1,8 @@
 from manim import *
 
 class CameraFocusExample(MovingCameraScene):
+#class CameraFocusExample(Scene):
+    #AttributeError: 'Camera' object has no attribute 'frame'
     def construct(self):
         # Create some objects
         square = Square(color=BLUE, fill_opacity=0.5)

@@ -447,8 +447,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         #self.zoom_position(self.zoomed_display)
         """
         linus
+        设置缩放镜头边框的颜色和粗细
         """
-        self.zoomed_display.display_frame.set_color(GREEN)
+        self.zoomed_display.display_frame.set_stroke(GREEN, 2)
         """
         self.zoomed_camera: 缩放镜头
         self.zoomed_camera.frame: 缩放镜头的边框
@@ -466,7 +467,8 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         """
-        没有搞懂
+        本意是想设置放大区域的边框线宽
+        但没有效果
         """
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
         

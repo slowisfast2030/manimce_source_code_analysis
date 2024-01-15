@@ -472,7 +472,12 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         本意是想设置放大区域的边框线宽
         但没有效果
-        猜测: 是不是被self.zoomed_display.display_frame覆盖了
+        
+        这里有两个问题:
+        1.如果本意是想设置放大区域的边框线宽, 那么应该是self.zoomed_display.display_frame.set_stroke
+        2.如果是想设置self.zoomed_camera的线宽, 那么应该是self.zoomed_camera.frame.set_stroke
+        
+        但是, 无论是哪一个, 这里的代码都是错误的
         """
         self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
         

@@ -757,7 +757,7 @@ class NeedZoom(FourierCirclesSceneWithCamera):
         self.vectors=music_vector#Need to define vectors for zoom_config to work
         self.zoom_config()
         
-        self.wait(1/self.slow_factor+1/self.camera.frame_rate)
+        self.wait(1/self.slow_factor + 1/self.camera.frame_rate)
 
 
 class ZoomToFullScreen(FourierCirclesSceneWithCamera):

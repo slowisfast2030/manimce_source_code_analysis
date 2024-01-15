@@ -459,9 +459,9 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         self.zoomed_display是一个矩形框, 里面显示放大的区域
         被放大区域的线宽
 
-        self.camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         在ZoomedScene中有两个camera
         可以分别设置线宽
+        self.camera.cairo_line_width_multiple = self.cairo_line_width_multiple
         """
         self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
         """

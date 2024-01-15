@@ -11,6 +11,10 @@ class CameraFocusExample(MovingCameraScene):
 
         # Add objects to the scene
         self.add(square, circle, triangle)
+
+        """
+        自己添加局部放大效果
+        """
         zoomed_display = ImageMobjectFromCamera(self.camera)
         zoomed_display.scale(0.5)
         zoomed_display.move_to(UP * 2.5)

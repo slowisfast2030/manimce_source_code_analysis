@@ -577,10 +577,10 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 这里的代码可以和self.zoom_config中最后一行代码对比
                 更加确信, 上面的代码是错误的
                 """
-                self.zoomed_camera.frame.set_stroke(width=interpolate(frame_width,
-                        0,
-                        alpha_func)
-                    )
+                # self.zoomed_camera.frame.set_stroke(width=interpolate(frame_width,
+                #         0,
+                #         alpha_func)
+                #     )
                 """
                 mob的位置
                 主要是保证右上角的位置不变
@@ -820,7 +820,7 @@ class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
         super().__init__(n_vectors=200,#控制向量数量
         slow_factor=1/30,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
-        default_frame_stroke_width=0,
+        default_frame_stroke_width=2,
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0,
         zoom_camera_to_full_screen_config= {

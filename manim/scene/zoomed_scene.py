@@ -109,16 +109,30 @@ class ZoomedScene(MovingCameraScene):
         """
         super().setup()
         # Initialize camera and display
-        """
+        """linus
         ZoomedScene有两个camera
         self.camera = MultiCamera(**self.camera_config)
         self.zoomed_camera = MovingCamera(**self.zoomed_camera_config)
         """
         zoomed_camera = MovingCamera(**self.zoomed_camera_config)
+        """
+        zoomed_display本质上是一个ImageMobject
+        是将zoomed_camera.frame所覆盖的区域作为ImageMobject
+        """
         zoomed_display = ImageMobjectFromCamera(
             zoomed_camera, **self.zoomed_camera_image_mobject_config
         )
+        """linus
+        zoomed_display是一个ImageMobject
+        这里为其设置边框
+        边框: zoomed_display.display_frame
+
+        之前一直在想左上角放大区域的边框怎么设置样式
+        """
         zoomed_display.add_display_frame()
+        """linus
+        清晰的解释了self.zoom_factor的用法
+        """
         for mob in zoomed_camera.frame, zoomed_display:
             mob.stretch_to_fit_height(self.zoomed_display_height)
             mob.stretch_to_fit_width(self.zoomed_display_width)

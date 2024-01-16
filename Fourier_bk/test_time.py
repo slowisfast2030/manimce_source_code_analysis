@@ -31,6 +31,9 @@ class Time(Scene):
         ]
 
         for i in range(len(x_labels)):
+            """
+            横轴上的周期为4
+            """
             x_labels[i].next_to(np.array([-1 + 2*i, 0, 0]), DOWN)
             self.add(x_labels[i])
 

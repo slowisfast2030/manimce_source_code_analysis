@@ -24,8 +24,10 @@ class Space(Scene):
                 lambda p: p
                           + np.array(
                     [
-                        np.sin(p[1]),
-                        np.sin(p[0]),
+                        0,
+                        #np.sin(p[1]),
+                        0,
+                        #np.sin(p[0]),
                         0,
                     ]
                 )

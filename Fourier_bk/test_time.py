@@ -1,9 +1,8 @@
 from manim import *
 
-class SineCurveUnitCircle(Scene):
+class Time(Scene):
     # contributed by heejin_park, https://infograph.tistory.com/230
     def construct(self):
-        self.speed = 4
         self.show_axis()
         self.show_circle()
         self.move_dot_and_draw_curve()
@@ -59,7 +58,16 @@ class SineCurveUnitCircle(Scene):
             return Line(origin_point, dot.get_center(), color=BLUE)
 
         def get_line_to_curve():
-            x = self.curve_start[0] + self.t_offset * self.speed
+            """
+            rate = 0.25意味着每4s转一圈
+            每一秒转0.25圈
+            那么dt秒转0.25dt圈
+
+            在坐标轴上,注意pi的位置, 实际周期是4
+            dt秒完成了一个圆的比例是: 0.25dt
+            那么, dt秒在横轴上前进的距离是: 4 * 0.25dt
+            """
+            x = self.curve_start[0] + self.t_offset * 4
             y = dot.get_center()[1]
             return Line(dot.get_center(), np.array([x,y,0]), color=YELLOW_A, stroke_width=2 )
 
@@ -68,7 +76,7 @@ class SineCurveUnitCircle(Scene):
         self.curve.add(Line(self.curve_start,self.curve_start))
         def get_curve():
             last_line = self.curve[-1]
-            x = self.curve_start[0] + self.t_offset * self.speed
+            x = self.curve_start[0] + self.t_offset * 4
             y = dot.get_center()[1]
             new_line = Line(last_line.get_end(),np.array([x,y,0]), color=YELLOW_D)
             self.curve.add(new_line)

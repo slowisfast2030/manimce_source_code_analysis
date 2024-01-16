@@ -12,7 +12,6 @@ class Space(Scene):
             FadeIn(grid_title, shift=UP),
             Create(grid, run_time=3, lag_ratio=0.1),
         )
-        self.wait()
 
         grid_transform_title = Tex(
             r"That was a non-linear function \\ applied to the grid"
@@ -34,6 +33,21 @@ class Space(Scene):
             ),
             run_time=3,
         )
+        # self.play(
+        #     grid.animate.apply_function(
+        #         lambda p: p
+        #                   + np.array(
+        #             [
+        #                 0,
+        #                 #np.sin(p[1]),
+        #                 #0,
+        #                 np.sin(p[0]),
+        #                 0,
+        #             ]
+        #         )
+        #     ),
+        #     run_time=3,
+        # )
         self.wait()
         self.play(Transform(grid_title, grid_transform_title))
         self.wait()

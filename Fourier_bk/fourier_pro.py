@@ -797,7 +797,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)
-        #self.add(le1_vector,le1_circle,le1_drawn_path)
+        self.add(le1_vector,le1_circle,le1_drawn_path)
         self.wait(1/self.slow_factor + 1/15)
         """
         清除上述对象的所有updater

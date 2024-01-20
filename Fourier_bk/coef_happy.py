@@ -1,6 +1,11 @@
 import svgpathtools
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
+def svg_path_num(path_to_file):
+   path,_=svgpathtools.svg2paths(path_to_file)
+   return len(path) 
 
 def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=False):
     
@@ -36,7 +41,7 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     """
     pathlength=path.length()
     print("\n")
-    print("pathlength is: ",pathlength)
+    print(f"part {npath} length : {pathlength}")
     print("\n")
 
     if reverse:
@@ -112,5 +117,11 @@ def save_coef(coefs,fourier_coef,file_path):
             f.write("\n")
 
 if __name__ == "__main__":
-    coefs,fourier_coef = svg_to_coef("Ale.svg", npath=2, conj=True)
-    save_coef(coefs,fourier_coef,"Ale_2.txt")
+    svg_path = "Ale.svg"
+    base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
+
+    num = svg_path_num(svg_path)
+    for i in range(num):  # Adjust the range as needed
+        coefs, fourier_coef = svg_to_coef(svg_path, npath=i, conj=True)
+        output_filename = f"{base_name}_{i}.txt"  # Formats the output file name using the base name
+        save_coef(coefs, fourier_coef, output_filename)

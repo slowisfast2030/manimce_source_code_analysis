@@ -814,6 +814,15 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
         
+        """part length
+        part 0:1014.1104089718626
+        part 1:190.25475395399974
+        part 2:196.97960990760595
+        """
+        part_length = [1014.1104089718626,
+                       190.25475395399974,
+                       196.97960990760595]
+
         # 读取三部分参数 
         coefs_0, freqs_0=self.read_coefs_freqs(r"Ale_0.txt", self.n_vectors)
         coefs_1, freqs_1=self.read_coefs_freqs(r"Ale_1.txt", self.n_vectors)
@@ -840,7 +849,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
         self.add(le0_vector,le0_circle,le0_drawn_path)
-        self.wait(1/self.slow_factor + 1/15)
+        self.wait(1/self.slow_factor*(part_length[0]/part_length[1]) + 1/15)
         """
         清除上述对象的所有updater
         """
@@ -878,7 +887,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le2_circle=self.get_circles(le2_vector)
         le2_drawn_path=self.get_drawn_path(le2_vector)
         self.add(le2_vector,le2_circle,le2_drawn_path)
-        self.wait(1/self.slow_factor + 1/15)
+        self.wait(1/self.slow_factor*(part_length[2]/part_length[1]) + 1/15)
 
 class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):

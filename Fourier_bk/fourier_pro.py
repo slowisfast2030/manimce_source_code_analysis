@@ -562,10 +562,11 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         super().__init__()
 
 
-        def process_word(n_vectors, all_time, svg_path):
+        def process_word(n_vectors, all_time, svg_path, origin):
             self.n_vectors = n_vectors
             all_time = all_time
             svg_path = svg_path
+            origin = origin
 
             base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
@@ -589,7 +590,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 coefs/=22
                 coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
 
-            shift_val = complex(0,0) - coefs_freqs_dicts[0]["coefs"][0] 
+            shift_val = origin - coefs_freqs_dicts[0]["coefs"][0] 
             for i in range(len(part_length)):
                 coefs_freqs_dicts[i]["coefs"][0]+=shift_val
 
@@ -635,4 +636,4 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
 
         svg_path = "new.svg"
-        process_word(n_vectors=200, all_time=15, svg_path=svg_path)
+        process_word(n_vectors=200, all_time=15, svg_path=svg_path, origin=complex(-3,0))

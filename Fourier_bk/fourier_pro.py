@@ -561,78 +561,79 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
     def construct(self):
         super().__init__()
 
-        self.n_vectors = 200
-        self.all_time = 15
+
+        def process_word(n_vectors, all_time, svg_path):
+            self.n_vectors = n_vectors
+            all_time = all_time
+            svg_path = svg_path
+
+            base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
+
+            part_length = []
+            part_length_file = f"{base_name}_part_length.txt"
+            with open(part_length_file, "r") as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line.split()
+                    part_length.append(float(line[1]))
+            
+            print(part_length)
+            # 初始化存储结果的字典
+            coefs_freqs_dicts = []
+
+            # 循环处理每个文件
+            for i in range(len(part_length)):
+                file_name = f"{base_name}_{i}.txt"
+                coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
+                # 整体缩小参数
+                coefs/=22
+                coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
+
+            shift_val = complex(0,0) - coefs_freqs_dicts[0]["coefs"][0] 
+            coefs_freqs_dicts[0]["coefs"][0]+=shift_val
+            coefs_freqs_dicts[1]["coefs"][0]+=shift_val
+            coefs_freqs_dicts[2]["coefs"][0]+=shift_val
+
+            def add_dt(m,dt):
+                m.increment_value(dt*self.slow_factor_tracker.get_value())
+            
+
+            def process_part(part_index, coefs_freqs_dicts, part_length):
+                ratio = part_length[part_index]/ sum(part_length)
+                part_time = all_time * ratio
+
+                # Calculate the slow factor based on the part lengths
+                self.slow_factor = 1/part_time
+                self.slow_factor_tracker = ValueTracker(self.slow_factor)
+
+                # Initialize and add the vector clock
+                self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
+                self.add(self.vector_clock)
+
+                # Create and add vectors, circles, and drawn paths
+                vectors = self.get_rotating_vectors(
+                    coefficients=coefs_freqs_dicts[part_index]["coefs"],
+                    freqs=coefs_freqs_dicts[part_index]["freqs"]
+                )
+                circles = self.get_circles(vectors)
+                drawn_path = self.get_drawn_path(vectors)
+                self.add(vectors, circles, drawn_path)
+
+                # Wait based on the slow factor
+                self.wait(1 / self.slow_factor + 1 / 15)
+
+                # Clear updaters and remove objects
+                for v in vectors:
+                    v.clear_updaters()
+                for c in circles:
+                    c.clear_updaters()
+                drawn_path.clear_updaters()
+                self.remove(*vectors, *circles, self.vector_clock)
+
+            # Example of how to use the function for each part
+            for part_index in range(len(part_length)):
+                process_part(part_index, coefs_freqs_dicts, part_length)
+
+
         svg_path = "Ale.svg"
-        base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
-
-        part_length = []
-        part_length_file = f"{base_name}_part_length.txt"
-        with open(part_length_file, "r") as f:
-            lines = f.readlines()
-            for line in lines:
-                line = line.split()
-                part_length.append(float(line[1]))
-        
-        print(part_length)
-        # 初始化存储结果的字典
-        coefs_freqs_dicts = []
-
-        # 循环处理每个文件
-        for i in range(len(part_length)):
-            file_name = f"{base_name}_{i}.txt"
-            coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
-            # 整体缩小参数
-            coefs/=22
-            coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
-
-        shift_val = complex(0,0) - coefs_freqs_dicts[0]["coefs"][0] 
-        coefs_freqs_dicts[0]["coefs"][0]+=shift_val
-        coefs_freqs_dicts[1]["coefs"][0]+=shift_val
-        coefs_freqs_dicts[2]["coefs"][0]+=shift_val
-
-        def add_dt(m,dt):
-            m.increment_value(dt*self.slow_factor_tracker.get_value())
-        
-
-        def process_part(part_index, coefs_freqs_dicts, part_length):
-            ratio = part_length[part_index]/ sum(part_length)
-            part_time = self.all_time * ratio
-
-            # Calculate the slow factor based on the part lengths
-            self.slow_factor = 1/part_time
-            self.slow_factor_tracker = ValueTracker(self.slow_factor)
-
-            # Initialize and add the vector clock
-            self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
-            self.add(self.vector_clock)
-
-            # Create and add vectors, circles, and drawn paths
-            vectors = self.get_rotating_vectors(
-                coefficients=coefs_freqs_dicts[part_index]["coefs"],
-                freqs=coefs_freqs_dicts[part_index]["freqs"]
-            )
-            circles = self.get_circles(vectors)
-            drawn_path = self.get_drawn_path(vectors)
-            self.add(vectors, circles, drawn_path)
-
-            # Wait based on the slow factor
-            self.wait(1 / self.slow_factor + 1 / 15)
-
-            # Clear updaters and remove objects
-            for v in vectors:
-                v.clear_updaters()
-            for c in circles:
-                c.clear_updaters()
-            drawn_path.clear_updaters()
-            self.remove(*vectors, *circles, self.vector_clock)
-
-        # Example of how to use the function for each part
-        for part_index in range(3):
-            process_part(part_index, coefs_freqs_dicts, part_length)
-
-
-
-
-
-        
+        process_word(n_vectors=200, all_time=15, svg_path=svg_path)

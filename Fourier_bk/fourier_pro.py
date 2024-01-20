@@ -834,6 +834,8 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
+        self.add(self.vector_clock)
+
         le0_vector=self.get_rotating_vectors(coefficients=coefs_0,freqs=freqs_0)
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
@@ -847,12 +849,14 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         for c in le0_circle:
             c.clear_updaters()
         le0_drawn_path.clear_updaters()
-        self.remove(*[le0_vector], *[le0_circle])
+        self.remove(*[le0_vector], *[le0_circle], self.vector_clock)
 
         """
         为什么在开始前已经有了路径的轮廓？
         """
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
+        self.add(self.vector_clock)
+
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)
@@ -866,12 +870,16 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         for c in le1_circle:
             c.clear_updaters()
         le1_drawn_path.clear_updaters()
+        self.remove(*[le1_vector], *[le1_circle], self.vector_clock)
 
-        # le2_vector=self.get_rotating_vectors(coefficients=coefs_2,freqs=freqs_2)
-        # le2_circle=self.get_circles(le2_vector)
-        # le2_drawn_path=self.get_drawn_path(le2_vector)
-        # self.add(le2_vector,le2_circle,le2_drawn_path)
-        # self.wait(1/self.slow_factor + 1/15)
+
+        self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
+        self.add(self.vector_clock)
+        le2_vector=self.get_rotating_vectors(coefficients=coefs_2,freqs=freqs_2)
+        le2_circle=self.get_circles(le2_vector)
+        le2_drawn_path=self.get_drawn_path(le2_vector)
+        self.add(le2_vector,le2_circle,le2_drawn_path)
+        self.wait(1/self.slow_factor + 1/15)
 
 class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):

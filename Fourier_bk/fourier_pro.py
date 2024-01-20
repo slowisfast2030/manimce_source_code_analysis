@@ -408,6 +408,58 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         broken_path.add_updater(update_path)
         return broken_path
 
+    def get_drawn_path_1(self, vectors, stroke_width=None, fade=False, **kwargs):
+        """
+        初步理解:
+        如何显示画图的过程:
+        将图像分成n段, 每一段的宽度为stroke_width
+        还没有画出来的部分, 宽度为0
+
+        也就是说, 整张图一开始已经存在
+        只是让你在每一时刻只看见一部分
+        """
+        if stroke_width is None:
+            stroke_width = self.drawn_path_stroke_width
+        path = self.get_vector_sum_path(vectors, **kwargs)
+        """
+        转换后, path就分为了很多段
+        经过打印, 发现是1000份
+
+        查看path的代码, 发现是ParametricFunction
+        ParametricFunction的参数t_range=[0,1,0.001]
+
+        如果整个路径被划分为1000份
+        每一帧可以显示一份
+        那么一共需要1000帧的时间
+        假设1秒钟30帧
+        那么一共需要33.3333秒的时间
+        """
+        broken_path = CurvesAsSubmobjects(path)
+        broken_path.curr_time = 0
+        start, end = self.interpolate_config
+
+        def update_path(path, dt):
+            alpha = self.get_drawn_path_alpha()
+            n_curves = len(path)
+            #print(n_curves)
+            #1000
+            for a, sp in zip(np.linspace(0, 1, n_curves), path):
+                b = (alpha - a)
+                if b < 0:
+                    width = 0
+                else:
+                    if fade:
+                        width = stroke_width * interpolate(start, end, (1 - (b % 1)))
+                    else:
+                        width = stroke_width
+                sp.set_stroke(width=width)
+            path.curr_time += dt
+            return path
+
+        broken_path.set_color(self.drawn_path_color)
+        broken_path.add_updater(update_path)
+        return broken_path
+
     def get_coefficients_of_path(self, path, n_samples=10000, freqs=None):
         """
         并没有使用这个函数
@@ -779,6 +831,9 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         coefs_2[0]+=shift_val
         
         # 画出三部分
+        def add_dt(m,dt):
+            m.increment_value(dt*self.slow_factor_tracker.get_value())
+        self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         le0_vector=self.get_rotating_vectors(coefficients=coefs_0,freqs=freqs_0)
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
@@ -797,6 +852,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         """
         为什么在开始前已经有了路径的轮廓？
         """
+        self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)

@@ -758,7 +758,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
        
     def construct(self):
         super().__init__(n_vectors=200,#控制向量数量
-        slow_factor=1/5,#控制时间长短，slow factor越小，画的速度越慢,      
+        slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
         
@@ -793,7 +793,9 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
             c.clear_updaters()
         le0_drawn_path.clear_updaters()
 
-
+        """
+        为什么在开始前已经有了路径的轮廓
+        """
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)

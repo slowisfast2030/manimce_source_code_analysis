@@ -121,7 +121,7 @@ def save_coef(coefs,fourier_coef,file_path):
             f.write("\n")
 
 if __name__ == "__main__":
-    svg_path = "Ale.svg"
+    svg_path = "new.svg"
     base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
     num = svg_path_num(svg_path)

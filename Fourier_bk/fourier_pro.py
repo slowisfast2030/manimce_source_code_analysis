@@ -635,5 +635,5 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 process_part(part_index, coefs_freqs_dicts, part_length)
 
 
-        svg_path = "Ale.svg"
+        svg_path = "new.svg"
         process_word(n_vectors=200, all_time=15, svg_path=svg_path)

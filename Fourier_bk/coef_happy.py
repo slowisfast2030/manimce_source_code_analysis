@@ -40,9 +40,7 @@ def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=Fa
     单位: 像素
     """
     pathlength=path.length()
-    print("\n")
-    print(f"part {npath} length : {pathlength}")
-    print("\n")
+    print(f"\033[92mpart {npath} length : {pathlength}\033[0m")
 
     if reverse:
         for i in range(len(points)):

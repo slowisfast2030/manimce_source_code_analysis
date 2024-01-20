@@ -564,7 +564,6 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
         self.n_vectors = 200
-        self.slow_factor_base = 1/3
         self.all_time = 15
         
         part_length = [1014.1104089718626,

@@ -560,16 +560,21 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
        
     def construct(self):
         super().__init__()
-        svg_path = "Ale.svg"
-        base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
         self.n_vectors = 200
         self.all_time = 15
-        
-        part_length = [1014.1104089718626,
-                       190.25475395399974,
-                       196.97960990760595]
+        svg_path = "Ale.svg"
+        base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
+
+        part_length = []
         part_length_file = f"{base_name}_part_length.txt"
+        with open(part_length_file, "r") as f:
+            lines = f.readlines()
+            for line in lines:
+                line = line.split()
+                part_length.append(float(line[1]))
+        
+        print(part_length)
         # 初始化存储结果的字典
         coefs_freqs_dicts = []
 

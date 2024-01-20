@@ -590,9 +590,8 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
 
             shift_val = complex(0,0) - coefs_freqs_dicts[0]["coefs"][0] 
-            coefs_freqs_dicts[0]["coefs"][0]+=shift_val
-            coefs_freqs_dicts[1]["coefs"][0]+=shift_val
-            coefs_freqs_dicts[2]["coefs"][0]+=shift_val
+            for i in range(len(part_length)):
+                coefs_freqs_dicts[i]["coefs"][0]+=shift_val
 
             def add_dt(m,dt):
                 m.increment_value(dt*self.slow_factor_tracker.get_value())

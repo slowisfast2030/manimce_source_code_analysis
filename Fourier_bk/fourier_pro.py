@@ -792,9 +792,10 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         for c in le0_circle:
             c.clear_updaters()
         le0_drawn_path.clear_updaters()
+        self.remove(*[le0_vector], *[le0_circle])
 
         """
-        为什么在开始前已经有了路径的轮廓
+        为什么在开始前已经有了路径的轮廓？
         """
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
         le1_circle=self.get_circles(le1_vector)

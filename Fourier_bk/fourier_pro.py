@@ -558,10 +558,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         return coefs,freqs
        
     def construct(self):
-        super().__init__(n_vectors=200,#控制向量数量
-        slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
-        cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
-        default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
+        super().__init__()
 
         self.n_vectors = 200
         self.show_factor = 1/3
@@ -569,22 +566,21 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         part_length = [1014.1104089718626,
                        190.25475395399974,
                        196.97960990760595]
+        # 初始化存储结果的字典
+        coefs_freqs_dicts = []
 
-        # 读取三部分参数 
-        coefs_0, freqs_0=self.read_coefs_freqs(r"Ale_0.txt", self.n_vectors)
-        coefs_1, freqs_1=self.read_coefs_freqs(r"Ale_1.txt", self.n_vectors)
-        coefs_2, freqs_2=self.read_coefs_freqs(r"Ale_2.txt", self.n_vectors)
+        # 循环处理每个文件
+        for i in range(len(part_length)):
+            file_name = f"Ale_{i}.txt"
+            coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
+            # 整体缩小参数
+            coefs/=22
+            coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
 
-        # 需要缩小参数
-        coefs_0/=22
-        coefs_1/=22
-        coefs_2/=22
-    
-        #coefs_i[0]控制了图像的中心位置，需要微调到最适合的位置
-        shift_val = complex(0,0) - coefs_0[0]
-        coefs_0[0]+=shift_val
-        coefs_1[0]+=shift_val
-        coefs_2[0]+=shift_val
+        shift_val = complex(0,0) - coefs_freqs_dicts[0]["coefs"][0] 
+        coefs_freqs_dicts[0]["coefs"][0]+=shift_val
+        coefs_freqs_dicts[1]["coefs"][0]+=shift_val
+        coefs_freqs_dicts[2]["coefs"][0]+=shift_val
 
         self.slow_factor_tracker = ValueTracker(
             self.slow_factor/(part_length[0]/part_length[1])
@@ -595,7 +591,8 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         # 画出三部分
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
-        le0_vector=self.get_rotating_vectors(coefficients=coefs_0,freqs=freqs_0)
+        le0_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[0]["coefs"],
+                                             freqs=coefs_freqs_dicts[0]["freqs"])
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
         self.add(le0_vector,le0_circle,le0_drawn_path)
@@ -619,7 +616,8 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
-        le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
+        le1_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[1]["coefs"],
+                                             freqs=coefs_freqs_dicts[1]["freqs"])
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)
         self.add(le1_vector,le1_circle,le1_drawn_path)
@@ -639,7 +637,8 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
-        le2_vector=self.get_rotating_vectors(coefficients=coefs_2,freqs=freqs_2)
+        le2_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[2]["coefs"],
+                                             freqs=coefs_freqs_dicts[2]["freqs"])
         le2_circle=self.get_circles(le2_vector)
         le2_drawn_path=self.get_drawn_path(le2_vector)
         self.add(le2_vector,le2_circle,le2_drawn_path)

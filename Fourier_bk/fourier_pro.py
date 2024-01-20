@@ -565,6 +565,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
         self.n_vectors = 200
         self.slow_factor_base = 1/3
+        self.all_time = 15
         
         part_length = [1014.1104089718626,
                        190.25475395399974,
@@ -590,8 +591,11 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         
 
         def process_part(part_index, coefs_freqs_dicts, part_length):
+            ratio = part_length[part_index]/ sum(part_length)
+            part_time = self.all_time * ratio
+
             # Calculate the slow factor based on the part lengths
-            self.slow_factor = self.slow_factor_base / (part_length[part_index] / part_length[1])
+            self.slow_factor = 1/part_time
             self.slow_factor_tracker = ValueTracker(self.slow_factor)
 
             # Initialize and add the vector clock

@@ -434,6 +434,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
 class Normal_happy_pro(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
+    顺序显示，非并行
     """
     def read_coefs_freqs(self,filename, vector_num):
         f=open(filename,"r")
@@ -636,4 +637,4 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
 
         svg_path = "new.svg"
-        process_word(n_vectors=200, all_time=15, svg_path=svg_path, origin=complex(0,-2))
+        process_word(n_vectors=200, all_time=15, svg_path=svg_path, origin=complex(-0.5,-2))

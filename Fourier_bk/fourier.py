@@ -673,6 +673,7 @@ class Normal(FourierCirclesSceneWithCamera):
 class Normal_happy(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
+    并行显示
     """
     def read_coefs_freqs(self,filename, vector_num):
         f=open(filename,"r")

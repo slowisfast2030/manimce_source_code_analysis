@@ -838,7 +838,10 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         coefs_0[0]+=shift_val
         coefs_1[0]+=shift_val
         coefs_2[0]+=shift_val
-        
+
+        self.slow_factor_tracker = ValueTracker(
+            self.slow_factor/(part_length[0]/part_length[1])
+        ) 
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())
 
@@ -862,7 +865,11 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
 
         """
         为什么在开始前已经有了路径的轮廓？
+        和self.vector_clock有关
         """
+        self.slow_factor_tracker = ValueTracker(
+            self.slow_factor/(part_length[1]/part_length[1])
+        ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
         le1_vector=self.get_rotating_vectors(coefficients=coefs_1,freqs=freqs_1)
@@ -880,7 +887,9 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le1_drawn_path.clear_updaters()
         self.remove(*[le1_vector], *[le1_circle], self.vector_clock)
 
-
+        self.slow_factor_tracker = ValueTracker(
+            self.slow_factor/(part_length[2]/part_length[1])
+        ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
         le2_vector=self.get_rotating_vectors(coefficients=coefs_2,freqs=freqs_2)

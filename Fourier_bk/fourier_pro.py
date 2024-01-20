@@ -849,7 +849,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
         self.add(le0_vector,le0_circle,le0_drawn_path)
-        self.wait(1/self.slow_factor*(part_length[0]/part_length[1]) + 1/15)
+        self.wait((1/self.slow_factor)*(part_length[0]/part_length[1]) + 1/15)
         """
         清除上述对象的所有updater
         """
@@ -887,7 +887,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le2_circle=self.get_circles(le2_vector)
         le2_drawn_path=self.get_drawn_path(le2_vector)
         self.add(le2_vector,le2_circle,le2_drawn_path)
-        self.wait(1/self.slow_factor*(part_length[2]/part_length[1]) + 1/15)
+        self.wait((1/self.slow_factor)*(part_length[2]/part_length[1]) + 1/15)
 
 class NeedZoom(FourierCirclesSceneWithCamera):
     def construct(self):

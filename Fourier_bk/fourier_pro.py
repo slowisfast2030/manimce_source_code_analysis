@@ -26,7 +26,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
     base_frequency=1,
     slow_factor=0.5,
     Hide_0th_vector=True,
-    parametric_function_step_size=0.001/2,
+    parametric_function_step_size=0.001,
     drawn_path_color=YELLOW,
     drawn_path_stroke_width=3,
     interpolate_config=[0,1],

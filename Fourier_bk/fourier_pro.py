@@ -569,6 +569,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         part_length = [1014.1104089718626,
                        190.25475395399974,
                        196.97960990760595]
+        part_length_file = f"{base_name}_part_length.txt"
         # 初始化存储结果的字典
         coefs_freqs_dicts = []
 
@@ -629,75 +630,4 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
 
 
-        # # 调整第一部分的时间
-        # self.slow_factor = self.slow_factor_base / (part_length[0]/part_length[1])
-        # self.slow_factor_tracker = ValueTracker(
-        #     self.slow_factor
-        # ) 
-        # self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
-        # self.add(self.vector_clock)
-        # le0_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[0]["coefs"],
-        #                                      freqs=coefs_freqs_dicts[0]["freqs"])
-        # le0_circle=self.get_circles(le0_vector)
-        # le0_drawn_path=self.get_drawn_path(le0_vector)
-        # self.add(le0_vector,le0_circle,le0_drawn_path)
-        # self.wait(1/self.slow_factor + 1/15)
-        # """
-        # 清除上述对象的所有updater
-        # """
-        # for v in le0_vector:
-        #     v.clear_updaters()
-        # for c in le0_circle:
-        #     c.clear_updaters()
-        # le0_drawn_path.clear_updaters()
-        # self.remove(*[le0_vector], *[le0_circle], self.vector_clock)
-
-        # """
-        # 为什么在开始前已经有了路径的轮廓？
-        # 和self.vector_clock有关
-        # """
-        # self.slow_factor = self.slow_factor_base / (part_length[1]/part_length[1])
-        # self.slow_factor_tracker = ValueTracker(
-        #     self.slow_factor
-        # ) 
-        # self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
-        # self.add(self.vector_clock)
-        # le1_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[1]["coefs"],
-        #                                      freqs=coefs_freqs_dicts[1]["freqs"])
-        # le1_circle=self.get_circles(le1_vector)
-        # le1_drawn_path=self.get_drawn_path(le1_vector)
-        # self.add(le1_vector,le1_circle,le1_drawn_path)
-        # self.wait(1/self.slow_factor + 1/15)
-        # """
-        # 清除上述对象的所有updater
-        # """
-        # for v in le1_vector:
-        #     v.clear_updaters()
-        # for c in le1_circle:
-        #     c.clear_updaters()
-        # le1_drawn_path.clear_updaters()
-        # self.remove(*[le1_vector], *[le1_circle], self.vector_clock)
-
-
-
-
-        # self.slow_factor = self.slow_factor_base / (part_length[2]/part_length[1])
-        # self.slow_factor_tracker = ValueTracker(
-        #     self.slow_factor
-        # ) 
-        # self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
-        # self.add(self.vector_clock)
-        # le2_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[2]["coefs"],
-        #                                      freqs=coefs_freqs_dicts[2]["freqs"])
-        # le2_circle=self.get_circles(le2_vector)
-        # le2_drawn_path=self.get_drawn_path(le2_vector)
-        # self.add(le2_vector,le2_circle,le2_drawn_path)
-        # self.wait(1/self.slow_factor + 1/15)
-
-        # for v in le2_vector:
-        #     v.clear_updaters()
-        # for c in le2_circle:
-        #     c.clear_updaters()
-        # le2_drawn_path.clear_updaters()
-        # self.remove(*[le2_vector], *[le2_circle], self.vector_clock)
-
+        

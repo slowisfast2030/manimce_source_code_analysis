@@ -5,6 +5,12 @@ import os
 
 def svg_path_num(path_to_file):
    path,_=svgpathtools.svg2paths(path_to_file)
+   base_name = os.path.splitext(svg_path)[0]
+   file_name = f"{base_name}_part_length.txt"
+   with open(file_name, "w") as f:
+       for i in range(len(path)):
+           f.write(f"{i} {path[i].length()}\n")
+       
    return len(path) 
 
 def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=False):

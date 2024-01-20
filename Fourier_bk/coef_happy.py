@@ -112,5 +112,5 @@ def save_coef(coefs,fourier_coef,file_path):
             f.write("\n")
 
 if __name__ == "__main__":
-    coefs,fourier_coef = svg_to_coef("Ale.svg", npath=0, conj=True)
-    save_coef(coefs,fourier_coef,"Ale_0.txt")
+    coefs,fourier_coef = svg_to_coef("Ale.svg", npath=2, conj=True)
+    save_coef(coefs,fourier_coef,"Ale_2.txt")

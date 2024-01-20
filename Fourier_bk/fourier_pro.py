@@ -1,5 +1,6 @@
 from manim import *
 import itertools
+import os
 
 # 下面这几行设置竖屏
 config.frame_width = 9
@@ -559,9 +560,11 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
        
     def construct(self):
         super().__init__()
+        svg_path = "Ale.svg"
+        base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
         self.n_vectors = 200
-        self.show_factor = 1/3
+        self.slow_factor_base = 1/3
         
         part_length = [1014.1104089718626,
                        190.25475395399974,
@@ -571,7 +574,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
         # 循环处理每个文件
         for i in range(len(part_length)):
-            file_name = f"Ale_{i}.txt"
+            file_name = f"{base_name}_{i}.txt"
             coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
             # 整体缩小参数
             coefs/=22
@@ -582,13 +585,14 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         coefs_freqs_dicts[1]["coefs"][0]+=shift_val
         coefs_freqs_dicts[2]["coefs"][0]+=shift_val
 
-        self.slow_factor_tracker = ValueTracker(
-            self.slow_factor/(part_length[0]/part_length[1])
-        ) 
         def add_dt(m,dt):
             m.increment_value(dt*self.slow_factor_tracker.get_value())
-
-        # 画出三部分
+        
+        # 调整第一部分的时间
+        self.slow_factor = self.slow_factor_base / (part_length[0]/part_length[1])
+        self.slow_factor_tracker = ValueTracker(
+            self.slow_factor
+        ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
         le0_vector=self.get_rotating_vectors(coefficients=coefs_freqs_dicts[0]["coefs"],
@@ -596,7 +600,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
         self.add(le0_vector,le0_circle,le0_drawn_path)
-        self.wait((1/self.slow_factor)*(part_length[0]/part_length[1]) + 1/15)
+        self.wait(1/self.slow_factor + 1/15)
         """
         清除上述对象的所有updater
         """
@@ -611,8 +615,9 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         为什么在开始前已经有了路径的轮廓？
         和self.vector_clock有关
         """
+        self.slow_factor = self.slow_factor_base / (part_length[1]/part_length[1])
         self.slow_factor_tracker = ValueTracker(
-            self.slow_factor/(part_length[1]/part_length[1])
+            self.slow_factor
         ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
@@ -632,8 +637,9 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         le1_drawn_path.clear_updaters()
         self.remove(*[le1_vector], *[le1_circle], self.vector_clock)
 
+        self.slow_factor = self.slow_factor_base / (part_length[2]/part_length[1])
         self.slow_factor_tracker = ValueTracker(
-            self.slow_factor/(part_length[2]/part_length[1])
+            self.slow_factor
         ) 
         self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
         self.add(self.vector_clock)
@@ -642,4 +648,4 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         le2_circle=self.get_circles(le2_vector)
         le2_drawn_path=self.get_drawn_path(le2_vector)
         self.add(le2_vector,le2_circle,le2_drawn_path)
-        self.wait((1/self.slow_factor)*(part_length[2]/part_length[1]) + 1/15)
+        self.wait(1/self.slow_factor + 1/15)

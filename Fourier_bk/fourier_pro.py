@@ -28,7 +28,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
     slow_factor=0.5,
     Hide_0th_vector=True,
     parametric_function_step_size=0.001,
-    drawn_path_color=YELLOW,
+    drawn_path_color=RED,
     drawn_path_stroke_width=3,
     interpolate_config=[0,1],
     zoomed_display_height= 3,
@@ -638,4 +638,5 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
 
         svg_path = "new.svg"
         svg_path = "happynewyear.svg"
-        process_word(n_vectors=200, all_time=20, svg_path=svg_path, origin=complex(-1.8,1.5))
+        svg_path = "dragon.svg"
+        process_word(n_vectors=400, all_time=15, svg_path=svg_path, origin=complex(-1.3,1.5-3))

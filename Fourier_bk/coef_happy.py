@@ -123,6 +123,7 @@ def save_coef(coefs,fourier_coef,file_path):
 if __name__ == "__main__":
     svg_path = "new.svg"
     svg_path = "happynewyear.svg"
+    svg_path = "dragon.svg"
     base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
     num = svg_path_num(svg_path)

@@ -639,4 +639,5 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         svg_path = "new.svg"
         svg_path = "happynewyear.svg"
         svg_path = "dragon.svg"
-        process_word(n_vectors=400, all_time=15, svg_path=svg_path, origin=complex(-1.3,2-3))
+        svg_path = "chunhua.svg"
+        process_word(n_vectors=400, all_time=25, svg_path=svg_path, origin=complex(-1.3,2-3))

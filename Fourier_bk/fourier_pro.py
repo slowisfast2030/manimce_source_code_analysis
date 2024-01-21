@@ -563,7 +563,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         super().__init__()
 
 
-        def process_word(n_vectors, all_time, svg_path, origin):
+        def process_word(n_vectors, all_time, svg_path, origin, scale_factor):
             self.n_vectors = n_vectors
             all_time = all_time
             svg_path = svg_path
@@ -588,7 +588,7 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 file_name = f"{base_name}_{i}.txt"
                 coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
                 # 整体缩小参数
-                coefs/=22
+                coefs/=scale_factor
                 coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
 
             shift_val = origin - coefs_freqs_dicts[0]["coefs"][0] 
@@ -639,6 +639,10 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         svg_path = "new.svg"
         svg_path = "happynewyear.svg"
         svg_path = "dragon.svg"
-        svg_path = "chunhua.svg"
-        svg_path = "xuwen.svg"
-        process_word(n_vectors=400, all_time=25, svg_path=svg_path, origin=complex(-1.3+2.5-0.2,4.5-3))
+        #svg_path = "chunhua.svg"
+        #svg_path = "xuwen.svg"
+        process_word(n_vectors=400, 
+                     all_time=1, 
+                     svg_path=svg_path, 
+                     origin=complex(-1.3+2.5-0.2,4.5-3),
+                     scale_factor=22)

@@ -141,3 +141,9 @@ if __name__ == "__main__":
         coefs, fourier_coef = svg_to_coef(svg_path, npath=i, conj=True)
         output_filename = f"{base_name}_{i}.txt"  # Formats the output file name using the base name
         save_coef(coefs, fourier_coef, output_filename)
+
+"""
+执行这份文件后, 会生成两类文件
+1.filename_part_length.txt 包含各个闭合path的长度
+2.filename_i.txt 每一个闭合path的傅里叶系数
+"""

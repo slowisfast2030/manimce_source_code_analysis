@@ -714,7 +714,7 @@ class Normal_happy(FourierCirclesSceneWithCamera):
         coefs_1[0]+=shift_val
         coefs_2[0]+=shift_val
         
-        # 画出三部分
+        # 同时画出三部分
         le0_vector=self.get_rotating_vectors(coefficients=coefs_0,freqs=freqs_0)
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)

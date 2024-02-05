@@ -147,7 +147,7 @@ if __name__ == "__main__":
 1.filename_part_length.txt 包含各个闭合path的长度
 2.filename_i.txt 每一个闭合path的傅里叶系数
 
-coef_pro.py相比于coef.py的在于:
+coef_pro.py相比于coef.py在于:
 后者处理的svg文件仅仅包含一段封闭的svg
 前者处理的svg文件包含多段闭合的svg
 """

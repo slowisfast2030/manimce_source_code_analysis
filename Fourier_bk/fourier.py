@@ -823,6 +823,11 @@ class ZoomToFullScreen(FourierCirclesSceneWithCamera):
 """
 和ZoomToFullScreen似乎没有什么区别
 """
+"""
+A.txt是“人”字的傅里叶级数的系数
+整个视频一共30s
+中间的10s是右上角矩形框的放大、保持和缩小的全过程
+"""
 class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
     def construct(self):
         super().__init__(n_vectors=200,#控制向量数量

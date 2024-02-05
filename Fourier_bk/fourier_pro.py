@@ -28,7 +28,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
     slow_factor=0.5,
     Hide_0th_vector=True,
     parametric_function_step_size=0.001,
-    drawn_path_color=RED,
+    drawn_path_color=WHITE,
     drawn_path_stroke_width=3,
     interpolate_config=[0,1],
     zoomed_display_height= 3,
@@ -631,6 +631,8 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,#控制缩放镜头边框长短
+        zoomed_display_corner=UR,
+        zoomed_display_corner_buff=0.2,
         zoom_camera_to_full_screen_config= {
             "run_time": 3,
             "func": there_and_back_with_pause,

@@ -13,6 +13,14 @@ def svg_path_num(path_to_file):
        
    return len(path) 
 
+"""
+nvec: 
+是傅里叶级数的系数的个数。因为傅里叶级数的展开项一般为无穷项。所以可以选一个合适的数目展开即可。
+实际可视化的时候, 可以选择小于等于nvec的向量数目画图
+
+npoint:
+计算傅里叶级数时在轮廓上的采样点数, 以离散的方法计算积分
+"""
 def svg_to_coef(path_to_file,nvec=2001,npoint=10000,npath=0,conj=True,reverse=False):
     
     path,_=svgpathtools.svg2paths(path_to_file)

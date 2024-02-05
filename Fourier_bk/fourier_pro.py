@@ -597,6 +597,12 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
     顺序显示，非并行
+
+    需要注意到
+    为了在左上角显示放大框，在每一个闭合路径的启动了
+    self.zoom_config()
+    再第一个闭合路径，还启动了
+    self.scale_zoom_camera_to_full_screen_config()
     """
     def read_coefs_freqs(self,filename, vector_num):
         f=open(filename,"r")

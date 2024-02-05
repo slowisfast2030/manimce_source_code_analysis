@@ -481,6 +481,118 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
         """
         #self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
 
+    def scale_zoom_camera_to_full_screen_config(self):
+        print(f"\033[91mself.camera.frame_height: {self.camera.frame_height}\033[0m") # 16
+        print(f"\033[91mself.camera.frame_width: {self.camera.frame_width}\033[0m") # 9
+        print(f"\033[91mself.camera.frame_rate: {self.camera.frame_rate}\033[0m") # 15
+
+        BigSquare=Rectangle(height=self.camera.frame_height,width=self.camera.frame_width).shift(self.camera.frame_width*self.zoomed_display_corner[0]*RIGHT).shift(self.camera.frame_height*self.zoomed_display_corner[1]*UP)
+
+        # This is not in the original version of the code.
+        def fix_update(mob, dt, velocity_factor, dt_calculate):
+            if dt == 0 and mob.counter == 0:
+                rate = velocity_factor * dt_calculate
+                mob.counter += 1
+            else:
+                rate = dt * velocity_factor
+            if dt > 0:
+                mob.counter = 0
+            return rate
+        
+        fps = 1 / self.camera.frame_rate
+        mob = self.zoomed_display
+        mob.counter = 0
+        velocity_factor = self.zoom_camera_to_full_screen_config["velocity_factor"]
+        mob.start_time = 0
+        run_time = self.zoom_camera_to_full_screen_config["run_time"]
+        run_time *= 2
+        mob_height=mob.height
+        mob_width=mob.width
+        #mob_height = mob.get_height()
+        #mob_width = mob.get_width()
+        mob_center = mob.get_center()
+        ctx = self.zoomed_camera.cairo_line_width_multiple
+        frame_width=self.default_frame_stroke_width
+ 
+        def update_camera(mob, dt):
+            """
+            初步印象:
+            mob.start_time逐步增加
+            每次增加的值不是dt, 而是fix_update(mob, dt, velocity_factor, fps)
+            不明白为什么要做这种修正
+            """
+            mob.start_time += fix_update(mob, dt, velocity_factor, fps)
+            print(f"\033[93mfix_update(mob, dt, velocity_factor, fps): {fix_update(mob, dt, velocity_factor, fps)}\033[0m") # 0.06666666666666667 = 1/15
+            print(f"\033[93mmob.start_time: {mob.start_time}\033[0m") # 每次以1/15的速度增加
+            print(f"\033[93mrun_time: {run_time}\033[0m") # 10
+
+            if mob.start_time <= run_time:
+                """
+                计算执行进度为alpha
+                修正执行进度为alpha_func
+
+                经过打印后发现, 
+                alpha的值是从0到1
+                alpha_func的值是从0到1, 然后再从1到0【会在1处持续一段时间】
+
+                让gpt4画了smooth函数的图像
+                却不是想象的增长--持平--减小
+                费解
+
+                原来被继承后的类修改为了there_and_back_with_pause
+
+                  ***************************               
+                 *                           *              
+                *                             *             
+               *                               *            
+              *                                 *                  
+                                            
+                这份代码的作者真的是煞费苦心!!!
+                """
+                alpha = mob.start_time / run_time
+                alpha_func = self.zoom_camera_to_full_screen_config["func"](alpha)
+                print(f"\033[92malpha: {alpha}\033[0m")
+                print(f"\033[92malpha_func: {alpha_func}\033[0m")
+                """
+                基于修正的执行进度, 更新self.zoomed_display的宽度和高度
+                """
+                mob.stretch_to_fit_height(
+                    interpolate(
+                        mob_height,
+                        self.camera.frame_height,#The default camera height is 4
+                        alpha_func
+                    )
+                )
+                mob.stretch_to_fit_width(interpolate(mob_width,self.camera.frame_width,alpha_func))
+
+                self.zoomed_camera.cairo_line_width_multiple = interpolate(
+                    ctx,
+                    self.camera.cairo_line_width_multiple*.3,
+                    alpha_func
+                )
+
+                """
+                这里的代码可以和self.zoom_config中最后一行代码对比
+                更加确信, 上面的代码是错误的
+
+                这里的代码本身也有问题
+                给self.zoomed_camera.frame设置线宽设置动画的目的是啥?
+                没有意义
+                """
+                # self.zoomed_camera.frame.set_stroke(width=interpolate(frame_width,
+                #         0,
+                #         alpha_func)
+                #     )
+                """
+                mob的位置
+                主要是保证右上角的位置不变
+                """
+                mob.next_to(BigSquare,-self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
+            return mob
+
+        self.zoomed_display.add_updater(update_camera)
+
+
 class Normal_happy_pro(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
@@ -545,7 +657,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         """"""
         self.vectors = le0_vector 
         self.zoom_config()
-
+        self.scale_zoom_camera_to_full_screen_config()
         """"""
 
         self.wait((1/self.slow_factor)*(part_length[0]/part_length[1]) + 1/15)

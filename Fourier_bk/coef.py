@@ -126,3 +126,8 @@ def save_coef(coefs,fourier_coef,file_path):
 if __name__ == "__main__":
     coefs,fourier_coef = svg_to_coef("A.svg", conj=True)
     save_coef(coefs,fourier_coef,"A.txt")
+
+
+"""
+仅仅处理单段闭合的svg
+"""

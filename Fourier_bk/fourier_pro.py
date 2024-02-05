@@ -43,7 +43,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             "velocity_factor": 1
         },
     zoomed_display_corner=UL,
-    zoomed_display_corner_buff=0.2,
+    zoomed_display_corner_buff=0.2, #调整放大框的左上角位置
     **kwargs,
     ):
         self.circle_color=circle_color

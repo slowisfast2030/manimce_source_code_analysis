@@ -148,6 +148,6 @@ if __name__ == "__main__":
 2.filename_i.txt 每一个闭合path的傅里叶系数
 
 coef_pro.py相比于coef.py在于:
-后者处理的svg文件仅仅包含一段封闭的svg
-前者处理的svg文件包含多段闭合的svg
+后者处理的svg文件仅仅包含一段封闭的svg, 比如音乐符号
+前者处理的svg文件包含多段闭合的svg, 比如单个汉字或者多个汉字【经过inkscape处理】
 """

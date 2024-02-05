@@ -559,7 +559,7 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 mob.stretch_to_fit_height(
                     interpolate(
                         mob_height,
-                        self.camera.frame_height - 2*self.zoomed_display_corner_buff,#The default camera height is 4
+                        self.camera.frame_height - 2*self.zoomed_display_corner_buff,
                         alpha_func
                     )
                 ) 

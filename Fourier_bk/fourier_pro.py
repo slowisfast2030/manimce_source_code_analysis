@@ -695,7 +695,6 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         """"""
         self.vectors = le1_vector 
         self.zoom_config()
-
         """"""
         self.wait(1/self.slow_factor + 1/15)
         """
@@ -720,7 +719,6 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         """"""
         self.vectors = le2_vector 
         self.zoom_config()
-
         """"""
         self.wait((1/self.slow_factor)*(part_length[2]/part_length[1]) + 1/15)
 

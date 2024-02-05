@@ -820,6 +820,9 @@ class ZoomToFullScreen(FourierCirclesSceneWithCamera):
         self.wait(20+1/self.camera.frame_rate)
 
 
+"""
+和ZoomToFullScreen似乎没有什么区别
+"""
 class ZoomToFullScreen_test(FourierCirclesSceneWithCamera):
     def construct(self):
         super().__init__(n_vectors=200,#控制向量数量

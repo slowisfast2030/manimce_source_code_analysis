@@ -431,6 +431,56 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
             ]).sum() * dt for freq in freqs
         ]
 
+    def zoom_config(self):
+        """
+        启动缩放镜头
+        在启动镜头后会有一个短暂动画, 显示缩放的过程
+        animate=False表示不播放动画
+        """
+        self.activate_zooming(animate=False)
+        """
+        self.zoomed_display: 被放大的区域
+        将其放到左上角
+        """
+        self.zoomed_display.to_corner(self.zoomed_display_corner,buff=self.zoomed_display_corner_buff)
+        #self.zoom_position(self.zoomed_display)
+        """
+        linus
+        设置缩放镜头边框的颜色和粗细
+        """
+        #print(self.zoomed_display.display_frame.get_stroke_width())
+        self.zoomed_display.display_frame.set_stroke(RED, 3)
+        """
+        self.zoomed_camera: 缩放镜头
+        self.zoomed_camera.frame: 缩放镜头的边框
+        永远将缩放镜头的边框放到最后一个vector的终点    
+        """
+        #print(self.zoomed_camera.frame.get_stroke_width())
+        self.zoomed_camera.frame.set_stroke(YELLOW, 2)
+        self.zoomed_camera.frame.add_updater(lambda mob: mob.move_to(self.vectors[-1].get_end()))
+        """
+        self.zoomed_display是一个矩形框, 里面显示放大的区域
+        被放大区域的线宽
+
+        知识补充:
+        在ZoomedScene中有两个camera
+        可以分别设置线宽
+        self.camera.cairo_line_width_multiple = self.cairo_line_width_multiple
+        """
+        self.zoomed_camera.cairo_line_width_multiple =self.cairo_line_width_multiple
+        """
+        本意是想设置放大区域的边框线宽
+        但没有效果
+        
+        这里有两个问题:
+        1.如果本意是想设置放大区域的边框线宽, 那么应该是self.zoomed_display.display_frame.set_stroke
+        2.如果是想设置self.zoomed_camera的线宽, 那么应该是self.zoomed_camera.frame.set_stroke
+        
+        但是, 无论是哪一个, 这里的代码都是错误的
+        很有可能是manim本身的一个bug
+        """
+        #self.zoomed_camera.default_frame_stroke_width=self.default_frame_stroke_width
+
 class Normal_happy_pro(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
@@ -492,6 +542,12 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le0_circle=self.get_circles(le0_vector)
         le0_drawn_path=self.get_drawn_path(le0_vector)
         self.add(le0_vector,le0_circle,le0_drawn_path)
+        """"""
+        self.vectors = le0_vector 
+        self.zoom_config()
+
+        """"""
+
         self.wait((1/self.slow_factor)*(part_length[0]/part_length[1]) + 1/15)
         """
         清除上述对象的所有updater
@@ -516,6 +572,12 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le1_circle=self.get_circles(le1_vector)
         le1_drawn_path=self.get_drawn_path(le1_vector)
         self.add(le1_vector,le1_circle,le1_drawn_path)
+
+        """"""
+        self.vectors = le1_vector 
+        self.zoom_config()
+
+        """"""
         self.wait(1/self.slow_factor + 1/15)
         """
         清除上述对象的所有updater
@@ -536,6 +598,11 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         le2_circle=self.get_circles(le2_vector)
         le2_drawn_path=self.get_drawn_path(le2_vector)
         self.add(le2_vector,le2_circle,le2_drawn_path)
+        """"""
+        self.vectors = le2_vector 
+        self.zoom_config()
+
+        """"""
         self.wait((1/self.slow_factor)*(part_length[2]/part_length[1]) + 1/15)
 
 class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):

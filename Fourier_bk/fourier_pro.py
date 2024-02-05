@@ -619,8 +619,15 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
         super().__init__(n_vectors=200,#控制向量数量
         slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
         cairo_line_width_multiple=0.01,#控制缩放镜头里线的长短
-        default_frame_stroke_width=0.1,)#控制缩放镜头边框长短
+        default_frame_stroke_width=0.1,#控制缩放镜头边框长短
+        zoom_camera_to_full_screen_config= {
+            "run_time": 3,
+            "func": there_and_back_with_pause,
+            "velocity_factor": 1
+        })
         
+        
+
         part_length = [1014.1104089718626,
                        190.25475395399974,
                        196.97960990760595]

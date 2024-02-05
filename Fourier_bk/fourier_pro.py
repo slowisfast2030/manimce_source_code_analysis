@@ -541,6 +541,13 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
 class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
+    顺序显示
+
+    改进点：
+    不需要显示读取每一部分的参数txt
+    只需要文件名即可
+
+    需要提前执行python coef_pro.py
     """
     def read_coefs_freqs(self,filename, vector_num):
         f=open(filename,"r")

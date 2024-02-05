@@ -559,11 +559,16 @@ class FourierCirclesSceneWithCamera(ZoomedScene):
                 mob.stretch_to_fit_height(
                     interpolate(
                         mob_height,
-                        self.camera.frame_height,#The default camera height is 4
+                        self.camera.frame_height - 2*self.zoomed_display_corner_buff,#The default camera height is 4
                         alpha_func
                     )
-                )
-                mob.stretch_to_fit_width(interpolate(mob_width,self.camera.frame_width,alpha_func))
+                ) 
+
+                mob.stretch_to_fit_width(
+                    interpolate(mob_width,
+                                self.camera.frame_width -2*self.zoomed_display_corner_buff,
+                                alpha_func)
+                    )
 
                 self.zoomed_camera.cairo_line_width_multiple = interpolate(
                     ctx,

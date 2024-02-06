@@ -1010,8 +1010,9 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         svg_path = "dragon.svg"
         #svg_path = "chunhua.svg"
         #svg_path = "xuwen.svg"
-        process_word(n_vectors=400, 
-                     all_time=20, 
+        svg_path = "zhongguoren.svg"
+        process_word(n_vectors=10, 
+                     all_time=15, 
                      svg_path=svg_path, 
                      origin=complex(-1.2,-1.3),
                      scale_factor=22)

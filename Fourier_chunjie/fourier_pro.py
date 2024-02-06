@@ -991,13 +991,12 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
                 #     self.scale_zoom_camera_to_full_screen_config()
 
                 """
-                恭喜发财一共21画
-                恭: 6
-                喜: 7
-                发: 4
-                财: 4
+                中国人一共11画
+                中: 3
+                国: 7
+                人: 1
                 """
-                if 12 <= part_index <= 15:
+                if part_index <= 9:
                     self.drawn_path_color = YELLOW
                 else:
                     self.drawn_path_color = RED
@@ -1029,10 +1028,10 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
         process_word(n_vectors=400, 
                      all_time=10, 
                      svg_path=svg_path, 
-                     #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
-                     origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财
-                     #scale_factor=23,#中国人
-                     scale_factor=31 #恭喜发财
+                     origin=complex(-1.2-1,-1.3+5-0.5), #中国人
+                     #origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财
+                     scale_factor=23,#中国人
+                     #scale_factor=31 #恭喜发财
                      )
 
 class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):

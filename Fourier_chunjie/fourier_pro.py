@@ -996,7 +996,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
                 国: 7
                 人: 1
 
-                很奇怪, 人的index不是0
+                很奇怪, 人的index不是10
                 """
                 if part_index == 0: 
                     self.drawn_path_color = RED

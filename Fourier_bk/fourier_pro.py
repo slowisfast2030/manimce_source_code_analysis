@@ -1016,5 +1016,6 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         process_word(n_vectors=200, 
                      all_time=15, 
                      svg_path=svg_path, 
-                     origin=complex(-1.2-1,-1.3+5-0.5),
+                     #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
+                     origin=complex(-1.2-1,-1.3+5-0.5), #恭喜发财
                      scale_factor=23)

@@ -768,7 +768,18 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
         return coefs,freqs
        
     def construct(self):
-        super().__init__()
+        #super().__init__()
+        super().__init__(n_vectors=10,#控制向量数量
+        slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
+        cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
+        default_frame_stroke_width=0.1,#控制缩放镜头边框长短
+        zoomed_display_corner=UR,
+        zoomed_display_corner_buff=0.2,
+        zoom_camera_to_full_screen_config= {
+            "run_time": 3,
+            "func": there_and_back_with_pause,
+            "velocity_factor": 1
+        })
 
 
         def process_word(n_vectors, all_time, svg_path, origin, scale_factor):
@@ -833,6 +844,8 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 self.vectors = vectors 
                 self.zoom_config()
                 """"""
+                if part_index == 2:
+                    self.scale_zoom_camera_to_full_screen_config()
 
                 # Wait based on the slow factor
                 self.wait(1 / self.slow_factor + 1 / 15)

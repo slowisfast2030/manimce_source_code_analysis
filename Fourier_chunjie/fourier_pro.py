@@ -998,7 +998,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
 
                 很奇怪, 人的index不是10?
                 """
-                if part_index == 10: 
+                if part_index == 9: 
                     self.drawn_path_color = RED
                 else:
                     self.drawn_path_color = YELLOW

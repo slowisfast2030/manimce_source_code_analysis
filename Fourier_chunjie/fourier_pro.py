@@ -1028,7 +1028,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
         svg_path = "zhongguoren.svg"
         #svg_path = "gongxifacai.svg"
         process_word(n_vectors=400, 
-                     all_time=46.2, #音乐47.3
+                     all_time=46.8, #音乐47.3
                      svg_path=svg_path, 
                      origin=complex(-1.2-1,-1.3+5-0.5), #中国人
                      #origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财

@@ -1184,7 +1184,7 @@ class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
         svg_path = "zhongguoren.svg"
         svg_path = "gongxifacai.svg"
         process_word(n_vectors=400, 
-                     all_time=10, 
+                     all_time=42, 
                      svg_path=svg_path, 
                      #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
                      origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财

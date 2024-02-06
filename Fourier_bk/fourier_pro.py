@@ -1014,5 +1014,5 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         process_word(n_vectors=10, 
                      all_time=15, 
                      svg_path=svg_path, 
-                     origin=complex(-1.2,-1.3),
+                     origin=complex(-1.2+0.5,-1.3+5),
                      scale_factor=22)

@@ -917,7 +917,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
         default_frame_stroke_width=0.1,#控制缩放镜头边框长短
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0.2,
-        drawn_path_color=RED,
+        drawn_path_color=YELLOW,
         zoom_camera_to_full_screen_config= {
             "run_time": 3,
             "func": there_and_back_with_pause,
@@ -996,9 +996,9 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
                 国: 7
                 人: 1
 
-                很奇怪, 人的index不是10
+                很奇怪, 人的index不是10?
                 """
-                if part_index == 0: 
+                if part_index == 10: 
                     self.drawn_path_color = RED
                 else:
                     self.drawn_path_color = YELLOW

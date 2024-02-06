@@ -997,7 +997,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
                 发: 4
                 财: 4
                 """
-                if 13 <= part_index <= 16:
+                if 12 <= part_index <= 15:
                     self.drawn_path_color = YELLOW
                 else:
                     self.drawn_path_color = RED

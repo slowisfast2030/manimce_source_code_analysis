@@ -827,6 +827,12 @@ class Normal_happy_pro_plus(FourierCirclesSceneWithCamera):
                 circles = self.get_circles(vectors)
                 drawn_path = self.get_drawn_path(vectors)
                 self.add(vectors, circles, drawn_path)
+                """
+                每一段闭合path添加放大窗口
+                """
+                self.vectors = vectors 
+                self.zoom_config()
+                """"""
 
                 # Wait based on the slow factor
                 self.wait(1 / self.slow_factor + 1 / 15)

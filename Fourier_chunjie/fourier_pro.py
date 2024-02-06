@@ -996,10 +996,10 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
                 国: 7
                 人: 1
                 """
-                if part_index <= 9:
-                    self.drawn_path_color = YELLOW
-                else:
+                if part_index == 10: 
                     self.drawn_path_color = RED
+                else:
+                    self.drawn_path_color = YELLOW
 
 
                 # Wait based on the slow factor
@@ -1025,7 +1025,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
         #svg_path = "xuwen.svg"
         svg_path = "zhongguoren.svg"
         #svg_path = "gongxifacai.svg"
-        process_word(n_vectors=400, 
+        process_word(n_vectors=10, 
                      all_time=10, 
                      svg_path=svg_path, 
                      origin=complex(-1.2-1,-1.3+5-0.5), #中国人

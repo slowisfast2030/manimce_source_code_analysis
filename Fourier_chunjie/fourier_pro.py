@@ -1161,7 +1161,7 @@ class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
 
 
                 # Wait based on the slow factor
-                self.wait(1 / self.slow_factor)
+                self.wait(1 / self.slow_factor + 1 / self.camera.frame_rate)
 
                 # Clear updaters and remove objects
                 for v in vectors:
@@ -1184,7 +1184,7 @@ class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
         svg_path = "zhongguoren.svg"
         svg_path = "gongxifacai.svg"
         process_word(n_vectors=400, 
-                     all_time=42, #音乐41.9s
+                     all_time=4 , #音乐41.9s
                      svg_path=svg_path, 
                      #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
                      origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财

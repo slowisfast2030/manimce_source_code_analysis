@@ -917,7 +917,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         default_frame_stroke_width=0.1,#控制缩放镜头边框长短
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0.2,
-        drawn_path_color=YELLOW,
+        drawn_path_color=RED,
         zoom_camera_to_full_screen_config= {
             "run_time": 3,
             "func": there_and_back_with_pause,
@@ -989,6 +989,19 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
                 # """"""
                 # if part_index == 2:
                 #     self.scale_zoom_camera_to_full_screen_config()
+
+                """
+                恭喜发财一共21画
+                恭: 6
+                喜: 7
+                发: 4
+                财: 4
+                """
+                if 13 <= part_index <= 16:
+                    self.drawn_path_color = YELLOW
+                else:
+                    self.drawn_path_color = RED
+
 
                 # Wait based on the slow factor
                 self.wait(1 / self.slow_factor + 1 / 15)

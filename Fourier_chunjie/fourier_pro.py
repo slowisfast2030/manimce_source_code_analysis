@@ -995,8 +995,10 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
                 中: 3
                 国: 7
                 人: 1
+
+                很奇怪, 人的index不是0
                 """
-                if part_index == 10: 
+                if part_index == 0: 
                     self.drawn_path_color = RED
                 else:
                     self.drawn_path_color = YELLOW
@@ -1026,7 +1028,7 @@ class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
         svg_path = "zhongguoren.svg"
         #svg_path = "gongxifacai.svg"
         process_word(n_vectors=10, 
-                     all_time=10, 
+                     all_time=10, #音乐47.3
                      svg_path=svg_path, 
                      origin=complex(-1.2-1,-1.3+5-0.5), #中国人
                      #origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财

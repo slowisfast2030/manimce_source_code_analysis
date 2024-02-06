@@ -1162,7 +1162,8 @@ class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
 
                 # Wait based on the slow factor
                 self.wait(1 / self.slow_factor + 1 / self.camera.frame_rate)
-
+                print(self.camera.frame_rate)
+                
                 # Clear updaters and remove objects
                 for v in vectors:
                     v.clear_updaters()

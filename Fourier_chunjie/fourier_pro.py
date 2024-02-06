@@ -1034,3 +1034,160 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
                      #scale_factor=23,#中国人
                      scale_factor=31 #恭喜发财
                      )
+
+class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
+    """
+    显示汉字"乐"
+    顺序显示
+
+    改进点：
+    不需要显示读取每一部分的参数txt
+    只需要文件名即可
+
+    需要提前执行python coef_pro.py
+
+    主要为显示多字
+    没有放大窗口
+    """
+    def read_coefs_freqs(self,filename, vector_num):
+        f=open(filename,"r")
+        freqs=[]
+        coefs=[]
+        lines=f.readlines()
+        for line in lines:
+            a,b=line.split()
+            freqs.append(int(a))
+            coefs.append(complex(b))
+        
+        coefs=coefs[:vector_num]
+        freqs=freqs[:vector_num]
+        coefs=np.array(coefs)
+        freqs=np.array(freqs)
+
+        return coefs,freqs
+       
+    def construct(self):
+        #super().__init__()
+        super().__init__(n_vectors=10,#控制向量数量
+        slow_factor=1/3,#控制时间长短，slow factor越小，画的速度越慢,      
+        cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
+        default_frame_stroke_width=0.1,#控制缩放镜头边框长短
+        zoomed_display_corner=UR,
+        zoomed_display_corner_buff=0.2,
+        drawn_path_color=RED,
+        zoom_camera_to_full_screen_config= {
+            "run_time": 3,
+            "func": there_and_back_with_pause,
+            "velocity_factor": 1
+        })
+
+
+        def process_word(n_vectors, all_time, svg_path, origin, scale_factor):
+            self.n_vectors = n_vectors
+            all_time = all_time
+            svg_path = svg_path
+            origin = origin
+
+            base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
+
+            part_length = []
+            part_length_file = f"{base_name}_part_length.txt"
+            with open(part_length_file, "r") as f:
+                lines = f.readlines()
+                for line in lines:
+                    line = line.split()
+                    part_length.append(float(line[1]))
+            
+            print(part_length)
+            # 初始化存储结果的字典
+            coefs_freqs_dicts = []
+
+            # 循环处理每个文件
+            for i in range(len(part_length)):
+                file_name = f"{base_name}_{i}.txt"
+                coefs, freqs = self.read_coefs_freqs(file_name, self.n_vectors)
+                # 整体缩小参数
+                coefs/=scale_factor
+                coefs_freqs_dicts.append({'coefs': coefs, 'freqs': freqs})
+
+            shift_val = origin - coefs_freqs_dicts[0]["coefs"][0] 
+            for i in range(len(part_length)):
+                coefs_freqs_dicts[i]["coefs"][0]+=shift_val
+
+            def add_dt(m,dt):
+                m.increment_value(dt*self.slow_factor_tracker.get_value())
+            
+
+            def process_part(part_index, coefs_freqs_dicts, part_length):
+                ratio = part_length[part_index]/ sum(part_length)
+                part_time = all_time * ratio
+
+                # Calculate the slow factor based on the part lengths
+                self.slow_factor = 1/part_time
+                self.slow_factor_tracker = ValueTracker(self.slow_factor)
+
+                # Initialize and add the vector clock
+                self.vector_clock = ValueTracker(0.0).add_updater(add_dt)
+                self.add(self.vector_clock)
+
+                # Create and add vectors, circles, and drawn paths
+                vectors = self.get_rotating_vectors(
+                    coefficients=coefs_freqs_dicts[part_index]["coefs"],
+                    freqs=coefs_freqs_dicts[part_index]["freqs"]
+                )
+                circles = self.get_circles(vectors)
+                drawn_path = self.get_drawn_path(vectors)
+                self.add(vectors, circles, drawn_path)
+                # """
+                # 每一段闭合path添加放大窗口
+                # """
+                # self.vectors = vectors 
+                # self.zoom_config()
+                # """"""
+                # if part_index == 2:
+                #     self.scale_zoom_camera_to_full_screen_config()
+
+                """
+                恭喜发财一共21画
+                恭: 6
+                喜: 7
+                发: 4
+                财: 4
+                """
+                if 12 <= part_index <= 15:
+                    self.drawn_path_color = YELLOW
+                else:
+                    self.drawn_path_color = RED
+
+
+                # Wait based on the slow factor
+                self.wait(1 / self.slow_factor + 1 / 15)
+
+                # Clear updaters and remove objects
+                for v in vectors:
+                    v.clear_updaters()
+                for c in circles:
+                    c.clear_updaters()
+                drawn_path.clear_updaters()
+                self.remove(*vectors, *circles, self.vector_clock)
+
+            # Example of how to use the function for each part
+            for part_index in range(len(part_length)):
+                process_part(part_index, coefs_freqs_dicts, part_length)
+
+
+        svg_path = "new.svg"
+        svg_path = "happynewyear.svg"
+        svg_path = "dragon.svg"
+        #svg_path = "chunhua.svg"
+        #svg_path = "xuwen.svg"
+        svg_path = "zhongguoren.svg"
+        svg_path = "gongxifacai.svg"
+        process_word(n_vectors=400, 
+                     all_time=10, 
+                     svg_path=svg_path, 
+                     #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
+                     origin=complex(-1.2-1+0.7,-1.3+5-0.7-0.5), #恭喜发财
+                     #scale_factor=23,#中国人
+                     scale_factor=32 #恭喜发财
+                     )

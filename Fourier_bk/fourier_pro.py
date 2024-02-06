@@ -917,6 +917,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         default_frame_stroke_width=0.1,#控制缩放镜头边框长短
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0.2,
+        drawn_path_color=YELLOW,
         zoom_camera_to_full_screen_config= {
             "run_time": 3,
             "func": there_and_back_with_pause,

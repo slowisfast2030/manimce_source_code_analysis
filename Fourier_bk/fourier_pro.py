@@ -1017,7 +1017,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
                      all_time=10, 
                      svg_path=svg_path, 
                      #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
-                     origin=complex(-1.2-1,-1.3+5-0.7), #恭喜发财
+                     origin=complex(-1.2-1+0.5,-1.3+5-0.7), #恭喜发财
                      #scale_factor=23,#中国人
-                     scale_factor=28 #恭喜发财
+                     scale_factor=30 #恭喜发财
                      )

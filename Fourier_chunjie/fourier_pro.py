@@ -779,7 +779,7 @@ class Normal_happy_pro_long(FourierCirclesSceneWithCamera):
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0.3,
         zoom_camera_to_full_screen_config= {
-            "run_time": 6,
+            "run_time": 5,
             "func": there_and_back_with_pause,
             "velocity_factor": 1
         })
@@ -871,9 +871,9 @@ class Normal_happy_pro_long(FourierCirclesSceneWithCamera):
         svg_path = "dragon.svg"
         #svg_path = "chunhua.svg"
         #svg_path = "xuwen.svg"
-        process_word(n_vectors=10, 
-                     #all_time=46.8, #音乐47.3 
-                     all_time=10,
+        process_word(n_vectors=400, 
+                     all_time=46.8, #音乐47.3 
+                     #all_time=10,
                      svg_path=svg_path, 
                      origin=complex(-1.2,-1.3),
                      scale_factor=22)

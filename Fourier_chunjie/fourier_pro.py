@@ -777,7 +777,7 @@ class Normal_happy_pro_long(FourierCirclesSceneWithCamera):
         cairo_line_width_multiple=0.005,#控制缩放镜头里线的长短
         default_frame_stroke_width=0.1,#控制缩放镜头边框长短
         zoomed_display_corner=UR,
-        zoomed_display_corner_buff=0.2,
+        zoomed_display_corner_buff=0.3,
         zoom_camera_to_full_screen_config= {
             "run_time": 6,
             "func": there_and_back_with_pause,
@@ -872,7 +872,8 @@ class Normal_happy_pro_long(FourierCirclesSceneWithCamera):
         #svg_path = "chunhua.svg"
         #svg_path = "xuwen.svg"
         process_word(n_vectors=400, 
-                     all_time=46.8, #音乐47.3 
+                     #all_time=46.8, #音乐47.3 
+                     all_time=10,
                      svg_path=svg_path, 
                      origin=complex(-1.2,-1.3),
                      scale_factor=22)

@@ -1184,6 +1184,11 @@ class Normal_happy_pro_gxfc(FourierCirclesSceneWithCamera):
         #svg_path = "xuwen.svg"
         svg_path = "zhongguoren.svg"
         svg_path = "gongxifacai.svg"
+
+        """
+        视频的长度要略微大于音乐的长度
+        挺烦人的一点是：无法精确控制视频的长度
+        """
         process_word(n_vectors=5, 
                      all_time=40.8 , #音乐41.9s
                      svg_path=svg_path, 

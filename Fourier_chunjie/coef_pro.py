@@ -136,6 +136,7 @@ if __name__ == "__main__":
     svg_path = "xuwen.svg"
     svg_path = "zhongguoren.svg"
     #svg_path = "gongxifacai.svg"
+    svg_path = "dragon.svg"
     base_name = os.path.splitext(svg_path)[0]  # Extracts 'Ale' from 'Ale.svg'
 
     num = svg_path_num(svg_path)

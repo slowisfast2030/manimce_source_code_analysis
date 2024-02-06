@@ -739,7 +739,7 @@ class Normal_happy_pro(FourierCirclesSceneWithCamera):
 
         self.wait((1/self.slow_factor)*(part_length[2]/part_length[1]) + 1/15)
 
-class Normal_happy_pro_less(FourierCirclesSceneWithCamera):
+class Normal_happy_pro_long(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
     顺序显示
@@ -779,7 +779,7 @@ class Normal_happy_pro_less(FourierCirclesSceneWithCamera):
         zoomed_display_corner=UR,
         zoomed_display_corner_buff=0.2,
         zoom_camera_to_full_screen_config= {
-            "run_time": 3,
+            "run_time": 6,
             "func": there_and_back_with_pause,
             "velocity_factor": 1
         })
@@ -847,7 +847,7 @@ class Normal_happy_pro_less(FourierCirclesSceneWithCamera):
                 self.vectors = vectors 
                 self.zoom_config()
                 """"""
-                if part_index == 2:
+                if part_index == 3:
                     self.scale_zoom_camera_to_full_screen_config()
 
                 # Wait based on the slow factor
@@ -872,7 +872,7 @@ class Normal_happy_pro_less(FourierCirclesSceneWithCamera):
         #svg_path = "chunhua.svg"
         #svg_path = "xuwen.svg"
         process_word(n_vectors=400, 
-                     all_time=20, 
+                     all_time=46.8, #音乐47.3 
                      svg_path=svg_path, 
                      origin=complex(-1.2,-1.3),
                      scale_factor=22)

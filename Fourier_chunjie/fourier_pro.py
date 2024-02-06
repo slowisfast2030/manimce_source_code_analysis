@@ -878,7 +878,7 @@ class Normal_happy_pro_less(FourierCirclesSceneWithCamera):
                      scale_factor=22)
 
 
-class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
+class Normal_happy_pro_zgr(FourierCirclesSceneWithCamera):
     """
     显示汉字"乐"
     顺序显示
@@ -1004,7 +1004,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
 
 
                 # Wait based on the slow factor
-                self.wait(1 / self.slow_factor + 1 / 15)
+                self.wait(1 / self.slow_factor + 1 / self.camera.frame_rate)
 
                 # Clear updaters and remove objects
                 for v in vectors:
@@ -1025,7 +1025,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         #svg_path = "chunhua.svg"
         #svg_path = "xuwen.svg"
         svg_path = "zhongguoren.svg"
-        svg_path = "gongxifacai.svg"
+        #svg_path = "gongxifacai.svg"
         process_word(n_vectors=400, 
                      all_time=10, 
                      svg_path=svg_path, 

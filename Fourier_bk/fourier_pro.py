@@ -1013,7 +1013,7 @@ class Normal_happy_pro_more(FourierCirclesSceneWithCamera):
         #svg_path = "xuwen.svg"
         svg_path = "zhongguoren.svg"
         svg_path = "gongxifacai.svg"
-        process_word(n_vectors=200, 
+        process_word(n_vectors=400, 
                      all_time=10, 
                      svg_path=svg_path, 
                      #origin=complex(-1.2-1,-1.3+5-0.5), #中国人
